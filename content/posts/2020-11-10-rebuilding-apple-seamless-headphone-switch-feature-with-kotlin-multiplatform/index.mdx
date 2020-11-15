@@ -1,25 +1,31 @@
 ---
 title: "Rebuilding Apple Seamless Headphone Switch Feature with Kotlin MultiPlatform"
 date: 2020-11-10
-slug: "/pcas"
-canonicalUrl: "https://random-blog-about-curses.com"
+slug: "/2020-11-10-rebuilding-apple-seamless-headphone-switch-feature-with-kotlin-multiplatform/"
+canonicalUrl: "https://elvischidera.com/2020-11-10-rebuilding-apple-seamless-headphone-switch-feature-with-kotlin-multiplatform/"
+banner: ./assets/inspiration_tweet.png
+tags:
+  - Bluetooth
+  - Audio
+  - Kotlin Multiplatform
+  - Android
 ---
 
 The inspiration for this project came from this tweet.
 
-[![Inspiration tweet](./inspiration_tweet.png)](https://twitter.com/MKBHD/status/1275122690618261511)
+<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">AirPods will now automatically switch between devices by recognizing if you put down your phone and pick up your iPad. Or if you’re on your iPad and you get a phone call, it’ll switch back to the phone. That’s the type of experience only a complete ecosystem can create.</p>&mdash; Marques Brownlee (@MKBHD) <a href="https://twitter.com/MKBHD/status/1275122690618261511?ref_src=twsrc%5Etfw">June 22, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 A core tenet of the Apple camp is that their complete ecosystem makes every product "just work". This is a truism: Apple isn't plagued with fragmentation issues like other platforms. But replicating these functionalities on other platforms isn't rocket science.
 
 > Fun fact: There are 1,300 brands with over 24,000 distinct Android devices ([source](https://www.android.com/everyone/)).
-> ![Android device fragmentation](./android_device_fragmentation.png)
+> ![Android device fragmentation](./assets/android_device_fragmentation.png)
 
 ## Terminology
 
 1. **Peripheral**: Refers to Bluetooth audio devices, keyboards, mice. Eg: headphones, headsets, earbuds, etc.
 2. **Host**: Refers to a machine capable of connecting to a peripheral. Eg: phones, tablets, laptops, etc.
 
-![Hosts & Peripherals](./hosts_and_periherals.svg)
+![Hosts & Peripherals](./assets/hosts_and_periherals.svg)
 
 ## Overview
 
@@ -33,14 +39,14 @@ A single user with multiple hosts no longer has to manually connect/disconnect e
 
 ...
 
-![Multiplatform modules](./multiplatform_modules.svg)
+![Multiplatform modules](./assets/multiplatform_modules.svg)
 
 ### Building
 
 1. `pcas-libs`: This is a KMP Gradle project. The clients use the artifacts generated from this project. Run the `publish_local.sh` script to publish the library artifacts to your maven local repository.
 2. `pcas-clients/pcas-android-client`: This is an Android Gradle project.
 
-You can find prebuilt binaries in the [releases section](https://github.com/Elvis10ten/pcas/releases).
+You can find prebuilt binaries in the [repo releases section](https://github.com/Elvis10ten/pcas/releases).
 
 ### Design Goals
 
@@ -55,11 +61,11 @@ You can find prebuilt binaries in the [releases section](https://github.com/Elvi
 
 PCAS is designed to be simple and "just work". The only initial setup required is selecting a peripheral for each service of interest.
 
-![Home and select peripheral screenshots](./screen_home_and_select_peripheral.png)
+![Home and select peripheral screenshots](./assets/screen_home_and_select_peripheral.png)
 
 All hosts **must** be on the same LAN. E2E encryption is provided but optional (disabled by default). To enable E2E encryption, a key needs to be created and shared with the relevant hosts.
 
-![Encyrption setup and codeshare screenshots](./screen_encryption_setup_and_code_share.png)
+![Encyrption setup and codeshare screenshots](./assets/screen_encryption_setup_and_code_share.png)
 
 #### Assumptions
 
@@ -67,7 +73,7 @@ All hosts **must** be on the same LAN. E2E encryption is provided but optional (
 
 #### Demo
 
-[![Watch demo](./demo_preview_with_play.png)](https://www.youtube.com/watch?v=WMmtQLNYF-g/)
+[![Watch demo](./assets/demo_preview_with_play.png)](https://www.youtube.com/watch?v=WMmtQLNYF-g/)
 
 ## Architecture
 
@@ -79,7 +85,7 @@ Building PCAS for all platforms is hard, but the underlying concept is quite sim
 4. Each host writes all state information to its local ledger.
 5. Each host independently makes a decision to connect/disconnect/stream based on the content of its ledger.
 
-![High level architecture](./architecture_highlevel.svg)
+![High level architecture](./assets/architecture_highlevel.svg)
 
 ### Unreliable Zero-Config Transport
 
@@ -97,9 +103,9 @@ This layer is made of three core components:
 
 This channel uses [IP multicast](https://en.wikipedia.org/wiki/IP_multicast) to efficiently deliver parcels to multiple devices.
 
-![./PCAS1.svg](./multicast.svg)
+![./PCAS1.svg](./assets/multicast.svg)
 
-```kotlin:title=src/components/post.kt
+```kotlin:title=MulticastChannel.kt
 internal interface MulticastChannel {
 
     @Throws(Exception::class)
@@ -114,7 +120,7 @@ internal interface MulticastChannel {
 
 All hosts can send a parcel to the PCAS multicast group and can join the group to receive parcels. The local IP addresses of discrete hosts are not required. The multicast configs can be found in the `TransportConfig` class:
 
-```kotlin
+```kotlin:title=TransportConfig.kt
 internal object TransportConfig {
 
     // Max possible TTL value: Parcels could potentially leak to the internet.
@@ -133,9 +139,9 @@ internal object TransportConfig {
 
 This channel uses [IP unicast](https://en.wikipedia.org/wiki/Unicast) to offer a high-bandwidth point-to-point communication. This is used for data streaming as multicast has a lower data transfer rate.
 
-![./PCAS1.svg](./unicast.svg)
+![./PCAS1.svg](./assets/unicast.svg)
 
-```kotlin
+```kotlin:title=UnicastChannel.kt
 internal interface UnicastChannel {
 
     @Throws(Exception::class)
@@ -157,7 +163,7 @@ This component adds E2E encryption to the two channels above. Encryption is opti
 
 Data is encrypted with AES in GCM mode with no padding. A random initialization vector is used once per message and prepended to the head of a parcel. I won't go into details here as there are lots of good material on AES encryption on the internet: [like this one](https://levelup.gitconnected.com/doing-aes-gcm-in-android-adventures-in-the-field-72617401269d).
 
-![Transport data flow](./transport_data_flow.svg)
+![Transport data flow](./assets/transport_data_flow.svg)
 
 An interface is created for the 3 components above in the common module which is implemented natively on each platform.
 
@@ -168,16 +174,16 @@ This layer is broadly split into two:
 #### i. Storage
 A ledger is just a simple in-memory local database made up of blocks. Blocks represent the current state of the active hosts in a network. Each block is uniquely identified by a `4-tuple (service, profile, owner, peripheral)`.
 
-![Example local ledger](./example_ledger.svg)
+![Example local ledger](./assets/example_ledger.svg)
 
-```kotlin
+```kotlin:title=Ledger.kt
 data class Ledger(
     val self: HostInfo,
     val blocks: Set<Block> = emptySet()
 )
 ```
 
-```kotlin
+```kotlin:title=Block.kt
 data class Block(
     val service: Service,
     val profile: Service.Profile,
@@ -194,7 +200,7 @@ data class Block(
 "immutable" isn't technically correct. Blocks can be overwritten ONLY by their **owner**. Any host can prune their ledgers to remove blocks from inactive hosts.
 
 #### ii. Network Protocol
-![Host Network](./network.jpeg)
+![Host Network](./assets/network.jpeg)
 A resilient multicast protocol is built on top of the transport layer. There are three types of messages:
 
 1. **Genesis**: The first message a host sends, requesting other hosts to send their current blocks.
@@ -269,9 +275,9 @@ This is the meat or vegetable (for my vegetarian friends) of the system.
 >A Bluetooth profile is a specification regarding an aspect of Bluetooth-based wireless communication between devices. It resides on top of the Bluetooth Core Specification and (optionally) additional protocols - [source](https://en.wikipedia.org/wiki/List_of_Bluetooth_profiles)
 
 1. **A2DP (Advanced Audio Distribution Profile)**: This is a uni-directional audio profile and provides better audio quality than the headset profiles.
-[![A2DP profile](./a2dp_profile.jpg)](https://www.slideshare.net/Thenmurugeshwari/bluetooth-profile)
+[![A2DP profile](./assets/a2dp_profile.jpg)](https://www.slideshare.net/Thenmurugeshwari/bluetooth-profile)
 2. **Headset (Headset Profile/Hands-Free Profile)**: These are bi-directional audio profiles usually used for phone calls.
-[![A2DP profile](./hfp_profile.jpg)](https://www.slideshare.net/Thenmurugeshwari/bluetooth-profile)
+[![A2DP profile](./assets/hfp_profile.jpg)](https://www.slideshare.net/Thenmurugeshwari/bluetooth-profile)
 3. **HID (Human Interface Device Profile)**: Provides support for devices such as mice, keyboards, etc. PlayStation 3 controllers and Wii remotes also use Bluetooth HID.
 
 > Recap: With A2DP you can only listen but with higher audio quality. With headset profiles, you can talk and listen, but at a lower quality. Next time you are playing a song while a call comes in, observe how the audio quality drops.
@@ -289,7 +295,7 @@ Resolutions are derived using a rank associated with each block.
 
 #### Calculating ranks
 
-```kotlin
+```kotlin:title=Ranking.kt
     val isConnected = bondSteadyState == PeripheralBond.State.CONNECTED
 
     val hasPriority = priority != NO_PRIORITY
@@ -313,7 +319,7 @@ Resolutions are derived using a rank associated with each block.
 
 The rank is an estimate of the current importance of a block. Based on ranks, a contention object is created for each block a host has.
 
-```kotlin
+```kotlin:title=Contention.kt
 data class Contention(
     val selfBlock: Block,
     // This is another block with the same service, peripheral, and profile but a different owner that is deemed the apex based on its rank
@@ -323,7 +329,7 @@ data class Contention(
 
 The contention object is then used to derive a resolution.
 
-```kotlin
+```kotlin:title=Resolution.kt
 fun getResolution(contention: Contention): Resolution {
     return when {
         // No contenders found yet.
@@ -370,7 +376,7 @@ All services have two key integrants:
 
 Blocks are built from host state information. The relevant audio states are the current audio usages and the current peripheral bond state.
 
-```kotlin
+```kotlin:title=AudioProperty.kt
 data class AudioProperty(val usages: Set<Usage>) {
 
     enum class Usage(
@@ -396,7 +402,7 @@ data class AudioProperty(val usages: Set<Usage>) {
 }
 ```
 
-```kotlin
+```kotlin:title=PeripheralBond.kt
 data class PeripheralBond(
     val profile: PeripheralProfile,
     val hotState: State
@@ -422,22 +428,11 @@ data class PeripheralBond(
 
 Each time a host state changes, a new block is created. The ledger layer listens for these changes and automatically updates the local ledger and sends the blocks to remote peers.
 
-![Audio blocks sequence](./PCASBlocksEmitter.svg)
+![Audio blocks sequence](./assets/PCASBlocksEmitter.svg)
 
 ii. **Resolution Handler**
 
 Each service gets to handle all resolutions from the resource allocation layer. For audio, this is actually where we connect or disconnect the audio profiles on a peripheral. A service can also choose to support streaming, in which case it will also handle that resolution here.
-
-## State of the union
-
-- [x] Build Android Client
-- [x] Create documentation
-- [ ] Support data streaming
-- [ ] Create smoother switch transitions
-- [ ] Build iOS client
-- [ ] Build MAC client
-- [ ] Build Windows client
-- [ ] Battle testing
 
 ## FAQ
 
@@ -451,7 +446,7 @@ I explored 2 other possible technologies:
 
 #### 1. Push Messaging
 
-![./image1.gif](./image1.gif)
+![./image1.gif](./assets/fcm.gif)
 
 This is easy using a service like [FCM](https://firebase.google.com/docs/cloud-messaging) (it would be similar to Google [Nearby Messaging API](https://developers.google.com/nearby/messages/overview) without the proximity part).
 
@@ -487,7 +482,7 @@ The data rate is `1 Mbps` (supporting 2Mbps on Bluetooth 5.0).
 
 **Advertisement Packet**
 
-![./ble-advertising-packet.png](./ble-advertising-packet.png)
+![./ble-advertising-packet.png](./assets/ble-advertising-packet.png)
 
 **Advertising & Interference**
 
@@ -495,7 +490,7 @@ BLE is robust, using [frequency hopping](https://en.wikipedia.org/wiki/Frequency
 
 BLE uses 3 dedicated channels for advertising: 37, 38, 39 (channels are zero-indexed). As can be seen in the image below, these channels are spread across the 2.4GHz band to minimize interference problems.
 
-[![./ble-advertising-channels-spectrum.png](./ble-advertising-channels-spectrum.png)](https://www.argenox.com/library/bluetooth-low-energy/ble-advertising-primer/)
+[![./ble-advertising-channels-spectrum.png](./assets/ble-advertising-channels-spectrum.png)](https://www.argenox.com/library/bluetooth-low-energy/ble-advertising-primer/)
 
 A relevant study: [Coexistence and Interference Tests on a Bluetooth Low Energy Front-End](https://www.researchgate.net/publication/265602069_Coexistence_and_Interference_Tests_on_a_Bluetooth_Low_Energy_Front-End).
 
@@ -507,7 +502,7 @@ A scanning central device listens on these channels to detect advertisement pack
 
 Page 2223 of the [Bluetooth Core Specification v4.0](https://www.bluetooth.org/docman/handlers/downloaddoc.ashx?doc_id=229737) explains advertisement intervals perfectly.
 
-![Bluetooth Core Specs Page 2223](./bluetooth_core_specs_page_2223.png)
+![Bluetooth Core Specs Page 2223](./assets/bluetooth_core_specs_page_2223.png)
 
 A scanning device listens on the advertisement channels for a duration called the `scan window`, which is repeated every `scan interval`.
 
@@ -525,7 +520,7 @@ Have a look at this [Android power consumption test](https://developer.radiusnet
 
 A study by beacon software company Aislelabs reported that peripherals such as proximity beacons usually function for 1–2 years powered by a `1,000mAh coin cell battery`.
 
-![./BLE_Chipsets_Power.png](./BLE_Chipsets_Power.png)
+![./BLE_Chipsets_Power.png](./assets/BLE_Chipsets_Power.png)
 
 ### Pros
 

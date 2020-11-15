@@ -1,0 +1,41 @@
+---
+title: "Build J2ME apps with a J2ME phone"
+date: 2013-09-02
+slug: "/2013-09-02-build-j2me-apps-with-a-j2me-phone-nokia-flip-phone/"
+canonicalUrl: "https://elvischidera.com/2013-09-02-build-j2me-apps-with-a-j2me-phone-nokia-flip-phone/"
+banner: ./assets/banner.png
+tags:
+  - J2ME
+  - Java
+---
+
+Are you a interested in programming but don't have a laptop or you are not close to your laptop but have your phone with you. You can still program with your phone using J2ME SDK Mobile. I will show you how to use this app on your java or symbian phone to create an app.
+
+Firstly, download the app from www.mumey.wen.ru. Open the app and click on New Project. Enter HelloWorld as the Project Name and select a directory to save the project files by clicking on browse for the Project Location. Click Create and allow access until you see Source Packages and Resources. Open Source Packages, press Options(left soft key), go down and select Project Properties.
+Select Build, select Creating JAR. Change JAD file Name from HelloWorld.jad to HelloWorld_jad and JAR fike Name from HelloWorld.jar to HelloWorld_jar then OK it, go back and press Ok again and allow access. You would be taken back to Source Packages, press Options again(left soft key), select New. Select MIDlet as the File Type, click Next. Change MIDlet Name to HelloWorld and Class Name to HelloWorld (they don't have to be the same), leave MIDlet Icon empty for now then click finish and allow access. You will be taken to a white background with codes. Clear every line of code, by pressing 5; deleting everything: click save and go to the next line by pressing down till you get to the last line and the background is all white with no codes then you go up to the first line, select it by pressing 5 and put the code (or you might call it text) below:
+
+```java:title=HelloWorld.java
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+
+public class HelloWorld extends MIDlet {
+
+  public void startApp() {
+    Form f = new Form("My first app");
+    f.append("Hello World");
+    Display.getDisplay(this).setCurrent(f);
+  }
+
+  public void pauseApp() {
+  }
+
+  public void destroyApp(boolean unconditional) {
+  }
+}
+```
+ 
+Click Save(OK), you will go back to that white background with codes, press Menu(right soft key) and click on Build(it has a hammer icon), allow access untill the app closes. Open the app again for compiling, allow access untill it closes. Open the app again for preverifing, allow access as usual until it closes. Open the app the last time for jaring, it probably given you an error like this pre-jar:
+do-jar:
+JARing:java.io.IOException: Failed to write to file BUILD FAILED. When you get that message or even if you don't, exit the app and open blueFTP (if you don't have one, search for it on www.skenpomobile and download), goto the Project Folder with blueFTP, goto the build folder, copy manifest.mf and goto preverified folder and create a new folder there named META-INF, and paste the manifest.mf file into the new folder. Go back to the preverified folder and mark HelloWorld.class and META-INF, press Menu(left soft key) and select Compress items(jar). Change JAR name to HelloWorld_jar then press OK and allow access until you get compression completed successfully. Exit BlueFTP and goto the preverifed folder without any app and rename the file from HelloWorld_jar to HelloWorld.jar. Open the HelloWorld app and you will get a Hello World Message. Bravo, you just built your first app with J2ME SDK MOBILE.
+If you are a programmer who is already familiar with j2me and j2se, then you can start creating apps for j2me phones with your j2me phones, but if you are not a programmer but you are interested in building apps for j2me phones, then google for j2me tutorials and use the J2ME SDK MOBILE to code if you don't have a pc or you are not close to one. You can contact me on elvis.chidera@gmail.com for programming ebooks.
+The j2me market is a dying one, but its still popular in africa and other countries. You can make the best of it before it dies totally.
