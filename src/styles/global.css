@@ -1,0 +1,25 @@
+/* pre.language-kotlin::before {
+  content: "kotlin";
+  background-color: #306998;
+  color: white;
+} */
+
+img {
+  max-width: 960;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video_wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */ 
+}
+
+.video_frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
