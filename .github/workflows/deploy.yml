@@ -35,7 +35,4 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master
-      - uses: actions/checkout@v2
-      - uses: enriikke/gatsby-gh-pages-action@v2.1.1
-        with:
-          personal_token: ${{ secrets.ACCESS_TOKEN }}
+          force_orphan: true
