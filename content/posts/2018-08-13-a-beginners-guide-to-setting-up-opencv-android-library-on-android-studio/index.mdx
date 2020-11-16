@@ -1,490 +1,61 @@
 ---
-title: "A Beginner’s Guide to Setting up OpenCV Android Library on Android Studio"
-date: 2018-08-08
-slug: "/2018-08-13-a-beginners-guide-to-setting-up-opencv-android-library-on-android-studio/"
-canonicalUrl: "https://elvischidera.com/2018-08-13-a-beginners-guide-to-setting-up-opencv-android-library-on-android-studio/"
-banner: ./assets/banner.jpeg
+title: "Building a Shazam Clone Part 1 (Design) — Building Android Apps Series"
+date: 2017-09-22
+slug: "/2017-10-22-building-a-shazam-clone-part-1-design-building-android-apps-series/"
+canonicalUrl: "https://elvischidera.com/2017-10-22-building-a-shazam-clone-part-1-design-building-android-apps-series/"
+banner: ./assets/banner.png
 tags:
-  - opencv
   - android
+  - shazam
+  - audio
 ---
 
-I recently started a project that involved working with OpenCV on Android. Most of the guides on setting up the library on Android were outdated or not complete. So, after getting multiple requests from team mates on how to set this up, I decided to just write a dead simple guide on this.
+You have probably used the magical [Shazam](https://www.shazam.com) or [SoundHound](https://soundhound.com) app. Well, for those from a different planet that haven’t used them :), Shazam and SoundHound help you easily identify songs that are playing around you. All you have to do is just tap a button and a magic potion is used to discover the song that’s playing.
 
-![Image Detection ([Source](https://immersed.io/computer-vision-means-ar-vr/))](./assets/banner.jpeg)
+I will show you how to build an app that does exactly the same thing. The only requirement for this project is [some knowledge building Android apps](https://www.udacity.com/course/android-basics-nanodegree-by-google--nd803). This will be the first project in the Building Android Apps Series.
 
-**Step 1: Download OpenCV Android Library**
+One of the very first steps to building an Android application is to determine what users are able to do and see with the app. While you can simply start development immediately, it’s best to sit back for a while and look at the project you are trying to build from a high level.
 
-Go to the [OpenCV Android Sourceforge](https://sourceforge.net/projects/opencvlibrary/files/opencv-android/) page and download the latest OpenCV Android library. As at the time of writing this post, the latest available version was **3.4.1**.
+So, let’s start with the first part, which is what a user can do with the app. We will be using [User Stories](https://www.mountaingoatsoftware.com/agile/user-stories) to express this. Writing a user story is quite easy even if you haven’t written one before. **User stories** are just short, basic descriptions of a feature told from the perspective of the user. They usually follow a simple template:
 
-![](./assets/image1.png)
+> *As a < type of user >, I want < some goal > so that < some reason >.*
 
-When the download completes, you should extract the contents of the zip file into a folder.
+You can always add more stories when you need additional features. So here are the user stories for the ShazamClone app:
 
-![](./assets/image2.png)
+ 1. As a user, I want to identify any song playing around me by just clicking a button.
 
-**Step 2: Setup project**
+ 2. As a user, I want to see the songs I previously discovered
 
-Create a new Android project using Android Studio only if you have not created one already for your computer vision project.
+ 3. As a user, I want to share the name and artist of the song I discovered
 
-Note: Skip this step if you already have an Android project you want to use the OpenCV library in.
+ 4. As a user, I want to watch the video of the song I discovered
 
-![](./assets/image3.png)
+ 5. As a kind user, I want to appreciate the developer so that he can build more products [😊](https://emojipedia.org/smiling-face-with-smiling-eyes/)
 
-**Step 3: Import OpenCV Module**
+We now know what the user can do with the app, let’s now focus on what they see on the app. We will need to determine the exhaustive set of screens needed to allow users to achieve their goals. You can create this list using your user stories. Below is an exhaustive list of screens based on our user stories:
 
-After successfully creating an Android project, it is time to import the OpenCV module into your Android project. Click on **File** -> **New** -> **Import Module…**
+* Onboarding screen (Shows the benefit of the app in a slide show)
 
-![](./assets/image4.png)
+* Home or Discover screen (To discover new songs or view history)
 
-It should bring up a popup like the image below where you can select the path to the module you want to import.
+* Listening or Discovering screen (Loading page)
 
-![](./assets/image5.png)
+* Song Detail screen (From which a user can share or watch song videos)
 
-Browse to the folder where you extracted the OpenCV Android library zip file contents. Select the java folder inside of the sdk folder.
+* History screen (A list of previously discovered songs)
 
-![](./assets/image6.png)
+* Error screen (When a recoverable or nonrecoverable error occurs)
 
-After selecting the correct path and clicking **OK**, you should get a screen like the image below.
+Next is to define the directed relationships between screens. For this, you will need a diagram software or you could also just use paper and pen. One of my favorite tool is [Draw.io](http://draw.io) as it doesn’t have a steep learning curve. You basically just draw rectangles with text for each screen on your list and then use arrows to show the screen relationship. An arrow from one screen *A *to another screen *B *implies that screen *B *should be directly reachable via some user interaction in screen *A*.
 
-![](./assets/image7.png)
+![Screen relationship diagram](./assets/screen_relationship_diagram.png)
 
-Click on **Next** to go to the next screen. On the next screen (the image below) you should leave the default options checked and click on **Finish** to complete the module import.
+After creating the screen lists and the relationship between them, we can start [Wireframing](http://en.wikipedia.org/wiki/Website_wireframe). Wireframing is the step in the design process where you begin to lay out your screens. Keep in mind that at this point, pixel-perfect precision (creating high-fidelity mockups) is not important. The easiest and fastest way to get started is to sketch out your screens by hand using paper and pencils.
 
-![](./assets/image8.png)
+After you’re satisfied with initial sketches, it’s a good idea to move on to digital wireframing software. You can use any tool that works for you to do your wireframing. There are also online tools that allow you to collaborate with other people. For this project, I used [MockFlow](http://mockflow.com) which is pretty basic and easy to use. I was able to create the designs below with it.
 
-**Step 4: Fixing Gradle Sync Errors**
+![Phone design](./assets/banner.png)
 
-You should get a Gradle build error after you finish importing the OpenCV library. This happens because the library is using an old Android SDK that you probably don’t have installed yet.
+![Tablet design](./assets/tablet_design.png)
 
-![](./assets/image9.png)
-
-To quickly fix this error, switch from the Android pane to the Project pane on the left side of Android Studio.
-
-![](./assets/image10.png)
-
-Browse to OpenCV library module and open its build.gradle file.
-
-![](./assets/image11.png)
-
-To fix the error, you just have to change the compileSdkVersion and targetSdkVersion to the latest Android SDK version or the one you have installed on your PC. After changing the version you should click on the **sync** button so that Gradle can sync the project.
-
-Quick tip: buildToolsVersion can be ignored
-
-![](./assets/image12.png)
-
-**Step 5: Add the OpenCV Dependency**
-
-To work with the OpenCV Android library, you have to add it to your app module as a dependency. To easily do this on Android Studio, click on **File** -> **Project Structure**.
-
-![](./assets/image13.png)
-
-When the project structure dialog opens, click on the app module or any other module that you want to use OpenCV library in.
-
-After navigating to the module, click on the **Dependencies** tab. You should see a green plus button on the far right of the dialog, click on it and select **Module dependency**.
-
-![](./assets/image14.png)
-
-When the choose modules dialog opens, select the OpenCV library module and click on **OK**.
-
-![](./assets/image15.png)
-
-When you return to the dependencies page, confirm that the module was actually added as a dependency then click on the **OK** button to continue.
-
-![](./assets/image16.png)
-
-**Step 6: Add Native Libraries**
-
-On your file explorer, navigate to the folder where you extracted the content of the OpenCV Android library zip file. Open the sdk folder and then the native folder (Use the image below as a guide).
-
-![](./assets/image17.png)
-
-Copy the libs folder in the native folder over to your project app module main folder (Usually ProjectName/app/src/main).
-
-![](./assets/image18.png)
-
-Rename the libs folder you just copied into your project to jniLibs.
-
-![](./assets/image20.png)
-
-**Step 7: Add Required Permissions**
-
-To successfully use OpenCV, your app should have the camera permission added to its AndroidManifest.xml file.
-
-Tip: Don’t forget to request for the camera permission at runtime on Android 6 and above.
-
-```xml:title=AndroidManifest.xml
-<uses-permission android:name="android.permission.CAMERA"/>
-
-<uses-feature android:name="android.hardware.camera" android:required="false"/>
-<uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
-<uses-feature android:name="android.hardware.camera.front" android:required="false"/>
-<uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false"/>
-```
-
-**Step 8: Try out Sample**
-
-To confirm that you successfully integrated the OpenCV Android library, you can try out one of the samples included in the library zip file.
-
-Let’s try out the color-blob-detection sample. You can see the sample in action below:
-
-<div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/d62LO19pejE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-Quickly update your app main activity with the code below.
-
-```java:title=MainActivity.java
-package com.mobymagic.opencvproject;
-
-import java.util.List;
-
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.core.Size;
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
-import org.opencv.imgproc.Imgproc;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.View.OnTouchListener;
-import android.view.SurfaceView;
-
-public class MainActivity extends Activity implements OnTouchListener, CvCameraViewListener2 {
-    private static final String  TAG              = "MainActivity";
-
-    private boolean              mIsColorSelected = false;
-    private Mat                  mRgba;
-    private Scalar               mBlobColorRgba;
-    private Scalar               mBlobColorHsv;
-    private ColorBlobDetector    mDetector;
-    private Mat                  mSpectrum;
-    private Size                 SPECTRUM_SIZE;
-    private Scalar               CONTOUR_COLOR;
-
-    private CameraBridgeViewBase mOpenCvCameraView;
-
-    private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
-                    mOpenCvCameraView.setOnTouchListener(MainActivity.this);
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                } break;
-            }
-        }
-    };
-
-    public MainActivity() {
-        Log.i(TAG, "Instantiated new " + this.getClass());
-    }
-
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "called onCreate");
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        setContentView(R.layout.color_blob_detection_surface_view);
-
-        mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.color_blob_detection_activity_surface_view);
-        mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
-        mOpenCvCameraView.setCvCameraViewListener(this);
-    }
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        if (mOpenCvCameraView != null)
-            mOpenCvCameraView.disableView();
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
-    }
-
-    public void onDestroy() {
-        super.onDestroy();
-        if (mOpenCvCameraView != null)
-            mOpenCvCameraView.disableView();
-    }
-
-    public void onCameraViewStarted(int width, int height) {
-        mRgba = new Mat(height, width, CvType.CV_8UC4);
-        mDetector = new ColorBlobDetector();
-        mSpectrum = new Mat();
-        mBlobColorRgba = new Scalar(255);
-        mBlobColorHsv = new Scalar(255);
-        SPECTRUM_SIZE = new Size(200, 64);
-        CONTOUR_COLOR = new Scalar(255,0,0,255);
-    }
-
-    public void onCameraViewStopped() {
-        mRgba.release();
-    }
-
-    public boolean onTouch(View v, MotionEvent event) {
-        int cols = mRgba.cols();
-        int rows = mRgba.rows();
-
-        int xOffset = (mOpenCvCameraView.getWidth() - cols) / 2;
-        int yOffset = (mOpenCvCameraView.getHeight() - rows) / 2;
-
-        int x = (int)event.getX() - xOffset;
-        int y = (int)event.getY() - yOffset;
-
-        Log.i(TAG, "Touch image coordinates: (" + x + ", " + y + ")");
-
-        if ((x < 0) || (y < 0) || (x > cols) || (y > rows)) return false;
-
-        Rect touchedRect = new Rect();
-
-        touchedRect.x = (x>4) ? x-4 : 0;
-        touchedRect.y = (y>4) ? y-4 : 0;
-
-        touchedRect.width = (x+4 < cols) ? x + 4 - touchedRect.x : cols - touchedRect.x;
-        touchedRect.height = (y+4 < rows) ? y + 4 - touchedRect.y : rows - touchedRect.y;
-
-        Mat touchedRegionRgba = mRgba.submat(touchedRect);
-
-        Mat touchedRegionHsv = new Mat();
-        Imgproc.cvtColor(touchedRegionRgba, touchedRegionHsv, Imgproc.COLOR_RGB2HSV_FULL);
-
-        // Calculate average color of touched region
-        mBlobColorHsv = Core.sumElems(touchedRegionHsv);
-        int pointCount = touchedRect.width*touchedRect.height;
-        for (int i = 0; i < mBlobColorHsv.val.length; i++)
-            mBlobColorHsv.val[i] /= pointCount;
-
-        mBlobColorRgba = converScalarHsv2Rgba(mBlobColorHsv);
-
-        Log.i(TAG, "Touched rgba color: (" + mBlobColorRgba.val[0] + ", " + mBlobColorRgba.val[1] +
-                ", " + mBlobColorRgba.val[2] + ", " + mBlobColorRgba.val[3] + ")");
-
-        mDetector.setHsvColor(mBlobColorHsv);
-
-        Imgproc.resize(mDetector.getSpectrum(), mSpectrum, SPECTRUM_SIZE, 0, 0, Imgproc.INTER_LINEAR_EXACT);
-
-        mIsColorSelected = true;
-
-        touchedRegionRgba.release();
-        touchedRegionHsv.release();
-
-        return false; // don't need subsequent touch events
-    }
-
-    public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
-        mRgba = inputFrame.rgba();
-
-        if (mIsColorSelected) {
-            mDetector.process(mRgba);
-            List<MatOfPoint> contours = mDetector.getContours();
-            Log.e(TAG, "Contours count: " + contours.size());
-            Imgproc.drawContours(mRgba, contours, -1, CONTOUR_COLOR);
-
-            Mat colorLabel = mRgba.submat(4, 68, 4, 68);
-            colorLabel.setTo(mBlobColorRgba);
-
-            Mat spectrumLabel = mRgba.submat(4, 4 + mSpectrum.rows(), 70, 70 + mSpectrum.cols());
-            mSpectrum.copyTo(spectrumLabel);
-        }
-
-        return mRgba;
-    }
-
-    private Scalar converScalarHsv2Rgba(Scalar hsvColor) {
-        Mat pointMatRgba = new Mat();
-        Mat pointMatHsv = new Mat(1, 1, CvType.CV_8UC3, hsvColor);
-        Imgproc.cvtColor(pointMatHsv, pointMatRgba, Imgproc.COLOR_HSV2RGB_FULL, 4);
-
-        return new Scalar(pointMatRgba.get(0, 0));
-    }
-}
-```
-
-Then create a new class called ColorBlobDetector and copy the code below into it.
-
-```java:title=ColorBlobDetector.java
-package com.mobymagic.opencvproject;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
-public class ColorBlobDetector {
-    // Lower and Upper bounds for range checking in HSV color space
-    private Scalar mLowerBound = new Scalar(0);
-    private Scalar mUpperBound = new Scalar(0);
-    // Minimum contour area in percent for contours filtering
-    private static double mMinContourArea = 0.1;
-    // Color radius for range checking in HSV color space
-    private Scalar mColorRadius = new Scalar(25,50,50,0);
-    private Mat mSpectrum = new Mat();
-    private List<MatOfPoint> mContours = new ArrayList<MatOfPoint>();
-
-    // Cache
-    Mat mPyrDownMat = new Mat();
-    Mat mHsvMat = new Mat();
-    Mat mMask = new Mat();
-    Mat mDilatedMask = new Mat();
-    Mat mHierarchy = new Mat();
-
-    public void setColorRadius(Scalar radius) {
-        mColorRadius = radius;
-    }
-
-    public void setHsvColor(Scalar hsvColor) {
-        double minH = (hsvColor.val[0] >= mColorRadius.val[0]) ? hsvColor.val[0]-mColorRadius.val[0] : 0;
-        double maxH = (hsvColor.val[0]+mColorRadius.val[0] <= 255) ? hsvColor.val[0]+mColorRadius.val[0] : 255;
-
-        mLowerBound.val[0] = minH;
-        mUpperBound.val[0] = maxH;
-
-        mLowerBound.val[1] = hsvColor.val[1] - mColorRadius.val[1];
-        mUpperBound.val[1] = hsvColor.val[1] + mColorRadius.val[1];
-
-        mLowerBound.val[2] = hsvColor.val[2] - mColorRadius.val[2];
-        mUpperBound.val[2] = hsvColor.val[2] + mColorRadius.val[2];
-
-        mLowerBound.val[3] = 0;
-        mUpperBound.val[3] = 255;
-
-        Mat spectrumHsv = new Mat(1, (int)(maxH-minH), CvType.CV_8UC3);
-
-        for (int j = 0; j < maxH-minH; j++) {
-            byte[] tmp = {(byte)(minH+j), (byte)255, (byte)255};
-            spectrumHsv.put(0, j, tmp);
-        }
-
-        Imgproc.cvtColor(spectrumHsv, mSpectrum, Imgproc.COLOR_HSV2RGB_FULL, 4);
-    }
-
-    public Mat getSpectrum() {
-        return mSpectrum;
-    }
-
-    public void setMinContourArea(double area) {
-        mMinContourArea = area;
-    }
-
-    public void process(Mat rgbaImage) {
-        Imgproc.pyrDown(rgbaImage, mPyrDownMat);
-        Imgproc.pyrDown(mPyrDownMat, mPyrDownMat);
-
-        Imgproc.cvtColor(mPyrDownMat, mHsvMat, Imgproc.COLOR_RGB2HSV_FULL);
-
-        Core.inRange(mHsvMat, mLowerBound, mUpperBound, mMask);
-        Imgproc.dilate(mMask, mDilatedMask, new Mat());
-
-        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-
-        Imgproc.findContours(mDilatedMask, contours, mHierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-
-        // Find max contour area
-        double maxArea = 0;
-        Iterator<MatOfPoint> each = contours.iterator();
-        while (each.hasNext()) {
-            MatOfPoint wrapper = each.next();
-            double area = Imgproc.contourArea(wrapper);
-            if (area > maxArea)
-                maxArea = area;
-        }
-
-        // Filter contours by area and resize to fit the original image size
-        mContours.clear();
-        each = contours.iterator();
-        while (each.hasNext()) {
-            MatOfPoint contour = each.next();
-            if (Imgproc.contourArea(contour) > mMinContourArea*maxArea) {
-                Core.multiply(contour, new Scalar(4,4), contour);
-                mContours.add(contour);
-            }
-        }
-    }
-
-    public List<MatOfPoint> getContours() {
-        return mContours;
-    }
-}
-```
-
-Finally, update your app main activity layout file with the layout code below.
-
-```xml:title=color_blob_detection_surface_view.xml
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <org.opencv.android.JavaCameraView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/color_blob_detection_activity_surface_view" />
-
-</FrameLayout>
-```
-
-**Step 9: Using OpenCV Manager**
-
-Because you are bundling native libraries in your app APK, you will end up with a very large app APK size.
-
-One way to solve this is to use [ABI splits](https://developer.android.com/studio/build/configure-apk-splits), so you only have the neccessary libraries needed for each device in an APK.
-
-The other way around the size issue is to use the [OpenCV Manager](https://play.google.com/store/apps/details?id=org.opencv.engine). In the folder where you extracted the library contents into, there is a folder called apk that contains the OpenCV manager for various architectures.
-
-![](./assets/image21.png)
-
-Select the APK with the right architecture of your test device and use ADB via command prompt/line to install it on your device.
-
-![](./assets/image22.png)
-
-**Step 10: Test the App**
-
-Finally, hit the run button and run the app on your test device.
-
-**Note:** Don’t forget to grant camera permission on Android 6 and above.
-
-![](./assets/image23.png)
-
-That is all.
+In the next part of this post, we will be focusing on the development (coding) of the app. Stay tuned.
