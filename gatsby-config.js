@@ -110,7 +110,7 @@ module.exports = {
         description: `A weblog by Elvis Chidera, a software engineer working in Boston, about all things tech.`,
         start_url: `/`,
         background_color: `#fff`,
-        theme_color: `#6B46C1`,
+        theme_color: `#2196F3`,
         display: `standalone`,
         icons: [
           {
