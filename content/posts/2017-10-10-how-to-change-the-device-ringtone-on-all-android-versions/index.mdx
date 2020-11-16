@@ -1,0 +1,141 @@
+---
+title: "How To Change The Device Ringtone On All Android Versions"
+date: 2017-10-10
+slug: "/2017-10-10-how-to-change-the-device-ringtone-on-all-android-versions/"
+canonicalUrl: "https://elvischidera.com/2017-10-10-how-to-change-the-device-ringtone-on-all-android-versions/"
+banner: ./assets/banner.jpeg
+tags:
+  - android
+  - audio
+---
+
+Recent versions of Android come with wonderful features and some (good) restrictions. One of this restriction is the run-time permission that was added in Android Marshmallow. Before Android Marshmallow, permissions were granted at install time rather than at run-time.
+
+While run-time permissions are pretty straightforward to work with, performing some (special) actions require some extra work on the developer and the user path. Example of such special actions is changing the device ringtone or drawing over other apps (like Facebook messenger chat heads).
+
+You will have to take the user out of your app to the settings app for them to be able to enable the permission needed and then they have to go back to your app to continue what they were trying to do.
+
+If all you just want to do is change the device ringtone, this might be too much work for you to do. I created a helper class you can use to easily change the ringtone on a device. It does all the version checking and the special permission handling for you and you can easily extend it to serve your use case.
+
+![](./assets/banner.jpeg)
+
+Before using the class, ensure you have the required WRITE_SETTINGS permission in your AndroidManifest.xml file
+
+```xml:title=AndroidManifest.xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+</manifest>
+```
+
+The helper class (RingtoneUtils) has a setRingtone method that does all the work for you, just pass in a context and the URI of the ringtone you want to change to. Here is the helper class:
+
+```java:title=RingtoneUtils.java
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
+import android.widget.Toast;
+
+public class RingtoneUtils {
+
+    private static final String LOG_TAG = "RingtoneUtils";
+
+    public static boolean setRingtone(@NonNull Context context, @NonNull Uri ringtoneUri) {
+        Log.v(LOG_TAG, "Setting Ringtone to: " + ringtoneUri);
+
+        if (!hasMarshmallow()) {
+            Log.v(LOG_TAG, "On a Lollipop or below device, so go ahead and change device ringtone");
+            setActualRingtone(context, ringtoneUri);
+            return true;
+        }
+        else if(hasMarshmallow() && canEditSystemSettings(context)) {
+            Log.v(LOG_TAG, "On a marshmallow or above device but app has the permission to edit system settings");
+            setActualRingtone(context, ringtoneUri);
+            return true;
+        }
+        else if(hasMarshmallow() && !canEditSystemSettings(context)) {
+            Log.d(LOG_TAG, "On android Marshmallow and above but app does not have permission to" +
+                    " edit system settings. Opening the manage write settings activity...");
+            startManageWriteSettingsActivity(context);
+            Toast.makeText(context, "Please allow app to edit settings so your ringtone can be updated", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return false;
+    }
+
+    private static void setActualRingtone(@NonNull Context context, @NonNull Uri ringtoneUri) {
+        RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, ringtoneUri);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private static void startManageWriteSettingsActivity(@NonNull Context context) {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+        // Passing in the app package here allows the settings app to open the exact app
+        intent.setData(Uri.parse("package:" + context.getApplicationContext().getPackageName()));
+        // Optional. If you pass in a service context without setting this flag, you will get an exception
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    private static boolean hasMarshmallow() {
+        // returns true if the device is Android Marshmallow or above, false otherwise
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private static boolean canEditSystemSettings(@NonNull Context context) {
+        // returns true if the app can edit system settings, false otherwise
+        return Settings.System.canWrite(context.getApplicationContext());
+    }
+
+}
+```
+
+Here is an example of the RingtoneUtils being used to change the device ringtone:
+
+```java:title=ExampleUsage.java
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+    
+public class ExampleUsage {
+    
+    public void setFirstSongOnDeviceAsRingtone(@NonNull Context context) {
+        Uri mediaContentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        String[] projection = new String[] { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.DATA};
+    
+        Cursor mediaCursor = context.getContentResolver().query(mediaContentUri, projection, null, null, null);
+    
+        if(mediaCursor != null) {
+            if(mediaCursor.getCount() >= 0) {
+                // Move to first song item
+                mediaCursor.moveToPosition(0);
+                long songId = mediaCursor.getLong(mediaCursor.getColumnIndex(MediaStore.Audio.Media._ID));
+                String songUri = mediaCursor.getString(mediaCursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                Uri songContentUri = MediaStore.Audio.Media.getContentUriForPath(songUri);
+                Uri ringtoneUri = ContentUris.withAppendedId(songContentUri, songId);
+    
+                // Use class to change Ringtone
+                RingtoneUtils.setRingtone(context, ringtoneUri);
+            }
+    
+            mediaCursor.close();
+        }
+    }
+    
+}
+```
+
+The steps are similar if you want to have your app draw over other apps, but this post is more focused on changing the device ringtone.

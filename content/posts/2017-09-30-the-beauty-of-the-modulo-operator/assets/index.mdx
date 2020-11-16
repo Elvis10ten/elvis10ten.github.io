@@ -1,0 +1,29 @@
+---
+title: "The Beauty of the Modulo Operator"
+date: 2017-09-30
+slug: "/2017-09-30-the-beauty-of-the-modulo-operator/"
+canonicalUrl: "https://elvischidera.com/2017-09-30-the-beauty-of-the-modulo-operator/"
+tags:
+  - math
+---
+
+I think one of the least used arithmetic operator in most programming languages is the modulo operator which is used to find the remainder when a number is divided by another number. The usual symbol for the modulo operator is **%**. ****Example:
+
+```java
+int i = 1 % 5; // i is equal to one
+```
+
+One common use case for this operator is to check if a number is even or odd. Which is quite straight forward, if you get a remainder when dividing by 2 its an odd number, else its even. But lets do something more interesting with this operator. Lets try the operator with a bunch of numbers like this:
+
+```java
+0 % 2 = 0
+1 % 2 = 1
+2 % 2 = 0
+3 % 2 = 1
+4 % 2 = 0
+5 % 2 = 1
+```
+
+Did you notice the pattern?, the result of the modulo operator can never be greater than the divisor (the second operand). It will always be one lesser than the second operand. The reason this happens is because division is all about fair sharing. For example, if you are sharing 7 apples fairly with 2 boys, they will each get 3 apples with 1 remaining. The number of apples left can not be greater than 2.
+
+What can i do with this?, well i will leave that up to you. But one cool thing you can do is to use the modulo operator to set a boundary for a number, rather than using an if then else statement. Example: **int i = num % 181** , the integer variable i will always have a value in the range 0 <= i < 181, that is from 0–180.

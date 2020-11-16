@@ -1,0 +1,191 @@
+---
+title: "Loading Images From JSON Response — Advanced Android Glide Tips Part 2"
+date: 2017-10-09
+slug: "/2017-10-09-loading-images-from-json-response-advanced-android-glide-tips-part-2/"
+canonicalUrl: "https://elvischidera.com/2017-10-09-loading-images-from-json-response-advanced-android-glide-tips-part-2/"
+banner: ./assets/banner.jpeg
+tags:
+  - android
+---
+
+You have probably been in a situation where you wanted to load some images into an ImageView but the API call to get the image returns a JSON object that contains a field specifying the actual image URL. This usually happens when you are using a third-party service and can’t modify the behavior of the API.
+
+![](./assets/banner.jpeg)
+
+This was a challenge I faced when I decided to use the [Last.FM API](https://www.last.fm/api) for [FX Music Player](https://play.google.com/store/apps/details?id=com.appcore.fxmusicplayer&hl=en). One way to solve this is to create a loader or AsyncTask that makes the API call then parses the JSON response and return the image URL. But each time you want to load an image you will have to manage multiple requests yourself and this gets difficult when you have a List or RecyclerView where items get reused.
+
+I will show you a neat trick that allows you to load images from a JSON response using the Glide library. Each time you want to load an image, it will just take a single line with no additional stress.
+
+First, create a request class. This will be a regular java class with any fields/variables you want to add to it. Example:
+
+```java:title=JsonRequest.java
+public class JsonRequest {
+    
+    // Add any field you can use to identify the request or that will hold values you will
+    // pass to the api endpoint. For example this can be an id, name, size or any other thing
+}
+```
+
+Next, create a class that models the API JSON response. This is also just a regular java class and you can add any field/variable to it. You can use the [JSONSchema2Pojo](http://www.jsonschema2pojo.org) tool to do the API response modeling. Example:
+
+```java:title=JsonResponse.java
+public class JsonResponse {
+    
+    // This class should contain fields that model the response from the api call you are making
+    // You can use this site to create a proper model based on the response: http://www.jsonschema2pojo.org/
+}
+```
+
+Next, we will have to create a custom Glide ModelLoader. This will be the class doing most of the work here like making the network calls and parsing the JSON response.
+
+In order to keep this post HTTP library agnostic, I didn’t include any HTTP calls in the example code below. Just follow the TODO comments in the code below and use whatever HTTP library you are already using in your project to make the HTTP requests.
+
+```java:title=JsonModelLoader.java
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+    
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.data.DataFetcher;
+import com.bumptech.glide.load.model.stream.StreamModelLoader;
+    
+import java.io.IOException;
+import java.io.InputStream;
+    
+public class JsonModelLoader implements StreamModelLoader<JsonRequest> {
+    
+    public JsonModelLoader() {}
+    
+    @Override
+    public DataFetcher<InputStream> getResourceFetcher(final JsonRequest model, int width, int height) {
+        // Return a custom ImageLoader that will handle a JSON response
+        return new JsonImageLoader(model);
+    }
+    
+    private static class JsonImageLoader implements DataFetcher<InputStream> {
+    
+        private final JsonRequest model;
+    
+        JsonImageLoader(@NonNull JsonRequest model) {
+            this.model = model;
+        }
+    
+        @Override
+        public InputStream loadData(Priority priority) throws IOException {
+            JsonResponse jsonResponse = makeApiCallToGetData(model);
+    
+            if (jsonResponse != null) {
+                return getInputStreamFromApiResponse(jsonResponse);
+            }
+    
+            return null;
+        }
+    
+        private @Nullable JsonResponse makeApiCallToGetData(@NonNull JsonRequest model) {
+            // TODO: Make the call to the API to fetch data for the given model.
+            // You can use any field you added to the model class here like ids, name, and more
+            // Feel free to use any networking library here like OkHttp, Ion or any other.
+            return null;
+        }
+    
+        private @Nullable InputStream getInputStreamFromApiResponse(@NonNull JsonResponse response) {
+            // TODO: Make the actual call to fetch the image data from the url specified in the Json Response
+            // Use your favorite Http client (OkHTTP, Ion and more) and just return the input stream
+            return null;
+        }
+    
+        @Override
+        public String getId() {
+            // TODO: Do not return null, rather return a value that uniquely identifies the request else caching won't work
+            // This can be any unique field in the model class
+            return null;
+        }
+    
+        @Override
+        public void cancel() {
+            // You can ignore for now
+        }
+    
+        @Override
+        public void cleanup() {
+            // Do any necessary cleanup
+        }
+            
+    }
+    
+}
+```
+
+You will have to create a custom ModelLoaderFactory that returns your newly created ModelLoader. Its pretty straightforward, this class just returns a new instance of the JsonModelLoader. Use the code below:
+
+```java:title=JsonModelLoaderFactory.java
+import android.content.Context;
+    
+import com.bumptech.glide.load.model.GenericLoaderFactory;
+import com.bumptech.glide.load.model.ModelLoader;
+import com.bumptech.glide.load.model.ModelLoaderFactory;
+    
+import java.io.InputStream;
+    
+class JsonModelLoaderFactory implements ModelLoaderFactory<JsonRequest, InputStream> {
+    
+    @Override
+    public ModelLoader<JsonRequest, InputStream> build(Context context, GenericLoaderFactory factories) {
+        return new JsonModelLoader();
+    }
+    
+    @Override
+    public void teardown() {}    
+}
+```
+
+Then create a GlideModule that will allow us to use the JsonRequest class we created above to make requests with Glide. All we will be doing in this class is just to register our custom component (You can have several components, all you have to do is register them here so they will work). Use the code below to register the JsonModelLoader:
+
+```java:title=MyGlideModule.java
+import android.content.Context;
+    
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.module.GlideModule;
+    
+import java.io.InputStream;
+    
+public class MyGlideModule implements GlideModule {
+    
+    @Override
+    public void applyOptions(Context context, GlideBuilder builder) {}
+    
+    @Override
+    public void registerComponents(Context context, Glide glide) {
+        // register ModelLoaders here.
+        glide.register(JsonRequest.class, InputStream.class, new JsonModelLoaderFactory());
+    }
+}
+```
+
+Finally, add the GlideModule in your AndroidManifest.xml file. This is pretty easy, just use the code below to do that (don’t forget to change your.company.package.name to your actual package name).
+
+```xml:title=AndroidManifest.xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <!-- Register Glide Module -->
+        <meta-data
+            android:name="**your.company.package.name.MyGlideModule**"
+            android:value="GlideModule" />
+
+    </application>
+
+</manifest
+```
+
+Everything is all set now. If you want to load images, it’s really really easy. Just use do something like this:
+
+```java:title=GlideUsage.java
+JsonRequest jsonRequest = new JsonRequest();
+// Set any of the request object fields you defined
+Glide.with(this).load(jsonRequest).into(imageView);
+```
+
+Once you understand the concepts explained here, you will be able to create more custom loaders to handle different types of requests/responses.

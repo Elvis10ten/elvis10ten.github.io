@@ -9,8 +9,6 @@ tags:
   - android
 ---
 
-## A Beginner’s Guide to Setting up OpenCV Android Library on Android Studio
-
 I recently started a project that involved working with OpenCV on Android. Most of the guides on setting up the library on Android were outdated or not complete. So, after getting multiple requests from team mates on how to set this up, I decided to just write a dead simple guide on this.
 
 ![Image Detection ([Source](https://immersed.io/computer-vision-means-ar-vr/))](./assets/banner.jpeg)
@@ -19,11 +17,11 @@ I recently started a project that involved working with OpenCV on Android. Most 
 
 Go to the [OpenCV Android Sourceforge](https://sourceforge.net/projects/opencvlibrary/files/opencv-android/) page and download the latest OpenCV Android library. As at the time of writing this post, the latest available version was **3.4.1**.
 
-![](https://cdn-images-1.medium.com/max/2870/1*97q7rHQu8M0vui5l4gWUTQ.png)
+![](./assets/image1.png)
 
 When the download completes, you should extract the contents of the zip file into a folder.
 
-![](https://cdn-images-1.medium.com/max/2086/1*REonkO9Ct9K7woVXRIXPKA.png)
+![](./assets/image2.png)
 
 **Step 2: Setup project**
 
@@ -31,83 +29,83 @@ Create a new Android project using Android Studio only if you have not created o
 
 Note: Skip this step if you already have an Android project you want to use the OpenCV library in.
 
-![](https://cdn-images-1.medium.com/max/2708/1*jl5y4NbtZ-V5jV7XHBhqXQ.png)
+![](./assets/image3.png)
 
 **Step 3: Import OpenCV Module**
 
 After successfully creating an Android project, it is time to import the OpenCV module into your Android project. Click on **File** -> **New** -> **Import Module…**
 
-![](https://cdn-images-1.medium.com/max/3774/1*Q8_cqa4739O9ZuOm2XloUA.png)
+![](./assets/image4.png)
 
 It should bring up a popup like the image below where you can select the path to the module you want to import.
 
-![](https://cdn-images-1.medium.com/max/2396/1*wibcrvJbtL5xUetthp_ogQ.png)
+![](./assets/image5.png)
 
 Browse to the folder where you extracted the OpenCV Android library zip file contents. Select the java folder inside of the sdk folder.
 
-![](https://cdn-images-1.medium.com/max/2404/1*3vmjUA1k7UdHXT5ZigfSMA.png)
+![](./assets/image6.png)
 
 After selecting the correct path and clicking **OK**, you should get a screen like the image below.
 
-![](https://cdn-images-1.medium.com/max/2406/1*W0iPkNQiBZuK0cP2Y8679w.png)
+![](./assets/image7.png)
 
 Click on **Next** to go to the next screen. On the next screen (the image below) you should leave the default options checked and click on **Finish** to complete the module import.
 
-![](https://cdn-images-1.medium.com/max/2404/1*kVg07IXi8i2mbvfnsYJczA.png)
+![](./assets/image8.png)
 
 **Step 4: Fixing Gradle Sync Errors**
 
 You should get a Gradle build error after you finish importing the OpenCV library. This happens because the library is using an old Android SDK that you probably don’t have installed yet.
 
-![](https://cdn-images-1.medium.com/max/3766/1*oe_z4gRfsYHKws5D-b8q6Q.png)
+![](./assets/image9.png)
 
 To quickly fix this error, switch from the Android pane to the Project pane on the left side of Android Studio.
 
-![](https://cdn-images-1.medium.com/max/3768/1*Q3fHjynWzPZ8l2g34P_fzg.png)
+![](./assets/image10.png)
 
 Browse to OpenCV library module and open its build.gradle file.
 
-![](https://cdn-images-1.medium.com/max/3778/1*ybwVfbnBGWQQPhLt6MUslw.png)
+![](./assets/image11.png)
 
 To fix the error, you just have to change the compileSdkVersion and targetSdkVersion to the latest Android SDK version or the one you have installed on your PC. After changing the version you should click on the **sync** button so that Gradle can sync the project.
 
 Quick tip: buildToolsVersion can be ignored
 
-![](https://cdn-images-1.medium.com/max/3730/1*Wua4AOSy3j7K_s-wP4tE0g.png)
+![](./assets/image12.png)
 
 **Step 5: Add the OpenCV Dependency**
 
 To work with the OpenCV Android library, you have to add it to your app module as a dependency. To easily do this on Android Studio, click on **File** -> **Project Structure**.
 
-![](https://cdn-images-1.medium.com/max/3768/1*mhiTXdSyh6Y_WWGwQVQh8A.png)
+![](./assets/image13.png)
 
 When the project structure dialog opens, click on the app module or any other module that you want to use OpenCV library in.
 
 After navigating to the module, click on the **Dependencies** tab. You should see a green plus button on the far right of the dialog, click on it and select **Module dependency**.
 
-![](https://cdn-images-1.medium.com/max/3692/1*GA5TMlcyvBPTguAEbvxMNA.png)
+![](./assets/image14.png)
 
 When the choose modules dialog opens, select the OpenCV library module and click on **OK**.
 
-![](https://cdn-images-1.medium.com/max/2462/1*liomJRDTHI83LLfkyf6YZA.png)
+![](./assets/image15.png)
 
 When you return to the dependencies page, confirm that the module was actually added as a dependency then click on the **OK** button to continue.
 
-![](https://cdn-images-1.medium.com/max/2462/1*iVEMgRpsDTgNzoeWUO8Atg.png)
+![](./assets/image16.png)
 
 **Step 6: Add Native Libraries**
 
 On your file explorer, navigate to the folder where you extracted the content of the OpenCV Android library zip file. Open the sdk folder and then the native folder (Use the image below as a guide).
 
-![](https://cdn-images-1.medium.com/max/2088/1*vvNIr7pkIrRSmgqv0PCegA.png)
+![](./assets/image17.png)
 
 Copy the libs folder in the native folder over to your project app module main folder (Usually ProjectName/app/src/main).
 
-![](https://cdn-images-1.medium.com/max/2086/1*Rcutc6wdWAFPhmQux79nBw.png)
+![](./assets/image18.png)
 
 Rename the libs folder you just copied into your project to jniLibs.
 
-![](https://cdn-images-1.medium.com/max/2090/1*HcDl-F974_vKqYr_bReeqg.png)
+![](./assets/image20.png)
 
 **Step 7: Add Required Permissions**
 
@@ -116,7 +114,7 @@ To successfully use OpenCV, your app should have the camera permission added to 
 Tip: Don’t forget to request for the camera permission at runtime on Android 6 and above.
 
 ```xml:title=AndroidManifest.xml
- <uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.CAMERA"/>
 
 <uses-feature android:name="android.hardware.camera" android:required="false"/>
 <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
@@ -475,11 +473,11 @@ One way to solve this is to use [ABI splits](https://developer.android.com/studi
 
 The other way around the size issue is to use the [OpenCV Manager](https://play.google.com/store/apps/details?id=org.opencv.engine). In the folder where you extracted the library contents into, there is a folder called apk that contains the OpenCV manager for various architectures.
 
-![](https://cdn-images-1.medium.com/max/2090/1*7_eQJPxq_Pmv_JzSSXlsJw.png)
+![](./assets/image21.png)
 
 Select the APK with the right architecture of your test device and use ADB via command prompt/line to install it on your device.
 
-![](https://cdn-images-1.medium.com/max/2690/1*9xioAtMLvx8eD0PHjWPpUw.png)
+![](./assets/image22.png)
 
 **Step 10: Test the App**
 
@@ -487,8 +485,6 @@ Finally, hit the run button and run the app on your test device.
 
 **Note:** Don’t forget to grant camera permission on Android 6 and above.
 
-![](https://cdn-images-1.medium.com/max/3694/1*0aBQCS3BeDS-ZyRk2Gry_g.png)
+![](./assets/image23.png)
 
 That is all.
-
-### If you enjoyed this story, please click the 👏 button and share to help others find it!

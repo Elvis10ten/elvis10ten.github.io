@@ -1,0 +1,76 @@
+---
+title: "Challenges of building a multi-process Android App"
+date: 2017-09-22
+slug: "/2017-09-22-challenges-of-building-a-multi-process-android-app/"
+canonicalUrl: "https://elvischidera.com/2017-09-22-challenges-of-building-a-multi-process-android-app/"
+banner: ./assets/banner.png
+tags:
+  - android
+  - firebase
+  - realm
+---
+
+While you might never have to build a multi-process app, it’s possible to have an Android app with components running in different processes. You get several benefits like more memory, performance improvement (depends on implementation) and more by going multi-process.
+
+![](./assets/banner.png)
+
+I won’t be talking about how [processes](http://developer.android.com/guide/components/processes-and-threads.html#Processes) work at the OS level here but rather the issues I faced building a multi-process app and how i solved them. You can read this [article](https://medium.com/@rotxed/going-multiprocess-on-android-52975ed8863c) to know more about multi-processes in Android.
+
+### 1. SharedPreferences Support
+
+Unfortunately, [SharedPreference](http://developer.android.com/reference/android/content/SharedPreferences.html)s does not work (properly) on a multi-process app. Looking at the [SharedPreferences](http://developer.android.com/reference/android/content/SharedPreferences.html) documentation, you will see the warning below:
+>  *Note: currently this class does not support use across multiple processes. This will be added later.*
+
+Well, this is one case where later becomes never. The multi-process support that existed initially was deprecated by Google because it wasn’t very reliable. It’s been years already and there has been no update on this issue.
+
+![Patiently waiting for SharedPreferences multi-process support](./assets/still_waiting_meme.jpeg)
+
+Luckily, I found a library called [Tray ](https://github.com/grandcentrix/tray)that solves this problem perfectly. It is backed by a Content Provider and has methods very similar to that of SharedPreferences. This is a sample code using the library:
+
+```java:title=Component.java
+final AppPreferences appPreferences = new AppPreferences(getContext());
+
+// save a key value pair
+appPreferences.put("key", "lorem ipsum");
+    
+// read the value for your key. the second parameter is a fallback (optional otherwise throws)
+final String value = appPreferences.getString("key", "default");
+```
+
+### 2. Firebase Support
+
+Another one :) was from the Firebase Library. You may have noticed that when working with the Firebase library, you don’t have to do any initialization in your custom Application class or in individual Activities. Well, they do the initialization of the Firebase library automatically for you using a dummy ContentProvider. From the [Firebase blog](https://firebase.googleblog.com/2016/12/how-does-firebase-initialize-on-android.html):
+>  There is a little trick that the Firebase SDKs for Android use to install a hook early in the process of an application launch cycle. It introduces a [ContentProvider](https://developer.android.com/reference/android/content/ContentProvider.html) to implement both the timing and Context needed to initialize an SDK, but without requiring the app developer to write any code.
+
+Since Content Providers are only started on one (the main) process, you won’t be able to use any of the Firebase features on the other (non-main) processes. Any call to a Firebase method will result in an exception being thrown in that process. The fix for this is simple, first you remove the Firebase Initialization ContentProvider by adding the code below to your AndroidManifest.xml file inside the application tag.
+
+```xml:title=AndroidManifest.xml
+<provider
+    android:name="com.google.firebase.provider.FirebaseInitProvider"
+    android:authorities="your.app.package.name.firebaseinitprovider"
+    android:enabled="true"
+    android:exported="false"
+    tools:node="remove" />
+```
+
+Then you do the actual initialization in the **onCreate** method of your custom Application class:
+
+```java:title=Application.java
+@Override
+public void onCreate() {
+    super.onCreate();
+    FirebaseApp.initializeApp(this, FirebaseOptions.fromResource(this));
+}
+```
+
+This will ensure Firebase is initialized on all processes because unlike the ContentProvider methods that are only called on the main process, the onCreate of an Application will be called for each process (You will have multiple Application objects, and not one as you are inclined to believe).
+
+### 3. Realm Database Support
+
+Realm Database does not officially support multi-process apps. While I was able to get the database to work across processes, A developer working for Realm advised me to wait for official support ([Stackoverflow question](https://stackoverflow.com/questions/42733931/realm-multi-process-best-practice)). Its been several months now and this haven’t been added yet and I don’t know if multi-process support will ever be added to Realm while I am alive (lol).
+
+I found a workaround which is to do all database operations on one (the main) process only. So other processes will get all their data through the main process. You can choose to broadcast database changes using a Broadcast Receiver or send data to components using Intents to the other process.
+
+Saving data is a bit tricky but works in a similar way. Since Android will run all component on the main process unless you specify a different one, I leveraged on this to save to the database. I created an IntentService subclass that has a sole purpose of saving to the database. I created a predefined set of intent actions that specify what data is being saved and the object to save is then passed as a parcelable intent extra. This might not be a neat solution but it works perfectly so far (On more than 3 thousand devices).
+
+Here is a link to the multi-process app on play store: [https://play.google.com/store/apps/details?id=com.appcore.fxmusicplayer](https://play.google.com/store/apps/details?id=com.appcore.fxmusicplayer).

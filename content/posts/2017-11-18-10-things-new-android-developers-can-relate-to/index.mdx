@@ -1,0 +1,85 @@
+---
+title: "10 Things New Android Developers Can Relate To"
+date: 2017-11-18
+slug: "/2017-11-18-10-things-new-android-developers-can-relate-to/"
+canonicalUrl: "https://elvischidera.com/2017-11-18-10-things-new-android-developers-can-relate-to/"
+banner: ./assets/banner.jpeg
+tags:
+  - android
+  - jokes
+---
+
+I decided to write about some issues I faced when I started building Android apps 3 years ago, and some others I have seen some new Android developers go through. Feel free to drop yours in the comment section.
+
+### 1. When you implemented all pages in the app using Activities and your boss later tells you he wants pages to be swipe-able
+
+![](./assets/image1.gif)
+
+And you try to explain that you have to properly switch to fragments for things to be swipe-able.
+
+![](./assets/image2.gif)
+
+**Tip: **I think one of the best things you can do is to always use fragments and just have your activities host them. The activities just handle Android ancient traditions. You get several benefits by doing this. Well, this is not a rule, just one to avoid this issue.
+
+### 2. When you try to build a release version for the first time after adding hundreds of dependencies and you start getting weird proguard errors you can’t fix
+
+![](./assets/image3.jpeg)
+
+**Tip: **Depending on your workflow, it’s usually a good practice to try to create a release version frequently and not wait for months until the project is complete. This allows you to test your app in release mode and easily detect issues while the code base is still small.
+
+Another good practice is to always look for library’s Proguard rules when you are adding them to your project. Add any required rules for a library and it should work fine with Proguard.
+
+### 3. When you try to improve a codebase that was not written with any good architecture pattern
+
+![](./assets/image4.gif)
+
+**Tip:** It will take a [complete post](https://www.google.com.ng/search?q=refactoring+old+code&oq=refactoring+old+code) to provide some help here. Usually, you just observe the old code and write some tests to ensure nothing breaks, before you start refactoring. Trust me, except its a priority or a personal project, you do not want to rebuild everything from scratch.
+
+### 4. When you forget to upload the proguard mappings file to Firebase crash service and the recent build starts crashing with obfuscated errors
+
+![](./assets/image5.gif)
+
+**Tip:** You can set up your project to automatically upload your Proguard mappings file to Firebase crash service. You can read more about it [here](https://firebase.google.com/docs/crash/android).
+
+### 5. When you launch your first app on Google Play store and you get only 50 downloads in 3 months
+
+![](./assets/image6.gif)
+
+**Tip:** First you need to build something people actually want, then you market it like there is no tomorrow. When I complete the current project in the [Building Android Apps](https://android.jlelse.eu/building-a-shazam-clone-part-1-building-android-apps-series-179c2580a094) series, I will write about building products that people actually want.
+>  The app won’t just market itself. You spent 500 hours building it and you can’t afford to spend a few dollars and about 100 hours just promoting it?
+
+### 6. When you come back to the code you wrote 3 months ago
+
+![](./assets/image7.jpeg)
+
+**Tip:** This is a good and a bad thing. The good thing is you have improved so much in the past 3 months that you now see your own mistakes. The bad part? Nothing really serious. You just grew in 3 months and will most likely not make the same mistake.
+
+### 7. When you are trying to build your project on Android Studio using a low spec machine
+
+![](./assets/image8.gif)
+
+**Tip:** There is some [official tutorial](https://developer.android.com/studio/build/optimize-your-build.html) on speeding your project build time.
+
+### 8. When your app crashes only in release mode and you can’t view Logcat to see what is happening
+
+![](./assets/image9.gif)
+
+Tip: Easy solution, integrate a crash reporter like [Crashlytics](https://firebase.google.com/docs/crashlytics/) and you will be able to see the issue on your console/dashboard. There are some obvious places to look too, like checking Proguard or some release only code. It’s just easier to use a crash reporter to pinpoint the issue. BTW, you shouldn’t be releasing any app without a crash reporter tool.
+
+### 9. Waiting for the backend developers to complete the APIs
+
+![](./assets/image10.jpeg)
+
+**Tip:** You can request for the API data structure from the backend developers and then create a [mock product flavor](https://android.jlelse.eu/building-a-shazam-clone-part-3-project-setup-building-android-apps-series-41ece86febef) with some mock data that you can work with. Sometimes this doesn’t end up well and you still have to do lots of changes to use the real APIs.
+
+### 10. When your app gets featured on Google Play Store
+
+![](./assets/image11.jpeg)
+
+**Tip:** Play your best song and dance. You have worked hard for this and it’s paying off.
+
+Just make sure you don’t lose focus or start throwing expensive parties (Please invite me if you do).
+
+Continue building awesome apps that people love, remember:
+
+![](./assets/image12.jpeg)

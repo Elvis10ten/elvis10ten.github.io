@@ -1,0 +1,104 @@
+---
+title: "Glide like a Boss — Advanced Android Glide Tips"
+date: 2017-10-01
+slug: "/2017-10-01-glide-like-a-boss-advanced-android-glide-tips/"
+canonicalUrl: "https://elvischidera.com/2017-10-01-glide-like-a-boss-advanced-android-glide-tips/"
+banner: ./assets/banner.jpeg
+tags:
+  - android
+---
+
+I will be sharing some tips I learned while using the Glide Android Library for a project.
+
+![](./assets/banner.jpeg)
+
+### 1. Wifi Only Mode
+
+Sometimes you might want to download images only when the user device is connected to a WiFi network. Maybe this might be an option in the app that the user can turn on or your strategy for reducing the user data consumption when on mobile data. Whatever your use case is, you can easily prevent Glide from making a network call based on a particular state.
+
+First, you will have to create a custom Glide loader class. What this class will do is to always throw an exception whenever an image load is requested thereby disabling a network call from being made. Cached images will still be shown but new images won’t be fetched over the network.
+
+```java:title=NetworkDisablingLoader.java
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.data.DataFetcher;
+import com.bumptech.glide.load.model.stream.StreamModelLoader;
+    
+import java.io.IOException;
+import java.io.InputStream;
+    
+class NetworkDisablingLoader implements StreamModelLoader<String> {
+    
+    @Override
+    public DataFetcher<InputStream> getResourceFetcher(final String model, int width, int height) {
+    
+        return new DataFetcher<InputStream>() {
+    
+            @Override
+            public InputStream loadData(Priority priority) throws Exception {
+                throw new IOException("Forced Glide network failure");
+            }
+    
+            @Override
+            public void cleanup() { }
+    
+            @Override
+            public String getId() { return model; }
+    
+            @Override
+            public void cancel() { }
+    
+        };
+    
+    }
+    
+}
+```
+
+Next, you will have to attach this loader to Glide whenever you need it. For this, we create a GlideUtils class that we will pass in the required parameters and it will return the correct Glide RequestManager.
+
+```java:title=GlideUtils.java
+import android.content.Context;
+import android.support.annotation.NonNull;
+    
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+    
+public class GlideUtils {
+    
+    public static @NonNull RequestManager getGlide(@NonNull Context context, boolean isOnlyOnWiFi) {
+        RequestManager request;
+    
+        if (isOnlyOnWiFi) {
+            request = Glide.*with*(context);
+            request.using(new NetworkDisablingLoader());
+        } else {
+            request = Glide.*with*(context);
+        }
+    
+        return request;
+    }
+    
+}
+```
+
+To use this in your app or wherever you want to load images, you just use similar code below
+
+```java:title=GlideWifiOnlyUsage.java
+boolean isInWifiOnlyMode = sharedPreference.getBoolean("is_wifi_only", false);
+
+GlideUtils.getGlide(context, isInWifiOnlyMode).load("http://imageUrl.com").into(imageView);
+```
+
+### 2. Image height or width is less when loading for the first time
+
+When using Glide with a placeholder, you might notice that sometimes the height or width of the actual image is less when its loaded for the first time. This usually happens when the aspect ratio of the placeholder image and the actual image are not the same and the crossfade animation is switched on (its switched on by default).
+
+When I first saw this I thought it was due to an implementation error with the Glide library and spent some time trying to fix it. This is a known [issue](https://github.com/bumptech/glide/issues/1295) and I am sharing it here to save someone from wasting time trying to fix this.
+
+You have three options to fix this:
+
+ 1. You can disable animations with .dontAnimate()
+
+ 2. Force a fade-in animation with .animate(R.anim.fade_in)
+
+ 3. Find a placeholder that matches the actual image’s ratio
