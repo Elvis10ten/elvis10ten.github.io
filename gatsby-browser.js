@@ -8,3 +8,4 @@ import Prism from "prism-react-renderer/prism";
 require("prismjs/components/prism-kotlin");
 require("prismjs/components/prism-groovy");
 require("prismjs/components/prism-dart");
+require("prismjs/components/prism-protobuf");

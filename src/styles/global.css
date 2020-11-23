@@ -4,11 +4,29 @@
   color: white;
 } */
 
-img {
-  max-width: 960;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.image_row {
+  display: flex;
+}
+
+.dual_image_column {
+  flex: 50%;
+  padding: 5px;
+}
+
+.full_width_image {
+	width: 100%;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.fit_image {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .video_wrapper {
