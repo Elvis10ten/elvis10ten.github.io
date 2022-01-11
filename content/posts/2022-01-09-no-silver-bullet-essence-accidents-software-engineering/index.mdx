@@ -12,7 +12,7 @@ tags:
 
 ["No Silver Bullet — Essence and Accident in Software Engineering”]((https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=66C7A96880B0FF7BE4AA3A2E4E28392E?doi=10.1.1.117.315&rep=rep1&type=pdf)) is a famous software engineering paper written by Turing Award winner Fred Brooks in 1987. This post summarizes the key ideas.
 
-1. The author likens software projects to [werewolves](https://en.wikipedia.org/wiki/Werewolf) (to the non-technical manager) — they usually start innocent and straightforward, but can morph into a monster of missed schedules, blown budgets, and flawed products.
+1. Brooks likens software projects to [werewolves](https://en.wikipedia.org/wiki/Werewolf) (to the non-technical manager) — they usually start innocent and straightforward, but can morph into a monster of missed schedules, blown budgets, and flawed products.
 2. There has been no [silver bullet](https://en.wikipedia.org/wiki/Silver_bullet) (despite cries for it) over the decades — There is no single development, in either technology or management technique, that offers even one [order-of-magnitude](https://en.wikipedia.org/wiki/Order_of_magnitude) improvement in productivity, reliability, or simplicity.
 3. This paper, attempts to show why, by examining both the nature of the software problem and the properties of the bullets proposed.
 
@@ -20,14 +20,14 @@ tags:
 1. The very nature of software makes it unlikely that there will be any silver bullet.
 2. Computer hardware progress is so fast ([Moore's law](https://en.wikipedia.org/wiki/Moore%27s_law)) — making software progress seem so slow in comparison.
 3. Following [Aristotle](https://en.wikipedia.org/wiki/Aristotle), Brooks divides software difficulties into two kinds:
-   - **Essence**: the difficulties inherent in the nature of software
+   - **Essence**: the difficulties inherent in the nature of software.
    - **Accidents**: those difficulties that today attend its production but are not inherent.
 
 > The essence of a software entity is a construct of interlocking concepts: data sets, relationships among data items, algorithms, & invocations of functions.
 > This essence is abstract in that such a conceptual construct is the same under many different representations.
 
 > I believe the hard part of building software to be the specification, design, and testing of this conceptual construct, not the labor of representing it and testing the fidelity of the representation. [Syntax errors are fuzz compared to conceptual errors in most systems.]
-> If this is true, building software will always be hard — there is inherently no silver bullet. 
+> **If this is true, building software will always be hard — there is inherently no silver bullet.**
 
 The following are inherent properties of this irreducible essence of modern software systems:
 
@@ -45,9 +45,9 @@ The following are inherent properties of this irreducible essence of modern soft
 3. This complexity cannot be simplified out by any redesign of the software alone.
 
 ### iii. Changeability
-1. Software is frequently modified compared to other industries because:
+1. Software is frequently modified compared to other objects because:
    - The software of a system embodies its function, and the function is the part that most feels the pressures of change.
-   - Software is infinitely malleable — it's pure thought-stuff
+   - Software is infinitely malleable — it's pure thought-stuff.
 2. Buildings do get changed, but the high costs of change, understood by all, serve to dampen the whims of the changers.
 3. The software product is embedded in a cultural matrix of evolving applications, users, laws, and machine vehicles.
 
@@ -58,7 +58,7 @@ The following are inherent properties of this irreducible essence of modern soft
 ## Past Breakthroughs Solved Accidental Difficulties
 ### i. High-level languages
 1.  High-level languages frees a program from a lot of a machine's accidental complexity.
-2. **Limit**: at some point, the elaboration of a high-level language creates a tool-mastery burden that increases, not reduces, the intellectual task of the user who rarely uses the esoteric constructs.
+2. **Limit**: At some point, the elaboration of a high-level language creates a tool-mastery burden that increases, not reduces, the intellectual task of the user who rarely uses the esoteric constructs.
 
 ### ii. Time-sharing
 1. [Time-sharing](https://en.wikipedia.org/wiki/Time-sharing) (as opposed to batch processing) preserves immediacy, and hence enables one to maintain an overview of complexity.
@@ -70,7 +70,7 @@ The following are inherent properties of this irreducible essence of modern soft
 ## Hopes for the Silver
 
 ### i. Ada and other high-level language advances
-1. Ada philosophy provided an advance — it's the philosophy of modularization, of abstract data types, of hierarchical structuring.
+1. Ada philosophy provided an advancement — it's the philosophy of modularization, of abstract data types, of hierarchical structuring.
 2. The biggest payoff from high-level languages comes from the transition from the accidental complexities of the machine into a more abstract statement of step-by-step solutions.
 
 ### ii. Object-oriented programming
@@ -99,7 +99,7 @@ The following are inherent properties of this irreducible essence of modern soft
 
 ### vi. Graphical programming
 1. The application of computer graphics to software design.
-2. As noted earlier, software structures are hard to visualize. Diagrams usually only capture one dimension at a time — and eventually becomes too large.
+2. As noted earlier, software structures are hard to visualize. Diagrams usually only capture one dimension at a time and eventually becomes too large.
 
 ### vii. Program verification
 1. Verifications are so much work that only a few substantial programs have ever been verified.
@@ -116,7 +116,7 @@ The following are inherent properties of this irreducible essence of modern soft
 ## Promising Attacks on the Conceptual Essence
 1. All of the technological attacks on the accidents of the software process are fundamentally limited by the productivity equation:
    > Zhongmin wang time of task = Sum(Frequency * Time)
-2. Brooks believes that the conceptual components of the task are now (1987) taking most of the time.
+2. Brooks believes that the conceptual components of the task are now taking most of the time. (The paper was written in 1987)
 
 ### i. Buy versus build
 1. The most radical possible solution for constructing software is not to construct it at all.
@@ -132,10 +132,10 @@ The following are inherent properties of this irreducible essence of modern soft
 > Then, bit by bit, it should be fleshed out, with the subprograms, in turn, being developed — into actions or calls to empty stubs in the level below.
 > [...] Enthusiasm jumps when there is a running system, even a simple one.
 
-### iii. Greate designers
+### iii. Great designers
 1. We can get good designs by following good practices instead of poor ones. Good design practices can be taught.
+2. Nevertheless, Brooks does not believe we can make the next step upward this way: 
 
-> Nevertheless, Brooks does not believe we can make the next step upward [this way].
 > Whereas the difference between poor conceptual designs and good ones may lie in the soundness of the design method, the difference between good designs and great ones surely does not.
 > Great designs come from great designers. Software construction is a creative process.
 > Sound methodology can empower and liberate the creative mind; it cannot inflame or inspire the drudge.
