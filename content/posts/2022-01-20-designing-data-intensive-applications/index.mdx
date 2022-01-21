@@ -1,0 +1,835 @@
+---
+title: "Designing Data Intensive Applications — Book Summary"
+slug: "/2022-01-20-designing-data-intensive-applications"
+date: 2022-01-20
+canonicalUrl: "https://elvischidera.com/2022-01-20-designing-data-intensive-applications/"
+banner: ./assets/banner.jpg
+tags:
+  - summary
+  - sistributed systems
+---
+
+## Chapter 1 - Reliable, Scalable, and Maintainable Applications
+> The Internet was done so well that most people think of it as a natural resource like the Pacific Ocean, rather than something that was man-made. When was the last time a technology with a scale like that was so error-free?
+> — Alan Kay, in interview with Dr Dobb's Journal (2012)
+
+1. Many modern apps are data-intensive as opposed to compute-intensive.
+2. Data-intensive apps problems:
+   - Amount of data
+   - Complexity of data
+   - Speed at which it's changing
+3. Common data systems of data-intensive apps:
+   - **Databases** — Store data for later retrieval.
+   - **Caches** — Speed up subsequent reads of an expensive operation.
+   - **Search indexes** — Search/filter data in various ways.
+   - **Stream processing** — Asynchronous inter-process messaging.
+   - **Batch processing** — Periodically crunch accumulated data.
+
+### Thinking About Data Systems
+1. While traditionally databases, queues, caches, etc are considered distinct category of tools, new tools blur the boundaries between these categories:
+   - **[Redis](https://redis.io/)** is a datastore also used as a message queue.
+   - **[Apache Kafka](https://kafka.apache.org/)** is a message queue with database-like durability gurantees.
+2. Modern apps have wide-ranging data storage & processing requirements that can't be satified by a single tool
+   ![Fig 1.1](assets/fig1.1.png)
+3. Modern apps are also (composite) data-systems made up of general-purpose data systems; they can offer certain gurantees & hide the foundational components behind an API.
+
+This book focuses on three concerns that are important in most software systems:
+
+#### i. Reliability
+1. Reliability means continuing to **work correctly** at the **desired level of performance** under the **expected load** even in the face of **adversities** like hardware & software faults; human error; etc.
+2. Fault is when one component of a system deviates from its spec.
+3. Failure is when the system as a whole stops providing the required service to the user.
+   > PNote: Based on this definition, it's impossible to distinguish between a fault and a failure without context — as a component could also be a composite system itself.
+4. Systems that can anticipate and cope with faults are called fault tolerant or resilient.
+5. Faults could [deliberately be introduced into systems](https://en.wikipedia.org/wiki/Chaos_engineering) to test its fault tolerance.
+6. It's impossible to reduce the probability of a fault to zero.
+
+##### Hardware Faults
+1. Examples:
+   - Hard disk crash
+   - Faulty RAM
+   - Power blackout
+   - Accidental detachment of a network cable
+2. Hardware faults are random & independent: One machine's disk failing does not imply that another machine's disk is going to fail. There may be weak correlations, e.g: due to a common cause like the temperature in the server rack.
+3. **Solutions**: Redundancies.
+4. In the past, single machines sufficed for most apps as their hardware components already have redundancies.
+5. Multi-machine redundancies are gaining more usage as they offer additional benefits like rolling upgrades — where one node/machine can be patched at a time without downtime to the entire system.
+6. Hard disks are reported as having a mean time to failure (MTTF) of ~10-50 years. Thus, on a storage cluster with 10,000 disks, there should be an average of 1 failure per day.
+
+##### Software Errors
+1. Software faults are systematic errors within a system. They are hard to anticipate and are correlated across nodes, leading to more system failures than hardware faults.
+2. Software faults often lie dormant until the false assumption about their environment suddenly stops being true.
+3. **Solutions**: No quick solution. A few small helpful tec:
+   - Carefully thinking about the assumptions & interactions in the system
+   - Thorough testing
+   - Process isolation
+   - Allowing processes to crash and restart
+   - Measuring, monitoring & analyzing system behavior in production
+
+##### Human Errors
+1. (Unreliably) Humans are both the builders and operators of software systems.
+2. [A study](https://www.usenix.org/conference/usits-03/why-do-internet-services-fail-and-what-can-be-done-about-it) on large internet services found that configuration errors by operators were the leading cause of outages, whereas hardware faults played a role in only 10–25% of outages.
+3. **Solutions**:
+   - Fool proof design
+   - Isolation — Sandbox environments that decouple the places where people make the most mistakes from the places where they can cause failures.
+   - Unit & Integration testing
+   - Failsafe/Reversability
+   - Staged rollout
+   - Telemetry
+
+#### i. Scalability
+Scalability is used to describe a system’s ability to cope with increased load (data volume, traffic volume, complexity).
+   > If the system grows in a particular way, what are our options for coping with the growth?
+
+In order to discuss scalability, we first need ways of describing load and performance quantitatively.
+
+##### Describing Load
+1. Load parameters are numbers describing the current load on the system.
+2. The best choice of parameters depends on the system's architecture:
+   - Web server — requests per second
+   - Database — ratio of reads to writes
+   - App — concurrent users
+   - Cache — hit rate
+
+###### Case study — Twitter
+Using [data](https://www.infoq.com/presentations/Twitter-Timeline-Scalability/) published in November 2012. Two of Twitter’s main operations are:
+1. **Post tweet** — A user can publish a new message to their followers (4.6k requests/sec on average, over 12k requests/sec at peak).
+2. **Home timeline** — A user can view tweets posted by the people they follow (300k requests/sec).
+---
+Two ways of implementing these two operations:
+_Approach A_
+- **Post tweet** — inserts the new tweet into a global collection of tweets.
+- **Home timeline** — Look up all the people they follow, find all the tweets for each of those users, and merge them (sorted by time).
+```sql
+SELECT tweets.*, users.* FROM tweets
+JOIN users ON tweets.sender_id = users.id
+JOIN follows ON follows.followee_id = users.id
+WHERE follows.follower_id = current_user
+```
+![Fig1.2](assets/fig1.2.png)
+
+_Approach B_
+Maintain a cache for each user’s home timeline — like a mailbox of tweets for each recipient user.
+- **Post tweet** — look up all the people who follow that user, and insert the new tweet into each of their home timeline caches.
+- **Home timeline** — read from the user's home timeline cache (cheap).
+![Fig1.3](assets/fig1.3.png)
+
+---
+Twitter used a hybrid solution of _Approach A_ & _Approach B_:
+1. It's preferable to do more work at write time and less at read time (_Approach B_) — given that the average rate of published tweets is almost two orders of magnitude lower than the rate of home timeline reads.
+2. For users with millions of followers, _Approach B_ is slow as it leads to millions of writes. Twitter uses _Approach A_ for these users.
+
+##### Describing Performance
+1. Two ways to look at performance:
+   - When a load parameter is increased and the system resources is kept unchanged, how is the performance of the system affected?
+   - When a load parameter is increased, by how much should the resources be increased to keep performance unchanged?
+2. Response time = the time between a client sending a request and receiving a response = time to process the request (the service time) + latency.
+3. Latency is the duration that a request is waiting to be handled during which it is _latent_, awaiting service. E.g: network delays, queueing delays, etc.
+4. Systems' important performance metric (usually):
+   - **Batch processing**: Throughput — the number of records that can be processed per second.
+   - **Online systems**: Response time.
+5. Satisfying a request involves multiple disparate systems that can introduce random latencies — leading to random response time. Thus, response time is best thought of as a distribution of values that can be measured, instead of a single number.
+![Fig1.4](assets/fig1.4.png)
+6. The mean is not a very good metric to know the “typical” response time, because it doesn’t tell how many users actually experienced that delay.
+7. Percentiles are preferred.
+   - 50th percentile = Median = p50
+   - 95th percentile = p95
+   - 99th percentile = p99
+   - 99.9th percentile = p999
+8. An `X`-th percentile is the response time thresholds at which `X%` of requests are faster than that particular threshold.
+   > E.g: if the 95th percentile response time is 1.5 seconds, that means 95 out of 100 requests take less than 1.5 seconds.
+9. High percentiles of response times, also known as `tail latencies` are used to figure out how bad the outliers are.
+10. [Amazon](http://glinden.blogspot.com/2006/12/slides-from-my-talk-at-stanford.html) observed that a 100 ms increase in response time reduces sales by 1%. [Others](https://ai.googleblog.com/2009/06/speed-matters.html) report that a 1-second slowdown reduces a customer satisfaction metric by 16%.
+11. It only takes a small number of slow requests to hold up the processing of subsequent requests — an effect sometimes known as `head-of-line blocking`.
+    > When generating load artificially in order to test the scalability of a system, the load generating client needs to keep sending requests independently of the response time.
+    > If the client waits for the previous request to complete before sending the next one, that behavior has the effect of artificially keeping the queues shorter in the test than they would be in reality, which skews the measurements
+    > [Everything You Know About Latency Is Wrong](https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/)
+12. Even if only a small percentage of backend calls are slow, the chance of getting a slow call increases if an end-user request requires multiple backend calls, and so a higher proportion of end-user requests end up being slow — an effect known as `tail latency amplification`.
+![Fig1.5](assets/fig1.5.png)
+
+##### Percentiles in Practice
+To add response time percentiles to the monitoring dashboards, they need to be efficiently calculated on an ongoing basis.
+
+_Example:_
+1. Keep a rolling window of response times of requests in the last 10 minutes.
+2. Every minute, calculate the median and various percentiles over the values in that window and plot those metrics on a graph.
+3. Calculation implementation:
+   - **Naïvely** — keep a list of response times for all requests within the time window and sort that list every minute.
+   - **Efficiently** — there are algorithms that can calculate a good approximation of percentiles at minimal CPU and memory cost, such as:
+     - [Forward decay](https://ieeexplore.ieee.org/document/4812398)
+     - [t-digest](https://www.sciencedirect.com/science/article/pii/S2665963820300403)
+     - [HdrHistogram](http://hdrhistogram.org/)
+> Beware that averaging percentiles, e.g., to reduce the time resolution or to combine data from several machines, is mathematically meaningless — the right way of aggregating response time data is to add the histograms [28].
+
+##### Approaches for Coping with Load
+> how do we maintain good performance even when our load parameters increase by some amount?
+1. How to scale machines:
+   - **Scale up** — Scale vertically, i.e: moving to a more powerful machine. A system that can run on a single machine is often simpler, but there is a limit to how powerful a single machine can be.
+   - **Scale out** — Scale horizontally, i.e: distributing the load across multiple smaller machines. Distributing load across multiple machines is aka a `shared-nothing architecture`.
+2. How to scale out machines:
+   - **Elasticly** — automatically add computing resources when load increase is detected. Useful when load is highly unpredictable.
+   - **Manually** — a human analyzes the capacity and decides to add more machines to the system. This is simpler and may have fewer operational surprises.
+3. An architecture that scales well for a particular app is built around assumptions of which operations will be common and which will be rare — the load parameters. This means that the architecture of systems that operate at large scale is usually highly specific to the application.
+
+#### iii. Maintainability
+1. It is well known that the majority of the cost of software is not in its initial development, but in its ongoing maintenance.
+2. Three design principles for maintainable software systems:
+   - **Operability** — Make it easy for operations teams to keep the system running smoothly. Good operability means having good visibility into the system’s health and having effective ways of managing it.
+   - **Simplicity** — Make it easy for new engineers to understand the system, by removing as much complexity as possible from the system. Good abstractions can help reduce complexity and make the system easier to modify and adapt for new use cases.
+   - **Evolvability** — Make it easy for engineers to make changes to the system in the future, adapting it for unanticipated use cases as requirements change. 
+
+**WIP**
+
+## Chapter 4 - Encoding and Evolution
+
+Application code changes sometimes require data changes. Compatability needs to be maintained in both directions as both old and new data + code can co-exist:
+
+1. Backward compatibility: New code can use old code data.
+2. Forward compatibility: Old code can use new code data.
+
+## Formats for Encoding Data
+
+Programs usually work with data in (at least) two different representation:
+
+1. In-memory: Data is kept in objects, arrays, or other data in-memory structures.
+2. Writing to a file or network: As a sequence of self-contained bytes.
+
+Translation is needed between the two representations:
+
+1. In-meory to byte sequence -- Known as serialization, encoding, or marshalling
+2. Byte sequence to in-meory -- Known as deserailization, decoding, or unmarshalling.
+
+### Language-Specific Formats
+
+Languages usually have built-in translation for the above two representation -- Java serializable, Ruby Marshal, Python Pickle, etc. These are usually not used because:
+
+1. Language dependent
+2. Security issues caused by the ability to instantiate arbitrary classes.
+3. Versoning (forward & backward compatibility) is usually an afterthought.
+4. Inefficiencies (in CPU usage and output size).
+
+### JSON, XML, & CSV Formats
+
+They are "human" readable formats. Problems:
+
+1. In XML & CSV, numbers can't be distingiushed from a string with digitis without an external schema. JSON distinguishes numbers and strings, but not integers and floating-point numbers (and it doesn't specify precision).
+2. JSON & XML have good support for Unicode character strings (i.e, human-readable texts) but not binary strings (sequences of bytes without a character encoding). Albeit inefficient, Base64 encoding binary data is used to circumvent this limitation.
+3. There is optional schema support for XML & JSON. Consumers that don't use the schema have to hardcode the appropriate encoding/decoding logic (for correct interpretation: Is it base64 encoded? is it a number?).
+4. No CSV schema support -- Applications define the meaning of each column & row.
+
+### Binary Encoding
+
+```json
+{
+    "userName": "Martin",
+    "favoriteNumber": 1337,
+    "interests": ["daydreaming", "hacking"]
+}
+```
+Example record used in several binary formats below.
+
+Binary encoding for JSON usually include the field names as they don't dictate the schema. MessagePack for example:
+
+![Example record encoded with MessagePack](message_pack_json_example_encoded.png)
+
+#### Thrift & Protocol Buffers
+
+Both have code generation tools that use the schema definition to produce classes that implement the schema in various programming languages.
+
+```thrift
+struct Person {
+    1: required string userName,
+    2: optional i64 favoriteNumber,
+    3: optional list<string> interests
+}
+```
+Schema in Thrift IDL
+
+```protobuf
+message Person {
+    required string user_name = 1;
+    optional int64 favorite_number = 2;
+    repeated string interests = 3;
+}
+```
+Protobuf schema
+
+![Example record encoded with Thrift BinaryProtocol](thrift_binary_json_example_encoded.png)
+
+Note: No field names -- Just field tags from the schema definition.
+
+![Example record encoded with Thrift CompactProtocol](thrift_compact_json_example_encoded.png)
+
+CompactProtocol used 34 bytes compared to BinaryProtocol's 59 bytes. It packs the field tag & type into one byte, and uses variable length integers.
+
+In contrast, Protobuf used 33 bytes for the example.
+
+![Example record encoded with Protobuf](protobuf_json_example_encoded.png)
+
+##### Field tags & Schema evolution
+
+An encoded record is just a concantenation of its encoded fields. Each field is identified by its tag number and annotated with a datatype.
+
+Unset field are omitted from the encoded record.
+
+###### Maintaining forward-compatibility
+
+Field names can be changed. Field tags can't be changed without invalidating existing data.
+
+Fields can be added to a schema, using distinct tags -- Old code simply ignores it.
+
+Required fields can't be removed afterwards.
+
+###### Maintaining backward-compatibility
+
+New code can read old data as long as field tags are distinct.
+
+New fields can't be required as old code can't write it.
+
+Removed fields tag can't be used again.
+
+##### Datatype & Schema evolution
+
+Changing the datatype for numbers is possible, but could lose precision or get truncated.
+
+Protobuf allows evolution from single-valued fields into repeated (multi-valued) fields of the same type.
+
+#### Avro
+
+Apache Avro have two schema languages:
+
+1. Avro IDL (intended for human editing)
+
+```avro
+record Person {
+    string userName;
+    union { null, long } favoriteNumber = null;
+    array<string> interests;
+}
+```
+
+2. JSON (more machine readable)
+
+```json
+{
+    "type": "record",
+    "name": "Person",
+    "fields": [
+        {
+            "name": "userName",
+            "type": "string"
+        },
+        {
+            "name": "favoriteNumber",
+            "type": ["null", "long"],
+            "default": null
+        },
+        {
+            "name": "interests",
+            "type": {
+                "type": "array",
+                "items": "string"
+            }
+        }
+    ]
+}
+```
+
+The same example encoded in Avro is 32-bytes.
+
+![Example record encoded with Protobuf](avro_json_example_encoded.png)
+
+The encoded data has no field identification (tag or datatype). A string is just a length followed by UTF-8 bytes. Integers are encoded using variable-lengths.
+
+To decode, iterate through the fields in the order defined in the schema. This require both the writer and reader to be compatible.
+
+##### Writer & Reader Schema
+
+The writer & reader schema only needs to be compatible. During decoding, the Avro library resolves the differences by looking at the writer’s schema and the reader’s schema side by side and translating the data from the writer’s schema into the reader’s schema.
+
+![Example record encoded with Protobuf](avro_reader_writer_resolution.png)
+
+### Modes of Dataflow
+
+#### Dataflow Through Databases
+
+The writing process encodes, the reading process decodes.
+
+Data outlives code.
+
+#### Dataflow Through Services: REST and RPC
+
+Service oriented architecture (SOA), more recently refined and rebranded as microservices architecture.
+
+In some ways, services are similar to databases: they typically allow clients to submit
+and query data. However, while databases allow arbitrary queries using the query languages
+we discussed in Chapter 2, services expose an application-specific API that
+only allows inputs and outputs that are predetermined by the business logic (application
+code) of the service [33]. This restriction provides a degree of encapsulation:
+services can impose fine-grained restrictions on what clients can and cannot do.
+
+Web services
+When HTTP is used as the underlying protocol for talking to the service, it is called a
+web service. This is perhaps a slight misnomer, because web services are not only used
+on the web, but in several different contexts. For example:
+1. A client application running on a user’s device (e.g., a native app on a mobile
+device, or JavaScript web app using Ajax) making requests to a service over
+HTTP. These requests typically go over the public internet.
+2. One service making requests to another service owned by the same organization,
+often located within the same datacenter, as part of a service-oriented/microservices
+architecture. (Software that supports this kind of use case is sometimes
+called middleware.)
+3. One service making requests to a service owned by a different organization, usually
+via the internet. This is used for data exchange between different organizations’
+backend systems. This category includes public APIs provided by online
+services, such as credit card processing systems, or OAuth for shared access to
+user data.
+
+REST is not a protocol, but rather a design philosophy that builds upon the principles
+of HTTP [34, 35]. It emphasizes simple data formats, using URLs for identifying
+resources and using HTTP features for cache control, authentication, and content
+type negotiation.
+
+By contrast, SOAP is an XML-based protocol for making network API requests.vii
+Although it is most commonly used over HTTP, it aims to be independent from
+HTTP and avoids using most HTTP features. Instead, it comes with a sprawling and
+complex multitude of related standards (the web service framework, known as WS-*)
+that add various features [37].
+
+The API of a SOAP web service is described using an XML-based language called the
+Web Services Description Language, or WSDL. WSDL enables code generation so
+that a client can access a remote service using local classes and method calls (which
+are encoded to XML messages and decoded again by the framework).
+
+A definition format such as OpenAPI, also known as
+Swagger [40], can be used to describe RESTful APIs and produce documentation.
+
+Despite the similarity of acronyms, SOAP is not a requirement for SOA. SOAP is a particular technology,
+whereas SOA is a general approach to building systems.
+
+##### The problems with remote procedure calls (RPCs)
+
+The RPC model tries to make a request to a remote network
+service look the same as calling a function or method in your programming language,
+within the same process (this abstraction is called location transparency).
+Although RPC seems convenient at first, the approach is fundamentally flawed [43,
+44]. A network request is very different from a local function call:
+
+##### Message-Passing Dataflow
+
+Asynchronous message-passing systems,
+which are somewhere between RPC and databases. They are similar to RPC in that a
+client’s request (usually called a message) is delivered to another process with low
+latency. They are similar to databases in that the message is not sent via a direct network
+connection, but goes via an intermediary called a message broker (also called a
+message queue or message-oriented middleware), which stores the message temporarily.
+Using a message broker has several advantages compared to direct RPC:
+• It can act as a buffer if the recipient is unavailable or overloaded, and thus
+improve system reliability.
+• It can automatically redeliver messages to a process that has crashed, and thus
+prevent messages from being lost.
+• It avoids the sender needing to know the IP address and port number of the
+recipient (which is particularly useful in a cloud deployment where virtual
+machines often come and go).
+• It allows one message to be sent to several recipients.
+• It logically decouples the sender from the recipient (the sender just publishes
+messages and doesn’t care who consumes them).
+However, a difference compared to RPC is that message-passing communication is
+usually one-way: a sender normally doesn’t expect to receive a reply to its messages. It
+is possible for a process to send a response, but this would usually be done on a separate
+channel. This communication pattern is asynchronous: the sender doesn’t wait
+for the message to be delivered, but simply sends it and then forgets about it.
+
+Message brokers
+
+The detailed delivery semantics vary by implementation and configuration, but in
+general, message brokers are used as follows: one process sends a message to a named
+queue or topic, and the broker ensures that the message is delivered to one or more
+consumers of or subscribers to that queue or topic. There can be many producers and
+many consumers on the same topic.
+
+Distributed actor frameworks
+
+The actor model is a programming model for concurrency in a single process. Rather
+than dealing directly with threads (and the associated problems of race conditions,
+locking, and deadlock), logic is encapsulated in actors. Each actor typically represents
+one client or entity, it may have some local state (which is not shared with any other
+actor), and it communicates with other actors by sending and receiving asynchronous
+messages. Message delivery is not guaranteed: in certain error scenarios, messages
+will be lost. Since each actor processes only one message at a time, it doesn’t
+need to worry about threads, and each actor can be scheduled independently by the
+framework.
+
+In distributed actor frameworks, this programming model is used to scale an application
+across multiple nodes. The same message-passing mechanism is used, no matter
+whether the sender and recipient are on the same node or different nodes. If they are
+on different nodes, the message is transparently encoded into a byte sequence, sent
+over the network, and decoded on the other side.
+
+A distributed actor framework essentially integrates a message broker and the actor
+programming model into a single framework.
+
+Three popular distributed actor frameworks handle message encoding as follows:
+
+• Akka uses Java’s built-in serialization by default, which does not provide forward
+or backward compatibility. However, you can replace it with something like Protocol
+Buffers, and thus gain the ability to do rolling upgrades [50].
+• Orleans by default uses a custom data encoding format that does not support
+rolling upgrade deployments; to deploy a new version of your application, you
+need to set up a new cluster, move traffic from the old cluster to the new one, and
+shut down the old one [51, 52]. Like with Akka, custom serialization plug-ins can
+be used.
+• In Erlang OTP it is surprisingly hard to make changes to record schemas (despite
+the system having many features designed for high availability); rolling upgrades
+are possible but need to be planned carefully [53]. An experimental new maps
+datatype (a JSON-like structure, introduced in Erlang R17 in 2014) may make
+this easier in the future [54].
+
+## Chapter 10 - Batch Processing
+
+Three types of systems:
+
+1. Services (Online systems): Handle client requests as they arrive. Primary performance metric is response time.
+   
+2. Batch processing systems (offline systems): (Periodically) takes a large amount of input data, runs a job to process it, and produces some output data. Primary performance metric is throughput.
+
+3. Stream processing systems (near-real-time systems): Somewhere between (1) & (2). Like (2), a stream processor consumes inputs and produces outputs (rather than responding to requests). However, a stream job operates on events shortly after they happen.
+
+### Bash Processing with Unix Tools
+
+```
+216.58.210.78 - - [27/Feb/2015:17:55:11 +0000] "GET /css/typography.css HTTP/1.1"
+200 3377 "http://martin.kleppmann.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X
+10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115
+Safari/537.36"
+```
+
+For a file containing log lines (like above), a simple unix tool can be used to do log analysis.
+
+For example, to find the five most popular pages:
+
+```bash
+cat /var/log/nginx/access.log |
+awk '{print $7}' |
+sort |
+uniq -c |
+sort -r -n |
+head -n 5
+```
+
+Writing an equivalent simple program with a hash table is possible. The unix approach has some advantages -- sort for example uses multiple threads, and if a data doesn't fit in memory, it is written to disk.
+
+### The Unix Philoshophy
+
+1. Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new “features”.
+2. Expect the output of every program to become the input to another, as yet unknown, program. Don’t clutter output with extraneous information. Avoid stringently columnar or binary input formats. Don’t insist on interactive input.
+3. Design and build software, even operating systems, to be tried early, ideally within weeks. Don’t hesitate to throw away the clumsy parts and rebuild them.
+4. Use tools in preference to unskilled help to lighten a programming task, even if you have to detour to build the tools and expect to throw some of them out after you’ve finished using them.
+
+#### Uniform Interface
+
+All programs must use the same I/O interface to be able to connect any program’s output to any program’s input. In Unix, that interface is a file (or, more precisely, a file descriptor). A file is just an ordered sequence of bytes.
+
+Unix programs read from `stdin` (default: keyboard) and write to `stdout` (default: screen). Because of the loose coupling, it is possible to pipe a program `stdout` to another program `stdin`, or have `stdin/stdout` be an arbirtrary file.
+
+Running on a single machine is the biggest limitation of Unix tools.
+
+### MapReduce & Distributed Filesystems
+
+Like Unix tools, MapReduce normally doesn't have side-effects -- It takes in input, and produces an output.
+
+MapReduce jobs read and write files on a distributed filesystem -- HDFS (Hadoop Distributed Filesystem) in Hadoop's implementation of MapReduce.
+
+HDFS is based on the shared-nothing principle.
+
+HDFS consists of a daemon process running on each machine, exposing a network service that allows other nodes to access files stored on that machine.
+
+A central server called the `NameNode` keeps track of which file blocks are stored on which machine.
+
+Conceptually, it is one big filesystem that can use the space on the disks of all machines running the daemon.
+
+![](hdfs_architecture.gif)
+
+Replication is used to tolerate machine and disk failures. Replication may mean simply several copies of the same data on multiple machines, or an erasure coding scheme such as Reed–Solomon codes, which allows lost data to be recovered with lower storage overhead than full replication.
+
+#### MapReduce Job Execution
+
+MapReduce is a programming framework with which you can write code to process large datasets in a distributed filesystem like HDFS.
+
+The pattern of MapReduce is similar to the example above in Simple Log Analysis:
+
+1. Read a set of input files, and break it up into records. In the web server log example, each record is one line in the log (that is, \n is the record separator).
+
+2. Call the mapper function to extract a key and value from each input record. In the preceding example, the mapper function is `awk '{print $7}'`: it extracts the URL ($7) as the key, and leaves the value empty.
+
+3. Sort all of the key-value pairs by key. In the log example, this is done by the first sort command.
+
+4. Call the reducer function to iterate over the sorted key-value pairs. If there are multiple occurrences of the same key, the sorting has made them adjacent in the list, so it is easy to combine those values without having to keep a lot of state in memory. In the preceding example, the reducer is implemented by the command `uniq -c`, which counts the number of adjacent records with the same key.
+
+Those four steps can be performed by one MapReduce job. Steps 2 (map) and 4 (reduce) are where you write your custom data processing code. Step 1 (breaking files into records) is handled by the input format parser. Step 3, the sort step, is implicit in MapReduce—you don’t have to write it, because the output from the mapper is always sorted before it is given to the reducer.
+
+To create a MapReduce job, two callback functions implementation are needed: mapper & reducer.
+
+Mapper: The mapper is called once for every input record, and its job is to extract the key and value from the input record. For each input, it may generate any number of key-value pairs (including none). It does not keep any state from one input record to the next, so each record is handled independently.
+
+Reducer: The MapReduce framework takes the key-value pairs produced by the mappers, collects all the values belonging to the same key, and calls the reducer with an iterator over that collection of values. The reducer can produce output records.
+
+In the web server log example, we had a second sort command in step 5, which ranked URLs by number of requests. In MapReduce, if you need a second sorting stage, you can implement it by writing a second MapReduce job and using the output of the first job as input to the second job.
+
+##### Distributed execution of MapReduce
+
+Without explicitly writing code to handle parallelism, MapReduce can help parallize a computation across many machines. The mapper and reducer only operate on one record at a time; they don’t need to know where their input is coming from or their output is going to, so the framework can handle the complexities of moving data between machines.
+
+In Hadoop MapReduce, the mapper and reducer are each a Java class that implements a particular interface. In MongoDB and CouchDB, mappers and reducers are JavaScript functions.
+
+Figure 10-1 shows the dataflow in a Hadoop MapReduce job. Its parallelization is based on partitioning (see Chapter 6): the input to a job is typically a directory in HDFS, and each file or file block within the input directory is considered to be a separate partition that can be processed by a separate map task (marked by m 1, m 2, and m 3 in Figure 10-1).
+
+Each input file is typically hundreds of megabytes in size. The MapReduce scheduler (not shown in the diagram) tries to run each mapper on one of the machines that stores a replica of the input file, provided that machine has enough spare RAM and CPU resources to run the map task [26]. This principle is known as putting the computation near the data [27]: it saves copying the input file over the network, reducing network load and increasing locality.
+
+![](map_reduce_flow.png)
+Figure 10-1. A MapReduce job with three mappers and three reducers.
+
+In most cases, the application code that should run in the map task is not yet present on the machine that is assigned the task of running it, so the MapReduce framework first copies the code (e.g., JAR files in the case of a Java program) to the appropriate machines. It then starts the map task and begins reading the input file, passing one record at a time to the mapper callback. The output of the mapper consists of keyvalue pairs.
+
+The reduce side of the computation is also partitioned. While the number of map tasks is determined by the number of input file blocks, the number of reduce tasks is configured by the job author (it can be different from the number of map tasks). To ensure that all key-value pairs with the same key end up at the same reducer, the framework uses a hash of the key to determine which reduce task should receive a particular key-value pair (see “Partitioning by Hash of Key” on page 203).
+
+The key-value pairs must be sorted, but the dataset is likely too large to be sorted with a conventional sorting algorithm on a single machine. Instead, the sorting is performed in stages. First, each map task partitions its output by reducer, based on the hash of the key. Each of these partitions is written to a sorted file on the mapper’s local disk, using a technique similar to what we discussed in “SSTables and LSMTrees”.
+
+Whenever a mapper finishes reading its input file and writing its sorted output files, the MapReduce scheduler notifies the reducers that they can start fetching the output files from that mapper. The reducers connect to each of the mappers and download the files of sorted key-value pairs for their partition. The process of partitioning by reducer, sorting, and copying data partitions from mappers to reducers is known as the shuffle [26] (a confusing term—unlike shuffling a deck of cards, there is no randomness in MapReduce).
+
+The reduce task takes the files from the mappers and merges them together, preserving the sort order. Thus, if different mappers produced records with the same key, they will be adjacent in the merged reducer input.
+
+The reducer is called with a key and an iterator that incrementally scans over all records with the same key (which may in some cases not all fit in memory). The reducer can use arbitrary logic to process these records, and can generate any number of output records. These output records are written to a file on the distributed filesystem (usually, one copy on the local disk of the machine running the reducer, with replicas on other machines).
+
+##### MapReduce workflows
+
+The range of problems you can solve with a single MapReduce job is limited. Referring
+back to the log analysis example, a single MapReduce job could determine the
+number of page views per URL, but not the most popular URLs, since that requires a
+second round of sorting.
+
+Thus, it is very common for MapReduce jobs to be chained together into workflows,
+such that the output of one job becomes the input to the next job. The Hadoop Map‐
+Reduce framework does not have any particular support for workflows, so this chaining
+is done implicitly by directory name: the first job must be configured to write its
+output to a designated directory in HDFS, and the second job must be configured to
+read that same directory name as its input. From the MapReduce framework’s point
+of view, they are two independent jobs.
+
+A batch job’s output is only considered valid when the job has completed successfully
+(MapReduce discards the partial output of a failed job). Therefore, one job in a workflow
+can only start when the prior jobs—that is, the jobs that produce its input directories—
+have completed successfully.
+
+To handle these dependencies between job executions, various workflow schedulers for Hadoop have been developed, including
+Oozie, Azkaban, Luigi, Airflow, and Pinball [28].
+These schedulers also have management features that are useful when maintaining a
+large collection of batch jobs. Workflows consisting of 50 to 100 MapReduce jobs are
+common when building recommendation systems
+
+#### Reduce-Side Joins and Grouping
+
+### The Output of Batch Workflows
+
+#### Building search indexes
+
+Google’s original use of MapReduce was to build indexes for its search engine, which
+was implemented as a workflow of 5 to 10 MapReduce jobs
+
+#### Key-value store
+
+Another common use for batch processing is to build machine learning
+systems such as classifiers (e.g., spam filters, anomaly detection, image recognition)
+and recommendation systems (e.g., people you may know, products you may be
+interested in, or related searches [29]).
+
+So how does the
+output from the batch process get back into a database where the web application can
+query it?
+
+The most obvious choice might be to use the client library for your favorite database
+directly within a mapper or reducer, and to write from the batch job directly to the
+database server, one record at a time. This will work (assuming your firewall rules
+allow direct access from your Hadoop environment to your production databases), but it is a bad idea for several reasons:
+
+• As discussed previously in the context of joins, making a network request for
+every single record is orders of magnitude slower than the normal throughput of
+a batch task. Even if the client library supports batching, performance is likely to
+be poor.
+
+• MapReduce jobs often run many tasks in parallel. If all the mappers or reducers
+concurrently write to the same output database, with a rate expected of a batch
+process, that database can easily be overwhelmed, and its performance for queries is likely to suffer. This can in turn cause operational problems in other parts
+of the system [35].
+
+• Normally, MapReduce provides a clean all-or-nothing guarantee for job output:
+if a job succeeds, the result is the output of running every task exactly once, even
+if some tasks failed and had to be retried along the way; if the entire job fails, no
+output is produced. However, writing to an external system from inside a job
+produces externally visible side effects that cannot be hidden in this way. Thus,
+you have to worry about the results from partially completed jobs being visible to
+other systems, and the complexities of Hadoop task attempts and speculative
+execution.
+
+A much better solution is to build a brand-new database inside the batch job and
+write it as files to the job’s output directory in the distributed filesystem, just like the
+search indexes in the last section. Those data files are then immutable once written,
+and can be loaded in bulk into servers that handle read-only queries. Various keyvalue
+stores support building database files in MapReduce jobs, including Voldemort
+[46], Terrapin [47], ElephantDB [48], and HBase bulk loading [49].
+
+By treating inputs as immutable and avoiding side effects (such as writing to external databases), batch jobs not only achieve good performance but also become much easier to maintain.
+
+#### Philosophy of batch process outputs
+
+By treating
+inputs as immutable and avoiding side effects (such as writing to external databases),
+batch jobs not only achieve good performance but also become much easier to
+maintain.
+
+### Comparing Hadoop to Distributed Databases
+
+When MapReduce paper was published, it wasn't entirely new -- similar ideas had already been implemented in massively parallel processing (MPP) databases about a decade ago.
+
+The biggest difference is that MPP databases focus on parallel execution of analytic
+SQL queries on a cluster of machines, while the combination of MapReduce and a
+distributed filesystem [19] provides something much more like a general-purpose
+operating system that can run arbitrary programs.
+
+#### Diversity of Storage
+
+Databases require you to structure data according to a particular model (e.g., relational
+or documents), whereas files in a distributed filesystem are just byte sequences,
+which can be written using any data model and encoding.
+
+To put it bluntly, Hadoop opened up the possibility of indiscriminately dumping data
+into HDFS, and only later figuring out how to process it further [53]. By contrast,
+MPP databases typically require careful up-front modeling of the data and query patterns
+before importing the data into the database’s proprietary storage format.
+
+Data lake or enterprise data hub.
+
+Sushi principle: “raw data is better”. Indiscriminate data dumping shifts the burden of interpreting the data: instead of
+forcing the producer of a dataset to bring it into a standardized format, the interpretation
+of the data becomes the consumer’s problem
+
+Thus, Hadoop has often been used for implementing ETL processes (see “Data Warehousing”
+on page 91): data from transaction processing systems is dumped into the
+distributed filesystem in some raw form, and then MapReduce jobs are written to
+clean up that data, transform it into a relational form, and import it into an MPP data
+warehouse for analytic purposes. Data modeling still happens, but it is in a separate
+step, decoupled from the data collection. This decoupling is possible because a distributed
+filesystem supports data encoded in any format.
+
+#### Diversity of Processing Models
+
+MPP uses SQL but not all kinds of processing can be sensibly expressed as SQL queries. MapReduce gave engineers the ability to easily run their own code over large datasets.
+If you have HDFS and MapReduce, you can build a SQL query execution engine
+on top of it, and indeed this is what the Hive project did
+
+The Hadoop ecosystem includes both random-access OLTP databases such as HBase
+(see “SSTables and LSM-Trees” on page 76) and MPP-style analytic databases such as
+Impala [41]. Neither HBase nor Impala uses MapReduce, but both use HDFS for
+storage. They are very different approaches to accessing and processing data, but they
+can nevertheless coexist and be integrated in the same system.
+
+#### Designing for frequent faults
+
+Handling faults and the use of memory and disk.
+
+If a node crashes while a query is executing, most MPP databases abort the entire
+query, and either let the user resubmit the query or automatically run it again [3]. As
+queries normally run for a few seconds or a few minutes at most, this way of handling
+errors is acceptable, since the cost of retrying is not too great. MPP databases also
+prefer to keep as much data as possible in memory (e.g., using hash joins) to avoid
+the cost of reading from disk.
+
+On the other hand, MapReduce can tolerate the failure of a map or reduce task
+without it affecting the job as a whole by retrying work at the granularity of an individual
+task. It is also very eager to write data to disk, partly for fault tolerance, and
+partly on the assumption that the dataset will be too big to fit in memory anyway.
+
+Even if recovery at the granularity of an individual task
+introduces overheads that make fault-free processing slower, it can still be a reasonable
+trade-off if the rate of task failures is high enough.
+
+While machine faults are infrequent, the MapReduce design choices can be traced back to Google (the creators). Google has mixed-use datacenters, in which online production services and
+offline batch jobs run on the same machines. Every task has a resource allocation
+(CPU cores, RAM, disk space, etc.) that is enforced using containers. Every task also
+has a priority, and if a higher-priority task needs more resources, lower-priority tasks
+on the same machine can be terminated (preempted) in order to free up resources.
+Priority also determines pricing of the computing resources: teams must pay for the
+resources they use, and higher-priority processes cost more.
+
+This architecture allows non-production (low-priority) computing resources to be
+overcommitted, because the system knows that it can reclaim the resources if necessary.
+Overcommitting resources in turn allows better utilization of machines and
+greater efficiency compared to systems that segregate production and nonproduction
+tasks. However, as MapReduce jobs run at low priority, they run the risk
+of being preempted at any time because a higher-priority process requires their
+resources. Batch jobs effectively “pick up the scraps under the table,” using any computing
+resources that remain after the high-priority processes have taken what they
+need.
+
+At Google, a MapReduce task that runs for an hour has an approximately 5% risk of
+being terminated to make space for a higher-priority process. This rate is more than
+an order of magnitude higher than the rate of failures due to hardware issues,
+machine reboot, or other reasons [59]. At this rate of preemptions, if a job has 100
+tasks that each run for 10 minutes, there is a risk greater than 50% that at least one
+task will be terminated before it is finished.
+
+And this is why MapReduce is designed to tolerate frequent unexpected task termination:
+it’s not because the hardware is particularly unreliable, it’s because the freedom
+to arbitrarily terminate processes enables better resource utilization in a computing
+cluster.
+
+### Beyond MapReduce
+
+#### Materialization of Intermediate State
+
+every MapReduce job is independent from every other job.
+The main contact points of a job with the rest of the world are its input and output
+directories on the distributed filesystem. If you want the output of one job to become
+the input to a second job, you need to configure the second job’s input directory to be
+the same as the first job’s output directory, and an external workflow scheduler must
+start the second job only once the first job has completed.
+
+The process of writing out this intermediate state to files is called materialization.
+(It means to eagerly compute
+the result of some operation and write it out, rather than computing it on
+demand when requested.)
+
+MapReduce’s approach of fully materializing intermediate state has downsides compared
+to Unix pipes:
+
+• A MapReduce job can only start when all tasks in the preceding jobs (that generate
+its inputs) have completed, whereas processes connected by a Unix pipe are
+started at the same time, with output being consumed as soon as it is produced.
+Skew or varying load on different machines means that a job often has a few
+straggler tasks that take much longer to complete than the others. Having to wait
+until all of the preceding job’s tasks have completed slows down the execution of
+the workflow as a whole.
+
+• Mappers are often redundant: they just read back the same file that was just written
+by a reducer, and prepare it for the next stage of partitioning and sorting. In
+many cases, the mapper code could be part of the previous reducer: if the reducer
+output was partitioned and sorted in the same way as mapper output, then
+reducers could be chained together directly, without interleaving with mapper
+stages.
+
+• Storing intermediate state in a distributed filesystem means those files are replicated
+across several nodes, which is often overkill for such temporary data.
+
+##### Dataflow engines
+
+In order to fix these problems with MapReduce, several new execution engines for
+distributed batch computations were developed, the most well known of which are
+Spark [61, 62], Tez [63, 64], and Flink [65, 66]. There are various differences in the
+way they are designed, but they have one thing in common: they handle an entire
+workflow as one job, rather than breaking it up into independent subjobs.
+
+Since they explicitly model the flow of data through several processing stages, these
+systems are known as dataflow engines. Like MapReduce, they work by repeatedly
+calling a user-defined function to process one record at a time on a single thread.
+They parallelize work by partitioning inputs, and they copy the output of one function
+over the network to become the input to another function.
