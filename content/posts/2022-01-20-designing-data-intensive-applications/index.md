@@ -558,51 +558,45 @@ _Example:_
 8. In rules, words that start with an uppercase letter are variables. For example, name `(Location, Name)` matches the triple `name(namerica, 'North America')` with variable bindings `Location = namerica` and `Name = 'North America'`.
 
 
-
-
-
-
-
-WIP >>>
 ## Chapter 4 - Encoding and Evolution
 
-Application code changes sometimes require data changes. Compatability needs to be maintained in both directions as both old and new data + code can co-exist:
-
-1. Backward compatibility: New code can use old code data.
-2. Forward compatibility: Old code can use new code data.
+1. Backward compatibility: Newer code can read data that was written by older code.
+2. Forward compatibility: Older code can read data that was written by newer code.
+3. Schemaless databases can contain a mixture of data in older and newer formats.
+4. Database with schemas enforce data conformity as schema changes.
 
 ## Formats for Encoding Data
 
-Programs usually work with data in (at least) two different representation:
-
-1. In-memory: Data is kept in objects, arrays, or other data in-memory structures.
-2. Writing to a file or network: As a sequence of self-contained bytes.
-
-Translation is needed between the two representations:
-
-1. In-meory to byte sequence -- Known as serialization, encoding, or marshalling
-2. Byte sequence to in-meory -- Known as deserailization, decoding, or unmarshalling.
+1. Programs usually work with data in two different representation:
+   - In-memory: Data is kept in objects, arrays, lists, hash tables, etc.
+   - Self-contained byte sequence: Used when writing data to a file or network.
+2. Translation is needed between the two representations:
+   - In-memory to byte sequence — Known as serialization, or encoding, or marshalling
+   - Byte sequence to in-memory — Known as deserailization, or decoding, or unmarshalling, or parsing.
 
 ### Language-Specific Formats
-
-Languages usually have built-in translation for the above two representation -- Java serializable, Ruby Marshal, Python Pickle, etc. These are usually not used because:
-
-1. Language dependent
-2. Security issues caused by the ability to instantiate arbitrary classes.
-3. Versoning (forward & backward compatibility) is usually an afterthought.
-4. Inefficiencies (in CPU usage and output size).
+1. Many programming languages come with built-in support for encoding in-memory objects into byte sequences:
+   - Java has java.io.Serializable.
+   - Ruby has Marshal.
+   - Python has pickle, ...
+2. Pro:
+   - Convenient: It's already included in the programming language.
+3. Cons:
+   - Coupled to the programming language.
+   - Security concern as arbitrary classes can be instantiated.
+   - Versoning is absent or abysmal.
+   - Inefficiencies in CPU usage and size of encoded structure.
 
 ### JSON, XML, & CSV Formats
+1. These are standardized textual (human readable) encoding formats that are used in many programming languages.
+2. XML is verbose and unnecessarily complicated; JSON is popular and simpler than XML; CSV is less powerful than both.
+3. Cons:
+   - Number encoding ambiguity: JSON doesn't distinguish integers and floating-point numbers; XML and CSV doesn't distinguish numbers and strings (without an external schema).
+   - JSON & XML don't support binary strings (sequences of bytes without a character encoding). Albeit inefficient, Base64 encoding binary data is used to circumvent this limitation.
+   - Optional & complicated schema support for XML & JSON. Consumers that don't use the schema have to hardcode the appropriate encoding/decoding logic (for correct interpretation: Is it base64 encoded? is it a number?).
+   - No schema support for CSV. Applications define the meaning of each column & row.
 
-They are "human" readable formats. Problems:
-
-1. In XML & CSV, numbers can't be distingiushed from a string with digitis without an external schema. JSON distinguishes numbers and strings, but not integers and floating-point numbers (and it doesn't specify precision).
-2. JSON & XML have good support for Unicode character strings (i.e, human-readable texts) but not binary strings (sequences of bytes without a character encoding). Albeit inefficient, Base64 encoding binary data is used to circumvent this limitation.
-3. There is optional schema support for XML & JSON. Consumers that don't use the schema have to hardcode the appropriate encoding/decoding logic (for correct interpretation: Is it base64 encoded? is it a number?).
-4. No CSV schema support -- Applications define the meaning of each column & row.
-
-### Binary Encoding
-
+#### Binary Encoding
 ```json
 {
     "userName": "Martin",
@@ -610,73 +604,69 @@ They are "human" readable formats. Problems:
     "interests": ["daydreaming", "hacking"]
 }
 ```
-Example record used in several binary formats below.
+<small id="example4.1">Example record used in several binary formats below.</small>
 
-Binary encoding for JSON usually include the field names as they don't dictate the schema. MessagePack for example:
-
-![Example record encoded with MessagePack](message_pack_json_example_encoded.png)
+1. Binary encoding format for JSON: MessagePack, BSON, BJSON, UBJSON, BISON, Smile, ...
+2. Binary encoding format for XML: WBXML, Fast Infoset, ...
+3. These binary formats can extend the set of datatypes:
+   - Distinguishing integers & floating-point numbers
+   - Binary string support
+4. Because these binary formats don't pescribe a schema, they need to include all the object field names within the encoded data.
+5. The [example record](#example4.1) encoded with MessagePack is `66 bytes` long, compared to the `81 bytes` taken by the textual JSON encoding (with whitespace removed).
+   ![Example record encoded with MessagePack](assets/fig4.1.png)
 
 #### Thrift & Protocol Buffers
+1. Apache Thrift & Protocol Buffers (protobuf) are binary encoding libraries.
+2. Both have code generation tools that use a required schema definition to produce classes that implement the schema in various programming languages.
+   ```thrift
+   struct Person {
+      1: required string userName,
+      2: optional i64 favoriteNumber,
+      3: optional list<string> interests
+   }
+   ```
+   <small>Schema for the [example record](#example4.1) in Thrift IDL.</small>
 
-Both have code generation tools that use the schema definition to produce classes that implement the schema in various programming languages.
-
-```thrift
-struct Person {
-    1: required string userName,
-    2: optional i64 favoriteNumber,
-    3: optional list<string> interests
-}
-```
-Schema in Thrift IDL
-
-```protobuf
-message Person {
-    required string user_name = 1;
-    optional int64 favorite_number = 2;
-    repeated string interests = 3;
-}
-```
-Protobuf schema
-
-![Example record encoded with Thrift BinaryProtocol](thrift_binary_json_example_encoded.png)
-
-Note: No field names -- Just field tags from the schema definition.
-
-![Example record encoded with Thrift CompactProtocol](thrift_compact_json_example_encoded.png)
-
-CompactProtocol used 34 bytes compared to BinaryProtocol's 59 bytes. It packs the field tag & type into one byte, and uses variable length integers.
-
-In contrast, Protobuf used 33 bytes for the example.
-
-![Example record encoded with Protobuf](protobuf_json_example_encoded.png)
+   ```protobuf
+   message Person {
+      required string user_name = 1;
+      optional int64 favorite_number = 2;
+      repeated string interests = 3;
+   }
+   ```
+   <small>Schema for the [example record](#example4.1) with Protobuf.</small>
+3. Required/optional markers are only used for runtime verification.
+4. Thrift has two encoding formats: BinaryProtocol & CompactProtocol.
+5. [Example record](#example4.1) encoded with Thrift's BinaryProtocol takes `59 bytes`.
+   ![Example record encoded with Thrift BinaryProtocol](assets/fig4.2.png)
+   
+   **Note**: No field names — Instead field tags from the schema definition is used.
+6. Thrift's CompactProtocol is semantically equivalent to BinaryProtocol, but packs the same information into `34 bytes`.
+   ![Example record encoded with Thrift CompactProtocol](assets/fig4.3.png)
+   
+   - It packs the field tag & type into one byte
+   - Uses variable length integers: Rather than using a full eight bytes for the number **1337**, it's encoded in two bytes, with the top bit of each byte used to indicate whether there are still more bytes to come. This means numbers between –64 and 63 are encoded in one byte, numbers between –8192 and 8191 are encoded in two bytes, etc.
+7. [Example record](#example4.1) encoded with Protobuf takes `33 bytes`.
+   ![Example record encoded with Protobuf](assets/fig4.4.png)
 
 ##### Field tags & Schema evolution
-
-An encoded record is just a concantenation of its encoded fields. Each field is identified by its tag number and annotated with a datatype.
-
-Unset field are omitted from the encoded record.
+1. An encoded record is just a concantenation of its encoded fields. Each field is identified by its tag number and annotated with a datatype.
+2. Unset field are omitted from the encoded record.
 
 ###### Maintaining forward-compatibility
-
-Field names can be changed. Field tags can't be changed without invalidating existing data.
-
-Fields can be added to a schema, using distinct tags -- Old code simply ignores it.
-
-Required fields can't be removed afterwards.
+1. Field names can be changed, but field tag numbers can't be changed without invalidating existing encoded data.
+2. Fields can be added to a schema, using distinct tag numbers — Old code simply ignores it.
+3. Required fields can't be removed afterwards.
 
 ###### Maintaining backward-compatibility
-
-New code can read old data as long as field tags are distinct.
-
-New fields can't be required as old code can't write it.
-
-Removed fields tag can't be used again.
+1. New code can read old data as long as field tag numbers are unique.
+2. New fields can't be required as old code can't write it. They must be optional or have a default value.
+3. Removed fields tag numbers must be reserved.
 
 ##### Datatype & Schema evolution
-
-Changing the datatype for numbers is possible, but could lose precision or get truncated.
-
-Protobuf allows evolution from single-valued fields into repeated (multi-valued) fields of the same type.
+1. Changing the datatype for numbers is possible, but could lose precision or get truncated.
+2. Protobuf has a `repeated` marker instead of a list or array datatype — this allows evolution from single-valued fields into repeated (multi-valued) fields of the same type.
+3. Thrift has a dedicated list datatype, which has the advantage of supporting nested lists.
 
 #### Avro
 
