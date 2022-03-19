@@ -560,10 +560,11 @@ _Example:_
 
 ## Chapter 4 - Encoding and Evolution
 
-1. Backward compatibility: Newer code can read data that was written by older code.
-2. Forward compatibility: Older code can read data that was written by newer code.
-3. Schemaless databases can contain a mixture of data in older and newer formats.
-4. Database with schemas enforce data conformity as schema changes.
+1. Compatibility is a relationship between one process that encodes the data, and another process that decodes it.
+2. Backward compatibility: Newer code can read data that was written by older code.
+3. Forward compatibility: Older code can read data that was written by newer code.
+4. Schemaless databases can contain a mixture of data in older and newer formats.
+5. Database with schemas enforce data conformity as schema changes.
 
 ## Formats for Encoding Data
 
@@ -614,9 +615,10 @@ _Example:_
 4. Because these binary formats don't pescribe a schema, they need to include all the object field names within the encoded data.
 5. The [example record](#example4.1) encoded with MessagePack is `66 bytes` long, compared to the `81 bytes` taken by the textual JSON encoding (with whitespace removed).
    ![Example record encoded with MessagePack](assets/fig4.1.png)
+6. The downside of binary encoding is that data needs to be decoded before it is human-readable.
 
-#### Thrift & Protocol Buffers
-1. Apache Thrift & Protocol Buffers (protobuf) are binary encoding libraries.
+### Thrift & Protocol Buffers
+1. Apache Thrift & Protocol Buffers (protobuf) are binary encoding formats.
 2. Both have code generation tools that use a required schema definition to produce classes that implement the schema in various programming languages.
    ```thrift
    struct Person {
@@ -649,16 +651,16 @@ _Example:_
 7. [Example record](#example4.1) encoded with Protobuf takes `33 bytes`.
    ![Example record encoded with Protobuf](assets/fig4.4.png)
 
-##### Field tags & Schema evolution
+#### Field tags & Schema evolution
 1. An encoded record is just a concantenation of its encoded fields. Each field is identified by its tag number and annotated with a datatype.
 2. Unset field are omitted from the encoded record.
 
-###### Maintaining forward-compatibility
+##### Maintaining forward-compatibility
 1. Field names can be changed, but field tag numbers can't be changed without invalidating existing encoded data.
 2. Fields can be added to a schema, using distinct tag numbers — Old code simply ignores it.
 3. Required fields can't be removed afterwards.
 
-###### Maintaining backward-compatibility
+##### Maintaining backward-compatibility
 1. New code can read old data as long as field tag numbers are unique.
 2. New fields can't be required as old code can't write it. They must be optional or have a default value.
 3. Removed fields tag numbers must be reserved.
@@ -668,196 +670,135 @@ _Example:_
 2. Protobuf has a `repeated` marker instead of a list or array datatype — this allows evolution from single-valued fields into repeated (multi-valued) fields of the same type.
 3. Thrift has a dedicated list datatype, which has the advantage of supporting nested lists.
 
-#### Avro
-
-Apache Avro have two schema languages:
-
-1. Avro IDL (intended for human editing)
-
-```avro
-record Person {
-    string userName;
-    union { null, long } favoriteNumber = null;
-    array<string> interests;
-}
-```
-
-2. JSON (more machine readable)
-
-```json
-{
-    "type": "record",
-    "name": "Person",
-    "fields": [
-        {
+### Avro
+1. Apache Avro is a binary encoding format.
+2. Apache Avro have two schema languages:
+   - Avro IDL (intended for human editing)
+   ```avro
+   record Person {
+      string userName;
+      union { null, long } favoriteNumber = null;
+      array<string> interests;
+   }
+   ```
+   - JSON (more machine readable)
+   ```json
+   {
+      "type": "record",
+      "name": "Person",
+      "fields": [
+         {
             "name": "userName",
             "type": "string"
-        },
-        {
+         },
+         {
             "name": "favoriteNumber",
             "type": ["null", "long"],
             "default": null
-        },
-        {
+         },
+         {
             "name": "interests",
             "type": {
                 "type": "array",
                 "items": "string"
             }
-        }
-    ]
-}
-```
+         }
+      ]
+   }
+   ```
+3. [Example record](#example4.1) encoded with Avro takes `32 bytes`.
+   ![Example record encoded with Protobuf](assets/fig4.5.png)
+4. Compared to Thrift or Protobuf, there is no field tag number with an annotated data-type in the encoded data, instead, the schema is used to determine the order and data-type of fields in the encoded data. Thus the writer and reader schemas' must be compatible.
 
-The same example encoded in Avro is 32-bytes.
+#### Writer & Reader Schema
+1. The writer’s schema and the reader’s schema don’t have to be the same — they only need to be compatible.
+2. During decoding, the Avro library resolves the differences by looking at the writer’s schema and the reader’s schema side by side and translating the data from the writer’s schema into the reader’s schema.
 
-![Example record encoded with Protobuf](avro_json_example_encoded.png)
+![An Avro reader resolves differences between the writer’s schema and the reader’s schema.](assets/fig4.6.png)
 
-The encoded data has no field identification (tag or datatype). A string is just a length followed by UTF-8 bytes. Integers are encoded using variable-lengths.
-
-To decode, iterate through the fields in the order defined in the schema. This require both the writer and reader to be compatible.
-
-##### Writer & Reader Schema
-
-The writer & reader schema only needs to be compatible. During decoding, the Avro library resolves the differences by looking at the writer’s schema and the reader’s schema side by side and translating the data from the writer’s schema into the reader’s schema.
-
-![Example record encoded with Protobuf](avro_reader_writer_resolution.png)
+### The Merits of Schemas
+1. Compact since field names can be omitted.
+2. Schema is a form of documentation.
+3. Database of schema enables validation of backward & forward compatibility.
+4. Code-gen from the schema enables compile-time type checking in statically typed languages.
 
 ### Modes of Dataflow
 
 #### Dataflow Through Databases
-
-The writing process encodes, the reading process decodes.
-
-Data outlives code.
+1. In a database, the process that writes to the database encodes the data, and the process that reads from the database decodes it.
+2. Data outlives code.
+3. When an older version of the application updates data previously written by a newer version of the application, data may be lost if you’re not careful.
+   ![](assets/fig4.7.png)
 
 #### Dataflow Through Services: REST and RPC
+1. Client-server is a common arrangement for processes that want to communicate over a network.
+2. The servers expose an API over the network, and the clients can connect to the servers to make requests to that API. The API exposed by the server is known as a service.
+3. The client encodes a request, the server decodes the request and encodes a response, and the client finally decodes the response.
+4. An application can be decomposed into smaller services by area of functionality, such that one service is a client of another. This is known as `Service oriented architecture (SOA)` or `Microservices architecture`.
 
-Service oriented architecture (SOA), more recently refined and rebranded as microservices architecture.
-
-In some ways, services are similar to databases: they typically allow clients to submit
-and query data. However, while databases allow arbitrary queries using the query languages
-we discussed in Chapter 2, services expose an application-specific API that
-only allows inputs and outputs that are predetermined by the business logic (application
-code) of the service [33]. This restriction provides a degree of encapsulation:
-services can impose fine-grained restrictions on what clients can and cannot do.
-
-Web services
-When HTTP is used as the underlying protocol for talking to the service, it is called a
-web service. This is perhaps a slight misnomer, because web services are not only used
-on the web, but in several different contexts. For example:
-1. A client application running on a user’s device (e.g., a native app on a mobile
-device, or JavaScript web app using Ajax) making requests to a service over
-HTTP. These requests typically go over the public internet.
-2. One service making requests to another service owned by the same organization,
-often located within the same datacenter, as part of a service-oriented/microservices
-architecture. (Software that supports this kind of use case is sometimes
-called middleware.)
-3. One service making requests to a service owned by a different organization, usually
-via the internet. This is used for data exchange between different organizations’
-backend systems. This category includes public APIs provided by online
-services, such as credit card processing systems, or OAuth for shared access to
-user data.
-
-REST is not a protocol, but rather a design philosophy that builds upon the principles
-of HTTP [34, 35]. It emphasizes simple data formats, using URLs for identifying
-resources and using HTTP features for cache control, authentication, and content
-type negotiation.
-
-By contrast, SOAP is an XML-based protocol for making network API requests.vii
-Although it is most commonly used over HTTP, it aims to be independent from
-HTTP and avoids using most HTTP features. Instead, it comes with a sprawling and
-complex multitude of related standards (the web service framework, known as WS-*)
-that add various features [37].
-
-The API of a SOAP web service is described using an XML-based language called the
-Web Services Description Language, or WSDL. WSDL enables code generation so
-that a client can access a remote service using local classes and method calls (which
-are encoded to XML messages and decoded again by the framework).
-
-A definition format such as OpenAPI, also known as
-Swagger [40], can be used to describe RESTful APIs and produce documentation.
-
-Despite the similarity of acronyms, SOAP is not a requirement for SOA. SOAP is a particular technology,
-whereas SOA is a general approach to building systems.
+##### Web services
+1. When HTTP is used as the underlying protocol for talking to the service, it's called a web service. This is a misnomer tho as web services are not only used on the web.
+2. REST is not a protocol, but rather a design philosophy that builds upon the principles of HTTP. It emphasizes simple data formats, using URLs for identifying resources and using HTTP features for cache control, authentication, and content type negotiation.
+3. An API designed according to the principles of REST is called RESTful.
+4. A definition format such as OpenAPI (aka Swagger), can be used to describe RESTful APIs and produce documentation.
+5. By contrast, SOAP is an XML-based protocol for making network API requests. Although it is most commonly used over HTTP, it aims to be independent from HTTP and avoids using most HTTP features.
+6. The API of a SOAP web service is described using an XML-based language called the Web Services Description Language, or WSDL.
 
 ##### The problems with remote procedure calls (RPCs)
+1. The RPC model tries to make a request to a remote network service look the same as calling a local function (this abstraction is called location transparency).
+2. RPC is flawed because a network request is different from a local function call:
+   - A local function call is predictable and either succeeds or fails, depending only on parameters that are under your control.
+   - A network request can timeout. A local function call always: returns a result or throws an exception or never returns.
+   - Network request responses' can get lost.
+   - A network request latency is wildly variable.
+   - References (pointers) to objects in local memory can be efficiently passed to local functions.
+   - Translation of data-types is necessary if the client & server are written in different programming languages.
 
-The RPC model tries to make a request to a remote network
-service look the same as calling a function or method in your programming language,
-within the same process (this abstraction is called location transparency).
-Although RPC seems convenient at first, the approach is fundamentally flawed [43,
-44]. A network request is very different from a local function call:
+##### Current directions for RPC
+1. Thrift and Avro come with RPC support included.
+2. gRPC is an RPC implementation using Protocol Buffers.
+3. Finagle uses Thrift.
+4. Rest.li uses JSON over HTTP.
+5. The new generation of RPC frameworks are more explicit about the fact that a remote request is different from a local function call.
 
-##### Message-Passing Dataflow
+#### Message-Passing Dataflow
+1. Asynchronous message-passing systems are somewhere between RPC and databases:
+   - They are similar to RPC in that a client’s request (usually called a message) is delivered to another process with low latency.
+   - They are similar to databases in that the message is not sent via a direct network connection, but goes via an intermediary called a `message broker` (also called a message queue or message-oriented middleware), which stores the message temporarily.
+2. Using a message broker has several advantages compared to direct RPC:
+   - It can act as a buffer if the recipient is unavailable or overloaded, and thus improve system reliability.
+   - It can automatically redeliver messages to a process that has crashed, and thus prevent messages from being lost.
+   - It avoids the sender needing to know the IP address and port number of the recipient.
+   - It allows one message to be sent to several recipients.
+   - It logically decouples the sender from the recipient (the sender just publishes messages and doesn’t care who consumes them).
+3. Message-passing communication is usually one-way: a sender normally doesn’t expect to receive a reply to its messages.
+4. This communication pattern is asynchronous: the sender fires & forget.
 
-Asynchronous message-passing systems,
-which are somewhere between RPC and databases. They are similar to RPC in that a
-client’s request (usually called a message) is delivered to another process with low
-latency. They are similar to databases in that the message is not sent via a direct network
-connection, but goes via an intermediary called a message broker (also called a
-message queue or message-oriented middleware), which stores the message temporarily.
-Using a message broker has several advantages compared to direct RPC:
-• It can act as a buffer if the recipient is unavailable or overloaded, and thus
-improve system reliability.
-• It can automatically redeliver messages to a process that has crashed, and thus
-prevent messages from being lost.
-• It avoids the sender needing to know the IP address and port number of the
-recipient (which is particularly useful in a cloud deployment where virtual
-machines often come and go).
-• It allows one message to be sent to several recipients.
-• It logically decouples the sender from the recipient (the sender just publishes
-messages and doesn’t care who consumes them).
-However, a difference compared to RPC is that message-passing communication is
-usually one-way: a sender normally doesn’t expect to receive a reply to its messages. It
-is possible for a process to send a response, but this would usually be done on a separate
-channel. This communication pattern is asynchronous: the sender doesn’t wait
-for the message to be delivered, but simply sends it and then forgets about it.
+##### Message brokers
+1. Open source implementations: RabbitMQ, ActiveMQ, HornetQ, NATS, Apache Kafka, etc.
+2. The detailed delivery semantics vary by implementation and configuration, but in general, message brokers are used as follows:
+   > One process sends a message to a `named queue/topic`, and the `broker` ensures that the message is delivered to one or more `consumers of` or `subscribers to` that `queue/topic`. There can be many producers and many consumers on the same topic.
+3. Message brokers typically don’t enforce any particular data model — a message is just a sequence of bytes with some metadata.
+4. Messages are encoded by the sender and decoded by the recipient.
 
-Message brokers
+##### Distributed actor frameworks
+1. The actor model is a programming model for concurrency in a single process:
+   - Rather than dealing directly with threads, logic is encapsulated in actors.
+   - Each actor typically represents one client or entity, it may have some local state (which is not shared with any other actor)
+   - It communicates with other actors by sending and receiving asynchronous messages.
+   - Message delivery is not guaranteed: in certain error scenarios, messages will be lost.
+   - Since each actor processes only one message at a time, it doesn’t need to worry about threads, and each actor can be scheduled independently by the framework.
+2. In distributed actor frameworks, this programming model is used to scale an application across multiple nodes. Messages are transparently encoded into a byte sequence, sent over the network, and decoded on the other side.
+3. Location transparency works better in the actor model than in RPC, because the actor model already assumes that messages may be lost, even within a single process.
+4. A distributed actor framework essentially integrates a message broker and the actor programming model into a single framework.
+5. Three popular distributed actor frameworks:
+   - Akka
+   - Orleans
+   - Erlang OTP
 
-The detailed delivery semantics vary by implementation and configuration, but in
-general, message brokers are used as follows: one process sends a message to a named
-queue or topic, and the broker ensures that the message is delivered to one or more
-consumers of or subscribers to that queue or topic. There can be many producers and
-many consumers on the same topic.
+> Aside: "`Rolling upgrades` is where a new version of a service is gradually deployed to a few nodes at a time, rather than deploying to all nodes simultaneously.
+> Rolling upgrades allow new versions of a service to be released without downtime (thus encouraging frequent small releases over rare big releases) and make deployments less risky (allowing faulty releases to be detected and rolled back before they affect a large number of users)."
 
-Distributed actor frameworks
-
-The actor model is a programming model for concurrency in a single process. Rather
-than dealing directly with threads (and the associated problems of race conditions,
-locking, and deadlock), logic is encapsulated in actors. Each actor typically represents
-one client or entity, it may have some local state (which is not shared with any other
-actor), and it communicates with other actors by sending and receiving asynchronous
-messages. Message delivery is not guaranteed: in certain error scenarios, messages
-will be lost. Since each actor processes only one message at a time, it doesn’t
-need to worry about threads, and each actor can be scheduled independently by the
-framework.
-
-In distributed actor frameworks, this programming model is used to scale an application
-across multiple nodes. The same message-passing mechanism is used, no matter
-whether the sender and recipient are on the same node or different nodes. If they are
-on different nodes, the message is transparently encoded into a byte sequence, sent
-over the network, and decoded on the other side.
-
-A distributed actor framework essentially integrates a message broker and the actor
-programming model into a single framework.
-
-Three popular distributed actor frameworks handle message encoding as follows:
-
-• Akka uses Java’s built-in serialization by default, which does not provide forward
-or backward compatibility. However, you can replace it with something like Protocol
-Buffers, and thus gain the ability to do rolling upgrades [50].
-• Orleans by default uses a custom data encoding format that does not support
-rolling upgrade deployments; to deploy a new version of your application, you
-need to set up a new cluster, move traffic from the old cluster to the new one, and
-shut down the old one [51, 52]. Like with Akka, custom serialization plug-ins can
-be used.
-• In Erlang OTP it is surprisingly hard to make changes to record schemas (despite
-the system having many features designed for high availability); rolling upgrades
-are possible but need to be planned carefully [53]. An experimental new maps
-datatype (a JSON-like structure, introduced in Erlang R17 in 2014) may make
-this easier in the future [54].
 
 ## Chapter 10 - Batch Processing
 
