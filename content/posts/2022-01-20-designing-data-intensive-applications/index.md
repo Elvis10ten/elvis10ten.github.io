@@ -1,5 +1,5 @@
 ---
-title: "Designing Data Intensive Applications — Book Summary"
+title: "Designing Data Intensive Applications — Book Notes"
 slug: "/2022-01-20-designing-data-intensive-applications"
 date: 2022-01-20
 canonicalUrl: "https://elvischidera.com/2022-01-20-designing-data-intensive-applications/"
@@ -557,8 +557,9 @@ _Example:_
 7. We define rules that tell the database about new predicates. Here, we define: `within_recursive` and `migrated`. These predicates aren’t triples stored in the database, but instead they are derived from data or from other rules.
 8. In rules, words that start with an uppercase letter are variables. For example, name `(Location, Name)` matches the triple `name(namerica, 'North America')` with variable bindings `Location = namerica` and `Name = 'North America'`.
 
+## Chapter 3 — Storage & Retrieval
 
-## Chapter 4 - Encoding and Evolution
+## Chapter 4 - Encoding & Evolution
 
 1. Compatibility is a relationship between one process that encodes the data, and another process that decodes it.
 2. Backward compatibility: Newer code can read data that was written by older code.
@@ -800,7 +801,113 @@ _Example:_
 > Rolling upgrades allow new versions of a service to be released without downtime (thus encouraging frequent small releases over rare big releases) and make deployments less risky (allowing faulty releases to be detected and rolled back before they affect a large number of users)."
 
 
-## Chapter 10 - Batch Processing
+## Chapter 5 — Replication
+> The major difference between a thing that might go wrong and a thing that cannot possibly go wrong is that when a thing that cannot possibly go wrong goes wrong it usually turns out to be impossible to get at or repair.
+> — Douglas Adams, Mostly Harmless (1992)
+1. Replication means keeping a copy of the same data on multiple machines that are connected via a network.
+2. Benefits:
+   - Low latency: Data can be kept geographically close to users.
+   - High availability: The system can continue working even if some machines fail.
+   - Scalability: Increased throughput with many machines.
+3. Each node that stores a copy of the database is called a replica.
+
+### Single leader replication
+1. aka: leader-based, active/passive or master–slave replication.
+2. How it works:
+   - One of the replicas is designated the `leader` (aka: master or primary). All writes goes to the leader.
+   - The other replicas are known as `followers` (aka: read replicas, slaves, secondaries, or hot standbys).
+   - Whenever data is written to the leader, it also sends the data change to all of its followers as part of a replication log or change stream. The followers use this log to update their local copy of the database.
+   - A client can read from either the leader or any of the followers. Followers are read-only from the client's POV.
+   ![Leader-based (master–slave) replication](assets/fig5.1.png)
+3. Used by:
+   - Relational databases: PostgreSQL, MySQL.
+   - Nonrelational databases: MongoDB, RethinkDB, and Espresso.
+   - Distributed message brokers: Kafka, RabbitMQ.
+
+#### Synchronous Versus Asynchronous Replication
+1. Semi-synchronous example: The replication to follower 1 is synchronous, and the replication to follower 2 is asynchronous.
+   ![Leader-based replication with one synchronous and one asynchronous fol‐
+lower](assets/fig5.2.png)
+2. Advantage of synchronous replication: the follower is guaranteed to have an up-to-date copy of the data that is consistent with the leader.
+3. Disadvantage of synchronous replication: Writes can't be processed if the synchronous replica is unavailable.
+4. Advantage of full asynchronous replication: the leader can continue processing writes, even if all of its followers have fallen behind.
+5. Disadvantage of full asynchronous replication: writes are not guaranteed to be durable, even if it has been confirmed to the client.
+
+#### Setting Up New Followers
+1. Setting up a new follower without downtime:
+   - Take a **consistent** snapshot of the leader’s database at some point in time. A standard file copy is insufficient as the database can be modified in between the copy operation.
+   - Copy the snapshot to the new follower node.
+   - The follower connects to the leader and requests all the data changes that have happened since the snapshot was taken.
+   - When the follower has processed the backlog of data changes since the snapshot we say it has caught up.
+
+#### Handling Node Outages
+How to achieve high availability with leader-based replication.
+
+##### Follower failure: Catch-up recovery
+1. After a failure, a follower can recover by requesting from the leader all the changes between its last processed transaction and now. Similar to the last two steps mentioned in [setting up new followers](#setting-up-new-followers).
+
+##### Leader failure: Failover
+1. Failover is the process of handling a leader failure:
+   - one of the followers needs to be promoted to be the new leader,
+   - clients need to be reconfigured to send their writes to the new leader, and
+   - the other followers need to start consuming data changes from the new leader.
+2. An automatic failover process usually consists of the following steps:
+   - Determining that the leader has failed: Timeouts are usually used as there is no better alternative.
+   - Choosing a new leader: Through an election process or a single elected controller node. The replica with the most recent changes is the best candidate given this minimizes data loss.
+   - Reconfiguring the system to use the new leader and ensuring that the old leader becomes a follower whenever it comes back on the network.
+3. Failover is fraught with things that can go wrong:
+   - If asynchronous replication is used, the new leader may not have received all the writes from the old leader before it failed, leading to potential data loss.
+   - Discarding writes is especially dangerous if other storage systems outside of the database need to be coordinated with the database contents.
+   - In certain fault scenarios, it could happen that two nodes both believe that they are the leader. This situation is called split brain and it can lead to data loss or corruption.
+   - What is the right timeout before the leader is declared dead?
+     - Short timeout: can lead to unncessary failovers.
+     - Long timeout: leads to longer recovery times.
+
+#### Implementation of Replication Logs
+Several different leader-based replication methods are used in practice.
+
+##### Statement-based replication
+1. The leader logs every write request (statement) that it executes and sends that statement log to its followers.
+2. For a relational database, this means that every `INSERT`, `UPDATE`, or `DELETE`m statement is forwarded to followers.
+3. Issues:
+   - Nondeterministic functions (like `NOW()`, `RAND()`) in statements can produce different values on replicas.
+   - If a statement depends on existing data in the database, they must be executed in exactly the same order on each replica in order to have the same effect.
+   - Statements that have side effects (e.g: triggers, stored procedures, user-defined functions) may result in different side effects occurring on each replica.
+4. Some of the issues can be addressed, like replacing `NOW()` with an exact date-time on the leader. However, there are so many edge cases.
+5. VoltDB uses statement-based replication, and makes it safe by requiring transactions to be deterministic.
+
+##### Write-ahead log (WAL) shipping
+1. As discussed in [Chapter 3](#chapter-3--storage--retrieval), storage engines maintain a log that is an append-only sequence of bytes containing all writes to the database.
+2. This log can be used to build a replica on another node: besides writing the log to disk, the leader also sends it across the network to its followers.
+3. Disadvantages:
+   - Couples replication to the storage engine: the log describes the data on a very low level — a WAL contains details of which bytes were changed in which disk blocks. If the database changes its storage format, upgrading to this version will require downtime if replicas can't use the same log.
+4. Used by: PostgreSQL, Oracle, etc.
+
+##### Logical (row-based) log replication
+1. An alternative is to use different log formats for replication and for the storage engine, which allows the replication log to be decoupled from the storage engine internals.
+2. This kind of replication log is called a `logical log`, to distinguish it from the storage engine’s (`physical`) data representation.
+3. A logical log for a relational database is usually a sequence of records describing writes to database tables at the granularity of a row:
+   - For an inserted row, the log contains the new values of all columns.
+   - For a deleted row, the log contains enough information to uniquely identify the row that was deleted.
+   - For an updated row, the log contains enough information to uniquely identify the updated row, and the new values.
+
+##### Trigger-based replication
+1. Unlike the methods above that are done at the database level, this is done at the application level.
+2. Triggers and stored procedures can be used to implement this.
+3. Pros compared to database level replication:
+   - Flexible
+4. Cons compared to database level replication:
+   - Greater overhead
+   - Prone to bugs and limitations
+
+### Problems with Replication Lag
+
+
+
+
+
+
+## Chapter 10 — Batch Processing
 
 Three types of systems:
 
