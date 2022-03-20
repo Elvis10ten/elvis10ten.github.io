@@ -901,6 +901,37 @@ Several different leader-based replication methods are used in practice.
    - Prone to bugs and limitations
 
 ### Problems with Replication Lag
+1. Replication lag is the delay between a write happening on the leader and being reflected on a follower.
+2. With asynchronous replication, replication lag can lead to inconsistencies between a follower and the leader. 
+3. This inconstencies is temporary as eventually the follower catches up with the latest data. This effect is known as eventual consistency.
+
+#### Reading Your Own Writes
+1. Issue: A user makes a write, followed by a read from a stale replica. To prevent this anomaly, we need read-after-write/read-your-writes consistency.
+   ![](assets/fig5.3.png)
+2. This is a consistency gurantee that a writer will see all their latest writes whenever they read.
+3. Ways to implement:
+   - When reading something that the user may have modified, read it from the leader; otherwise, read it from a follower. E.g: Always read a user's own profile from the leader, other profiles can be read from followers. This doesn't work well if most things are editable by the user.
+   - Prevent reads to lagging replicas for a duration of time.
+   - The client can remember the timestamp of its most recent write — then the system can ensure that the replica serving any reads for that user reflects updates at least until that timestamp. This doesn't work if a user uses multiple devices.
+
+#### Monotonic Reads
+1. A user first reads from a fresh replica, then from a stale replica. Time appears to go backward. To prevent this anomaly, we need monotonic reads.
+   ![](assets/fig5.4.png)
+2. Monotonic reads is weaker gurantee than strong consistency (as older data can still be returned), but it's a stronger gurantee than eventual consistency.
+3. Monotonic reads only means a user will not read older data after having previously read newer data.
+4. One way of achieving monotonic reads is to make sure that each user always makes their reads from the same replica (different users can read from different replicas).
+
+#### Consistent Prefix Reads
+1. If some partitions are replicated slower than others, an observer may see the answer before they see the question (violation of causality).
+   ![](assets/fig5.5.png)
+2. Consistent prefix reads is a consistency guarantee that if a sequence of writes happens in a certain order, then anyone reading those writes will see them appear in the same order.
+3. This anomaly only affects partitioned databases. As a non-partitioned database is dependent on the leader and thus have only one write order.
+4. One way of achieving consistent prefix reads is to make sure that any writes that are causally related to each other are written to the same partition.
+
+### Multi-Leader Replication
+1. 
+
+
 
 
 
