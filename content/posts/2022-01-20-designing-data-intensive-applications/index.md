@@ -929,13 +929,79 @@ Several different leader-based replication methods are used in practice.
 4. One way of achieving consistent prefix reads is to make sure that any writes that are causally related to each other are written to the same partition.
 
 ### Multi-Leader Replication
-1. 
+Multi-Leader replication (aka: master–master or active/active replication) allows more than one node to accept writes. In this setup, each leader simultaneously acts as a follower to the other leaders.
 
+#### Use Cases for Multi-Leader Replication
+##### 1. Multi-datacenter operation
+1. In a multi-leader configuration, you can have a leader in each datacenter. Within each datacenter, regular leader–follower replication is used; between datacenters, each datacenter’s leader replicates its changes to the leaders in other datacenters.
+   ![Multi-leader replication across multiple datacenters](assets/fig5.6.png)
+3. Multi-leader replication is an often retrofitted feature of databases, making them dangerous as they have suprising interactions with other database features.
+4. External tools enabling multi-leader replication on relational databases:
+   - Tungsten Replicator for MySQL
+   - BDR for PostgreSQL
+   - GoldenGate for Oracle
+5. Major downside of multi-leader replication: the same data may be concurrently modified in two different datacenters, and those write conflicts must be resolved.
+6. Comparison of single-leader vs multi-leader in a multi-datacenter environment:
+  
+  | Feature | Single-leader | Multi-leader |
+  |---------|---------------|--------------|
+  | Performance | Added latency because every write goes over the internet to the datacenter with the leader. | Inter-datacenter network delay can be hidden by writing to a local datacenter and asynchronously syncing with other datacenters. |
+  | Tolerance of datacenter outages | Failover to a follower in anothe datacenter | Datacenters can continue operating independently |
+  | Tolerance of network problems | Sensitive to problems in the inter-datacenter link because writes are made usually made over this link | With asynchronous replication, network problems are tolerable as writes can be processed locally |
 
+##### Clients with offline operation
+1. In this case, every device has a local database that acts as a leader (it accepts write requests), and there is an asynchronous multi-leader replication process (sync) between the replicas on all devices.
+2. CouchDB is designed for this mode of operation.
 
+##### Collaborative editing
+1. Real-time collaborative editing applications allow several people to edit a document simultaneously.
+2. Document locks can gurantee no edit conflicts, but this disables simultaneous editing.
 
+#### Handling Write Conflicts
+1. A write conflict caused by two leaders concurrently updating the same record.
+   ![](assets/fig5.7.png)
 
+##### Synchronous versus asynchronous conflict detection
+1. Conflict detection can be made synchronous — i.e: wait for the write to be replicated to all replicas before telling the user that the write was successful.
+2. However, this loses the main advantage of multi-leader replication: allowing each replica to accept writes independently.
 
+##### Conflict avoidance
+1. The application can ensure that all writes for a particular record go through the same leader, to avoid conflicts. Each record can have a "home" leader.
+2. Conflict avoidance can breaksdown whenever you want to change a record's "home" leader. You have to deal with the possibility of concurrent writes on different leaders.
+
+##### Converging toward a consistent state
+1. In a multi-leader configuration, there is no defined ordering of writes, so it’s not clear what the final value should be.
+2. Every replication scheme must ensure that the data is eventually the same in all replicas. Thus, the database must resolve the conflict in a convergent way, which means that all replicas must arrive at the same final value when all changes have been replicated.
+3. Some ways of achieving convergent conflict resolution:
+   - Give each write a unique ID (e.g: a timestamp, a UUID) and pick the write with the highest ID as the winner. Prone to data-loss.
+   - Give each replica a unique ID, and let writes that originated at a higher numbered replica always take precedence. Prone to data-loss.
+   - Somehow merge the values together—e.g., order them alphabetically and then concatenate them.
+   - Record the conflict in an explicit data structure that preserves all information, and write application code that resolves the conflict at some later time (perhaps by prompting the user).
+
+##### Custom conflict resolution logic
+Resolution can be app specific, thus most tools allow application code to handle conflicts. This code is run:
+   - **On write**: As soon as the database system detects a conflict in the log of replicated changes, it calls the conflict handler. Burcado does this.
+   - **On read**: Conflicting writes are stored and returned to the application whenever it tries to read te affected record. It can auto resolve the conflict, or prompt the user to do so. CouchDB does this.
+
+##### Automatic Conflict Resolution
+A few lines of research are worth mentioning:
+- **Conflict-free replicated datatypes (CRDTs)** are a family of data structures for sets, maps, ordered lists, counters, etc. that can be concurrently edited by multiple users, and which automatically resolve conflicts in sensible ways. Some CRDTs have been implemented in Riak 2.0.
+- **Mergeable persistent data structures** track history explicitly, similarly to the Git version control system, and use a three-way merge function (whereas CRDTs use two-way merges).
+- **Operational transformation** is the conflict resolution algorithm behind collaborative editing applications such as Etherpad and Google Docs. It was designed particularly for concurrent editing of an ordered list of items, such as the list of characters that constitute a text document.
+
+##### What is a conflict?
+Editing the same field on the same record is an obvious conflict. But some conflicts are subtle: like the ones that violate some application constraints when two distinct records are edited by two independent leaders.
+
+#### Multi-Leader Replication Topologies
+1. A replication topology describes the communication paths along which writes are propagated from one node to another.
+2. Three example topologies in which multi-leader replication can be set up.
+   ![](assets/fig5.8.png)
+3. **All-to-all topology**: every leader sends its writes to every other leader.
+4. **Circular topology**: each node receives writes from one node and forwards those writes (plus any writes of its own) to one other node.
+5. **Star topology**: one designated root node forwards writes to all of the other nodes. The star topology can be generalized to a tree.
+6. To prevent infinite replication loops, each node is given a unique identifier, and in the replication log, each write is tagged with the identifiers of all the nodes it has passed through. Thus, a node can ignore a data change with its identifier.
+
+### Leaderless Replication
 
 
 ## Chapter 10 — Batch Processing
