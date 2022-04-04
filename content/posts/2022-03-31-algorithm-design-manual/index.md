@@ -178,6 +178,9 @@ alert for how the details of your applications differ from a candidate model, bu
 6. **Polygons** define regions in some geometric spaces.
 7. **Strings** represent sequences of characters, or patterns.
 
+![](assets/fig1.8.png)
+<small> Modeling real-world structures with trees and graphs</small>
+
 #### Recursive Objects
 > Learning to think recursively is learning to look for big things that are made from smaller things of exactly the same type as the big thing.<br/>
 > If you think of houses as sets of rooms, then adding or deleting a room still leaves a house behind.  
@@ -192,6 +195,9 @@ alert for how the details of your applications differ from a candidate model, bu
 
 > Recursive descriptions of objects require both decomposition rules and basis cases, namely the specification of the smallest and simplest objects where the decomposition stops.  
 
+![](assets/fig1.9.png)
+<small>Recursive decompositions of combinatorial objects. (left column) Permutations, subsets, trees, and graphs. (right column) Point sets, polygons, and strings</small>
+
 ### Proof by Contradiction
 1. The basic scheme of a contradiction argument is as follows:
     * Assume that the hypothesis (the statement you want to prove) is false.
@@ -200,6 +206,9 @@ alert for how the details of your applications differ from a candidate model, bu
 2. The classic contradiction argument is Euclid's proof that there are an infinite number of prime numbers:
      * The negation of the claim would be that there are only a finite number of primes, say `m`, which can be listed as `p₁,..., pₘ`. So let's assume this is the case and work with it.
      * Prime numbers have particular properties with respect to division. Suppose we construct the integer formed as the product of "all" of the listed primes:
+     \[
+      N = \prod_{i = 1}^{m} p_{i}
+     \]
      * This integer `N` has the property that it is divisible by each and every one of the known primes, because of how it was built.
      * But consider the integer `N + 1`. It can't be divisible by `p₁ = 2`, because `N` is.
      * The same is true for `p₂ = 3` and every other listed prime. Since a +1 can’t be evenly split by any of the prime numbers because they are bigger.
