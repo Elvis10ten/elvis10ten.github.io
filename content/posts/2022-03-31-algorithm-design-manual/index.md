@@ -1,20 +1,23 @@
 ---
-title: "The Algorithm Design Manual"
-slug: "/2022-03-31-the-algorithm-design-manual"
+title: "The Algorithm Design Manual - Notes"
+slug: "/2022-03-31-the-algorithm-design-manual-notes"
 date: 2022-03-31
-canonicalUrl: "https://elvischidera.com/2022-03-31-the-algorithm-design-manual"
-banner: ./assets/banner.jpg
+canonicalUrl: "https://elvischidera.com/2022-03-31-the-algorithm-design-manual-notes"
+banner: ./assets/banner.jpeg
 tags:
   - notes
 ---
+
+> Pet Peeve: The author sometimes skips steps without an explaination (like the integer truncation in "stop and think: incremental correctness"). Some examples are hard to follow for an international student (like understanding the lottery system in "war story: pschic modeling").
+
 
 ## Chapte 1 — Introduction to Algorithm Design
 1. An `algorithmic problem` is specified by describing the complete set of **instances** it must work on and of its output after running on one of these instances.
 2. An `algorithm` is a procedure that takes any of the possible input instances and transforms it to the desired output.
 3. There is a distinction between a general problem and an instance of a problem. E.g:
-   > **Problem**: Sorting
-   > **Input**: A sequence of `n` keys a<sub>1</sub>,...,a<sub>n</sub>.
-   > **Output**: The permutation (reordering) of the input sequence such that: a′<sub>1</sub> ≤ a′<sub>2</sub> ≤ ··· ≤ a′<sub>n−1</sub> ≤ a′<sub>n</sub>.
+   > **Problem**: Sorting<br/>
+   > **Input**: A sequence of `n` keys a<sub>1</sub>,...,a<sub>n</sub>.<br/>
+   > **Output**: The permutation (reordering) of the input sequence such that: a′<sub>1</sub> ≤ a′<sub>2</sub> ≤ ··· ≤ a′<sub>n−1</sub> ≤ a′<sub>n</sub>.<br/>
    > **Instance of sorting problem**: { Mike, Bob, Sally}; { 154, 245 }
 4. Insertion sort is an algorithm to the sorting problem:
    **English description**: 
@@ -63,8 +66,8 @@ good job but without providing any guarantee.
 7. Correct algorithms usually come with a proof of correctness, which is an explanation of why we know that the algorithm must take every instance of the problem to the desired result.
 
 ### Robot Tour Optimization
-> **Problem**: Robot Tour Optimization (aka: Traveling Salesman Problem [TSP])
-> **Input**: A set `S` of `n` points in the plane.
+> **Problem**: Robot Tour Optimization (aka: Traveling Salesman Problem [TSP]).<br/>
+> **Input**: A set `S` of `n` points in the plane.<br/>
 > **Output**: What is the shortest cycle tour that visits each point in the set `S`?
 
 #### Nearest-neighbor heuristic
@@ -174,9 +177,11 @@ alert for how the details of your applications differ from a candidate model, bu
 5. **Points** define locations in some geometric space.
 6. **Polygons** define regions in some geometric spaces.
 7. **Strings** represent sequences of characters, or patterns.
+
 #### Recursive Objects
-> Learning to think recursively is learning to look for big things that are made from smaller things of exactly the same type as the big thing.  
+> Learning to think recursively is learning to look for big things that are made from smaller things of exactly the same type as the big thing.<br/>
 > If you think of houses as sets of rooms, then adding or deleting a room still leaves a house behind.  
+
 1. **Permutations**: Delete the first element of a permutation of `n` things `{1, ..., n}` and you get a permutation of the remaining `n-1` things. Basis case: {}
 2. **Subsets**: Every subset of `{1, ..., n}` contains a subset of `(1, ..., n - 1)` obtained by deleting element `n`. Basis case: {}
 3. **Trees**: Delete the root of a tree and you get a collection of smaller trees. Delete any leaf of a tree and you get a slightly smaller tree. Basis case: 1 vertex.
@@ -206,27 +211,27 @@ alert for how the details of your applications differ from a candidate model, bu
 ### Exercises
 #### Finding counter examples
 1. Show that `a + b` can be less than `min(a, b)`.
-  >When:
-  >&nbsp;&nbsp; `a and b < 0` (i.e: negative)
-  >&nbsp;&nbsp; `a <= b`
-  >Then:
-  >&nbsp;&nbsp; `min(a, b) = a`
-  >&nbsp;&nbsp; `a + b < a`
-  >Example:
-  >&nbsp;&nbsp; `min(-6, -5) = -6`
-  >&nbsp;&nbsp; `-6 + -5 = -6 -5 = -11`
+  >When:<br/>
+  >&nbsp;&nbsp; `a and b < 0` (i.e: negative)<br/>
+  >&nbsp;&nbsp; `a <= b`<br/>
+  >Then:<br/>
+  >&nbsp;&nbsp; `min(a, b) = a`<br/>
+  >&nbsp;&nbsp; `a + b < a`<br/>
+  >Example:<br/>
+  >&nbsp;&nbsp; `min(-6, -5) = -6`<br/>
+  >&nbsp;&nbsp; `-6 + -5 = -6 -5 = -11`<br/>
   >&nbsp;&nbsp; `-11 < -6`
 
 2. Show that `a × b` can be less than `min(a, b)`.
-  > When:
-  >&nbsp;&nbsp; `a < 0` (i.e: negative)
-  >&nbsp;&nbsp; `b > 0` (i.e: positive)
-  >Then:
-  >&nbsp;&nbsp; `min(a, b) = a`
-  >&nbsp;&nbsp; `a * b < a`
-  >Example:
-  >&nbsp;&nbsp; `min(-3, 4) = -3`
-  >&nbsp;&nbsp; `-3 * 4 = -12`
+  > When:<br/>
+  >&nbsp;&nbsp; `a < 0` (i.e: negative)<br/>
+  >&nbsp;&nbsp; `b > 0` (i.e: positive)<br/>
+  >Then:<br/>
+  >&nbsp;&nbsp; `min(a, b) = a`<br/>
+  >&nbsp;&nbsp; `a * b < a`<br/>
+  >Example:<br/>
+  >&nbsp;&nbsp; `min(-3, 4) = -3`<br/>
+  >&nbsp;&nbsp; `-3 * 4 = -12`<br/>
   >&nbsp;&nbsp; `-12 < -3`
 
 3. Design/draw a road network with two points a and b such that the fastest route between a and b is not the shortest route.
@@ -244,11 +249,11 @@ alert for how the details of your applications differ from a candidate model, bu
 
 4. Design/draw a road network with two points a and b such that the shortest route between a and b is not the route with the fewest turns.
    ```ascii
-  a────┐   ┌────b
-  │    └─c─┘    │
-  │             │
-  └──────d──────┘
-
-  Route `acb` is the shortest but has 4 turns.
-  Route `adb` is the longest and has only 2 turns.
+   a────┐   ┌────b
+   │    └─c─┘    │
+   │             │
+   └──────d──────┘
+   
+   Route `acb` is the shortest but has 4 turns.
+   Route `adb` is the longest and has only 2 turns.
    ```
