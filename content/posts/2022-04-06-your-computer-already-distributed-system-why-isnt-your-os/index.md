@@ -3,7 +3,7 @@ title: "Your computer is already a distributed system. Why isn’t your OS? — 
 slug: "/2022-04-06-your-computer-already-distributed-system-why-isnt-your-os"
 date: 2022-04-06
 canonicalUrl: "https://elvischidera.com/2022-04-06-your-computer-already-distributed-system-why-isnt-your-os/"
-banner: ./assets/banner.jpg
+banner: ./assets/banner.png
 tags:
   - summary
 ---
@@ -35,7 +35,7 @@ This post summarizes the key topics in this very accessible [paper](https://barr
        Other L1/L2 | 130 | 65 | - |
        1-hop cache | 190 | 95 | 60 |
        2-hop cache | 260 | 130 | 70 |
-       
+
        <small>Table 1: Latency of cache access for the PC in Figure 1.</small>
 
 ## Implications
