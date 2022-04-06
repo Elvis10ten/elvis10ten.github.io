@@ -35,6 +35,8 @@ This post summarizes the key topics in this very accessible [paper](https://barr
        Other L1/L2 | 130 | 65 | - |
        1-hop cache | 190 | 95 | 60 |
        2-hop cache | 260 | 130 | 70 |
+       
+       <small>Table 1: Latency of cache access for the PC in Figure 1.</small>
 
 ## Implications
 ### Message passing vs. shared memory
