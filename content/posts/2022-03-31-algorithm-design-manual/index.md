@@ -217,12 +217,18 @@ alert for how the details of your applications differ from a candidate model, bu
      * This assertion is false, so there cannot be a bounded number of primes.
 3. For a contradiction argument to be convincing, the final consequence must be clearly, ridiculously false.
 
+### Estimation
+1. Principled guessing is called estimation.
+2. Estimation problems are best solved through some kind of logical reasoning process, typically a mix of principled calculations and analogies.
+3. Principled calculations give the answer as a function of quantities that either you already know, can look up on Google, or feel confident enough to guess.
+4. Analogies reference your past experiences, recalling those that seem similar to some aspect of the problem at hand.
+
 ### Exercises
 #### Finding counter examples
 1. Show that `a + b` can be less than `min(a, b)`.
   >When:<br/>
   >&nbsp;&nbsp; `a and b < 0` (i.e: negative)<br/>
-  >&nbsp;&nbsp; `a <= b`<br/>
+  >&nbsp;&nbsp; `a <= b`<br/> 
   >Then:<br/>
   >&nbsp;&nbsp; `min(a, b) = a`<br/>
   >&nbsp;&nbsp; `a + b < a`<br/>
@@ -266,3 +272,6 @@ alert for how the details of your applications differ from a candidate model, bu
    Route `acb` is the shortest but has 4 turns.
    Route `adb` is the longest and has only 2 turns.
    ```
+
+#### Induction
+1. Prove that $\sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}$ for n ≥ 0, by induction.
