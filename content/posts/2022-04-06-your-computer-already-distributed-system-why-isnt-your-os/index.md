@@ -20,12 +20,13 @@ This post summarizes the key topics in this very accessible [paper](https://barr
    ![Figure 1](assets/fig1.png)
    <small>Figure 1: Node layout of a commodity 32-core machine</small>
 1. Distributed systems are historically distinguished from centralized ones by three additional challenges:
-    * **i. Node heterogeneity**:
+    * **Node heterogeneity**:
         * Centralized computer systems traditionally assume that all the processors which share memory have the same architecture and performance trade- offs.
         * This assumption is barely true with modern commodity computers.
         * Non-coherent compromises are used to address the fact that mainstream operating systems cannot easily represent different processing architectures within the same kernel.
-    * **ii. Node Dynamicity**: Nodes (CPU, memory, etc) come and go due to partial failures and other reconfigurations — however, the hardware of a computer from the OS perspective is not viewed in this manner.
-    * **iii. Communication Latency**: The problem of latency in [cache-coherent](https://en.wikipedia.org/wiki/Cache_coherence) [NUMA](https://en.wikipedia.org/wiki/Non-uniform_memory_access) machines is well-known.
+    * **Node Dynamicity**: Nodes (CPU, memory, etc) come and go due to partial failures and other reconfigurations — however, the hardware of a computer from the OS perspective is not viewed in this manner.
+    * **Communication Latency**: The problem of latency in [cache-coherent](https://en.wikipedia.org/wiki/Cache_coherence) [NUMA](https://en.wikipedia.org/wiki/Non-uniform_memory_access) machines is well-known.
+
         | Access | Cycles | Normalized to L1 | Per-hop cost |
         |--------|--------|------------------|--------------|
         L1 cache | 2 | 1 | - |
