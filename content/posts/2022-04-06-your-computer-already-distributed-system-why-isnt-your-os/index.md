@@ -3,7 +3,7 @@ title: "Your computer is already a distributed system. Why isn’t your OS? — 
 slug: "/2022-04-06-your-computer-already-distributed-system-why-isnt-your-os"
 date: 2022-04-06
 canonicalUrl: "https://elvischidera.com/2022-04-06-your-computer-already-distributed-system-why-isnt-your-os/"
-banner: ./assets/banner.png
+banner: ./assets/fig1.png
 tags:
   - summary
 ---
