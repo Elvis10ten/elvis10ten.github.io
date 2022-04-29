@@ -3,7 +3,7 @@ title: "A Philosophy of Software Design — Summary & Notes"
 slug: "/2022-04-29-philosphy-software-design"
 date: 2022-04-29
 canonicalUrl: "https://elvischidera.com/2022-04-29-philosphy-software-design/"
-banner: ./assets/banner.svg
+banner: ./assets/banner.png
 tags:
   - notes
   - summary
