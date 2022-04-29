@@ -33,10 +33,12 @@ tags:
 ###  Complexity defined
 1. Complexity is anything related to the structure of a software system that makes it hard to understand and thus modify the system.
 2. The overall complexity of a system (`C`) is determined by the complexity of each part p (`cₚ`) weighted by the fraction of time developers spend working on that part (`tₚ`).
-    \[
-     C = \sum_{p = 0}^{n} c_{p} t_{p}
-    \]
-3.  Based on the above formula, interfaces should be designed to make the common case as simple as possible:
+
+\[
+C = \sum_{p = 0}^{n} c_{p} t_{p}
+\]
+
+1.  Based on the above formula, interfaces should be designed to make the common case as simple as possible:
     > If the API for a **commonly used feature** forces users to learn about other features that are **rarely used**, this increases the cognitive load on users who don’t need the rarely used features.  
 
 ### Symptoms of complexity
