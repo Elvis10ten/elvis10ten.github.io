@@ -9,7 +9,7 @@ tags:
   - summary
 ---
 
-This is my summary and notes from [A Philosophy of Software Design, 2nd Edition](https://amzn.to/3LK6xKT) by John Ousterhout. Please use the link if you decide to buy the book after reading this as it contains my affiliate code. Thanks.
+This is my summary and notes from [A Philosophy of Software Design, 2nd Edition](https://amzn.to/3LHUeyC) by John Ousterhout. Please use the link if you decide to buy the book after reading this as it contains my affiliate code. Thanks.
 
 > The most fundamental problem in computer science is problem decomposition: how to take a complex problem and divide it up into pieces that can be solved independently.
 
