@@ -1,3 +1,14 @@
+---
+title: "The Design of Everyday Things — Book Summary & Notes"
+slug: "/2022-06-24-design-everyday-things"
+date: 2022-06-24
+canonicalUrl: "https://elvischidera.com/2022-06-24-design-everyday-things/"
+banner: ./assets/banner.jpeg
+tags:
+  - notes
+  - summary
+---
+
 This is my summary and notes from [The Design of Everyday Things](https://amzn.to/3u0cEnp) by Don Norman. Please use the link if you decide to buy the book after reading this as it contains my affiliate code. Thanks.
 
 -----
@@ -136,13 +147,16 @@ The paradox of technology and the challenge for a designer:
 1. The communication in non-happy paths of modern products is often inadequate:
     * When I’m offline or during a connectivity issue, most products show a fallback UI. However, they fail to communicate my current state. My router could have been disconnected without my knowledge and I will spend a few seconds trying to figure out why the product UI is different now. A simple “you are offline” would suffice.
     ![Apple TV](assets/apple_tv_offline_state.png)
+    <small>Apple TV offline state — it provides no indication of a connectivity issue.</small>
     * Poor loading indicators: Are you still making progress with my request or is it stuck? This is why I don’t like the shimmer loading effect so much.
     * Generic error message: Should I try again? What really happened and can I do anything about it?
     * When a call disconnects, is it a problem on my side or on the other side?
 
 ## Chapter 2: The psychology of everyday actions
-1. There are two parts to an action: executing the action and then evaluating the results: doing and interpreting.
-2. When people use a thing—product, tool, or service—they face two gulfs (obstacles) between desired outcome (goal) and available options (what actions to perform):
+1. There are two parts to an action:
+   * Doing — Executing the action and
+   * Interpreting — then evaluating the results.
+2. When people use a thing, they face two gulfs:
     * **The Gulf of Execution**
         * How do I work this thing? What can it do? What can I do with it?
         * Bridged through signifiers, constraints, mappings, and a conceptual model.
@@ -158,48 +172,41 @@ The paradox of technology and the challenge for a designer:
     * Interpret (the perception; evaluation)
     * Compare (the outcome with the goal; evaluation)
 4. **Root cause analysis**
-    * Reconsider the true goals behind a user’s immediate or superficial goal.
-    * Example: Professor Theodore Levitt “People don’t want to buy a quarter-inch drill. They want a quarter-inch hole!” Buying a drill is a partial goal. The true goal might be that they want to hang shelves on the wall. [me: similar to Christensen’s “jobs to be done” framework]
+    * Reconsider the true goals behind a user’s immediate or superficial goal
+    * Harvard Business School marketing professor Theodore Levitt once pointed out, “People don’t want to buy a quarter-inch drill. They want a quarter-inch hole!” Buying a drill is an intermediate goal. The true goal might be that they want to hang shelves on the wall.
 5. Emotion is highly underrated. In fact, the emotional system is a powerful information processing system that works in tandem with cognition. Cognition attempts to make sense of the world: emotion assigns value.
 6. Systems of cognition:
-    * Subconscious: Fast. Automatic. Controls skilled behavior.
-    * Conscious: Slow. Controlled. Invoked for novel situations (when learning, when things go wrong).
+    * Subconscious: Fast; Automatic; Controls skilled behavior.
+    * Conscious: Slow; Controlled; Invoked for novel situations: when learning, when in danger; when things go wrong.
 7. Three levels of processing:
     * **Visceral**: subconscious
         * Most basic level of processing (aka “the lizard brain”).
-        * Fast and automatic. Responds to the present.
-        * Rapid response and decision-making like “fight or flight,”, “good or bad.”
-        * Design implications: Immediate perceptions. Example: Initial response to a color or sound. Attraction vs. repulsion.
+        * Fast and automatic.
+        * For designers, the visceral response is about immediate perception — attracted or repulsed?
     * **Behavioral**: subconscious
-        * Learned skills triggered by situations that match known patterns.
+        * Learned skills triggered by situations that match the appropriate patterns.
         * Aware of the high-level actions but the details are handled at a subconscious level (from memory and habit).
-        * Design implications: Every action carries an associated expectation. Feedback loops are important here.
-    * **Reflective**: conscious thought
-        * Highest level of thought and decision-making and emotions.
-        * Deep, slow and analytical cognition.
+        * For designers, the most critical aspect of the behavioral level is that every action is associated with an expectation. Feedback loops are critical here.
+    * **Reflective**: conscious
+        * Where conscious thought and decision-making reside, as well as the highest level of emotions
+        * Cognitive, deep, & slow.
         * Attempt to understand cause and effect and make predictions occurs here.
-        * Accounts for memories that carry long-term implications. “Reflective memories are often more important than reality.”
-        * Design implications: Might be best understood by designers because it is overt and can be logical. The emotional component should not be discounted or disregarded.
+        * Reflective memories are often more important than reality.
 8. Design must take place at all levels: visceral, behavioral, and reflective.
-9. Conceptual models are a form of story-telling:
-    * People form mental models based on their interactions with the real world.
-    * These mental models attempt to explain the world but sometimes the models are flawed.
-    * A “folk theory” represents a flawed, naive, unsubstantiated idea.
-    * Example: People who think turning a thermostat to the highest setting in order to more quickly heat a room have a flawed mental model.
-10. People are inclined to assign causal relations when two things occur in succession.
-11. **Learned helplessness**: Situations in which people experience repeated failure at a task. As a result, they determine that the task cannot be done (at least by themselves).
-12. **Taught helplessness**: The resultant helplessness, such as technology or mathematics phobia, is the result of many repeated cases of learned helplessness.
-13. If an error is possible, someone will make it. The designer must assume that all possible errors will occur and design so as to minimize the chance of error in the first place, or its effects once it gets made.
-14. Errors should be easy to detect, they should have minimal consequences, and, if possible, their effects should be reversible.
-15. The corresponding questions to ask in the action cycle:
+9. People are inclined to assign causal relations when two things occur in succession.
+10.  **Learned helplessness**: Situations in which people experience repeated failure at a task. As a result, they determine that the task cannot be done (at least by themselves).
+11.  The corresponding questions to ask in the action cycle:
     * What do I want to accomplish?
     * What are the alternative action sequences?
     * What action can I do now?
     * How do I do it?
     * What happened?
     * What does it mean?
-    * Have I accomplished my goal?
-16. Well-designed products result in users who can confidently answer all of the above questions when using a particular product.
+    * Is this okay? Have I accomplished my goal?
+12.  Well-designed products result in users who can answer all of the above questions while they use the product.
+
+### Notes
+1. I always thought that turning a thermostat to the highest setting quickly heats up a room. This chapter explained that this is a flawed mental model. TIL.
 
 ## Chapter 3: Knowledge in the head and in the world
 1. Precise behavior can emerge from imprecise knowledge (in the head) because:
@@ -248,22 +255,21 @@ The paradox of technology and the challenge for a designer:
 16. Two aspects to a reminder:
     * The signal — knowing that something is to be remembered.
     * The message — remembering the message itself.
-17. Tradeoffs between knowledge in the world and in the head
-    | Knowledge in the world | Knowledge in the head |
-    |------------------------|-----------------------|
-    | Information is readily and easily available whenever perceivable. | Material in working memory is readily available. Otherwise considerable search and effort may be required. |
-    | Interpretation substitutes for learning. How easy it is to interpret knowledge in the world depends upon the skill of the designer. | Requires learning, which can be considerable. Learning is made easier if there is meaning or structure to the material or if there is a good conceptual model. |
-    | Slowed by the need to find and interpret the knowledge. | Can be efficient, especially if so well-learned that it is automated |
-    | Ease of use at first encounter is high | Ease of use at first encounter is low. |
-    | Can be ugly and inelegant, especially if there is a need to maintain a lot of knowledge. This can lead to clutter. Here is where the skills of the graphics and industrial designer play major roles. | Nothing needs to be visible, which gives more freedom to the designer. This leads to a cleaner, more pleasing appearance—at the cost of ease of use at first encounter, learning, and remembering. |
-
-18. Natural mappings are those where the relationship between the controls and the object to be controlled is obvious.
-19. Three levels of mapping, arranged in
-decreasing effectiveness as memory aids:
+17. Natural mappings are those where the relationship between the controls and the object to be controlled is obvious.
+18. Three levels of mapping, arranged in decreasing effectiveness as memory aids:
     * **Best mapping**: Controls are mounted directly on the item to be controlled.
     * **Second-best mapping**: Controls are as close as possible to the object to be controlled.
     * **Third-best mapping**: Controls are arranged in the same spatial configuration as the objects to be controlled.
-20. What mapping is natural is largely dictated by culture.
+19. What mapping is natural is largely dictated by culture.
+
+Tradeoffs between knowledge in the world and in the head
+| Knowledge in the world | Knowledge in the head |
+|------------------------|-----------------------|
+| Information is readily and easily available whenever perceivable. | Material in working memory is readily available. Otherwise considerable search and effort may be required. |
+| Interpretation substitutes for learning. How easy it is to interpret knowledge in the world depends upon the skill of the designer. | Requires learning, which can be considerable. Learning is made easier if there is meaning or structure to the material or if there is a good conceptual model. |
+| Slowed by the need to find and interpret the knowledge. | Can be efficient, especially if so well-learned that it is automated |
+| Ease of use at first encounter is high | Ease of use at first encounter is low. |
+| Can be ugly and inelegant, especially if there is a need to maintain a lot of knowledge. This can lead to clutter. Here is where the skills of the graphics and industrial designer play major roles. | Nothing needs to be visible, which gives more freedom to the designer. This leads to a cleaner, more pleasing appearance—at the cost of ease of use at first encounter, learning, and remembering. |
 
 ### Notes
 1. The author talked about how many things are just cultural artifacts that can vary from place to place. E.g:
@@ -369,14 +375,14 @@ decreasing effectiveness as memory aids:
     * Undo
     * Confirmation and error messages: Requiring confirmation before a destructive action is executed. Even when the user proceeds with the action, if possible try to make it reversible, e.g: When a user chooses to discard their changes even after a confirmation prompt, the system can silently & temporarily still save the file if it’s small enough.
     * Sensibility checks: Check that the requested operation is sensible.
+
 > Resilience engineering is a paradigm for safety management that focuses on how to help people cope with complexity under pressure to achieve success. It strongly contrasts with what is typical today — a paradigm of tabulating error as if it were a thing, followed by interventions to reduce this count. A resilient organization treats safety as a core value, not a commodity that can be counted. Indeed, **safety shows itself only by the events that do not happen**! Rather than view past success as a reason to ramp down investments, such organizations continue to invest in anticipating the changing potential for failure because they appreciate that their knowledge of the gaps is imperfect and that their environment constantly changes. One measure of resilience is therefore the ability to create foresight — to anticipate the changing shape of risk.  
 
 ## Chapter 6: Design thinking
 1. Design thinking is a process that takes the original problem statement as a suggestion, not a final statement. Then it iteratively attempts to determine what basic, fundamental (root) issue needs to be addressed. Once that is determined, a wide range of potential solutions are explored.
 2. **The Double-Diamond Model of Design**:
     * Has two phases:
-        * Finding the right problem: Start with an idea, and through the initial design research, expand (or diverge) the thinking to explore the fundamental issues. Only then is it time to converge upon the real, underlying problem.
-        * Finding the right solution: Similarly, use design research tools to explore (or diverge into) a wide variety of solutions before converging upon one.
+      * Finding the right problem: Start with an idea, and through the initial design research, expand (or diverge) the thinking to explore the fundamental issues. Only then is it time to converge upon the real, underlying problem.Finding the right solution: Similarly, use design research tools to explore (or diverge into) a wide variety of solutions before converging upon one.
     ![Double diamond](assets/double_diamond.png)
     <small>Photo credit: <a href="https://commons.wikimedia.org/w/index.php?curid=94113884">Digi-ark — Wikipedia</a>.</small>
 3. The four different activities of Human-Centered Design are iterative — each cycle through the stages makes some progress. These activities are:
@@ -408,7 +414,7 @@ decreasing effectiveness as memory aids:
 1. I like the idea that engineers and other members of the development process are also users that designers should consider in the design process. They are users of the output of the design process.
 
 ## Chapter 7: Design in the world of business
-1. Four important and basic ways by which manufacturers compete:
+1. Basic ways by which manufacturers compete:
     * Price
     * Features
     * Quality
@@ -419,13 +425,13 @@ decreasing effectiveness as memory aids:
 3. Radical innovation changes lives and industries. Incremental innovation makes things better. We need both.
 4. Radical innovation can get you on a point at some global best possible hill. From there, incremental innovation gets you to the highest point of that hill.
 5. **Featuritis**: Feature creep. Factors that contribute to feature creep:
-    * Existing customers want more features, functions, and capabilities.
+    * Existing customers want more features or capabilities.
     * Competing companies add new features that create competitive pressures to match those offerings.
     * Market is saturated: most people who want the product already have it. Adding enhancements will cause people to want to upgrade.
 5. New products are invariably more complex, more powerful, and different in size than the first release of a product.
-6. In her book Different, Harvard professor Youngme Moon argues that it is this attempt to match the competition that causes all products to be the same. When companies try to increase sales by matching every feature of their competitors, they end up hurting themselves. After all, when products from two companies match feature by feature, there is no longer any reason for a customer to prefer one over another
+6. In her book "Different", Harvard professor Youngme Moon argues that it is this attempt to match the competition that causes all products to be the same. When companies try to increase sales by matching every feature of their competitors, they end up hurting themselves. After all, when products from two companies match feature by feature, there is no longer any reason for a customer to prefer one over another
 7. Technology changes rapidly, but people and culture change slowly.
-8. > Plus ça change, plus c'est la même chose.
+8. > Plus ça change, plus c'est la même chose.<br/>
    > The more things change, the more they are the same.  
 9.  Ideas take a long time to traverse the distance from conception to successful product.
 10. Stigler’s law: the names of famous people often get attached to ideas even though they had nothing to do with them.
