@@ -1,19 +1,8 @@
----
-title: "The Design of Everyday Things — Book Summary & Notes"
-slug: "/2022-06-24-design-everyday-things"
-date: 2022-06-24
-canonicalUrl: "https://elvischidera.com/2022-06-24-design-everyday-things/"
-banner: ./assets/banner.jpeg
-tags:
-  - notes
-  - summary
----
-
 This is my summary and notes from [The Design of Everyday Things](https://amzn.to/3u0cEnp) by Don Norman. Please use the link if you decide to buy the book after reading this as it contains my affiliate code. Thanks.
 
 -----
 
-1. Good design is hard to notice than poor design, partly because good designs fit our needs so well that the design is invisible, serving us without drawing attention to itself.
+1. Good design is harder to notice than poor design, partly because good designs fit our needs so well that the design is invisible, serving us without drawing attention to itself.
 2. Bad design screams out its inadequacies, making itself very noticeable.
 
 ## Chapter 1: The psychopathology of everyday things
@@ -24,18 +13,18 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
     * **Understanding**: What does it all mean? How is the product supposed to be used? What do all the different controls & settings mean?
 2. The major areas of design relevant to this book are:
     * **Industrial design**:
-        * Emphasizes on: form & material
+        * Emphasizes form & material.
         * Definition: “The professional service of creating and developing concepts and specifications that optimize the function, value, and appearance of products and systems for the mutual benefit of both user and manufacturer” — the Industrial Design Society of America's website.
     * **Interaction design**:
-        * Emphasizes on: understandability & usability.
-        * The focus is upon how people interact with technology.
+        * Emphasizes understandability & usability.
+        * The focus is on how people interact with technology.
         * The goal is to enhance people's understanding of what can be done, what is happening, and what has just occurred.
         * It draws upon principles of psychology, design, art, and emotion to ensure a positive, enjoyable experience.
     * **Experience design**:
-        * Emphasizes on: emotional impact.
+        * Emphasizes emotional impact.
         * The practice of designing products, processes, services, events, and environments with a focus placed on the quality and enjoyment of the total experience.
 3. Design is concerned with how things work, how they are controlled, and the nature of the interaction between people and technology.
-4. Engineers are expert in technology & are trained to think logically; However, they are limited in their understanding of people.
+4. Engineers are experts in technology & are trained to think logically; However, they are limited in their understanding of people.
 5. Much of a product is designed by engineers; their designs are often too logical because they believe all people must think this way.
 
 > We have to accept human behavior the way it is, not the way we would wish it to be.  
@@ -48,7 +37,7 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
 
 ### Fundamental principles of interaction
 1. Great designers produce pleasurable experiences.
-2. Discoverability results from appropriate application of six fundamental psychological concepts:
+2. Discoverability results from the appropriate application of six fundamental psychological concepts:
     * Affordances
     * Signifiers
     * Constraints
@@ -68,7 +57,7 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
      * Knobs afford turning, pushing, and pulling.
      * Slots are for inserting things into.
      * Balls are for throwing or bouncing.
-6. Perceived affordances help people figure out what actions are possible with out the need for labels or instructions.
+6. Perceived affordances help people figure out what actions are possible without the need for labels or instructions.
 
 #### Signifiers
 1. Affordances are the possible interactions/actions between an interacting agent (like humans) and an object.
@@ -81,7 +70,7 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
     * Affordances — they allow the fingers to be inserted
     * Signifiers — they indicate where the fingers are to go.
 8. Example:
-    * Been able to swipe right/left to the next Tinder profile is an affordance
+    * Being able to swipe right/left to the next Tinder profile is an affordance
     * Signaling the gestures and their meaning with icons or an animation is a signifier.
 
 #### Mapping
@@ -102,7 +91,7 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
     * Distracting
     * Uninformative
     * Irritating and anxiety provoking
-4. Too much feedback can be annoying than too little — it leads people to ignore them all or disable them if possible — which is dangerous because critical feedback are missed.
+4. Too much feedback can be more annoying than too little — it leads people to ignore them all or disable them if possible — which is dangerous because critical feedback is missed.
 5. All action must be confirmed, but feedback needs to be prioritized:
     * Unimportant information is presented un-obstructively.
     * Important information is presented in a way that captures attention.
@@ -119,7 +108,7 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
     * And in figuring out what to do when things go wrong.
 
 ##### System image
-1. The designer’s conceptual model is the designer’s conception of the look, feel and operation of a product.
+1. The designer’s conceptual model is the designer’s conception of the look, feel, and operation of a product.
 2. The system image is what can be derived from the physical structure that had been built (including documentation, instructions, signifiers, …). It’s the combined product information available to the user.
 3. The user’s mental model is developed through interaction with the product and its system image.
 4. Designers expect the user’s model to be identical to theirs, but because they can’t communicate directly with the user, the burden of communication is with the system image.
@@ -127,7 +116,7 @@ This is my summary and notes from [The Design of Everyday Things](https://amzn.t
 
 ##### The paradox of technology
 The paradox of technology and the challenge for a designer:
-> The same technology that simplified life by providing more functions in each device also complicated life by making the device harder to learn or use.  
+> The same technology that simplified life by providing more functions in each device also complicates life by making the device harder to learn or use.  
 
 ##### The design challenge
 1. Design requires the cooperative effort of multiple disciplines — hence, great design requires great designers and great management.
@@ -139,24 +128,24 @@ The paradox of technology and the challenge for a designer:
     * Design: You can’t put all that together and still have a reasonable product.
 3. Every discipline concern is usually right — the successful product tries to address all of them.
 4. The attributes of a product that customers primarily focus on are dynamic:
-    * In the store: they focus on price, appearance and prestige value.
+    * In the store: they focus on price, appearance, and prestige value.
     * At home: they pay more attention to functionality and usability.
     * Maintainability comes into play during repairs or extended usage.
 
 ### Notes
-1. The communication in non-happy paths of modern products are often inadequate:
-    * When I’m offline or during a connectivity issue, most product show a fallback UI. However, they fail to communicate my current state. My router could have been disconnected without my knowledge and I will spend a few seconds trying to figure out why the product UI is different now. A simple “you are offline” would suffice.
+1. The communication in non-happy paths of modern products is often inadequate:
+    * When I’m offline or during a connectivity issue, most products show a fallback UI. However, they fail to communicate my current state. My router could have been disconnected without my knowledge and I will spend a few seconds trying to figure out why the product UI is different now. A simple “you are offline” would suffice.
     ![Apple TV](assets/apple_tv_offline_state.png)
-    * Poor loading indicators: Are you still making progress with my request or is it stuck? Which is why I don’t like the shimmer loading effect so much.
+    * Poor loading indicators: Are you still making progress with my request or is it stuck? This is why I don’t like the shimmer loading effect so much.
     * Generic error message: Should I try again? What really happened and can I do anything about it?
     * When a call disconnects, is it a problem on my side or on the other side?
 
 ## Chapter 2: The psychology of everyday actions
 1. There are two parts to an action: executing the action and then evaluating the results: doing and interpreting.
-2. When people use a thing—product, tool or service—they face two gulfs (obstacles) between desired outcome (goal) and available options (what actions to perform):
+2. When people use a thing—product, tool, or service—they face two gulfs (obstacles) between desired outcome (goal) and available options (what actions to perform):
     * **The Gulf of Execution**
         * How do I work this thing? What can it do? What can I do with it?
-        * Bridged through signifiers, constraints, mappings and a conceptual model.
+        * Bridged through signifiers, constraints, mappings, and a conceptual model.
     * **The Gulf of Evaluation**
         * What happened? Is this what I wanted?
         * Bridged through feedback and a conceptual model.
@@ -183,23 +172,23 @@ The paradox of technology and the challenge for a designer:
         * Design implications: Immediate perceptions. Example: Initial response to a color or sound. Attraction vs. repulsion.
     * **Behavioral**: subconscious
         * Learned skills triggered by situations that match known patterns.
-        * Aware of the high level actions but the details are handled at a subconscious level (from memory and habit).
+        * Aware of the high-level actions but the details are handled at a subconscious level (from memory and habit).
         * Design implications: Every action carries an associated expectation. Feedback loops are important here.
     * **Reflective**: conscious thought
         * Highest level of thought and decision-making and emotions.
         * Deep, slow and analytical cognition.
         * Attempt to understand cause and effect and make predictions occurs here.
-        * Accounts for memories which carry long-term implications. “Reflective memories are often more important than reality.”
-        * Design implications: Might be best understood by designers because it is overt and can be logical. Emotional component should not be discounted or disregarded.
+        * Accounts for memories that carry long-term implications. “Reflective memories are often more important than reality.”
+        * Design implications: Might be best understood by designers because it is overt and can be logical. The emotional component should not be discounted or disregarded.
 8. Design must take place at all levels: visceral, behavioral, and reflective.
 9. Conceptual models are a form of story-telling:
     * People form mental models based on their interactions with the real world.
     * These mental models attempt to explain the world but sometimes the models are flawed.
     * A “folk theory” represents a flawed, naive, unsubstantiated idea.
     * Example: People who think turning a thermostat to the highest setting in order to more quickly heat a room have a flawed mental model.
-10. People are inclined to assign causal relation when two things occur in succession.
-11. **Learned helplessness**: Situations in which people experience repeated failure at a task. As a result, the determine that the task cannot be done (at least by themselves).
-12. **Taught helplessness**: The resultant helplessness, such as technology or mathematics phobia, that is the result of many repeated cases of learned helplessness.
+10. People are inclined to assign causal relations when two things occur in succession.
+11. **Learned helplessness**: Situations in which people experience repeated failure at a task. As a result, they determine that the task cannot be done (at least by themselves).
+12. **Taught helplessness**: The resultant helplessness, such as technology or mathematics phobia, is the result of many repeated cases of learned helplessness.
 13. If an error is possible, someone will make it. The designer must assume that all possible errors will occur and design so as to minimize the chance of error in the first place, or its effects once it gets made.
 14. Errors should be easy to detect, they should have minimal consequences, and, if possible, their effects should be reversible.
 15. The corresponding questions to ask in the action cycle:
@@ -215,7 +204,7 @@ The paradox of technology and the challenge for a designer:
 ## Chapter 3: Knowledge in the head and in the world
 1. Precise behavior can emerge from imprecise knowledge (in the head) because:
     * Not all the knowledge for precise behavior has to be in the head — it can be distributed — partly in the head and in the world.
-    * Natural constraints in the world restrict the possible behavior: An object features like screw threads or depressions define the possible relationship with other objects or what actions can be performed on it. This is an example of knowledge in the world.
+    * Natural constraints in the world restrict the possible behavior: An object's features like screw threads or depressions define the possible relationship with other objects or what actions can be performed on it. This is an example of knowledge in the world.
     * Cultural constraints and conventions are learned artificial restrictions on behavior that reduces the set of likely actions. This is an example of knowledge in the head.
     * Lastly, great precision of knowledge is seldom required.
 2. Whenever knowledge needed to do a task is readily available in the world, the need for us to learn it (completely,) diminishes.
@@ -224,27 +213,27 @@ The paradox of technology and the challenge for a designer:
     * Declarative knowledge:
         * Is knowledge **of**.
         * It includes the knowledge of facts and rules. E.g: “Stop at red traffic lights.
-        * It’s easy to write and to teach.
+        * It’s easy to write and teach.
         * It doesn’t need to be true.
     * Procedural knowledge:
         * Is knowledge **how**.
         * It’s difficult to write down and difficult to teach. It’s best taught by demonstration and best learned through practice. This is because it’s largely subconscious, residing at the behavioral level of processing.
 5. Relying on knowledge in the world to compensate for incomplete knowledge in the head is susceptible to environmental changes that can make the combined knowledge inadequate.
 6. Psychological research suggests that people only maintain partial descriptions of the things to be remembered.
-7. People learn to discriminate among things by looking for distinguishing features. This is a historical baggage — people get confused when a new item is introduced that “breaks” the learned distinguishing feature, like introducing a similar looking coin.
+7. People learn to discriminate among things by looking for distinguishing features. This is historical baggage — people get confused when a new item is introduced that “breaks” the learned distinguishing feature, like introducing a similar-looking coin.
 8. Constraints simplify memory.
 9. Two classes of memory:
-    * **Short term or working memory (STM)**:
+    * **Short-term or working memory (STM)**:
         * automatically retains a limited amount of the most recent experiences or material that is currently being thought about.
         * About 5-7 items is the limit of STM.
         * Susceptible to distractions.
         * Design implication: Don’t count on much being retained in STM.
-        * To maximize efficiency of working memory, it’s best to present different information over different modalities: sight, sound, touch (haptics), hearing, spatial location, and gestures.
+        * To maximize the efficiency of working memory, it’s best to present different information over different modalities: sight, sound, touch (haptics), hearing, spatial location, and gestures.
     * **Long term memory (LTM)**:
         * Memory for the past.
         * Get & Put ops takes time.
         * Capacity is unknown.
-        * Experiences are not remembered as an exact recording; rather, as bits and pieces that are reconstructed and interpreted each time we recover the memories, which means they are subject to all the distortions/bias and changes that the human explanatory mechanism imposes upon life.
+        * Experiences are not remembered as an exact recording; rather, as bits and pieces that are reconstructed and interpreted each time we recover the memories, which means they are subject to all the distortions/biases and changes that the human explanatory mechanism imposes upon life.
         * Sleep seems to help LTM.
 10. The most effective way of helping people remember is to make it unnecessary.
 11. Two categories of how people use their memories and retrieve knowledge:
@@ -266,7 +255,7 @@ The paradox of technology and the challenge for a designer:
     | Interpretation substitutes for learning. How easy it is to interpret knowledge in the world depends upon the skill of the designer. | Requires learning, which can be considerable. Learning is made easier if there is meaning or structure to the material or if there is a good conceptual model. |
     | Slowed by the need to find and interpret the knowledge. | Can be efficient, especially if so well-learned that it is automated |
     | Ease of use at first encounter is high | Ease of use at first encounter is low. |
-    | Can be ugly and inelegant, especially if there is a need to maintain a lot of knowledge. This can lead to clutter. Here is where the skills of the graphics and industrial designer play major roles. | Nothing needs to be visible, which gives more freedom to the designer. This leads to cleaner, more pleasing appearance—at the cost of ease of use at first encounter, learning, and remembering. |
+    | Can be ugly and inelegant, especially if there is a need to maintain a lot of knowledge. This can lead to clutter. Here is where the skills of the graphics and industrial designer play major roles. | Nothing needs to be visible, which gives more freedom to the designer. This leads to a cleaner, more pleasing appearance—at the cost of ease of use at first encounter, learning, and remembering. |
 
 18. Natural mappings are those where the relationship between the controls and the object to be controlled is obvious.
 19. Three levels of mapping, arranged in
@@ -279,8 +268,8 @@ decreasing effectiveness as memory aids:
 ### Notes
 1. The author talked about how many things are just cultural artifacts that can vary from place to place. E.g:
     * Scrolling a window vs scrolling the text: Do you scroll up to scroll down or scroll down to scroll down?
-    * The future is typical depicted as being forward. However, some cultures claim it’s behind — as you can’t see what’s behind, you also can’t see the future.
-2. This got me questioning so many things like: why was green chosen to mean go?
+    * The future is typically depicted as being forward. However, some cultures claim it’s behind — as you can’t see what’s behind, you also can’t see the future.
+2. This got me questioning so many things like why was green chosen to mean go?
 
 ## Chapter 4: Knowing what to do: Constraints, Discoverability, & Feedback
 1. Four kinds of constraints:
@@ -301,9 +290,9 @@ decreasing effectiveness as memory aids:
 2. The lack of clear communication among the people and organizations constructing parts of a system is perhaps the most common cause of complicated, confusing designs. A usable design starts with careful observations of how the tasks being supported are actually performed, followed by a design process that results in a good fit to the actual ways the tasks get performed. The technical name for this method is **task analysis**. The name for the entire process is **human-centered design (HCD)**.
 3. Forcing functions:
     * A form of physical constraint that forces the desired behavior: situations in which actions are constrained so that failure at one stage prevents the next stage from happening.
-    * In the field of safety engineering, forcing functions show up under other names, in particular as specialized methods for the prevention of accidents. Three such methods are:
-    * **Interlocks**: An interlock forces operations to take place in proper sequence. A **dead man switch** is  a form of interlock that prevents operation when the operator is incapacitated.
-    * **Lock-ins**: A lock-in keeps an operation active, preventing someone from prematurely stopping it. E.g: Prompts that prevents a user exit without saving or consciously discarding their work.
+    * In the field of safety engineering, forcing functions shows up under other names, in particular as specialized methods for the prevention of accidents. Three such methods are:
+    * **Interlocks**: An interlock forces operations to take place in proper sequence. A **dead man switch** is a form of interlock that prevents operation when the operator is incapacitated.
+    * **Lock-ins**: A lock-in keeps an operation active, preventing someone from prematurely stopping it. E.g: Prompts that prevent a user from exiting without saving or consciously discarding their work.
     * **Lockouts**: A lockout prevents someone from entering a space that is dangerous, or prevents an event from occurring.
 4. People invariably object and complain whenever a new approach is introduced into an existing array of products and systems. Conventions are violated: new learning is required.
     > The merits of the new system are irrelevant: it is the change that is upsetting.  
@@ -311,11 +300,11 @@ decreasing effectiveness as memory aids:
 6. Just because something is different does not mean it is bad.
 7. Standardization is indeed the fundamental principle of desperation: when no other solution appears possible, simply design everything the same way, so people only have to learn once.
 8. Standards should represent the psychological conceptual models, not the physical mechanics.
-9. Standards simplify life for everyone; but also tend to hinder future development.
-10. **Skeumorphic**: incorporating old ideas or paradigms into new technologies (even when they play no functional role). Skeumorphism is a helpful way to transition from old to new technologies.
+9. Standards simplify life for everyone, but also tend to hinder future development.
+10. **Skeumorphic**: incorporating old ideas or paradigms into new technologies (even when they play no functional role). Skeuomorphism is a helpful way to transition from old to new technologies.
 
 ## Chapter 5: Human error? No, bad design
-> Error occurs for many reasons. The most common is in the nature of the tasks and procedures that require people to behave in unnatural ways — staying alert for hours at a time, providing precise, accurate control specifications, all the while multitasking, doing several things at once, and subjected to multiple interfering activities. Interruptions are a common reason for error, not helped by designs and procedures that assume full, dedicated attention yet that do not make it easy to resume operations after an interruption.
+> Error occurs for many reasons. The most common is in the nature of the tasks and procedures that require people to behave in unnatural ways — staying alert for hours at a time, providing precise, accurate control specifications, all the while multitasking, doing several things at once, and subjected to multiple interfering activities. Interruptions are a common reason for errors, not helped by designs and procedures that assume full, dedicated attention yet that does not make it easy to resume operations after an interruption.
 
 1. 75-95% of industrial accidents are caused by human error.
 2. Root cause analysis: investigate the accident until the single, underlying cause is found.
@@ -326,7 +315,7 @@ decreasing effectiveness as memory aids:
 6. Treat all failures in the same way: find the fundamental causes and redesign the system so that these can no longer lead to problems.
 7. Root cause analysis is intended to determine the underlying cause of an incident, not the proximate cause.
 8. **The Five Whys**: Japanese procedure for getting at root causes (originally developed at Toyota). The goal is to keep moving the inquiry deeper even after a reason has been found: ask why that was the cause.
-9. **Deliberate violations**: cases where people intentionally violate procedures and regulations. These happens for different reasons:
+9. **Deliberate violations**: cases where people intentionally violate procedures and regulations. These happen for different reasons:
     * Routine violations occur when noncompliance is so frequent that it is ignored.
     * Situational violations occur when there are special circumstances (example: going through a red light "because no other cars were visible and I was late'").
 11. Although violations are a form of error, these are organizational and societal errors, important but outside the scope of the design of everyday things.
@@ -344,7 +333,7 @@ decreasing effectiveness as memory aids:
                     * Designers need to avoid procedures that have identical opening steps but then diverge.
                 * **Description-similarity slips**:
                     * Error results from similar targets.
-                    * Example: “A former student reported that one day he came home from jogging, took off his sweaty shirt, and rolled it up in a ball, intending to throw it in the laundry basket. Instead he threw it in the toilet.”
+                    * Example: “A former student reported that one day he came home from jogging, took off his sweaty shirt, and rolled it up in a ball, intending to throw it in the laundry basket. Instead, he threw it in the toilet.”
                     * Designers need to ensure that controls and displays for different purposes are significantly different from one another.
                 * **Mode-error slips**:
                     * Occurs when a device has different states in which the same controls have different meanings.
@@ -355,13 +344,13 @@ decreasing effectiveness as memory aids:
                 * E.g: Forgetting to turn off the gas burner after cooking.
                 * The immediate cause of most memory lapses is interruptions.
                 * Ways to combat:
-                    * Minimize number of steps.
+                    * Minimize the number of steps.
                     * Provide clear vivid reminders.
                     * Utilize forcing functions.
 
     * **Mistakes**:
         * Occurs when the wrong goal is established or the wrong plan is formed.
-        * Types of mistake:
+        * Types of mistakes:
             * **Rule-based mistake**:
                 * The person appropriately diagnosed the situation, but then decided upon an erroneous course of action.
         * **Knowledge-based mistake**:
@@ -371,8 +360,8 @@ decreasing effectiveness as memory aids:
         * **Memory-lapse mistakes**:
             * Occurs when there is forgetting at the stages of goals, plans, or evaluation.
             * Usually caused by interruptions.
-            * These are mistakes not slips because the goals and plan becomes wrong.
-            * Design cures are the same as for memory-lapse slips.
+            * These are mistakes, not slips because the goals and plan become wrong.
+            * Design cures are the same as memory-lapse slips.
 14. Checklists are powerful tools, proven to increase the accuracy of behavior and reduce error, particularly slips and memory lapses.
 15. It’s bad design to impose a sequential structure to task execution unless the task itself requires it.
 16. Design lessons from the study of errors:
@@ -380,7 +369,7 @@ decreasing effectiveness as memory aids:
     * Undo
     * Confirmation and error messages: Requiring confirmation before a destructive action is executed. Even when the user proceeds with the action, if possible try to make it reversible, e.g: When a user chooses to discard their changes even after a confirmation prompt, the system can silently & temporarily still save the file if it’s small enough.
     * Sensibility checks: Check that the requested operation is sensible.
-> Resilience engineering is a paradigm for safety management that focuses on how to help people cope with complexity under pressure to achieve success. It strongly contrasts with what is typical today — a paradigm of tabulating error as if it were a thing, followed by interventions to reduce this count. A resilient organisation treats safety as a core value, not a commodity that can be counted. Indeed, **safety shows itself only by the events that do not happen**! Rather than view past success as a reason to ramp down investments, such organisations continue to invest in anticipating the changing potential for failure because they appreciate that their knowledge of the gaps is imperfect and that their environment constantly changes. One measure of resilience is therefore the ability to create foresight — to anticipate the changing shape of risk.  
+> Resilience engineering is a paradigm for safety management that focuses on how to help people cope with complexity under pressure to achieve success. It strongly contrasts with what is typical today — a paradigm of tabulating error as if it were a thing, followed by interventions to reduce this count. A resilient organization treats safety as a core value, not a commodity that can be counted. Indeed, **safety shows itself only by the events that do not happen**! Rather than view past success as a reason to ramp down investments, such organizations continue to invest in anticipating the changing potential for failure because they appreciate that their knowledge of the gaps is imperfect and that their environment constantly changes. One measure of resilience is therefore the ability to create foresight — to anticipate the changing shape of risk.  
 
 ## Chapter 6: Design thinking
 1. Design thinking is a process that takes the original problem statement as a suggestion, not a final statement. Then it iteratively attempts to determine what basic, fundamental (root) issue needs to be addressed. Once that is determined, a wide range of potential solutions are explored.
@@ -393,18 +382,18 @@ decreasing effectiveness as memory aids:
 3. The four different activities of Human-Centered Design are iterative — each cycle through the stages makes some progress. These activities are:
     * **Observation** — Design research supports both diamonds of the design process:
         * The first diamond, finding the right problem, requires a deep understanding of the true needs of people.
-        * Once the problem has been defined, finding an appropriate solution again requires deep understanding of the intended population, how those people perform their activities, their capabilities and prior experience, and what cultural issues might be impacted.
+        * Once the problem has been defined, finding an appropriate solution again requires a deep understanding of the intended population, how those people perform their activities, their capabilities, and prior experience, and what cultural issues might be impacted.
     * **Idea generation** — While generating potential solutions, follow these three rules:
         * _Generate numerous ideas_ so you don’t get fixated on one or two ideas too early in the process.
         * Be creative without regard for constraints. Avoid early dismissal of ideas — Even crazy ideas can contain creative insights that can be extracted and used in the final idea selection.
         * Question everything: Quite often a solution is discovered through “stupid questions”, through questioning the obvious.
     * **Prototyping** — Prototyping during the problem specification phase is done mainly to ensure that the problem is well understood. If the target population is already using something related to the new product, that can be considered a prototype. During the problem solution phase of design, then real prototypes of the proposed solution are invoked.
     * **Testing** — testing is done in the problem specification phase to ensure that the problem is well understood, then done again in the problem solution phase to ensure that the new design meets the needs and abilities of those who will use it.
-4. Design and marketing research are complementary but have different focus:
+4. Design and marketing research are complementary but focus on different things:
     * Design wants to know what people really need and how they will use a product.
     * Marketing wants to know what people will buy and how purchasing decisions are made.
-5. In HCD, iteration is the repetition of observe-generate-prototype-test cycle with the aim of achieving continual refinement and enhancement.
-6. The hardest part of design is getting the requirements right, which means ensuring that the right problem is being solved, as well as that the solution is appropriate. Requirements made in the abstract are invariably wrong. Requirements produced by asking people what they need are invariably wrong. Requirements are developed by watching people in their natural environment.
+5. In HCD, iteration is the repetition of the observe-generate-prototype-test cycle with the aim of achieving continual refinement and enhancement.
+6. The hardest part of designing is getting the requirements right, which means ensuring that the right problem is being solved, as well as that the solution is appropriate. Requirements made in the abstract are invariably wrong. Requirements produced by asking people what they need are invariably wrong. Requirements are developed by watching people in their natural environment.
 7. **Activity-centered design**: Focuses on activities, not the individual person. Let the activities define the product and its structure.
 8. The HCD process describes an ideal. But practice and reality can be messier and more chaotic.
 9. > In theory, there is no difference between theory and practice. In practice, there is.  
