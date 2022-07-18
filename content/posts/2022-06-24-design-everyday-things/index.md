@@ -196,6 +196,7 @@ The paradox of technology and the challenge for a designer:
 9. People are inclined to assign causal relations when two things occur in succession.
 10.  **Learned helplessness**: Situations in which people experience repeated failure at a task. As a result, they determine that the task cannot be done (at least by themselves).
 11.  The corresponding questions to ask in the action cycle:
+*
     * What do I want to accomplish?
     * What are the alternative action sequences?
     * What action can I do now?
@@ -263,6 +264,7 @@ The paradox of technology and the challenge for a designer:
 19. What mapping is natural is largely dictated by culture.
 
 Tradeoffs between knowledge in the world and in the head
+
 | Knowledge in the world | Knowledge in the head |
 |------------------------|-----------------------|
 | Information is readily and easily available whenever perceivable. | Material in working memory is readily available. Otherwise considerable search and effort may be required. |
