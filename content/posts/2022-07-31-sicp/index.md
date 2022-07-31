@@ -1,8 +1,8 @@
 ---
-title: "Structure and Interpretation of Computer Programs — Book + MIT 6.001 + Berkeley CS61A Summary & Notes"
-slug: "/2022-06-24-design-everyday-things"
-date: 2022-06-24
-canonicalUrl: "https://elvischidera.com/2022-06-24-design-everyday-things/"
+title: "Structure and Interpretation of Computer Programs — Book + MIT 6.001 + Berkeley CS61A Summary & Notes [WIP]"
+slug: "/2022-07-31-sicp"
+date: 2022-07-31
+canonicalUrl: "https://elvischidera.com/2022-07-31-sicp/"
 banner: ./assets/banner.jpeg
 tags:
   - notes
@@ -216,7 +216,7 @@ Example:
    (+ 3 5 7))
 ```
 
-![Tree representation of example](media/figure1.1.png)
+![Tree representation of example](assets/figure1.1.png)
 
 ##### Lisp evaluation rule
 1. If self-evaluating, return value (base case).
@@ -699,7 +699,7 @@ With tree recursion, the procedure invokes itself more than once, causing the pr
 
 Fibonacci numbers can be defined by the rule:
 
-![Fibonacci formula](./fibonacci_forumula.png)
+![Fibonacci formula](assets/fibonacci_forumula.png)
 
 > E.g: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
 
@@ -717,7 +717,7 @@ Expressed as a recursive procedure for computing Fibonacci numbers:
 
 The diagram below shows the tree-recursive process generated in computing `(fib 5)`. Notice that the branches split into two at each level (except at the bottom); this reflects the fact that the `fib` procedure calls itself twice each time it is invoked.
 
-![Figure 1.5](./figure1.5.png)
+![Figure 1.5](assets/figure1.5.png)
 
 1. The number of times the procedure will compute `(fib 1)` or `(fib 0)` (the number of leaves in the above tree, in general) is precisely `Fib(n + 1)`.
 2. The process uses a number of steps that grows exponentially with the input.
