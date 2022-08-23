@@ -22,7 +22,7 @@ Having tasted the sweetness of long distance cycling, there is no going back now
 In this post, I will share how I planned for the trip, how the trip went and some things I learned or got reiterated on the journey.
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/rVUYiBmiJao" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/rVUYiBmiJao" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ## 1. The plan
@@ -76,7 +76,7 @@ Day 1 in photos:
 *<small>Blankenfelde-Mahlow - Dahlewitz</small>*
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtube.com/shorts/PVzbLsao12c?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/PVzbLsao12c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <i><small>Zossen</small></i>
 </div>
 
@@ -93,7 +93,7 @@ Day 1 in photos:
 *<small>Zossen</small>*
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/haGCjsGx3qs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/haGCjsGx3qs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <i><small>Zossen</small></i>
 </div>
 
@@ -106,12 +106,12 @@ I slept in a stranger's place at the end of day-1. She also made breakfast for m
 Day-2 was about getting to Dresden ASAP so I can cycle around the city during the day. I wanted to be focused in the moment and get to Dresden fast which meant I took less photos overall.
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/Z3MCtTCkYkQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/Z3MCtTCkYkQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <i><small>Heideblick — Bornsdorf</small></i>
 </div>
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/OXg2n7JXViE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/OXg2n7JXViE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <i><small>Heideblick — Bornsdorf</small></i>
 </div>
 
@@ -136,7 +136,7 @@ Prague was incredibly fun. I arrived on Saturday and met with my friend. We spen
 The city was beautiful and I wished I could have spent more time there. I should be back again.
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/e5JRF5Dc2Z0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/e5JRF5Dc2Z0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ![Day-2-5](assets/prague2.png)
@@ -160,11 +160,11 @@ The city was beautiful and I wished I could have spent more time there. I should
 <small>This was funny as at first glance it didn't look like an ad for Firewood</small>
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/l_24T_Hz2Cc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/l_24T_Hz2Cc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://youtu.be/P0FGwA7ZXsE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/P0FGwA7ZXsE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ## Conclusion
