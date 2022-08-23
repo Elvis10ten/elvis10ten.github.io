@@ -1,8 +1,8 @@
 ---
-title: "Cycling Solo: Berlin → Prague"
-slug: "/2022-08-21-cycling-berlin-prague"
+title: "Solo Cycling Adventure: Berlin → Dresden → Prague"
+slug: "/2022-08-21-cycling-berlin-dresden-prague"
 date: 2022-08-21
-canonicalUrl: "https://elvischidera.com/2022-08-21-cycling-berlin-prague/"
+canonicalUrl: "https://elvischidera.com/2022-08-21-cycling-berlin-dresden-prague/"
 banner: ./assets/banner.jpg
 tags:
   - athlete
@@ -13,16 +13,16 @@ tags:
 
 Two weeks ago, I embarked on an audacious cycling adventure — cycling alone from Berlin to Prague. Prior to the trip, I had only done ~60km max (with company).
 
-It was one of my best vacations ever: I improved my physical strength and endurance; Learned and interacted with the beautiful people, geography & cultures enroute; and I felt great overall during & after the trip (natural high).
+It was one of my best vacations ever: I improved my physical strength and endurance; Learned and interacted with the beautiful people, geography & cultures enroute; and I feel great overall during & after the trip (natural high).
 
 ![Types of fun](assets/types_of_fun.png)
 
 Having tasted the sweetness of long distance cycling, there is no going back now. My eyes are set on Amsterdam, Copenhagen, or a town in Poland next.
 
-In this post, I will share how I planned for the trip, how the trip went and some things I learned or got reiterated on the journey.
+In this post, I will share how I planned for the trip and how it went.
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/rVUYiBmiJao" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="assets/prague3.mov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ## 1. The plan
