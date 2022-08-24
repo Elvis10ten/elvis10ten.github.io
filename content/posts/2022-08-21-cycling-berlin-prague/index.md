@@ -23,9 +23,7 @@ Having tasted the sweetness of long distance cycling, my eyes are set on Amsterd
 
 In this post, I will share how I planned for the trip and how it went.
 
-<video  width="100%" height="100%" controls>
-  <source src="/prague3.mp4" type="video/mp4">
-Your browser does not support the video tag.
+<video  width="100%" height="100%" controls src="/prague3.mp4">
 </video>
 
 ## 📜 Plannning
@@ -137,12 +135,12 @@ Prague was incredibly fun. I arrived on Saturday and met with my friend. We spen
 
 The city was beautiful and I wished I could have spent more time there. I should be back again.
 
+![Day-2-5](assets/prague2.jpg)
+*<small>Prague castle</small>*
+
 <div class="video_wrapper">
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/e5JRF5Dc2Z0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
-![Day-2-5](assets/prague2.jpg)
-*<small>Prague castle</small>*
 
 ## 🎒 Return trip
 
