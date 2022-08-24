@@ -23,9 +23,10 @@ Having tasted the sweetness of long distance cycling, my eyes are set on Amsterd
 
 In this post, I will share how I planned for the trip and how it went.
 
-<div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="/prague3.mov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+<video  width="100%" height="100%" controls>
+  <source src="/prague3.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 
 ## 📜 Plannning
 
@@ -102,7 +103,7 @@ Day 1 in photos:
 *<small>Baruth/Mark</small>*
 
 #### 🏰 Day-2 (The road to Dresden)
-I slept in a stranger's place at the end of day-1. She also made breakfast for me — talk about random acts of kindness from a German.
+I slept in a stranger's place at the end of day-1 🧐. The next morning, she made breakfast for me and we talked about my journey 😊 (nice & kind). The often stated "nice or kind" expression confounds me as I'm not aware of any laws that precludes both from co-existing.
 
 Day-2 was about getting to Dresden ASAP so I can cycle around the city during the day. I wanted to be focused in the moment and get to Dresden fast which meant I took less photos overall.
 
@@ -129,10 +130,10 @@ Day-2 was about getting to Dresden ASAP so I can cycle around the city during th
 *<small>Sportpark Ostra</small>*
 
 #### 🏔 Day-3 (The road to Prague)
-I was so focused on getting to Prague early in day-3 that most things were a blur. Some of the photos are included in the photo dump below.
+I was so focused on getting to Prague early in day-3 that most things were a blur. Some of the photos are included in the photo dump section below.
 
-## 🍾 3. Party in prague
-Prague was incredibly fun. I arrived on Saturday and met with my friend. We spent the day doing the usual boring touristy stuff like taking pictures. We spent the (saturday and sunday) night clubbing.
+## 🍾 Party in prague
+Prague was incredibly fun. I arrived on Saturday and met with my friend. We spent the day doing the usual boring touristy stuff like taking pictures. We spent the saturday and sunday night partying.
 
 The city was beautiful and I wished I could have spent more time there. I should be back again.
 
