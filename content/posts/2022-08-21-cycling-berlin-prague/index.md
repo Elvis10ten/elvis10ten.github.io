@@ -17,14 +17,14 @@ Two weeks ago, I embarked on an audacious cycling adventure — cycling alone fr
 
 It was one of my best vacations ever: I improved my physical strength and endurance; Interacted with the beautiful people, geography & cultures enroute; and I feel great overall during & after the trip (natural high).
 
-![Types of fun](assets/types_of_fun.png)
+![Types of fun](assets/types_of_fun.jpg)
 
 Having tasted the sweetness of long distance cycling, there is no going back now. My eyes are set on Amsterdam, Copenhagen, or a town in Poland next.
 
 In this post, I will share how I planned for the trip and how it went.
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="assets/prague3.mov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="prague3.mov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ## 📜 1. The plan
@@ -44,7 +44,7 @@ Up to this point, I had mostly cycled casually: In normal clothes, in a normal b
 
 This wasn't gonna fly for an international trip because of safety, performance, and various other concerns. I bought the [Bergamont Grandurance 4](https://www.bergamont.com/at/de/product/bergamont-grandurance-4) and a few other "serious" cycling gear.
 
-![Current gear](assets/cur_gear.png)
+![Current gear](assets/cur_gear.jpg)
 
 #### 🛡 Tactical gear
 I have heard the stories about east germany. While I will try my best to avoid any conflict, I prepared for the worst — because the fact that you don't want a fight, doesn't mean a fight doesn't want you. I won't go into the details of my self-defense gear — but in summary, I was prepared for serious aggression from a group of 5-6 people.
@@ -56,9 +56,9 @@ Honestly, having lived in rough neighbourhoods, I was more scared of having to d
 #### 🥗 Supplies
 * **Water**: I had a capacity for 2.5L.
 * **Food**: I packed protein bars, nuts, bread, plantain chips, banana, apple, and a peach. This was hard as I'm used to eating fresh home cooked meals.
-  ![Food](assets/foods.png)
+  ![Food](assets/foods.jpg)
 * **Tools**: I had two backup phones, two power banks, inner tube, adhesive patch, mini pump, and a few other cycling tools.
-  ![Tools](assets/tools.png)
+  ![Tools](assets/tools.jpg)
 
 I frequently stopped at grocery stores to refill both the water and food supplies.
 
@@ -72,7 +72,7 @@ I had to cycle late at night. For safety reasons I stopped stopping to take phot
 
 Day 1 in photos:
 
-![Day-1-0](assets/day1_0.png)
+![Day-1-0](assets/day1_0.jpg)
 *<small>Blankenfelde-Mahlow - Dahlewitz</small>*
 
 <div class="video_wrapper">
@@ -80,16 +80,16 @@ Day 1 in photos:
     <i><small>Zossen</small></i>
 </div>
 
-![Day-1-2](assets/day1_2.png)
+![Day-1-2](assets/day1_2.jpg)
 *<small>Spielplatz im Zossener Park</small>*
 
-![Day-1-3](assets/day1_3.png)
+![Day-1-3](assets/day1_3.jpg)
 *<small>Zossen — Lindenbrück</small>*
 
-![Day-1-4](assets/day1_4.png)
+![Day-1-4](assets/day1_4.jpg)
 *<small>Zossen — Lindenbrück</small>*
 
-![Day-1-5](assets/day1_5.png)
+![Day-1-5](assets/day1_5.jpg)
 *<small>Zossen</small>*
 
 <div class="video_wrapper">
@@ -97,7 +97,7 @@ Day 1 in photos:
     <i><small>Zossen</small></i>
 </div>
 
-![Day-1-7](assets/day1_7.png)
+![Day-1-7](assets/day1_7.jpg)
 *<small>Baruth/Mark</small>*
 
 #### 🏰 Day-2 (The road to Dresden)
@@ -118,13 +118,13 @@ Day-2 was about getting to Dresden ASAP so I can cycle around the city during th
 ![Day-2-3](assets/day2_2.gif)
 *<small>Touchdown Dresden</small>*
 
-![Day-2-3](assets/day2_3.png)
+![Day-2-3](assets/day2_3.jpg)
 *<small>Semperoper Dresden</small>*
 
-![Day-2-4](assets/day2_4.png)
+![Day-2-4](assets/day2_4.jpg)
 *<small>Dresden — Wilsdruffer Vorstadt</small>*
 
-![Day-2-5](assets/day2_5.png)
+![Day-2-5](assets/day2_5.jpg)
 *<small>Sportpark Ostra</small>*
 
 #### 🏔 Day-3 (The road to Prague)
@@ -139,24 +139,24 @@ The city was beautiful and I wished I could have spent more time there. I should
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/e5JRF5Dc2Z0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-![Day-2-5](assets/prague2.png)
+![Day-2-5](assets/prague2.jpg)
 *<small>Prague castle</small>*
 
 ## 🎒 Return trip
 
 
 ## 🎞 Photo dump
-![](assets/dump4.png)
-![](assets/dump5.png)
-![](assets/dump6.png)
-![](assets/dump7.png)
-![](assets/dump8.png)
-![](assets/dump9.png)
-![](assets/dump10.png)
-![](assets/dump11.png)
-![](assets/dump1.png)
-![](assets/dump2.png)
-![](assets/dump3.png)
+![](assets/dump4.jpg)
+![](assets/dump5.jpg)
+![](assets/dump6.jpg)
+![](assets/dump7.jpg)
+![](assets/dump8.jpg)
+![](assets/dump9.jpg)
+![](assets/dump10.jpg)
+![](assets/dump11.jpg)
+![](assets/dump1.jpg)
+![](assets/dump2.jpg)
+![](assets/dump3.jpg)
 <small>This was funny as at first glance it didn't look like an ad for Firewood</small>
 
 <div class="video_wrapper">
