@@ -3,7 +3,7 @@ title: "Solo Cycling Adventure: Berlin → Dresden → Prague"
 slug: "/2022-08-21-cycling-berlin-dresden-prague"
 date: 2022-08-21
 canonicalUrl: "https://elvischidera.com/2022-08-21-cycling-berlin-dresden-prague/"
-banner: ./assets/banner.jpg
+banner: ./assets/banner.png
 tags:
   - athlete
   - cycling
@@ -11,15 +11,15 @@ tags:
   - fitness
 ---
 
-Two weeks ago, I embarked on an audacious cycling adventure — cycling alone from Berlin to Prague. Prior to the trip, I had only done ~60km max (with company).
+Two weeks ago, I embarked on an audacious cycling adventure — cycling alone from Berlin to Prague (~360km). Prior to the trip, I had only done ~70km max (with company).
 
-![Banner](assets/banner.jpg)
+![Banner](assets/banner.png)
 
-It was one of my best vacations ever: I improved my physical strength and endurance; Interacted with the beautiful people, geography & cultures enroute; and I feel great overall during & after the trip (natural high).
+It was a fantabuluous adventure: I improved my physical and mental strength; Interacted with the beautiful people, geography & cultures enroute; and I feel great overall ([natural high](https://dictionary.apa.org/natural-high)).
 
 ![Types of fun](assets/types_of_fun.jpg)
 
-Having tasted the sweetness of long distance cycling, there is no going back now. My eyes are set on Amsterdam, Copenhagen, or a town in Poland next.
+Having tasted the sweetness of long distance cycling, my eyes are set on Amsterdam, Copenhagen, or a town in Poland next.
 
 In this post, I will share how I planned for the trip and how it went.
 
