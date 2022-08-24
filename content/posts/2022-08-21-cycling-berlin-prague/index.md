@@ -21,10 +21,11 @@ It was a fantabuluous adventure: I improved my physical and mental strength; Int
 
 Having tasted the sweetness of long distance cycling, my eyes are set on Amsterdam, Copenhagen, or a town in Poland next.
 
-In this post, I will share how I planned for the trip and how it went.
+In this post, I will succintly share how I planned for the trip and how it went.
 
 <video  width="100%" height="100%" controls src="/prague3.mp4">
 </video>
+<i><small>Party in Prague</small></i>
 
 ## 📜 Plannning
 
@@ -70,6 +71,8 @@ I started very late, so I had to scrap the plan of going to Cottbus. Postponing 
 
 I had to cycle late at night. For safety reasons I stopped stopping to take photos or use the camera as it got darker. There were lots of beautiful sights that I didn't capture — especially the windmills with the sunset as its background.
 
+> I noticed something interesting in a town 30km from Luckau: There was a table with fruits in front of a house (no one was watching it). I saw a couple taking some of the fruits and leaving what appeared to be money. Maybe someone can tell me more about this?
+
 Day 1 in photos:
 
 ![Day-1-0](assets/day1_0.jpg)
@@ -104,6 +107,8 @@ Day 1 in photos:
 I slept in a stranger's place at the end of day-1 🧐. The next morning, she made breakfast for me and we talked about my journey 😊 (nice & kind). The often stated "nice or kind" expression confounds me as I'm not aware of any laws that precludes both from co-existing.
 
 Day-2 was about getting to Dresden ASAP so I can cycle around the city during the day. I wanted to be focused in the moment and get to Dresden fast which meant I took less photos overall.
+
+> East germans deserve more credit ❤️.
 
 <div class="video_wrapper">
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/Z3MCtTCkYkQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -143,7 +148,11 @@ The city was beautiful and I wished I could have spent more time there. I should
 </div>
 
 ## 🎒 Return trip
+I was gonna cycle back to Dresden and then take the bus to Berlin. But I lost my small bag in Litomèrice, Czech. It had my passport, IDs, credit card, 150 euros and 100 CZK.
 
+I called the police after a few hours of unsuccesful searching. Fortunately, someone had given the bag to the police so I went to the police station to pick it up. Unfortunately, all the cash was stolen. Given the signals I got, my bet is that it was the police officer that took the money, but I let it go as I was in no mood for a fight at this point.
+
+After this fiasco, I decided to just take a bus from Czech instead.
 
 ## 🎞 Photo dump
 ![](assets/dump4.jpg)
@@ -167,4 +176,4 @@ The city was beautiful and I wished I could have spent more time there. I should
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/P0FGwA7ZXsE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## ❤️ Conclusion
+The end ❤️
