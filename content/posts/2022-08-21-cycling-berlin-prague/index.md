@@ -24,10 +24,12 @@ Having tasted the sweetness of long distance cycling, my eyes are set on Amsterd
 In this post, I will share how I planned for the trip and how it went.
 
 <div class="video_wrapper">
-    <iframe class="video_frame" width="100%" height="100%" src="prague3.mov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="video_frame" width="100%" height="100%" src="/prague3.mov" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## 📜 1. The plan
+## 📜 Plannning
+
+#### 🌍 Route
 I made a 3-day plan that spanned across 3 distinct cities:
    * Berlin 🇩🇪 → Cottbus 🇩🇪
    * Cottbus 🇩🇪 → Dresden 🇩🇪
@@ -35,40 +37,39 @@ I made a 3-day plan that spanned across 3 distinct cities:
 
 ![Original plan on a whiteboard](assets/plan_whiteboard.jpg)
 
-I spent hours studying the terrain and modifying the route on a satelite map (Komoot/GMaps satelite view). My goal was to always be within a few kilometers of some human settlement — incase of an emergency.
+I spent a few hours studying the terrain and modifying the route on a satelite map. My goal was to always be within a few kilometers of some human settlement — incase of an emergency.
 
 #### 🚴‍♂️ Cycling gear
 Up to this point, I had mostly cycled casually: In normal clothes, in a normal bike.
 
 ![Ex gear](assets/ex_gear.jpg)
 
-This wasn't gonna fly for an international trip because of safety, performance, and various other concerns. I bought the [Bergamont Grandurance 4](https://www.bergamont.com/at/de/product/bergamont-grandurance-4) and a few other "serious" cycling gear.
+This wasn't gonna fly for an international trip because of safety, performance, and other concerns. I bought the [Bergamont Grandurance 4](https://www.bergamont.com/at/de/product/bergamont-grandurance-4) and a few other "serious" cycling gear.
 
 ![Current gear](assets/cur_gear.jpg)
 
 #### 🛡 Tactical gear
-I have heard the stories about east germany. While I will try my best to avoid any conflict, I prepared for the worst — because the fact that you don't want a fight, doesn't mean a fight doesn't want you. I won't go into the details of my self-defense gear — but in summary, I was prepared for serious aggression from a group of 5-6 people.
+I'm cognizant of east germany's risk profile. While I will try my best to avoid any conflict, I prepared for the worst — because the fact that you don't want a fight, doesn't mean a fight doesn't want you. I won't go into the details of my self-defense gear (but it wasn't pepper spray).
 
-Security is multi-facet: I planned the routes with safety in mind, picked the right clothes at the right time, etc. Also, one of my phones was constantly beaming my location and capturing other sensor data (including audio) to the cloud. I asked my closed friends to periodically check in on these.
+Also, one of my phones was setup to constantly capture sensor data (including location & audio) and upload it in near real-time. I asked my close friends to periodically check in on these.
 
-Honestly, having lived in rough neighbourhoods, I was more scared of having to deal with some wild animal than some human. However, people told me my fear was irrational as Germany doesn't have that many animals that can kill you.
+Having lived in rough neighbourhoods, I was more scared of having to deal with some wild animal than some human. However, people told me my fear was unsubstantiated as Germany doesn't have that many animals that are "interested" in humans.
 
 #### 🥗 Supplies
 * **Water**: I had a capacity for 2.5L.
-* **Food**: I packed protein bars, nuts, bread, plantain chips, banana, apple, and a peach. This was hard as I'm used to eating fresh home cooked meals.
+* **Food**: I packed protein bars, nuts, bread, plantain chips, banana, and a few fruits. This was hard as I'm used to eating fresh home cooked meals.
   ![Food](assets/foods.jpg)
 * **Tools**: I had two backup phones, two power banks, inner tube, adhesive patch, mini pump, and a few other cycling tools.
   ![Tools](assets/tools.jpg)
 
-I frequently stopped at grocery stores to refill both the water and food supplies.
+I planned on stopping at grocery stores to refill both the water and food supplies.
 
-## ⚙️ 2. The execution
-It was gonna be a 3-day trip with a stop in each city in the plan above.
+## ⚙️ Execution
 
 #### 🌳 Day-1 (The road to ~~Cottbus~~ Luckau)
-I started very late (around 2pm), so I had to scrap the plan of going to Cottbus. Postponing the start to the next day would have interfered with my weekend plans for Prague, so I decided to go to Luckau which is a small city in Brandenburg.
+I started very late, so I had to scrap the plan of going to Cottbus. Postponing to the next day would have interfered with my weekend plans for Prague 🤪, so I decided to go to Luckau which is a small city in Brandenburg.
 
-I had to cycle late at night. For safety reasons I stopped stopping to take photos or use the camera as it got darker. There were lots of beautiful sights that I didn't capture. The windmills with the sunset as its background was fantabulous to see.
+I had to cycle late at night. For safety reasons I stopped stopping to take photos or use the camera as it got darker. There were lots of beautiful sights that I didn't capture — especially the windmills with the sunset as its background.
 
 Day 1 in photos:
 
