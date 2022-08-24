@@ -31,9 +31,9 @@ In this post, I will succinctly share how I planned for the trip and how it went
 
 #### 🌍 Route
 I made a 3-day plan that spanned across 3 distinct cities:
-   * Berlin 🇩🇪 → Cottbus 🇩🇪
-   * Cottbus 🇩🇪 → Dresden 🇩🇪
-   * Dresden 🇩🇪 → Prague 🇨🇿
+   * [Berlin](https://en.wikipedia.org/wiki/Berlin) 🇩🇪 → [Cottbus](https://en.wikipedia.org/wiki/Cottbus) 🇩🇪
+   * [Cottbus](https://en.wikipedia.org/wiki/Cottbus) 🇩🇪 → [Dresden](https://en.wikipedia.org/wiki/Dresden) 🇩🇪
+   * [Dresden](https://en.wikipedia.org/wiki/Dresden) 🇩🇪 → [Prague](https://en.wikipedia.org/wiki/Prague) 🇨🇿
 
 ![Original plan on a whiteboard](assets/plan_whiteboard.jpg)
 
@@ -53,8 +53,6 @@ I'm cognizant of east Germany's risk profile. While I will try my best to avoid 
 
 Also, one of my phones was set up to constantly capture sensor data (including location & audio) and upload it in near real-time. I asked my close friends to periodically check in on these.
 
-Having lived in rough neighborhoods, I was more scared of having to deal with a wild animal than some human. However, people told me my fear was unsubstantiated as Germany doesn't have that many animals that are "interested" in humans.
-
 #### 🥗 Supplies
 * **Water**: I had a capacity of 2.5L.
 * **Food**: I packed protein bars, nuts, bread, plantain chips, banana, and a few fruits. This was hard as I'm used to eating fresh home-cooked meals.
@@ -67,7 +65,7 @@ I planned on stopping at grocery stores to refill both the water and food suppli
 ## ⚙️ Execution
 
 #### 🌳 Day-1 (The road to ~~Cottbus~~ Luckau)
-I started very late, so I had to scrap the plan of going to Cottbus. Postponing to the next day would have interfered with my weekend plans for Prague 🤪, so I decided to go to Luckau which is a small city in Brandenburg.
+I started very late, so I had to scrap the plan of going to Cottbus. Postponing to the next day would have interfered with my weekend plans for Prague 🤪, so I decided to go to [Luckau](https://en.wikipedia.org/wiki/Luckau) which is a small city in Brandenburg.
 
 I had to cycle late at night. For safety reasons I stopped stopping to take photos or use the camera as it got darker. There were lots of beautiful sights that I didn't capture — especially the windmills with the sunset as their background.
 
@@ -114,7 +112,7 @@ Day-2 was about getting to Dresden ASAP so I can cycle around the city during th
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/Z3MCtTCkYkQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <i><small>Heideblick — Bornsdorf</small></i>
 </div>
-
+<br/>
 <div class="video_wrapper">
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/OXg2n7JXViE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <i><small>Heideblick — Bornsdorf</small></i>
@@ -148,9 +146,9 @@ The city was beautiful and I wished I could have spent more time there. I should
 </div>
 
 ## 🎒 Return trip
-I was gonna cycle back to Dresden and then take the bus to Berlin. But I lost my small bag in Litomèrice, Czech. It had my passport, IDs, credit card, 150 euros, and 100 CZK.
+I was gonna cycle back to Dresden and then take the bus to Berlin. But I lost my small bag in Litomèrice. It had my passport, IDs, credit card, some euros, and 100 CZK.
 
-I called the police after a few hours of unsuccessful searching. Fortunately, someone had given the bag to the police so I went to the police station to pick it up. Unfortunately, all the cash was stolen. Given the signals I got, I bet that it was the police officer that took the money, but I let it go as I was in no mood for a fight at this point.
+I called the police after a few hours of unsuccessful searching. Fortunately, someone had given the bag to the police so I went to the police station to pick it up. Unfortunately, all the cash was stolen. Given the signals I got, I bet that it was the police officer that took the money, but I let it go as I was in no mood for an argument at this point.
 
 After this fiasco, I decided to just take a bus from Czech instead.
 
@@ -171,7 +169,7 @@ After this fiasco, I decided to just take a bus from Czech instead.
 <div class="video_wrapper">
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/l_24T_Hz2Cc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
+<br/>
 <div class="video_wrapper">
     <iframe class="video_frame" width="100%" height="100%" src="https://www.youtube.com/embed/P0FGwA7ZXsE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
