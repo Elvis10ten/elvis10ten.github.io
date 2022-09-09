@@ -1,9 +1,9 @@
 ---
-title: "Morning summary: Hardware is the new Software"
+title: "Hardware is the new Software — Paper Summary"
 slug: "/2022-09-08-hardware-new-software"
 date: 2022-09-08
 canonicalUrl: "https://elvischidera.com/2022-09-08-hardware-new-software/"
-banner: ./assets/banner.png
+banner: ./assets/banner.jpeg
 tags:
   - summary
   - paper
@@ -11,6 +11,8 @@ tags:
 ---
 
 Today's summary is about a [paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/baumann-hotos17.pdf) written by Andrew Baumann (Microsoft Research) in 2017.
+
+-----
 
 1. Moore’s Law may be slowing, but, perhaps as a result, other measures of processor complexity are (rapidly) acceler­ating.
 2. The paper examines the causes of this rapid growth, and speculate about the underlying trends driving it.
