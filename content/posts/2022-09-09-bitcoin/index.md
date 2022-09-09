@@ -19,11 +19,11 @@ This paper proposes Bitcoin — a system for electronic transactions without rel
 -----
 
 1. No mechanism exists to make payments over a communications channel (the internet) without a trusted third party (a financial institution).
-2. Inherent weaknesses of the trust based model:
-    * Precludes completely **non-reversible transactions** because financial institutions have to mediate disputes.
-    * Consequently, permits **buyers fraud** because of a loss of ability to make non-reversible payments for non­reversible services.
-    * Impedes **micropayments** because mediation cost increases transaction costs.
-3. A solution: An electronic payment system based on cryptographic proof instead of trust, allowing any two willing parties to transact directly with each other (i.e peer-to-peer) without the need for a trusted third party.
+2. Inherent weaknesses of the trust-based model:
+    * It precludes completely **non-reversible transactions** because financial institutions have to mediate disputes.
+    * Consequently, it permits **buyers fraud** because of a loss of ability to make non-reversible payments for non­reversible services.
+    * It impedes **micropayments** because mediation cost increases transaction costs.
+3. A solution: An electronic payment system based on cryptographic proof instead of trust, which allows any two willing parties to transact directly with each other (i.e peer-to-peer) without the need for a trusted third party.
 
 ## Solutions to electronic payment system concerns
 ### a. Forgery
@@ -45,7 +45,7 @@ This paper proposes Bitcoin — a system for electronic transactions without rel
 10. Once the CPU effort has been expended to make it satisfy the proof-of-work, the block cannot be changed without redoing the work.
 11. The difficulty of PoW is determined by a moving average targeting an average number of blocks per hour to compensate for increasing hardware speed and varying interest in running nodes over time.
 12. The system is secure as long as honest nodes collectively control more CPU power than any cooperating group of attacker nodes.
-13. Proof-of-work is essentially one-CPU-one-vote; compared to one-IP-address-one-vote that can be subverted by anyone able to allocate many IPs.
+13. Proof-of-work is essentially one-CPU-one-vote; compared to one-IP-address-one-vote which can be subverted by anyone able to allocate many IPs.
     > If a majority of CPU power is controlled by honest nodes, the honest chain will grow the fastest and outpace any competing chains. To modify a past block, an attacker would have to redo the proof-of-work of the block and all blocks after it and then catch up with and surpass the work of the honest nodes.  
 
 ![Figure 2](assets/fig2.png)
@@ -60,11 +60,11 @@ This paper proposes Bitcoin — a system for electronic transactions without rel
 	* Nodes express their acceptance of the block by working on creating the next block in the chain, using the hash of the accepted block as the previous hash.
 2. Tolerance: Nodes are tolerant to any missed block broadcast: they request blocks whenever any new block is received.
 3. Conflict resolution: Nodes always consider the longest chain to be the correct one and will keep working on extending it.
-4. The network is robust in its unstructured simplicity. Nodes work all at once with little coordination. They do not need to be identified, since messages are not routed to any particular place and only need to be delivered on a best effort basis.
+4. The network is robust in its unstructured simplicity. Nodes work all at once with little coordination. They do not need to be identified, since messages are not routed to any particular place and only need to be delivered on a best-effort basis.
 5. Nodes can leave and rejoin the network at will, accepting the proof-of-work chain as proof of what happened while they were gone.
 
 ## Incentive
-1. By convention, the first transaction in a block is a special transaction that starts a new coin owned by the creator of the block. This adds an incentive for nodes to support the network, and provides a way to initially distribute coins into circulation, since there is no central authority to issue them.
+1. By convention, the first transaction in a block is a special transaction that starts a new coin owned by the creator of the block. This adds an incentive for nodes to support the network and provides a way to initially distribute coins into circulation since there is no central authority to issue them.
 2. The incentive can also be funded with transaction fees. If the output value of a transaction is less than its input value, the difference is a transaction fee that is added to the incentive value of the block containing the transaction.
 3. Once a predetermined number of coins have entered circulation, the incentive can transition entirely to transaction fees and be completely inflation free.
 
