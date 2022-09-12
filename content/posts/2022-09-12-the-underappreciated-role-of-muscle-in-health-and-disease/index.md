@@ -11,6 +11,10 @@ tags:
   - health
 ---
 
+Today's summary is about a [paper](https://pubmed.ncbi.nlm.nih.gov/16960159/) written by Robert R Wolfe in 2006.
+
+-----
+
 1. Muscle plays a central role in whole-body protein metabolism, which is particularly important in the response to stress.
 2. In the absence of nutrient intake, muscle protein serves as the principal reservoir to replace blood amino acids taken up by other tissues.
 3. One extensive study concluded that the depletion of muscle mass is the cause of death in human starvation.
