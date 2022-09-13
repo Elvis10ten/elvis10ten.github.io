@@ -26,6 +26,6 @@ It’s important to note that each statement was flavored with “I think”. Fo
 3. It’s likely Satoshi was not a cryptographer given:
     * Minimal cryptography in Bitcoin: ECC keys, ECDSA signatures, and hashing.
     * Naivety of the (earlier) code around OpenSSL.
-4.  The Diﬀerence between Transaction validity and meaning
-5. How to scale the system
+4.  The Diﬀerence between Transaction validity and meaning.
+5. How to scale the system.
 6. Recent Cryptography Results: because they didn’t exist at the time the system was created.
