@@ -14,7 +14,7 @@ tags:
 
 Today's summary is about a [paper](https://www.ifca.ai/pub/fc15/89750001.pdf) written by Gavin Andresen in 2015. Gavin has been working on bitcoin since 2010.
 
-It’s important to note that each statement was flavored with “I think”. Gavin provides reasons for why he thinks so in the paper.
+It’s important to note that each statement was flavored with “I think”. For each item, Gavin provides reasons for why he thinks so in the paper.
 
 -----
 
