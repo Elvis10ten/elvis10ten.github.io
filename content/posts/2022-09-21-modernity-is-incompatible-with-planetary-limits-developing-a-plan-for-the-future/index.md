@@ -1,5 +1,5 @@
 ---
-title: "Modernity is incompatible with planetary limits Developing a PLAN for the future — Paper Summary"
+title: "Modernity is incompatible with planetary limits: Developing a PLAN for the future — Paper Summary"
 slug: "/2022-09-21-modernity-is-incompatible-with-planetary-limits-developing-a-plan-for-the-future"
 date: 2022-09-21
 canonicalUrl: "https://elvischidera.com/2022-09-21-modernity-is-incompatible-with-planetary-limits-developing-a-plan-for-the-future/"

@@ -12,7 +12,7 @@ tags:
 
 Today's summary is about an  [essay](https://files.libcom.org/files/Bertrand%20Russell%20-%20In%20Praise%20of%20Idleness.pdf) written by Bertrand Russell in 1932.
 
--
+-----
 
 1. The morality of work is the morality of slaves, and the modern world has no need of slavery.
 2. The conception of duty, speaking historically, has been a means used by the holders of power to induce others to live for the interests of their masters rather than for their own.
