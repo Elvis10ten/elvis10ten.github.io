@@ -1,5 +1,5 @@
 ---
-title: "Predictability Does the Flap of a Butterfly’s Wings in Brazil Set Off a Tornado in Texas — Paper Summary"
+title: "Predictability: Does the Flap of a Butterfly’s Wings in Brazil Set Off a Tornado in Texas — Paper Summary"
 slug: "/2022-09-29-predictability-does-the-flap-of-a-butterflys-wings-in-brazil-set-off-a-tornado-in-texas"
 date: 2022-09-29
 canonicalUrl: "https://elvischidera.com/2022-09-29-predictability-does-the-flap-of-a-butterflys-wings-in-brazil-set-off-a-tornado-in-texas/"
