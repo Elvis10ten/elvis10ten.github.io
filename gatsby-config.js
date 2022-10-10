@@ -15,7 +15,7 @@ module.exports = {
     // Will be used to generate absolute URLs for og:image etc.
     siteUrl: `https://elvischidera.com`,
     // Used for SEO
-    siteDescription: `A weblog by Elvis Chidera, a software engineer working in Boston, about all things tech.`,
+    siteDescription: `A weblog by Elvis Chidera, a software engineer working in Berlin, about all things tech.`,
     // Will be set on the <html /> tag
     siteLanguage: `en`,
     // Used for og:image and must be placed inside the `static` folder
@@ -130,7 +130,7 @@ module.exports = {
       options: {
         name: `Elvis Chidera`,
         short_name: `Elvis Chidera`,
-        description: `A weblog by Elvis Chidera, a software engineer working in Boston, about all things tech.`,
+        description: `A weblog by Elvis Chidera, a software engineer working in Berlin, about all things tech.`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#2196F3`,
