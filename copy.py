@@ -18,8 +18,9 @@ def dropFileExtension(s):
 def dropFirstLine(s):
     return "\n".join(s.split("\n")[1:])
 
-lastDate = "2022-09-"
-lastDay = 29
+lastDate = "2022-"
+monthNumber = 9
+lastDay = 30
 headerTemplate = """---
 title: "{fileName} — Paper Summary"
 slug: "/{slug}"
@@ -34,12 +35,17 @@ tags:
 """
 
 for fileName in os.listdir('drafts'):
-    formattedFileName = alphaNumeric(snake_case(dropFileExtension(fileName)))    
-    date = lastDate + str(lastDay)
+    formattedFileName = alphaNumeric(snake_case(dropFileExtension(fileName)))
+    monthStr = "{:02d}".format(monthNumber)
+    dayStr = "{:02d}".format(lastDay)
+    date = lastDate + monthStr + "-" + dayStr
 
     slug = date + "-" + sub('_', '-', formattedFileName)
     lastDay = lastDay + 1
     print(slug)
+    if lastDay == 31:
+        lastDay = 1
+        monthNumber = monthNumber + 1
 
     directory = "content/posts/" + slug
     assetsDirectory = directory + "/assets"
