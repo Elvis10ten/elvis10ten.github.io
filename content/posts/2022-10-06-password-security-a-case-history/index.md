@@ -1,5 +1,5 @@
 ---
-title: "Password Security A Case History — Paper Summary"
+title: "Password Security: A Case History — Paper Summary"
 slug: "/2022-10-06-password-security-a-case-history"
 date: 2022-10-06
 canonicalUrl: "https://elvischidera.com/2022-10-06-password-security-a-case-history/"
@@ -11,7 +11,9 @@ tags:
 ---
 
 Authors: Robert Morris and Ken Thompson
+
 Date: 1978
+
 Link: [PDF](https://dl.acm.org/doi/pdf/10.1145/359168.359172)
 
 -----

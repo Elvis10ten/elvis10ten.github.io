@@ -11,7 +11,9 @@ tags:
 ---
 
 Author: Ken Thompson
+
 Date: 1984
+
 Link: [PDF](https://users.ece.cmu.edu/~ganger/712.fall02/papers/p761-thompson.pdf)
 
 -----

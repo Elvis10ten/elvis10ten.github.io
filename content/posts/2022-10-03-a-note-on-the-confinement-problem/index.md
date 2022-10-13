@@ -11,7 +11,9 @@ tags:
 ---
 
 Authors: Butler W. Lampson
+
 Date: 1972
+
 Link: [PDF](https://dl.acm.org/doi/pdf/10.1145/362375.362389)
 
 -----

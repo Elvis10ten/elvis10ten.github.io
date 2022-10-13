@@ -1,5 +1,5 @@
 ---
-title: "Thirty Years Later Lessons from the Multics Security Evaluation — Paper Summary"
+title: "Thirty Years Later: Lessons from the Multics Security Evaluation — Paper Summary"
 slug: "/2022-10-05-thirty-years-later-lessons-from-the-multics-security-evaluation"
 date: 2022-10-05
 canonicalUrl: "https://elvischidera.com/2022-10-05-thirty-years-later-lessons-from-the-multics-security-evaluation/"
@@ -11,7 +11,9 @@ tags:
 ---
 
 Authors: Paul Karger & Roger Schell
+
 Date: 2002
+
 Link: [PDF](https://www.acsac.org/2002/papers/classic-multics.pdf)
 
 -----

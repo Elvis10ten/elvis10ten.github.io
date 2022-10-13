@@ -11,7 +11,9 @@ tags:
 ---
 
 Author: Edsger W. Dijkstra
+
 Date: 1968
+
 Link: [PDF](https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf) 
 
 -----

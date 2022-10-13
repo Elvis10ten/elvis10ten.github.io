@@ -19,8 +19,8 @@ def dropFirstLine(s):
     return "\n".join(s.split("\n")[1:])
 
 lastDate = "2022-"
-monthNumber = 9
-lastDay = 30
+monthNumber = 10
+lastDay = 7
 headerTemplate = """---
 title: "{fileName} — Paper Summary"
 slug: "/{slug}"

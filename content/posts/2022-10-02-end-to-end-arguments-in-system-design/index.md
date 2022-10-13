@@ -12,7 +12,9 @@ tags:
 ---
 
 Authors: J.H. Saltzer, D.P. Reed and D.D. Clark
+
 Date: 1984
+
 Link:   [PDF](https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf)
 
 -----
