@@ -7,6 +7,7 @@ banner: ./assets/banner.jpeg
 tags:
   - summary
   - paper
+  - internet
 ---
 
 Author: David D. Clark

@@ -7,6 +7,7 @@ banner: ./assets/banner.jpeg
 tags:
   - summary
   - paper
+  - economics
 ---
 
 Authors: Ken Birman, Coimbatore Chandersekaran, Danny Dolev, Robbert van Renesse

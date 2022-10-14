@@ -7,6 +7,7 @@ banner: ./assets/banner.jpeg
 tags:
   - summary
   - paper
+  - science
 ---
 
 Author: Martin A. Schwartz

@@ -7,6 +7,7 @@ banner: ./assets/banner.jpeg
 tags:
   - summary
   - paper
+  - wellbeing
 ---
 
 Authors: Matthew A. Killingsworth and Daniel T. Gilbert

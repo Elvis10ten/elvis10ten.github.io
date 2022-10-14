@@ -7,6 +7,7 @@ banner: ./assets/banner.jpeg
 tags:
   - summary
   - paper
+  - distributedsystem
 ---
 
 Authors: Atul Adya, Robert Grandl, Daniel Myers, Henry Qin
