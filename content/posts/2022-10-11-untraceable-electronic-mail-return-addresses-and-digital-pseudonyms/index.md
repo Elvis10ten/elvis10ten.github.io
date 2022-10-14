@@ -31,7 +31,7 @@ Link: [PDF](https://dl.acm.org/doi/pdf/10.1145/358549.358563)
     * `K` = Public key.
     * `K⁻¹` = Private key.
 6. `K(X)` = The encryption of `X` with key `K` — It's just the image of `X` under the mapping implemented by the cryptographic algorithm using key `K`.
-7. Keys are inverses:
+7. Keys are inverses:<br/>
     <font color="#178e34">K⁻¹(</font><font color="#01a4a5">K(</font>X<font color="#01a4a5">)</font><font color="#178e34">)</font> = <font color="#01a4a5">K(</font><font color="#178e34">K⁻¹(</font>X<font color="#178e34">)</font><font color="#01a4a5">)</font> = X
 8. A message `X` is sealed with a public key `K` so that only the holder of the private key `K⁻¹` can discover its content.
 9. If `X` is simply encrypted with `K`, then anyone could verify a guess that `Y = X` by checking whether `K(Y) = K(X)`:
@@ -53,7 +53,7 @@ Link: [PDF](https://dl.acm.org/doi/pdf/10.1145/358549.358563)
         * `A` decrypts its input with its private key and obtains the message `M`.
 13. Cascade mix protocol:
     * `Sender` -> Packet { <font color="#178e34">Kₙ(Rₙ,</font> <font color="#5b1498">Kₙ₋₁(Rₙ₋₂,</font> ..., <font color="#01a4a5">K₁(R₁,</font> <font color="#fd345a">Kₐ(R₀,</font> M<font color="#fd345a">)</font><font color="#01a4a5">, A)</font> ... <font color="#5b1498">Aₙ₋₂)</font><font color="#178e34">, Aₙ₋₁)</font> } -> `Mixₙ`
-    * `Mixₙ` -> Pakcet { <font color="#5b1498">Kₙ₋₁(Rₙ₋₂,</font> ..., <font color="#01a4a5">K₁(R₁,</font> <font color="#fd345a">Kₐ(R₀,</font> M<font color="#fd345a">)</font><font color="#01a4a5">, A)</font> ...<font color="#5b1498">Aₙ₋₂)</font> } -> `Mixₙ₋₁`
+    * `Mixₙ` -> Pakcet { <font color="#5b1498">Kₙ₋₁(Rₙ₋₂,</font> ..., <font color="#01a4a5">K₁(R₁,</font> <font color="#fd345a">Kₐ(R₀,</font> M<font color="#fd345a">)</font><font color="#01a4a5">, A)</font> ... <font color="#5b1498">Aₙ₋₂)</font> } -> `Mixₙ₋₁`
     * ...
     * `Mix₂` -> Packet { <font color="#01a4a5">K₁(R₁,</font> <font color="#fd345a">Kₐ(R₀,</font> M<font color="#fd345a">)</font><font color="#01a4a5">, A)</font> } -> `Mix₁`
     * `Mix₁` -> Packet { <font color="#fd345a">Kₐ(R₀,</font> M<font color="#fd345a">)</font> } -> `A`
