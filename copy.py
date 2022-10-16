@@ -20,7 +20,8 @@ def dropFirstLine(s):
 
 lastDate = "2022-"
 monthNumber = 10
-lastDay = 7
+# The lastDate of a publish content plus one.
+lastDay = 13
 headerTemplate = """---
 title: "{fileName} — Paper Summary"
 slug: "/{slug}"
