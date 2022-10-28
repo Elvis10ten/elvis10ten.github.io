@@ -1,5 +1,5 @@
 ---
-title: "Kafka a Distributed Messaging System for Log Processing — Paper Summary"
+title: "Kafka: a Distributed Messaging System for Log Processing — Paper Summary"
 slug: "/2022-10-22-kafka-a-distributed-messaging-system-for-log-processing"
 date: 2022-10-22
 canonicalUrl: "https://elvischidera.com/2022-10-22-kafka-a-distributed-messaging-system-for-log-processing/"

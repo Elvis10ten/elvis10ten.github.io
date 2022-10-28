@@ -1,5 +1,5 @@
 ---
-title: "Don’t Thrash How to Cache your Hash on Flash — Paper Summary"
+title: "Don’t Thrash: How to Cache your Hash on Flash — Paper Summary"
 slug: "/2022-10-26-dont-thrash-how-to-cache-your-hash-on-flash"
 date: 2022-10-26
 canonicalUrl: "https://elvischidera.com/2022-10-26-dont-thrash-how-to-cache-your-hash-on-flash/"

@@ -1,5 +1,5 @@
 ---
-title: "Blue Zones Lessons From the World’s Longest Lived — Paper Summary"
+title: "Blue Zones: Lessons From the World’s Longest Lived — Paper Summary"
 slug: "/2022-10-27-blue-zones-lessons-from-the-worlds-longest-lived"
 date: 2022-10-27
 canonicalUrl: "https://elvischidera.com/2022-10-27-blue-zones-lessons-from-the-worlds-longest-lived/"
