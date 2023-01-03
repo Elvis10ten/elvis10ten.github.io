@@ -17,10 +17,9 @@ This is my summary of the key ideas of [Thinking in Bets](https://amzn.to/3jMLa2
 One of the key insight of this book that resonated with me is being able to think and communicate **probabilistically**. In most cases, we don’t know something for a fact but somehow we communicate as if we do.
 
 A feedback I recently gave to someone:
-
-    > […] Going from “**That doesn’t make sense**” (or its other variants) to “**I think that doesn’t make sense [because …]**” (or its other variants) has a few advantages:
-    >    * It’s a better model of your knowledge. There are uncertainties, things you don’t know, and variables you are not considering (see [Chesterton's fence](https://en.wiktionary.org/wiki/Chesterton%27s_fence)).
-    >    * It invites a conversation that seeks an objective truth. The former statement is more likely to put the other person on the defensive or have them abandon the alternative no matter the merit (because some people don’t want to say you are wrong especially when you are a senior). Expressing uncertainty upfront removes the right vs wrong dichotomy.
+> Going from “**That doesn’t make sense**” (or its other variants) to “**I think that doesn’t make sense [because …]**” (or its other variants) has a few advantages:
+>    * It’s a better model of your knowledge. There are uncertainties, things you don’t know, and variables you are not considering (see [Chesterton's fence](https://en.wiktionary.org/wiki/Chesterton%27s_fence)).
+>    * It invites a conversation that seeks an objective truth. The former statement is more likely to put the other person on the defensive or have them abandon the alternative no matter the merit (because some people don’t want to say you are wrong especially when you are a senior). Expressing uncertainty upfront removes the right vs wrong dichotomy.
 
 -----
 
