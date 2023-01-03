@@ -81,8 +81,7 @@ A feedback I recently gave to someone:
 40. What accounts for most of the variance in happiness is how we're doing comparatively.
 41. Habits operate in a neurological loop consisting of three parts: the cue, the routine, and the reward.
 42. Charles Duhigg, in The Power of Habit, offers the golden rule of habit change — that the best way to deal with a habit is to respect the habit loop:
-    > To change a habit, you must keep the old cue, and deliver the old reward. but
-insert a new routine.
+    > To change a habit, you must keep the old cue, and deliver the old reward but insert a new routine.
 43. While a group can function to be better than the sum of the individuals, it doesn't automatically turn out that way. The group mustn’t turn into an echo chamber that exacerbates our tendency to confirm what we already believe.
 44. Groups can improve the thinking of individual decision-makers when the individuals are accountable to a group whose interest is in accuracy and open to a diversity of ideas.
 45. Our craving for approval is incredibly strong and incentivizing. In studies, participants expected to explain their actions to someone they'd never met and never expected to meet again.
