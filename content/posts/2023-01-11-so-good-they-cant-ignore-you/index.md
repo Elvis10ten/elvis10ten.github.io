@@ -42,8 +42,7 @@ The core idea of this book is simple: To construct work you love, you must first
     * Creativity
     * Impact
     * Control
-7. Three disqualifiers for applying the
-Craftsman mindset:
+7. Three disqualifiers for applying the Craftsman mindset:
     * The job presents few opportunities to distinguish yourself by developing relevant skills that are rare and valuable.
     * The job focuses on something you think is useless or perhaps even actively bad for the world.
     * The job forces you to work with people you really dislike.
