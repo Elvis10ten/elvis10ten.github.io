@@ -9,7 +9,14 @@ tags:
   - book
 ---
 
+
+This is my summary of the key ideas of [So Good They Can't Ignore You](https://amzn.to/3ix4IaQ) written by Cal Newport.
+
+-----
+
 The core idea of this book is simple: To construct work you love, you must first build career capital by mastering rare and valuable skills and then cash in this capital for the type of traits that define compelling careers.
+
+-----
 
 ## Rule 1: Don’t follow your passion
 1. Rule #1 challenges the **passion hypothesis** which says that the key to occupational happiness is to match your job to a pre-existing passion.
