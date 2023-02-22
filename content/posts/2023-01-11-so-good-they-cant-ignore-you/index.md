@@ -1,5 +1,5 @@
 ---
-title: "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love"
+title: "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love — Book summary"
 slug: "2023-01-11-so-good-they-cant-ignore-you"
 date: 2023-01-11
 canonicalUrl: "https://elvischidera.com/2023-01-11-so-good-they-cant-ignore-you/"
