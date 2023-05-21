@@ -14,6 +14,7 @@ This is my summary of "[Sapiens: A Brief History of Humankind](https://amzn.to/4
 -----
 
 ## Part one: The cognitive revolution
+
 ### 🦍 Chapter 1: An Animal of no significance
 1. About **14 billion** years ago, **matter**, **energy**, **time** and **space** came into being in what is known as the **Big Bang**. The story of these fundamental features of our universe is called **physics**.
 2. About **300,000** years after their appearance, **matter** and **energy** started to coalesce into complex structures, called **atoms**, which then combined into **molecules**. The story of atoms, molecules, and their interactions is called **chemistry**.
@@ -277,6 +278,7 @@ decisions.
 > There is no basis for thinking that the most successful cultures in history are necessarily the best ones for Homo sapiens. Like evolution, history disregards the happiness of individual organisms.  
 
 ## Part 4: The scientific revolution
+
 ### 🔬 Chapter 14: The Discovery of Ignorance
 > Only in the fifteenth century — about 600 years after the invention of gunpowder — did cannons become a decisive factor on Afro-Asian battlefields. Why did it take so long for the deadly potential of this substance to be put to military use? Because it appeared at a time when neither kings, scholars, nor merchants thought that new military technology could save them or make them rich.  
 
