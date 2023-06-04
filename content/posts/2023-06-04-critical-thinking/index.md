@@ -69,45 +69,45 @@ When was the last time you changed your mind on a deeply held idea?
 18.  Even science, which represents one of the most successful applications of reasoning in human history, relies primarily on inductive reasoning:
   * An argument that the sun will come up tomorrow, for instance, is based on high probability rather than certainty, given that the sun has come up every day in recorded history.
   * Similarly, when Sherlock Holmes "deduced" this or that conclusion from available evidence, he was more often than not using inductive reasoning to determine the most likely explanation for what he observed.
-1.   **Aristotle's Syllogisms**: an argument made up of only three statements:
+19.   **Aristotle's Syllogisms**: an argument made up of only three statements:
   * Two premises (the things you are asking someone to accept as true) and
   * The conclusion (the statement you are saying someone must believe is true if they accept the premises as true).
-2.  In a syllogism, both premises and the conclusion must be written in one of the following ways:
+20.  In a syllogism, both premises and the conclusion must be written in one of the following ways:
     * All **P**'s are **Q**'s (called an A statement).
     * No **P**'s are **Q**'s (called an E statement).
     * Some **P**'s are **Q**'s (an I statement).
     * Some **P**'s are not **Q**'s (an O statement).
-3.  Here is a simple example:
+21.  Here is a simple example:
     * `Premise 1`: All _dogs_ are _animals_.
     * `Premise 2`: All **collies** are _dogs_.
     * `Conclusion`: Therefore, all **collies** are _animals_
-4.  Note that these statements are written in a specific form consisting of:
+22.  Note that these statements are written in a specific form consisting of:
     * a major premise (the first statement) — includes the major term (in italics in the example above) which appears in one premise and serves as the predicate of the conclusion.
     * a minor premise (the second statement) — includes the minor term (in bold) which is also in one premise and appears as the subject of the conclusion. A middle term (underlined) appears in both premises but not in the conclusion.
     * The conclusion (the last statement).
-5.  There are **256** different combinations of A, E, I, and O statements that can be built into a three-statement syllogism written in proper form, only **24** of which produce valid arguments.
-6.  Two other valid logical forms that emerge frequently in logical argumentation are **modus ponens** and **modus tollens**.
-7.  **Modus ponens** arguments take the general form:
+23.  There are **256** different combinations of A, E, I, and O statements that can be built into a three-statement syllogism written in proper form, only **24** of which produce valid arguments.
+24.  Two other valid logical forms that emerge frequently in logical argumentation are **modus ponens** and **modus tollens**.
+25.  **Modus ponens** arguments take the general form:
     * `Premise 1`: If **P**, then _Q_.
     * `Premise 2`: **P**.
     * `Conclusion`: Therefore, _Q_
-8.  The first premise sets up a general condition with the second premise establishing whether this condition has been met or not. Example:
+26.  The first premise sets up a general condition with the second premise establishing whether this condition has been met or not. Example:
     * `Premise 1`: If **Socrates** is a _man_, then **Socrates** is _mortal_.
     * `Premise 2`: **Socrates** is a _man_.
     * `Conclusion`: Therefore, **Socrates** is _mortal_.
-9.  **Modus tollens** arguments take the general form:
+27.  **Modus tollens** arguments take the general form:
     * `Premise 1`: If **P**, then _Q_.
     * `Premise 2`: _Not_ _Q_.
     * `Conclusion`: Therefore, _Not_ **P**.
-10. Example:
+28. Example:
     * `Premise 1`: If **Erica** graduated college, she would have a _diploma_.
     * `Premise 2`: **Erica** does not have a _diploma_.
     * `Conclusion`: Therefore, **Erica** did not graduate college.
-11. As with our modus ponens examples, this modus tollens argument is valid. It can be challenged, for example, by questioning whether having or not having a diploma is required to establish whether someone graduated college. But this challenge targets the truth of one of the premises (Premise 1), not the inference that connects the premises to the conclusion. If we could demonstrate that having a diploma is not required to establish college graduation, that would show that the argument, while still valid, is unsound (since one of its premises is false).
-12. Aristotle called hidden premises **enthymemes** and teasing out such unstated premises is one of the most productive steps in argument analysis since the most important point of an argument is often implied but not stated directly. For example, arguments over whether abortion is a surgical procedure or murder rest on the often-unstated premise of whether a fetus is a human being.
-13. If one premise in a deductive argument fails, then the entire argument, while still valid, is unsound (and thus no good).
-14. Bad arguments are often "broken" or flawed in similar ways. These frequently occurring errors are called **fallacies**.
-15. Fallacies stemming from structural flaws are called **formal fallacies**. Examples:
+29. As with our modus ponens examples, this modus tollens argument is valid. It can be challenged, for example, by questioning whether having or not having a diploma is required to establish whether someone graduated college. But this challenge targets the truth of one of the premises (Premise 1), not the inference that connects the premises to the conclusion. If we could demonstrate that having a diploma is not required to establish college graduation, that would show that the argument, while still valid, is unsound (since one of its premises is false).
+30. Aristotle called hidden premises **enthymemes** and teasing out such unstated premises is one of the most productive steps in argument analysis since the most important point of an argument is often implied but not stated directly. For example, arguments over whether abortion is a surgical procedure or murder rest on the often-unstated premise of whether a fetus is a human being.
+31. If one premise in a deductive argument fails, then the entire argument, while still valid, is unsound (and thus no good).
+32. Bad arguments are often "broken" or flawed in similar ways. These frequently occurring errors are called **fallacies**.
+33. Fallacies stemming from structural flaws are called **formal fallacies**. Examples:
     * **Denying the antecedent** — is an invalid logical form with the following structure:
         * `Premise 1`: If **P**, then _Q_.
         * `Premise 2`: Not **P**.
@@ -116,31 +116,31 @@ When was the last time you changed your mind on a deeply held idea?
         * Premise 1: If **P**, then _Q_.
         * Premise 2: _Q_.
         * Conclusion: Therefore, **P**.
-16.  **Informal fallacies** are problems that arise owing to the content rather than the structure of an argument. Examples:
+34.  **Informal fallacies** are problems that arise owing to the content rather than the structure of an argument. Examples:
   * **Composition fallacy** — mistakenly attributing characteristics of a member of a group to the entire group.
   * **Association fallacy** — commonly referred to as "guilt by association, is committed by the person who accuses her neighbor of being a vandal because her brother's wife's mailman was caught throwing a rock through a store window.
   * **False dichotomy** — "Either you pass my budget or millions will starve."
   * **Hasty generalization** — drawing a conclusion from too little information.
   * **Ad hominem** — attacking the arguer.
   * **Straw man** — presenting an oversimplified or distorted version of an opponent's argument and attacking this parody, rather than the actual argument.
-1.  Our toolkit for determining the quality of arguments need not be limited to words. For instance, Venn diagrams similar to the ones elementary school students are taught when they learn about sets can be used to map out statements in an argument:
+35.  Our toolkit for determining the quality of arguments need not be limited to words. For instance, Venn diagrams similar to the ones elementary school students are taught when they learn about sets can be used to map out statements in an argument:
 ![](assets/venn_diagram.jpeg)
-1.    Since humans are not machines that communicate entirely through formally structured statements, a critical thinker must be skilled at translating normal human language into the premises and conclusion that make up a structured argument so that those statements can be used as the basis for logical analysis.
-2.    Requirements for translation:
+36.    Since humans are not machines that communicate entirely through formally structured statements, a critical thinker must be skilled at translating normal human language into the premises and conclusion that make up a structured argument so that those statements can be used as the basis for logical analysis.
+37.    Requirements for translation:
   * **Translations should be accurate**. -Errors can enter the translation process either intentionally or unintentionally.
   * **Translation should be economical** — Given the importance of making our words clear, simplicity that respects accuracy should always be the goal. Economy also involves trying to capture an argument in the fewest number of premises possible.
   * **Translations should be charitable**: On the surface, this might just seem like an alternative version of our call to be accurate, but the principle of charity goes beyond just honest translation, asking us to engage with the strongest version of an argument rather than intentionally weakening it through an uncharitable translation.
-1.    **Inference to the best explanation** — prefers simpler explanations over more complex ones. This philosophical principle provides guidance when dealing with questions that cannot be definitively answered, such as whether God exists.
-2.    Persuasive communication (rhetoric): there are ways of communicating in writing or in a speech that have a powerful impact on audiences, regardless of the subject being communicated.
-3.    Some of these rhetorical devices:
+38.    **Inference to the best explanation** — prefers simpler explanations over more complex ones. This philosophical principle provides guidance when dealing with questions that cannot be definitively answered, such as whether God exists.
+39.    Persuasive communication (rhetoric): there are ways of communicating in writing or in a speech that have a powerful impact on audiences, regardless of the subject being communicated.
+40.    Some of these rhetorical devices:
   * **Alliteration** — repeating an initial consonant sound
   * **Rhyming**
   * **Anaphora** — the intentional repetition of words for effect. For example, when presidential candidate Hillary Clinton appealed to "my supporters, my champions ... my sisterhood!" those extra "my's," which might seem awkward when read, made the spoken version of this phrase more compelling.
   * **Tricolon** — caps part of a speech with a group of three words or phrases, groups of three being particularly effective in speechmaking.
   * **Chiasmus** — is the intentional switching of word order within a phrase or sentence, best exemplified by John F. Kennedy's still-remembered inaugural show-stopper "Ask not what your country can do for you, ask what you can do for your country."
-1.    The act of explaining is designed to increase the audience's comprehension, the act of arguing is aimed at enhancing the acceptability of a standpoint.
-2.    Thought processes are intertwined with what is being thought about.
-3.    When it comes to critical thinking the bottom line is you cannot think critically about a subject if you don't know what you're talking about.
+41.    The act of explaining is designed to increase the audience's comprehension, the act of arguing is aimed at enhancing the acceptability of a standpoint.
+42.    Thought processes are intertwined with what is being thought about.
+43.    When it comes to critical thinking the bottom line is you cannot think critically about a subject if you don't know what you're talking about.
 
 According to Richard Alum and Josipa Roska in their popular 2011 book **Academically Adrift**:
 > Gains in critical thinking, complex reasoning, and writing skills (i.e., general collegiate skills) during the first two years of college are either exceedingly small or empirically nonexistent for a large proportion of students.  
