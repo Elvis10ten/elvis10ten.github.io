@@ -18,6 +18,7 @@ This is my notes & summary of "[Critical Thinking (The MIT Press Essential Knowl
 First, on the **principle of charity**: This is unfortunately rare in most discussions. I was just reflecting on several recent examples where:
    * People (destructively) focused on the weakest link of an argument — while ignoring the crux or its strong parts.
    * People didn't factor in cultural baggage — Something as subtle as how a word was used.
+
 All these are easy and an easy way to score points. What is hard is helping people build a strong version of their argument, then verifying our understanding of it, and finally debating.
 > [...] The process of charitable translation requires you to act as if you were going to present your logical translation of another person's argument to that other person and ask them if you properly and honestly captured what they were trying to say before proceeding to debate the topic. Such a process requires empathy, the ability to enter the mind of another person to discover what they believe and why they believe it.
 
