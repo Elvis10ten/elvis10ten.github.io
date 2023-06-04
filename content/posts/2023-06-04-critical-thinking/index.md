@@ -67,35 +67,35 @@ When was the last time you changed your mind on a deeply held idea?
 16.  With **inductive arguments**, accepting the premises as true can provide support that the conclusion is likely to be true, rather than must be true. In contrast to the all-or-nothing nature of deductive arguments that are valid or not, inductive arguments can be evaluated on a continuum of strength and weakness. This can be based on the probability of the conclusion being true and the acceptability, relevance, and sufficiency of an argument's premises.
 17.  The fact that inductive arguments are, by definition, invalid (since you can always find a counter-example that lets you accept the premises as true, but still reject the conclusion) might make you think that deductive reasoning is superior to inductive. Yet many, if not most, of the arguments we are exposed to in everyday life, are inductive rather than deductive. For instance, debates over what to do in the future — such as changing a tax code or buying one brand of dishwasher over another — almost always include premises or a conclusion that describe something that has not yet happened, making them unprovable until after a decision resulting from the argument is made.
 18.  Even science, which represents one of the most successful applications of reasoning in human history, relies primarily on inductive reasoning:
-  * An argument that the sun will come up tomorrow, for instance, is based on high probability rather than certainty, given that the sun has come up every day in recorded history.
-  * Similarly, when Sherlock Holmes "deduced" this or that conclusion from available evidence, he was more often than not using inductive reasoning to determine the most likely explanation for what he observed.
-19.   **Aristotle's Syllogisms**: an argument made up of only three statements:
+    * An argument that the sun will come up tomorrow, for instance, is based on high probability rather than certainty, given that the sun has come up every day in recorded history.
+    * Similarly, when Sherlock Holmes "deduced" this or that conclusion from available evidence, he was more often than not using inductive reasoning to determine the most likely explanation for what he observed.
+19. **Aristotle's Syllogisms**: an argument made up of only three statements:
   * Two premises (the things you are asking someone to accept as true) and
   * The conclusion (the statement you are saying someone must believe is true if they accept the premises as true).
-20.  In a syllogism, both premises and the conclusion must be written in one of the following ways:
+20.   In a syllogism, both premises and the conclusion must be written in one of the following ways:
     * All **P**'s are **Q**'s (called an A statement).
     * No **P**'s are **Q**'s (called an E statement).
     * Some **P**'s are **Q**'s (an I statement).
     * Some **P**'s are not **Q**'s (an O statement).
-21.  Here is a simple example:
+21.   Here is a simple example:
     * `Premise 1`: All _dogs_ are _animals_.
     * `Premise 2`: All **collies** are _dogs_.
     * `Conclusion`: Therefore, all **collies** are _animals_
-22.  Note that these statements are written in a specific form consisting of:
+22.   Note that these statements are written in a specific form consisting of:
     * a major premise (the first statement) — includes the major term (in italics in the example above) which appears in one premise and serves as the predicate of the conclusion.
     * a minor premise (the second statement) — includes the minor term (in bold) which is also in one premise and appears as the subject of the conclusion. A middle term (underlined) appears in both premises but not in the conclusion.
     * The conclusion (the last statement).
-23.  There are **256** different combinations of A, E, I, and O statements that can be built into a three-statement syllogism written in proper form, only **24** of which produce valid arguments.
-24.  Two other valid logical forms that emerge frequently in logical argumentation are **modus ponens** and **modus tollens**.
-25.  **Modus ponens** arguments take the general form:
+23.   There are **256** different combinations of A, E, I, and O statements that can be built into a three-statement syllogism written in proper form, only **24** of which produce valid arguments.
+24.   Two other valid logical forms that emerge frequently in logical argumentation are **modus ponens** and **modus tollens**.
+25.   **Modus ponens** arguments take the general form:
     * `Premise 1`: If **P**, then _Q_.
     * `Premise 2`: **P**.
     * `Conclusion`: Therefore, _Q_
-26.  The first premise sets up a general condition with the second premise establishing whether this condition has been met or not. Example:
+26.   The first premise sets up a general condition with the second premise establishing whether this condition has been met or not. Example:
     * `Premise 1`: If **Socrates** is a _man_, then **Socrates** is _mortal_.
     * `Premise 2`: **Socrates** is a _man_.
     * `Conclusion`: Therefore, **Socrates** is _mortal_.
-27.  **Modus tollens** arguments take the general form:
+27.   **Modus tollens** arguments take the general form:
     * `Premise 1`: If **P**, then _Q_.
     * `Premise 2`: _Not_ _Q_.
     * `Conclusion`: Therefore, _Not_ **P**.
@@ -124,7 +124,7 @@ When was the last time you changed your mind on a deeply held idea?
   * **Ad hominem** — attacking the arguer.
   * **Straw man** — presenting an oversimplified or distorted version of an opponent's argument and attacking this parody, rather than the actual argument.
 35.  Our toolkit for determining the quality of arguments need not be limited to words. For instance, Venn diagrams similar to the ones elementary school students are taught when they learn about sets can be used to map out statements in an argument:
-![](assets/venn_diagram.jpeg)
+    ![](assets/venn_diagram.jpeg)
 36.    Since humans are not machines that communicate entirely through formally structured statements, a critical thinker must be skilled at translating normal human language into the premises and conclusion that make up a structured argument so that those statements can be used as the basis for logical analysis.
 37.    Requirements for translation:
   * **Translations should be accurate**. -Errors can enter the translation process either intentionally or unintentionally.
