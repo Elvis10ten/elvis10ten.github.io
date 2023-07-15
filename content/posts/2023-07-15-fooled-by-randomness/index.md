@@ -3,7 +3,7 @@ title: "Fooled by Randomness: The Hidden Role of Chance in Life and in the Marke
 slug: "2023-07-15-fooled-by-randomness"
 date: 2023-07-15
 canonicalUrl: "https://elvischidera.com/2023-07-15-fooled-by-randomness"
-banner: ./assets/banner.jpeg
+banner: ./assets/banner.jpg
 tags:
   - summary
   - book
@@ -26,7 +26,7 @@ This is my summary of "[Fooled by Randomness: The Hidden Role of Chance in Life 
 10. In a famous experiment, researchers found that the majority of people, whether predictors or non-predictors, will judge a deadly flood (causing thousands of deaths) caused by a California earthquake to be more likely than a fatal flood (causing thousands of deaths) occurring somewhere in North America (which happens to include California).
 11. As a derivatives trader the author noticed that people do not like to insure against something **abstract**; the risk that merits their attention is always something vivid.
 12. Both risk detection and risk avoidance are not mediated in the “thinking” part of the brain but largely in the emotional one. The consequences are not trivial: It means that rational thinking has little, very little, to do with risk avoidance. Much of what rational thinking seems to do is rationalize one’s actions by fitting some logic to them.
-13. Beware the confusion between **correctness** and **intelligibility**. Part of conventional wisdom favors things that can be explained rather instantly and “in a nutshell” — in many circles, it is considered law.￼
+13. Beware the confusion between **correctness** and **intelligibility**. Part of conventional wisdom favors things that can be explained rather instantly and “in a nutshell” — in many circles, it is considered law.
 14. > Common sense is nothing but a collection of misconceptions acquired by age eighteen. — Attributed to Einstein.
 15. What sounds intelligent in a conversation or a meeting, or, particularly, in the media, is suspicious.
 16. Any reading of the history of science would show that almost all the smart things that have been proven by science appeared like lunacies at the time they were first discovered.
