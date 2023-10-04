@@ -1,109 +1,274 @@
 ---
-title: "Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets [Book summary]"
-slug: "2023-07-15-fooled-by-randomness"
-date: 2023-07-15
-canonicalUrl: "https://elvischidera.com/2023-07-15-fooled-by-randomness"
+title: "High output management [Book summary]"
+slug: "2023-10-04-high-output-management"
+date: 2023-10-04
+canonicalUrl: "https://elvischidera.com/2023-10-04-high-output-management"
 banner: ./assets/banner.jpg
 tags:
   - summary
   - book
 ---
 
-This is my summary of "[Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets](https://amzn.to/43rdpVB)" written by Nassim Nicholas Taleb.
+This is my summary of "[High output management](https://amzn.to/3taWfis)" written by Andrew Grove (Former chairman and CEO of Intel).
 
 -----
 
+## Chapter 1: The basics of production
+>  The key to optimizing all types of productive work is to find the `most cost-effective` way to deploy your resources.
 
-1. Behavioral scientists believe that one of the main reasons why people become leaders is not from what skills they seem to possess, but rather from what extremely superficial impression they make on others through hardly perceptible physical signals-what we call today “charisma,” for example.
-2. In addition, there seems to be curious evidence of a link between leadership and a form of psychopathology (the sociopath) that encourages the non-blinking, self-confident, insensitive person to rally followers.
-3. > Never ask a man if he is from Sparta: If he were, he would have let you know such an important fact — and if he were not, you could hurt his feelings.
-4. One cannot consider a profession without taking into account the average of the people who enter it, not the sample of those who have succeeded in it.
-5. One cannot judge a performance in any given field (war, politics, medicine, investments) by the results, but by the costs of the alternative (i.e., if history played out differently). Such substitute courses of events are called **alternative histories**.
-6. Clearly, the quality of a decision cannot be solely judged based on its outcome, but such a point seems to be voiced only by people who fail (those who succeed attribute their success to the quality of their decision).
-7. Mathematics is not just a “numbers game,” it is a way of thinking.
-8. Denigration of history: gamblers, investors, and decision-makers feel that the sorts of things that happen to others would not necessarily happen to them.
-9. It is foolish to think that an irrational market cannot become even more irrational.
-10. In a famous experiment, researchers found that the majority of people, whether predictors or non-predictors, will judge a deadly flood (causing thousands of deaths) caused by a California earthquake to be more likely than a fatal flood (causing thousands of deaths) occurring somewhere in North America (which happens to include California).
-11. As a derivatives trader the author noticed that people do not like to insure against something **abstract**; the risk that merits their attention is always something vivid.
-12. Both risk detection and risk avoidance are not mediated in the “thinking” part of the brain but largely in the emotional one. The consequences are not trivial: It means that rational thinking has little, very little, to do with risk avoidance. Much of what rational thinking seems to do is rationalize one’s actions by fitting some logic to them.
-13. Beware the confusion between **correctness** and **intelligibility**. Part of conventional wisdom favors things that can be explained rather instantly and “in a nutshell” — in many circles, it is considered law.
-14. > Common sense is nothing but a collection of misconceptions acquired by age eighteen. — Attributed to Einstein.
-15. What sounds intelligent in a conversation or a meeting, or, particularly, in the media, is suspicious.
-16. Any reading of the history of science would show that almost all the smart things that have been proven by science appeared like lunacies at the time they were first discovered.
-17. From the standpoint of an institution, the existence of a risk manager has less to do with actual risk reduction than it has to do with the impression of risk reduction.
-18. **Stochastic processes** refer to the dynamics of events unfolding with time. **Stochastic** is a fancy Greek name for **random**. This branch of probability concerns itself with the study of the evolution of successive random events one could call it the mathematics of history. The key about a process is that it has time in it.
-19. People fail to learn that their emotional reactions to past experiences (positive or negative) were short-lived — yet they continuously retain the bias of thinking that the purchase of an object will bring long-lasting happiness or that a setback will cause severe and prolonged distress (when in the past similar setbacks did not affect them for very long and the joy of the purchase was short-lived).
-20. Things are always obvious after the fact.
-21. When you look at the past, the past will always be deterministic, since only one single observation took place.
-22. Psychologists call this overestimation of what one knew at the time of the event due to subsequent information the **hindsight bias**, the “I knew it all along” effect.
-23. A mistake is not something to be determined after the fact, but in the light of the information until that point.
-24. A more vicious effect of such hindsight bias is that those who are very good at predicting the past will think of themselves as good at predicting the future, and feel confident about their ability to do so.
-25. Robert Shiller made his mark with his 1981 paper on the volatility of markets, where he determined that if a stock price is the estimated value of “something” (say the discounted cash flows from a corporation), then market prices are way too volatile in relation to tangible manifestations of that “something” (he used dividends as proxy). Prices swing more than the fundamentals they are supposed to reflect, they visibly overreact by being too high at times (when their price overshoots the good news or when they go up without any marked reason or too low at others.
-26. The volatility differential between prices and information meant that something about “rational expectation” did not work. (Prices did not rationally reflect the long-term value of securities and were overshooting in either direction.)
-27. Markets had to be wrong. Shiller then pronounced markets to be not as efficient as established by financial theory (efficient markets meant, in a nutshell, that prices should adapt to all available information in such a way as to be totally unpredictable to us humans and prevent people from deriving profits).
-28. Journalism goes to what can capture our attention, with adequate sound bites.
-29. The wise man listens to meaning; the fool only gets the noise.
-30. Performance observed over a narrow time scale is usually just noise.
-31. Over a short time increment, one observes the variability of a portfolio, not the returns.
-32. The same methodology can explain why the news (the high scale) is full of noise and why history (the low scale) is largely stripped of it (though fraught with interpretation problems.
-33. Some psychologists estimate the negative effect for an average loss to be up to 2.5 the magnitude of a positive one.
-34. Negative mutations are traits that survive despite being worse, from the reproductive fitness standpoint, than the ones they replaced. However, they cannot be expected to last more than a few generations (under what is called temporal aggregation).
-35. Darwinian fitness applies to species developing over a very long time, not observed over a short term — time aggregation eliminates much of the effects of randomness; things (noise) balance out over the long run.
-36. Owing to the abrupt rare events, we do not live in a world where things “converge” continuously toward betterment. Nor do things in life move continuously at all.
-37. Just as an animal could have survived because its sample path was lucky, the “best” operators in a given business can come from a subset of operators who survived because of over-fitness to a sample path — a sample path that was free of the evolutionary rare event.
-38. The frequency or probability of the loss, in and by itself, is totally irrelevant; it needs to be judged in connection with the magnitude of the outcome.
-39. It is not how likely an event is to happen that matters, it is how much is made when it happens that should be the consideration.
-40. History teaches us that things that never happened before do happen.
-41. Rare events are always unexpected, otherwise they would not occur.
-42. The economist Robert Lucas dealt a blow to econometrics by arguing that if people were rational then their rationality would cause them to figure out predictable patterns from the past and adapt, so that past information would be completely useless for predicting the future.
-43. No amount of observations of white swans can allow the inference that all swans are white, but the observation of a single black swan is sufficient to refute that conclusion.
-44. Without a proper method, empirical observations can lead you astray. Rigor needs to be applied in the gathering and interpretation of knowledge.
-45. The following inductive statement illustrates the problem of interpreting past data literally, without methodology or logic:
-> I have just completed a thorough statistical examination of the life of President Bush. For fifty-eight years, close to 21,000 observations, he did not die once. I can hence pronounce him as immortal, with a high degree of statistical significance.
-46. Reality does not have the same closed and symmetric laws and regulations as games.
-47. Markets (and life) are not simple win/lose types of situations, as the cost of the losses can be markedly different from that of the wins. Maximizing the probability of winning does not lead to maximizing the expectation from the game when one’s strategy may include skewness, i.e., a small chance of a large loss and a large chance of a small win.
-48. One cannot infer much from a single experiment in a random environment — an experiment needs repeatability showing some causal component.
-49. There are only two types of theories:
-    * Theories that are known to be wrong, as they were tested and adequately rejected (he calls them falsified).
-    * Theories that have not yet been known to be wrong, not falsified yet, but are exposed to be proved wrong.
-50. A theory that does not present a set of conditions under which it would be considered wrong would be termed charlatanism — it would be impossible to reject otherwise.
-51. An open society is one in which no permanent truth is held to exist; this would allow counter-ideas to emerge.
-52. We like to emit logical and rational ideas but we do not necessarily enjoy this execution.
-53. Induction is going from plenty of particulars to the general.
-54. We tend to mistake one realization among all possible random histories as the most representative one, forgetting that there may be others. In a nutshell, the **survivorship bias** implies that the highest-performing realization will be the most visible. Why? Because the losers do not show up.
-55.  A population entirely composed of bad managers will still produce a small amount of great track records.
-56. The number of managers with great track records in a given market depends far more on the number of people who started in the investment business, rather than on their ability to produce profits. It also depends on the volatility.
-57. It is very likely in a large sample of players for one of them to have an inordinately lengthy lucky streak. It is very unlikely that an unspecified player somewhere does not have an inordinately lengthy lucky streak.
-58. Judging an investment that comes to you requires more stringent standards than judging an investment you seek, owing to such **selection bias**.
-59. There is a high probability of the investment coming to you if its success is caused entirely by randomness.
-60. The distribution of the maximum of a variable is different from that of the variable itself.
-61. There is no true attainable randomness in practice, only in theory.
-62. A single random run is bound to exhibit some pattern — if one looks hard enough.
-63. Real randomness does not look random.
-64. Science is marred by a pernicious survivorship bias, affecting the way research gets published. In a way that is similar to journalism, research that yields no result does not make it to print.
-65. A finding of absence (evidence of absence) and an absence of findings (absence of evidence) get mixed together.
-66. Path dependence is the dependence of economic outcomes on the path of previous outcomes, rather than simply on current conditions. In a path-dependent process, “history matters” — it has an enduring influence. Choices made based on transitory conditions can persist long after those conditions change.
-67. Our brain is not cut out for nonlinearities. People think that if, say, two variables are causally linked, then a steady input in one variable should always yield a result in the other one.
-68. Rules have their value. We just follow them not because they are the best but because they are useful and they save time and effort.
-    >  Consider that those who started theorizing upon seeing a tiger on whether the tiger was of this or that taxonomic variety, and the degree of danger it represented, ended up being eaten by it. Others who just ran away at the smallest presumption and were not slowed down by the smallest amount of thinking ended up either out chasing the tiger or out chasing their cousin who ended up being eaten by it.
-69. The availability heuristic: corresponds to the practice of estimating the frequency of an event according to the ease with which instances of the event can be recalled.
-70. The representativeness heuristic: gauging the probability that a person belongs to a particular social group by assessing how similar the person’s characteristics are to the “typical” group member’s.
-71. The simulation heuristic: the ease of mentally undoing an event — playing the alternative scenario. It corresponds to counterfactual thinking: Imagine what might have happened had you not missed your train.
-72. The affect heuristic: What emotions are elicited by events determine their probability in your mind.
-73. One cannot decide without emotion. Now, mathematics gives the same answer: If one were to perform an optimizing operation across a large collection of variables, even with a brain as large as ours, it would take a very long time to decide on the simplest of tasks. So we need a shortcut; emotions are there to prevent us from temporizing.
-74. People overvalue their knowledge and underestimate the probability of their being wrong.
-75. By a law of probability called distribution of the maximum of random variables, the maximum of an average is necessarily less volatile than the average maximum.
-76. At birth, your unconditional life expectancy may be seventy-three years. But as you advance in age and do not die, your life expectancy increases along with your life. Why? Because other people, by dying, have taken your spot in the statistics, for expectation means average. So if you are seventy-three and are in good health, you may still have, say, nine years in expectation. But the expectation would change, and at eighty-two, you will have another five years, provided of course you are still alive. Even someone one hundred years old still has positive conditional life expectation.
-77. Such a statement, when one thinks about it, is not too different from the one that says: Our operation has a mortality rate of 1%. So far we have operated on ninety-nine patients with great success; you are our one hundredth hence you have a 100% probability of dying on the table.
-78. ￼Conditional information: Unless the source of the statement has extremely high qualifications, the statement will be more revealing of the author than the information intended by him.
-79. Wittgenstein’s ruler: Unless have confidence in the ruler’s reliability, if you use a ruler to measure a table you may also be using the table to measure the ruler. The less you trust the ruler’s reliability (in probability called the prior), the more information you are getting about the ruler and the less about the table.
-80. The skeptics’ main teaching was that nothing could be accepted with certainty, conclusions of various degrees of probability could be formed, and these supplied a guide to conduct.
-81. Self-contradiction is made culturally to be shameful, a matter that can prove disastrous in science.
-82. We have been getting things wrong in the past and we laugh at our past institutions; it is time to figure out that we should avoid enshrining the present ones.
-83. Science is great, but individual scientists are dangerous.
-84. The higher up the corporate ladder, the higher the compensation to the individual. This might be justified, as it makes plenty of sense to pay individuals according to their contributions. However, and in general (provided we exclude risk-bearing entrepreneurs), the higher up the corporate ladder, the lower the evidence of such contribution.
-85. To view it in another way, consider the difference between judging on process and judging on results. Lower-ranking persons in the enterprise are on both process and results — in fact, owing to the repetitive aspect of their efforts, their process converges rapidly to results. But top management is only paid on results —no matter the process. There seems to be no such thing as a foolish decision if it results in profits.
-86. Repetitiveness is key for the revelation of skills.
-87. We attribute heroism to those who took crazy decisions but were lucky enough to win — we continue to worship those who won battles and despise those who lost, no matter the reason.
-88. What is random and what you do not know are functionally the same.
-89. Unpredictability is a strong deterrent.
+1. The basic requirement of production is to build and deliver products in response to the demands of the customer at a `scheduled` delivery time, at an `acceptable` quality level, and at the `lowest` possible cost.
+2. A **production flow** is all the steps taken to build and deliver a product to a customer.
+3. Production flow should be constructed by starting with the longest (or most difficult, or most sensitive, or most expensive) step (called a **limiting step**) and working our way back.
+4. The limiting step determines the overall shape of the flow. Optimizations include:
+   * Minimizing the need to execute the limiting step by batching or introducing (short) heuristics.
+   * Parallelizing shorter steps over the limiting step with some offsets.
+5. Fundamental types of production operations:
+   * **Process manufacturing** — which is an activity that physically or chemically changes material(s).
+   * **Assembly** — where the components are put together to constitute a new entity.
+   * **Test** — which subjects the components or the total to an examination of its characteristics.
+6. Equipment capacity, manpower, and inventory can be traded off against each other and then balanced against delivery time. Each alternative costs money.
+7. The right solution is the one that can give you the best delivery time and product quality at the lowest possible cost.
+8. To find the right answer, you must develop a clear understanding of the trade-offs between the various factors — manpower, capacity, and inventory — and you must reduce the understanding to a quantifiable set of relationships.
+9. A raw material inventory creates supply resiliency. The principle to be applied is that you should have enough to cover your consumption rate for the length of time it takes to replace your raw material.
+10. Every decision should be evaluated based on:
+    * Benefits of decision;
+    * Cost of decision e.g. cost of money;
+    * Opportunity at risk e.g. what do you lose without supply resilience and how much does it cost to recover?
+11. All production flows have a basic characteristic: the material becomes more valuable as it moves through the process.
+12. Because of this characteristic, problems in the production process should be detected and fixed at the `lowest-value` stage possible.
+
+## Chapter 2: Managing the breakfast factory
+>  Unless you are prepared to act on what your **leading indicators** are telling you, all you will get from monitoring them is anxiety.
+
+1. **Indicators**/measurements are a key tool for running operations well.
+2. To be useful, each indicator must be focused on a specific operational goal.
+3. Indicators direct your attention towards what they are measuring.
+4. You should guard against overreacting on an indicator by pairing indicators so that together both `effect` and `counter-effect` are measured. E.g. monitoring both inventory levels and the incidence of shortages.
+5. **Joint monitoring** is likely to keep things in the optimum middle ground.
+6. Criteria for an effective indicator:
+   * Covers the output of the work unit and not simply the activity involved.
+   * What is measured should be a physical, countable thing.
+7. The team working on a step should be given the task of prediction so that they are responsible for performing against their own predictions. Don’t delegate predictions to a manager / third party.
+8. A balance should exist between the desired result of the inspection, improved quality, and minimum disturbance to the production process itself.
+9. The **productivity** of any function is the output divided by the labor required to generate the output.
+10. Ways to improve productivity:
+    * Work faster / harder
+    * Change the nature of the work performed — what we do, not how fast we do it.
+11. **Leverage** is the output generated by a specific type of work activity.
+12. An activity with high leverage will generate a high level of output; and vice versa.
+13. Ways to increase leverage:
+    * Automation
+    * Work simplification — question why each step is performed. Often useless steps are only in your workflow because of tradition or because formal procedure ordains it;  nothing practical requires their inclusion.
+
+## Chapter 3: Managerial leverage
+> The art of management lies in the capacity to select from the many activities of seemingly comparable significance the one or two or three that provide leverage well beyond the others and concentrate on them.
+
+1. The output of a manager is a result achieved by a group either under her supervision or influence.
+2. The manager’s own work does not create output, her organization does.
+3. A **managers output** = The output of his organization + The output of the neighboring organizations under his influence
+4. The definition of a “manager” should be broadened: individual contributors who gather and disseminate know-how and information should be seen as middle managers because they exert great power within the organization.
+5. A manager's work is never done.
+6. Major kinds of managerial activities:
+   * Information gathering — from verbal exchanges, reports, and first-hand experience.
+   * Information dissemination — This includes communicating his objectives, priorities, and preferences so that his subordinates can arrive at acceptable decisions themselves.
+   * Decision-making — Managers participate in decision-making often, but they rarely make a decision themselves.
+   * Nudging people in the direction you like.
+   * Being a role model for your subordinates. Nothing leads as well as example.
+7. Information gathering is the basis of all other managerial work.
+8. **Meetings** provide an occasion for managerial activities. Getting together with others is a `medium` and should not be regarded as part of a manager’s activity.
+9. A manager must choose the most effective medium for what they are trying to accomplish.
+10. **Leverage** is the measure of the output generated by any given managerial activity.
+11. Managerial output = Output of organization
+    = L₁ * A₁ + L₂ * A₂ + …
+12. A manager’s output is the sum of the results of individual activities having varying degrees of leverage.
+13. **Managerial productivity** — that is, the output of a manager per unit of time worked — can be increased in three ways:
+    * Increasing the rate with which a manager performs his activities.
+    * Increasing the leverage associated with the various managerial activities.
+    * Shifting the mix of a manager’s activities from those with lower to those with higher leverage.
+14. High leverage activities:
+    * When many people are affected by one manager
+    * When a person’s activity or behavior over a long period of time is affected by a manager’s brief, well-focused set of words or actions.
+    * When a large group’s work is affected by an individual supplying a unique, key piece of knowledge or information.
+15. Timeliness is usually important in maximizing the leverage of a manager’s activity.
+16. Negative leverage activities:
+    * Managerial meddling — when a supervisor uses his superior knowledge and experience of a subordinate’s responsibilities to assume command of a situation rather than letting the subordinate work things through himself.
+    * Waffling — when a manager puts off a decision that will affect the work of other people.
+17. **Delegation** is an essential aspect of management and can provide managerial leverage.
+18. The “delegator” and “delegatee” must share a common information base and a common set of operational ideas on how to go about solving problems.
+19. Insincere delegation can produce negative managerial leverage.
+20. Delegation without follow-through is abdication — you can never wash your hands off a task.
+21. If you have a choice, you should delegate those activities you know best as it’s easier to monitor something you are familiar with.
+22. **Monitoring** is not meddling. Monitoring means checking to make sure an activity is proceeding in line with expectations.
+23. We can apply quality assurance principles to monitoring the results of delegation:
+    * Monitor at the lowest-added-value stage of the process.
+    * The frequency of monitoring should be variable. Monitoring should not be based on what you believe your subordinate can do in general but on his experience with a specific task and his prior performance with it.
+24. Monitoring decision-making delegated to subordinates can be done by monitoring their decision-making process. This can be achieved by having them go through an exercise that checks that they have considered certain factors or thought critically about the decision.
+25. Time management techniques from production principles:
+    * Determine the limiting step (i.e. what is immovable) and manipulate the more yielding activities around it
+    * Batch similar tasks together.
+    * Say “no” if you have a full capacity.
+    * Allow slack — a bit of looseness in your scheduling.
+    * A manager should carry a raw material inventory in terms of projects that they need to do but don’t need to finish right away. Without such an inventory, a manager will most probably use his free time meddling in his subordinate’s work.
+    * Avoid repeatedly reinventing the wheel — Follow well-established procedures that have been shown to work before.
+    * Strive towards regularity — reduce interruptions with batching, documentation and preemptively identifying sources of emergencies.
+26. To gain better control of his time, the manager should use his calendar as a “production” planning tool, taking a firm initiative to schedule work that is not time-critical between those “limiting steps” in the day.
+27. As a rule of thumb, a manager whose work is largely supervisory should have six to eight subordinates.
+28. This range comes from a guidance that a manager should allocate about a half day per week to each of his subordinates.
+
+## Chapter 4: Meetings — The medium of managerial work
+> A meeting called to make a specific decision is hard to keep moving if more than six or seven people attend. Eight people should be the absolute cutoff. Decision-making is not a spectator sport, because onlookers get in the way of what needs to be done.
+
+1. Types of meetings:
+   * Process-oriented meeting: The purpose is information exchange. It’s usually scheduled on a regular basis.
+   * Mission-oriented meeting: The purpose is to solve a specific problem. They frequently produce a decision and are usually ad hoc.
+2. One-on-ones are a type of process-oriented meeting between a supervisor and his subordinate where the subordinate provides his concerns and detailed information about what he is doing and the supervisor teaches his skills and know-how by talking about specific problems and situations.
+3. One-on-ones frequency depends on:
+   * Task-relevant maturity of the subordinate. The most effective management style in a specific instance varies from very close to very loose supervision as a subordinate’s task maturity increases.
+   * How quickly things change in a job arena.
+4. One-on-ones should last long enough for the subordinate to feel they can broach and get into thorny issues. Too short and they will confine themselves to simple things. The author says they should last at least one hour.
+5. One-on-ones should happen in or near the subordinate’s work area if possible.
+6. One-on-ones should be regarded as the subordinate’s meeting, with its agenda and tone set by him.
+7. Things that should be covered in one-on-ones:
+   * Performance figures and indicators used by the subordinate.
+   * Anything important that has happened since the last meeting.
+   * Any issue that preoccupies and nags the subordinate.
+8. The supervisor's role in a one-on-one is to facilitate the subordinate's expression of what’s going on and what’s bothering him.
+9. A staff meeting is one in which a supervisor and all of his subordinates participate, and which therefore presents an opportunity for interaction among peers.
+10. Anything that affects more than two people present at the staff meeting can be discussed there.
+11. Staff meetings should be controlled with an agenda issued far enough in advance that the subordinates will have had the chance to prepare their thoughts for the meeting. It should include an “open session” for the staff to bring up anything they want.
+12. The role of the supervisor in a staff meeting is leading, observing, expediting, questioning, and making decisions.
+13. Operation review meetings are a medium of interaction for people who don’t otherwise have much opportunity to deal with one another.
+14. Before calling a meeting, ask yourself:
+    * What am I trying to accomplish?
+    * Is a meeting necessary? Or desirable? Or justifiable?
+    Don’t call a meeting if all the answers aren’t “yes”.
+15. Determine the purpose of a meeting before committing your time and your company’s resources.
+
+## Chapter 5: Decisions, Decisions
+> A journalist puzzled by our management style once asked me, "Mr. Grove, isn't your company's emphasis on visible signs of egalitarianism such as informal dress, partitions instead of offices... just so much affectation?" My answer was that this is not an affectation, but a matter of survival. In our business, we have to mix knowledge-power people with position-power people daily, and together they make decisions that could affect us for years to come.
+
+1. There is usually a divergence between power based on position vs power based on knowledge.
+2. Peers tend to look for a more senior manager, even if he is not the most competent or knowledgeable person involved, to take over and shape the meeting.
+3. Not everyone needs to agree on a decision, but everyone needs to agree to support the decision.
+
+## Chapter 6: Planning — Today’s actions for tomorrow’s output
+> I have seen far too many people who upon recognizing today’s gap try very hard to determine what decision has to be made to close it. But today’s gap represents a failure of planning sometime in the past. By analogy, forcing ourselves to concentrate on the decisions needed to fix today’s problem is like scurrying after our car has already run out of gas.
+
+1. Strategy is an abstract and general summary of the actions you plan to do.
+2. Tactics are what you do to implement a strategy.
+3. General planning process:
+   * Establish projected need or demand. Figure out what your customers want now and sometime in the future.
+   * Establish your present status and express it in the same terms as step 1. Figure out where you will be if you do nothing different from what you are now doing.
+   * Compare and reconcile steps 1 and 2. What do you need to close the gap? What can you do to close the gap?
+4. The output of the planning process is the decisions made and actions taken as a result of the process.
+5. You implement only the portion of a plan that lies within the time window between now and the next time you go through the planning exercise. Everything else you can look at again.
+6. Each time you make a commitment, you forfeit your chance to commit to something else.
+7. The idea that planners can be people apart from those implementing the plan simply does not work.
+8. A successful management by objective (MBO) system needs to answer two questions:
+   * Where do I want to go? (The answer provides the objective)
+   * How do I pace myself to see that I am getting there? (The answer gives us milestones or key results)
+9. The MBO system should set objectives for a relatively short period (like a quarter).
+10. Keep the number of objectives small. If you try to focus on everything, you focus on nothing.
+11. To be useful, a key result must contain very specific wording and dates so that there is no ambiguity when the deadline arrives.
+12. MBO should be applied with judgment and common sense. It should not be applied mechanically.
+
+## Chapter 8: Hybrid organizations
+> All large organizations with a common business purpose end up in a hybrid organizational form.
+
+1. In a large organization, the desire to give autonomy to teams to respond to local conditions moves the organization towards decentralization.
+2. Conversely, the desire to take advantage of the obvious economies of scale and to increase the leverage of the expertise held in each operational area across the entire corporation moves the organization towards centralization (with functional teams).
+3. Good management rests on a balancing act to get the best combination of responsiveness and leverage.
+
+## Chapter 9: Dual reporting
+> A dual reporting system makes a manager's life ambiguous, and most people don't like ambiguity. Nevertheless, the system is needed to make hybrid organizations work, and while people will strive to find something simpler, the reality is that it doesn't exist. A strictly functional organization, which is clear conceptually, tends to remove engineering and manufacturing (or the equivalent groups in your firm) from the marketplace, leaving them with no idea of what the customers want. A highly mission-oriented organization, in turn, may have definite crisp reporting relationships and clear and unambiguous objectives at all times. However, the fragmented state of affairs that results causes inefficiency and poor overall performance.
+
+1. Hybrid organizations are inevitable and dual reporting is needed to make hybrid organizations work.
+
+## Chapter 10: Modes of control
+> When the environment changes more rapidly than one can change rules, or when a set of circumstances is ambiguous and unclear that a contract between the parties that attempted to cover all possibilities would be prohibitively complicated, we need another mode of control, which is based on cultural values. Its most important characteristic is that the interest of the larger group to which an individual belongs takes precedence over the interest of the individual himself.
+
+1. Our behavior in a work environment can be controlled by three invisible and pervasive means:
+   * Free-market forces which are based on price — goods and services are exchanged between two entities, with each seeking only to enrich himself or herself.
+   * Contractual obligations
+   * Cultural values
+2. It’s the manager’s task to identify which mode of control is most appropriate.
+3. The manager can use two variables to determine this:
+   * The nature of a person’s motivation
+   * The nature of the environment in which he works (complex, uncertain, ambiguous)
+
+## Chapter 11: The sports analogy
+>  At the upper level of the need hierarchy, when one is self-actualized, money in itself is no longer a source of motivation but rather a measure of achievement.
+
+1. Management is a team activity and teams only perform as well as the individuals on it.
+2. There are two reasons why a person isn’t doing their job:
+   * Incapable — i.e. They can’t do it.
+   * Unmotivated — i.e. They won’t do it.
+3. A simple mental test can identify which one of the two reasons:
+   > If the person’s life depended on doing the work, could he do it?
+4. A manager can tackle each reason respectively with:
+   * Training and
+   * Motivation
+5. For Maslow, motivation is closely tied to the idea of needs, which cause people to have drives, which in turn results in motivation.
+6. Safety benefits (like medical insurance) are rarely a dominant source of employee motivation, but if benefits were absent and employees had to worry about such concerns, performance would be badly affected.
+7. Money in the physiological and security-driven modes only motivates until the need is satisfied, but money as a measure of achievement will motivate without limit.
+8. Creating an environment where employees can engage in healthy competition with each other can be a good source of motivation. The competition has to be connected with one of the company’s objectives.
+
+## Chapter 12: Task-relevant maturity
+> The age-old question of whether friendship between supervisor and subordinate is a good thing
+> […]
+> Everyone must decide for himself what is professional and appropriate here. A test might be to imagine yourself delivering a tough performance review to your friend. Do you cringe at the thought? If so, don't make friends at work. If your stomach remains unaffected, you are likely to be someone whose personal relationships will strengthen work relationships.
+
+1. A manager’s most important responsibility is eliciting top performance from his subordinates.
+2. High output is associated with particular combinations of certain managers and certain groups of workers. This suggests that a given managerial approach is not equally effective under all conditions.
+3. As a manager, be aware that your subordinates might take your suggestions as marching orders.
+4. Task-relevant maturity (TRM) is the experience, training, and education that a person has with a specific task.
+5. The fundamental variable that determines the effective management style is the task-relevant maturity of the subordinate:
+   * When the TRM is low, the most effective approach is one that offers very precise and detailed instructions, wherein the supervisor tells the subordinate what needs to be done, when, and how: in other words, a highly structured approach.
+   * As the TRM of the subordinate grows, the most effective style moves from the structured to one more given to communication, emotional support, and encouragement, in which the manager pays more attention to the subordinate as an individual than to the task at hand.
+   * As the TRM becomes even greater, the effective management style changes again. Here the manager's involvement should be kept to a minimum, and should primarily consist of making sure that the objectives toward which the subordinate is working are mutually agreed upon.
+6. But regardless of what the TRM may be, the manager should always monitor a subordinate's work closely enough to avoid surprises.
+7. The responsibility for teaching the subordinate must be assumed by his supervisor, and not paid for by the customers of his organization, internal or external:
+   > An associate of mine who had always done an outstanding job hired a junior person to handle some old tasks, while he himself took on some new ones. The subordinate did poor work. My associate's reaction: "He has to make his own mistakes. That's how he learns!" The problem with this is that the subordinate's tuition is paid by his customers. And that is absolutely wrong.
+
+## Chapter 14: Two difficult tasks
+> In the end, careful interviewing doesn’t guarantee you anything, it merely increases your odds of getting lucky.
+
+1. Two other emotionally charged tasks a manager must perform:
+   * Interviewing a potential employee and
+   * Trying to talk a valued employee out of quitting
+2. The purpose of an interview is to:
+   * Select a good performer
+   * Educate him as to who you and the company are
+   * Determine if a mutual match exists
+   * Sell him on the job
+3. Reference checking hardly exempts you from getting as much as you can out of the interview. Even if a reference comments freely about the candidate, what he says won’t have much meaning to you without some knowledge of how his company does business and what values it works by.
+4. The applicant should do most of the talking during an interview.
+5. The interview is yours to control: when things go off the track, get them back quickly.
+6. An interview produces the most insight if you steer the discussion toward subjects familiar to both you and the candidates.
+7. The information to be gained in an interview tends to fall into four distinct categories:
+   * The candidate’s technical knowledge— i.e. his skill level or what he knows about performing the job he wants.
+   * How the candidate performed in an earlier job using his skills and technical knowledge — i.e. what they did with what they knew.
+   * The reasons why there may be any discrepancy between what they knew and what they did — i.e. between his capabilities and performance.
+   * Getting a feel for his set of operational values.
+8. The ultimate purpose of interviewing is to make a judgment about how the candidate would perform in your company's environment.
+9. The end of chapter 14 goes into some details about handling a valued employee who has decided to quit:
+   * What to do when initially informed — Reschedule other items immediately and initiate a meeting.
+   * How to have the initial conversation — Listen to the employee, and ask questions. Don’t argue, lecture, or panic.
+   * How to formulate a plan — Either moving to a different department or whatever the employee feels is more valuable.
+   * How to have a follow-up conversation — Sharing the plan and reassuring the employee that they are not “blackmailing” the company.
+   * How to handle that the employee already accepted an offer from another company — Emphasize that commitments with the people they know (current company) are stronger than commitments with people they don’t know yet (new company).
+
+## Chapter 15: Compensation as task-relevant feedback
+> Merit-based compensation simply cannot work unless we understand that if someone is going to be first, somebody else has to be last.
+
+1. Money has significance at all levels of Maslow’s motivation hierarchy.
+2. At higher levels of compensation, an incremental amount of money gradually will have less and less material utility to the person who gets it.
+3. If we are going to consider promotions, we have to consider the **Peter Principle**, which says that when someone is good at his job, he is promoted; he keeps getting promoted until he reaches his level of incompetence and then stays there.
+4. An achiever will alternate between “meets requirements” and “exceeds requirements” ratings throughout his career.
+
+## Chapter 16: Why training is the boss’s job
+> If you accept that training, along with motivation, is the way to improve the performance of your subordinates, that what you teach must be closely tied to what you practice, and that training needs to be a continuing process rather than a one-time event, it is clear that the `who` of the training is `you`, the manager.
+
+1. Insufficiently trained employees, in spite of their best intentions, produce inefficiencies, excess costs, unhappy customers, and sometimes even dangerous situations.
+2. Training should be a process not an event.
+3. Much deeper knowledge of a task is required to teach it than to simply do it.
