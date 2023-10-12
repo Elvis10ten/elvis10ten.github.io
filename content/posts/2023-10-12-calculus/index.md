@@ -122,11 +122,11 @@ Intro
 34. **Transcendental functions** cannot be described by basic algebraic operations. They are said to “transcend,” or go beyond, algebra.
 35. The most common transcendental functions are trigonometric, exponential, and logarithmic functions.
 36. A **piecewise-defined function** is defined by different formulas on different parts of its domain. An example is the absolute-value function:
-    $$
+    /$$
     f(x) = \cases{        x       & $x\ge 0$ \cr
     -x & $x\lt 0$ \cr
     }
-    $$
+    /$$
 37. To graph a piecewise-defined function, we graph each part of the function in its respective domain, on the same coordinate system. If the formula for a function is different for `x < a` and `x > a`, we need to pay special attention to what happens at `x = a` when we graph the function. Sometimes the graph needs to include an open or closed circle to indicate the value of the function at `x = a`. An open circle is used to denote that a graph doesn’t define the function output at `x = a`. A closed circle is used for the opposite effect.
 38. Given the base function `y = f(x)`, we can apply multiple function transformations to it: `y = cf(a(x + b)) + d`. When function transformations are combined, you can follow the order below to get the transformed function’s graph from the  base function’s graph:
     * **Horizontal shift** of the graph of `y = f(x)`.
@@ -135,9 +135,6 @@ Intro
     * **Vertical shift** of the graph of `y = cf(a(x + b))`.
 
 An enumeration of the different function transformations and their related effects on the graph of a function:
-
-```
-
 | Transformation of `f`; Where `c > 0` | Effect on the graph of `f`                                   |
 |--------------------------------------|--------------------------------------------------------------|
 | `f(x) + c`                           | Vertical shift up `c` units                                  |
@@ -148,8 +145,6 @@ An enumeration of the different function transformations and their related effec
 | f(cx)                                | Horizontal stretch if `0 < c < 1`;<br>Horizontal compression if `c > 1` |
 | −f(x)                                | Reflection about the x-axis                                  |
 | f(−x)                                | Reflection about the y-axis                                  |
-
-```
 
 ### Trigonometric Functions
 1. Almost any repetitive or cyclical motion can be modeled by some combination of trigonometric functions.
