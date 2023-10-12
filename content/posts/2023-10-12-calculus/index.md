@@ -1,5 +1,5 @@
 ---
-title: "Calculus"
+title: "Calculus [WIP]"
 slug: "2023-10-12-calculus"
 date: 2023-10-12
 canonicalUrl: "https://elvischidera.com/2023-10-12-calculus"
