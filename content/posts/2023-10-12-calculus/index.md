@@ -14,85 +14,87 @@ Intro
 -----
 
 ## Chapter 1: Functions and Graphs
-
-### Review of Functions
-1. A **function** `f` consists of a set of inputs, a set of outputs, and a rule for assigning each input to `exactly one` output. The set of inputs is called the **domain** of the function. The set of outputs is called the **range** of the function.
-2. For any function, when we know the input, the output is determined, so we say that the `output is a function of the input`.
-3. Given two sets `A` and `B`, a set with elements that are ordered pairs `(x, y)`, where `x` is an element of `A` and `y` is an element of `B`, is a relation from `A` to `B`.
-4. A function is a special type of relation.
-5. For a general function `f` with domain D, we often use `x` to denote the input and `y` to denote the output associated with `x`.
-6. When doing so, we refer to `x` as the **independent variable** and `y` as the **dependent variable**, because it depends on `x`.
-7. Using function notation, we write `y = f(x)`, and we read this equation as “y equals f of x.”
-8. A function can be visualized by plotting points `(x, y)` in the coordinate plane where `y = f(x)`. The **graph of a function** is the set of all these points.
-9. Every function has a domain. However, sometimes a function is described with no specific domain given. In this case, the domain is taken to be the set of all real numbers `x` for which `f(x)` is a real number.
-10. When describing a set with an infinite number of elements, it is often helpful to use set-builder or interval notation:
-```mathematica
-    (1, 5) = { x | 1 < x > 5 }
-    Interval notation and Set builder.
-```
-11. Piecewise functions are defined using different equations for different parts of their domain. Eg: a function `f` with a domain that is the set of all real numbers such that `f(x) = 3x + 1` for `x ≥ 2` and `f(x) = x²` for `x < 2`. 
-12. Functions can be represented through:
-* Tables
-* Formulas
-* Graphs
-13. Given an algebraic formula for a function `f`, the graph of `f` is the set of points `(x, f(x))`, where `x` is in the domain of `f` and `f(x)` is in the range.
-14. Those values of `x` where `f(x) = 0` are called the **zeros of a function**.
-15. The zeros determine where the graph of `f` intersects the x-axis.
-16. The **y-intercept** is given by `(0, f(0))`.
-17. Since a function has exactly one output for each input, the graph of a function can have, at most, one y-intercept.
-18. Vertical line test: Given a function `f`, every vertical line that may be drawn intersects the graph of `f` no more than once. If any vertical line intersects a set of points more than once, the set of points does not represent a function.
-19. We say that a function `f` is **increasing on the interval `I`** if for all `x₁, x₂ ∈ I`,
+1. A **function** `f` consists of a set of inputs, a set of outputs, and a rule for assigning each input to _exactly one_ output.
+2. The set of inputs is called the **domain** of the function.
+3. The set of outputs is called the **range** of the function.
+4. For any function, when we know the input, the output is determined, so we say that the _output is a function of the input_.
+5. Given two sets `A` and `B`, a set with elements that are ordered pairs `(x, y)`, where `x` is an element of `A` and `y` is an element of `B`, is a **relation** from `A` to `B`.
+6. A function is a special type of relation.
+7. For a general function `f` with domain `D`, we often use `x` to denote the input and `y` to denote the output associated with `x`.
+8. When doing so, we refer to `x` as the **independent variable** and `y` as the **dependent variable**, because it depends on `x`.
+9. Using function notation, we write `y = f(x)`, and we read this equation as “y equals f of x.”
+10. A function can be visualized by plotting points `(x, y)` in the coordinate plane where `y = f(x)`. The **graph of a function** is the set of all these points.
+11. Every function has a domain. However, sometimes a function is described with no specific domain given. In this case, the domain is taken to be the set of all real numbers `x` for which `f(x)` is a real number.
+12. When describing a set with an infinite number of elements, it is often helpful to use:
+    * Set-builder notation: `{ x | 1 > x < 5 }` or
+    * Interval notation: `(1, 5)`
+13. **Piecewise functions** are defined using different equations for different parts of their domain. Eg:
+    $$
+    f(x) = \begin{cases}
+      3x + 1 &\text{if } x \geq 2 \\
+      x^2 &\text{if } x < 2
+   \end{cases}
+    $$
+14. Functions can be represented through:
+    * Tables
+    * Formulas
+    * Graphs
+15. Given an algebraic formula for a function `f`, the graph of `f` is the set of points `(x, f(x))`, where `x` is in the domain of `f` and `f(x)` is in the range.
+16. Those values of `x` where `f(x) = 0` are called the **zeros of a function**.
+17. The zeros determine where the graph of `f` intersects the x-axis.
+18. The **y-intercept** is given by `(0, f(0))`.
+19. Since a function has exactly one output for each input, the graph of a function can have, at most, one y-intercept.
+20. **Vertical line test**: Given a function `f`, every vertical line that may be drawn intersects the graph of `f` no more than once. If any vertical line intersects a set of points more than once, the set of points does not represent a function.
+21. We say that a function `f` is **increasing on the interval** `I` if for all `x₁, x₂ ∈ I`,
     `f(x₁) ≤ f(x₂)` when `x₁ < x₂`.
-20. We say that a function `f` is **strictly increasing on the interval `I`** if for all `x₁, x₂ ∈ I`,
+22. We say that a function `f` is **strictly increasing on the interval** `I` if for all `x₁, x₂ ∈ I`,
     `f(x₁) < f(x₂)` when `x₁ < x₂`.
-21. We say that a function `f` is **decreasing on the interval `I`** if for all `x₁, x₂ ∈ I`,
+23. We say that a function `f` is **decreasing on the interval** `I` if for all `x₁, x₂ ∈ I`,
     `f(x₁) ≥ f(x₂)` when `x₁ < x₂`.
-22. We say that a function `f` is **strictly decreasing on the interval `I`** if for all `x₁, x₂ ∈ I`,
+24. We say that a function `f` is **strictly decreasing on the interval** `I` if for all `x₁, x₂ ∈ I`,
     `f(x₁) > f(x₂)` when `x₁ < x₂`.
-23. **To combine functions using mathematical operators**, write the functions with the operator and simplify. E.g:
-    * Sum: (f + g)(x) = f(x) + g(x)
-    * Difference: (f − g)(x) = f(x) − g(x)
-    * Product: (f · g)(x) = f(x)g(x)
-    * Quotient: (f / g)(x) = f(x) / g(x) for g(x) ≠ 0
-
-### Basic Classes of Functions
-1. Linear functions have the form `f(x) = ax + b`, where `a` and `b` are constants.
-2. The graph of any linear function is a line.
-3. The **slope** is the change in `y` for each unit change in `x`.
-4. The slope measures both the **steepness** and the **direction** of a line:
-   * If the slope is positive, the line points upward when moving from left to right.
-   * If the slope is negative, the line points downward when moving from left to right.
+25. **To combine functions using mathematical operators**, write the functions with the operator and simplify. E.g:
+    * Sum: `(f + g)(x) = f(x) + g(x)`
+    * Difference: `(f − g)(x) = f(x) − g(x)`  
+    * Product: `(f · g)(x) = f(x)g(x)`
+    * Quotient: `(f / g)(x) = f(x) / g(x)` for `g(x) ≠ 0`
+26. **Linear functions** have the form `f(x) = ax + b`, where `a` and `b` are constants.
+27. The graph of any linear function is a **line**.
+28. The **slope** is the change in `y` for each **unit** change in `x`.
+29. The slope measures both the **steepness** and the **direction** of a line:
    * If the slope is zero, the line is horizontal.
-5. To calculate the slope of a line, we need to determine the ratio of the change in `y` versus the change in `x`. To do so, we choose any two points `(x₁, y₁)` and `(x₂, y₂)` on the line and calculate (y₂ - y₁) / (x₂ - x₁).
-6. The slope is independent of the choice of points `(x₁, y₁)` and `(x₂, y₂)` on the line.
-7. Consider line `L` passing through points  `(x₁, y₁)` and `(x₂, y₂)`. Let `Δy = y₂ - y₁` and `Δx = x₂ - x₁` denote the changes in `y` and `x`, respectively. The slope of the line is:
-   `m = (y₂ - y₁) / (x₂ - x₁) = Δy / Δx`.
-8. The relationship between slope and the formula for a linear function (`f(x) = ax + b`):
+   * The magnitude of the slope determines the slope's steepness.
+   * The sign of the slope determines the slope's direction:
+      *  If the slope is positive, the line points upward when moving from left to right.
+      *  If the slope is negative, the line points downward when moving from left to right.
+30.  To calculate the slope of a line, we need to determine the ratio of the change in `y` versus the change in `x`. To do so, we choose any two points `(x₁, y₁)` and `(x₂, y₂)` on the line and calculate $\frac{Δy}{Δx} = \frac{y₂ - y₁}{x₂ - x₁}$.
+31.  The slope of a line is independent of the choice of points `(x₁, y₁)` and `(x₂, y₂)` on the line.
+32. The relationship between slope and the formula for a linear function `f(x) = ax + b`:
    * Evaluating the function `f` at `x = 0`, we see that `(0, b)` is a point on this line.
    * Evaluating this function at `x = 1`, we see that `(1, a + b)` is also a point on this line.
-   * `Slope = [(a + b) − b] / (1 − 0) = a`.
-   * **The slope-intercept form** of a linear function: We conclude that the formula `f(x) = mx + b` tells us the slope, `m`, and the y-intercept, `(0, b)`.
-9. Consider a line passing through the point `(x₁, y₁)` with slope `m`. The equation `y − y₁ = m (x - x₁)` is the **point-slope form** for that linear function.
-10. The **standard form of a line** is given by the equation `ax + by = c`, where `a` and `b` are both not zero. This form is more general because it allows for a `vertical line`, `x = k`.
-11. A linear function is a special type of a more general class of functions: polynomials.
-12. A **polynomial function** is any function that can be written in the form:
+   * $Slope = \frac{(a + b) − b}{1 − 0} = a$.
+   * We conclude that the formula `f(x) = mx + b` tells us the slope, `m`, and the y-intercept, `(0, b)`. This form of expressing a linear function is called the **slope-intercept form**.
+33. Consider a line passing through the point `(x₁, y₁)` with slope `m`. The equation `y − y₁ = m (x - x₁)` is the **point-slope form** for that linear function.
+34. The **standard form of a line** is given by the equation `ax + by = c`, where `a` and `b` are both not zero. This form is more general because it allows for a `vertical line`, `x = k`.
+35. A linear function is a special type of a more general class of functions: polynomials.
+36. A **polynomial function** is any function that can be written in the form:
     `f(x) = aₙxⁿ + aₙ-₁xⁿ-¹ + … + a₁x + a₀`
     for some integer `n ≥ 0` and constants `aₙ`, `aₙ-₁`,…, `a₀`, where `aₙ ≠ 0`. In the case when `n = 0`, we allow for `a₀ = 0`; if `a₀ = 0`, the function `f(x) = 0` is called the **zero function**.
-13. The value `n` is called the **degree of the polynomial**
-14. The constant `aₙ` is called the **leading coefficient**.
-15. A linear function of the form `f(x) = mx + b` is a polynomial of **degree 1** if `m ≠ 0` and **degree 0** if `m = 0`.
-16. A polynomial of **degree 0** is also called a **constant function**.
-17. A polynomial function of **degree 2** is called a **quadratic function** and has the form `f(x) = ax2 + bx + c`, where `a ≠ 0`.
-18. A polynomial function of **degree 3** is called a **cubic function**.
-19. A power function is any function of the form `f(x) = axᵇ`, where `a` and `b` are any real numbers.
-20. A power function is also a polynomial function if `b` is a positive integer.
-21. If `b` is even, then `f(x) = axᵇ` is an even function because `f(−x) = a(−x)ᵇ = axᵇ` if `b` is even.
-22. If `b` is odd, then `f(x) = axᵇ` is an odd function because `f(−x) = a(−x)ᵇ = −axᵇ` if `b` is odd.
-23. The **end behavior of a function** `f(x)`  is what happens to the values of `f(x)` as `x → ∞` and as `x → −∞`.
-24. The value of `f(x)` either:
+37. The value `n` is called the **degree of the polynomial**
+38. The constant `aₙ` is called the **leading coefficient**.
+39. A linear function of the form `f(x) = mx + b` is a polynomial of **degree 1** if `m ≠ 0` and **degree 0** if `m = 0`.
+40. A polynomial of **degree 0** is also called a **constant function**.
+41. A polynomial function of **degree 2** is called a **quadratic function** and has the form `f(x) = ax2 + bx + c`, where `a ≠ 0`.
+42. A polynomial function of **degree 3** is called a **cubic function**.
+43. A power function is any function of the form `f(x) = axᵇ`, where `a` and `b` are any real numbers.
+44. A power function is also a polynomial function if `b` is a positive integer.
+45. If `b` is even, then `f(x) = axᵇ` is an even function because `f(−x) = a(−x)ᵇ = axᵇ` if `b` is even.
+46. If `b` is odd, then `f(x) = axᵇ` is an odd function because `f(−x) = a(−x)ᵇ = −axᵇ` if `b` is odd.
+47. The **end behavior of a function** `f(x)`  is what happens to the values of `f(x)` as `x → ∞` and as `x → −∞`.
+48. The value of `f(x)` either:
     * Approaches a finite number `c` and we say “`f(x)` approaches `c` as `x` goes to infinity,” and we write `f(x) → c` as `x → ∞`. Also, the line `y = c` is a **horizontal asymptote** for the function. E.g, `f(x) = 2 + 1/x`.
     * Approaches ±infinity and we say “f(x) approaches infinity as x approaches infinity,” and we write `f(x) → ∞` as `x → ∞`. E.g, `f(x) = 3x²`.
-25. End behavior of polynomials:
+49. End behavior of polynomials:
     * For a **quadratic function** `f(x) = ax² + bx + c`.
       * If `a > 0`, the values `f(x) → ∞` as `x → ±∞`.
       * If `a < 0`, the values `f(x) → −∞` as `x → ±∞`.
@@ -101,7 +103,7 @@ Intro
       * If `a > 0`, then `f(x) → ∞` as `x → ∞` and `f(x) → −∞` as `x → −∞`.
       * If `a < 0`, then `f(x) → −∞` as `x → ∞` and `f(x) → ∞` as `x → −∞`.
     * The behavior for higher-degree polynomials can be analyzed similarly.
-26. The **zeros of a polynomial** function are where the function intersects the x-axis. To determine where a function `f` intersects the x-axis, we need to solve the equation `f(x) = 0` for `x`:
+50. The **zeros of a polynomial** function are where the function intersects the x-axis. To determine where a function `f` intersects the x-axis, we need to solve the equation `f(x) = 0` for `x`:
     * For a linear function `f(x) = mx + b`, the x-intercept is given by `(−b/m, 0)`.
     * For a quadratic function, we can find the zeroes of the quadratic equation `ax² + bx + c = 0`:
       * Sometimes it's possible to factor the equation
@@ -110,26 +112,26 @@ Intro
         * If `b² − 4ac = 0`, there is only real number one solution.
         * If `b² − 4ac < 0`, no real numbers satisfy the quadratic equation.
     * In the case of higher-degree polynomials, it may be more complicated to determine where the graph intersects the x-axis.
-27. A **mathematical model** is a method of simulating real-life situations with mathematical equations.
-28. Physicists, engineers, economists, and other researchers develop models by combining observation with quantitative data to develop equations, functions, graphs, and other mathematical tools to describe the behavior of various systems accurately.
-29. Models are useful because they help predict future outcomes.
-30. An **algebraic function** is one that involves addition, subtraction, multiplication, division, rational powers, and roots.
-31. The two types of algebraic functions are
+51. A **mathematical model** is a method of simulating real-life situations with mathematical equations.
+52. Physicists, engineers, economists, and other researchers develop models by combining observation with quantitative data to develop equations, functions, graphs, and other mathematical tools to describe the behavior of various systems accurately.
+53. Models are useful because they help predict future outcomes.
+54. An **algebraic function** is one that involves addition, subtraction, multiplication, division, rational powers, and roots.
+55. The two types of algebraic functions are
     * **Rational functions** are any function of the form `f(x) = p(x) / q(x)`, where `p(x)` and `q(x)` are polynomials.
     * **Root functions** are a power function of the form `f(x) = x^1/n`, where `n` is a positive integer greater than one.
-32. For root functions, If `n` is even, the domain of `f(x) = x^1/n` is `[0, ∞)`.
-33. For root functions, If `n` is odd, the domain of `f(x) = x^1/n` is `[-∞, ∞)` and the function is an odd function.
-34. **Transcendental functions** cannot be described by basic algebraic operations. They are said to “transcend,” or go beyond, algebra.
-35. The most common transcendental functions are trigonometric, exponential, and logarithmic functions.
-36. A **piecewise-defined function** is defined by different formulas on different parts of its domain. An example is the absolute-value function:
+56. For root functions, If `n` is even, the domain of `f(x) = x^1/n` is `[0, ∞)`.
+57. For root functions, If `n` is odd, the domain of `f(x) = x^1/n` is `[-∞, ∞)` and the function is an odd function.
+58. **Transcendental functions** cannot be described by basic algebraic operations. They are said to “transcend,” or go beyond, algebra.
+59. The most common transcendental functions are trigonometric, exponential, and logarithmic functions.
+60. A **piecewise-defined function** is defined by different formulas on different parts of its domain. An example is the absolute-value function:
     $$
     f(x) = \begin{cases}
       a &\text{if } b \\
       c &\text{if } d
    \end{cases}
     $$
-37. To graph a piecewise-defined function, we graph each part of the function in its respective domain, on the same coordinate system. If the formula for a function is different for `x < a` and `x > a`, we need to pay special attention to what happens at `x = a` when we graph the function. Sometimes the graph needs to include an open or closed circle to indicate the value of the function at `x = a`. An open circle is used to denote that a graph doesn’t define the function output at `x = a`. A closed circle is used for the opposite effect.
-38. Given the base function `y = f(x)`, we can apply multiple function transformations to it: `y = cf(a(x + b)) + d`. When function transformations are combined, you can follow the order below to get the transformed function’s graph from the  base function’s graph:
+61. To graph a piecewise-defined function, we graph each part of the function in its respective domain, on the same coordinate system. If the formula for a function is different for `x < a` and `x > a`, we need to pay special attention to what happens at `x = a` when we graph the function. Sometimes the graph needs to include an open or closed circle to indicate the value of the function at `x = a`. An open circle is used to denote that a graph doesn’t define the function output at `x = a`. A closed circle is used for the opposite effect.
+62. Given the base function `y = f(x)`, we can apply multiple function transformations to it: `y = cf(a(x + b)) + d`. When function transformations are combined, you can follow the order below to get the transformed function’s graph from the  base function’s graph:
     * **Horizontal shift** of the graph of `y = f(x)`.
     * **Horizontal scaling** of the graph of `y = f(x + b)` by a factor of `|a|`. If `a < 0`, reflect the graph about the y-axis.
     * **Vertical scaling** of the graph of `y = f(a(x + b))` by a factor of `|c|`. If `c < 0`, reflect the graph about the x-axis.
