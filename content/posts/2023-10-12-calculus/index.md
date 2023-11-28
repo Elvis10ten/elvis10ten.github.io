@@ -77,27 +77,29 @@ Intro
 33. Consider a line passing through the point `(x₁, y₁)` with slope `m`. The equation `y − y₁ = m (x - x₁)` is the **point-slope form** for that linear function.
 34. The **standard form of a line** is given by the equation `ax + by = c`, where `a` and `b` are both not zero. This form is more general because it allows for a `vertical line`, `x = k`.
 35. A linear function is a special type of a more general class of functions: polynomials.
-36. A **polynomial function** is any function that can be written in the form:
+36. A **polynomial function** is any function consisting of variables and coefficients, that involves only the operations of addition, subtraction, multiplication, and positive-integer powers of variables.
+37. A univariate polynomial function can always be written (or rewritten) in the form:
     $$f(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + … + a_{1}x^{1} + a_{0}x^{0}$$
     Where:
-    * `n` is an integer and `n ≥ 0`,
-    * `aₙ`, `aₙ-₁`, … , `a₀` are all constants, and `aₙ ≠ 0`.
-    * In the case when `n = 0`, we allow for `a₀ = 0`; if `a₀ = 0`, the function `f(x) = 0` is called the **zero function**.
-1.  The value `n` is called the **degree of the polynomial**
-2.  The constant `aₙ` is called the **leading coefficient**.
-3.  A linear function of the form `f(x) = mx + b` is a polynomial of **degree 1** if `m ≠ 0` and **degree 0** if `m = 0`.
-4.  A polynomial of **degree 0** is also called a **constant function**.
-5.  A polynomial function of **degree 2** is called a **quadratic function** and has the form `f(x) = ax2 + bx + c`, where `a ≠ 0`.
-6.  A polynomial function of **degree 3** is called a **cubic function**.
-7.  A power function is any function of the form `f(x) = axᵇ`, where `a` and `b` are any real numbers.
-8.  A power function is also a polynomial function if `b` is a positive integer.
-9.  If `b` is even, then `f(x) = axᵇ` is an even function because `f(−x) = a(−x)ᵇ = axᵇ` if `b` is even.
-10. If `b` is odd, then `f(x) = axᵇ` is an odd function because `f(−x) = a(−x)ᵇ = −axᵇ` if `b` is odd.
-11. The **end behavior of a function** `f(x)`  is what happens to the values of `f(x)` as `x → ∞` and as `x → −∞`.
-12. The value of `f(x)` either:
+    * $a_0$, ..., $a_n$ are constants that are called the coefficients of the polynomial and
+    * x is the variable.
+38. The exponent on a variable in a term is called the degree of that variable in that term.
+39. The **degree of a polynomial** is the largest degree of any term with nonzero coefficient.
+40. The **leading coefficient** is the coefficient of the term with the largest degree.
+41. A linear function of the form `f(x) = mx + b` is a polynomial of **degree 1** if `m ≠ 0` and **degree 0** if `m = 0`.
+42. A polynomial of **degree 0** is also called a **constant function**.
+43. The function `f(x) = 0` is called the **zero function** and its degree is undefined.
+44. A polynomial function of **degree 2** is called a **quadratic function** and has the form `f(x) = ax2 + bx + c`, where `a ≠ 0`.
+45. A polynomial function of **degree 3** is called a **cubic function**.
+46. A power function is any function of the form `f(x) = axᵇ`, where `a` and `b` are any real numbers.
+47. A power function is also a polynomial function if `b` is a positive integer.
+48. If `b` is even, then `f(x) = axᵇ` is an even function because `f(−x) = a(−x)ᵇ = axᵇ` if `b` is even.
+49. If `b` is odd, then `f(x) = axᵇ` is an odd function because `f(−x) = a(−x)ᵇ = −axᵇ` if `b` is odd.
+50. The **end behavior of a function** `f(x)`  is what happens to the values of `f(x)` as `x → ∞` and as `x → −∞`.
+51. The value of `f(x)` either:
     * Approaches a finite number `c` and we say “`f(x)` approaches `c` as `x` goes to infinity,” and we write `f(x) → c` as `x → ∞`. Also, the line `y = c` is a **horizontal asymptote** for the function. E.g, `f(x) = 2 + 1/x`.
     * Approaches ±infinity and we say “f(x) approaches infinity as x approaches infinity,” and we write `f(x) → ∞` as `x → ∞`. E.g, `f(x) = 3x²`.
-13. End behavior of polynomials:
+52. End behavior of polynomials:
     * For a **quadratic function** `f(x) = ax² + bx + c`.
       * If `a > 0`, the values `f(x) → ∞` as `x → ±∞`.
       * If `a < 0`, the values `f(x) → −∞` as `x → ±∞`.
@@ -106,7 +108,7 @@ Intro
       * If `a > 0`, then `f(x) → ∞` as `x → ∞` and `f(x) → −∞` as `x → −∞`.
       * If `a < 0`, then `f(x) → −∞` as `x → ∞` and `f(x) → ∞` as `x → −∞`.
     * The behavior for higher-degree polynomials can be analyzed similarly.
-14. The **zeros of a polynomial** function are where the function intersects the x-axis. To determine where a function `f` intersects the x-axis, we need to solve the equation `f(x) = 0` for `x`:
+53. The **zeros of a polynomial** function are where the function intersects the x-axis. To determine where a function `f` intersects the x-axis, we need to solve the equation `f(x) = 0` for `x`:
     * For a linear function `f(x) = mx + b`, the x-intercept is given by `(−b/m, 0)`.
     * For a quadratic function, we can find the zeroes of the quadratic equation `ax² + bx + c = 0`:
       * Sometimes it's possible to factor the equation
@@ -115,26 +117,26 @@ Intro
         * If `b² − 4ac = 0`, there is only real number one solution.
         * If `b² − 4ac < 0`, no real numbers satisfy the quadratic equation.
     * In the case of higher-degree polynomials, it may be more complicated to determine where the graph intersects the x-axis.
-15. A **mathematical model** is a method of simulating real-life situations with mathematical equations.
-16. Physicists, engineers, economists, and other researchers develop models by combining observation with quantitative data to develop equations, functions, graphs, and other mathematical tools to describe the behavior of various systems accurately.
-17. Models are useful because they help predict future outcomes.
-18. An **algebraic function** is one that involves addition, subtraction, multiplication, division, rational powers, and roots.
-19. The two types of algebraic functions are
+54. A **mathematical model** is a method of simulating real-life situations with mathematical equations.
+55. Physicists, engineers, economists, and other researchers develop models by combining observation with quantitative data to develop equations, functions, graphs, and other mathematical tools to describe the behavior of various systems accurately.
+56. Models are useful because they help predict future outcomes.
+57. An **algebraic function** is one that involves addition, subtraction, multiplication, division, rational powers, and roots.
+58. The two types of algebraic functions are
     * **Rational functions** are any function of the form `f(x) = p(x) / q(x)`, where `p(x)` and `q(x)` are polynomials.
     * **Root functions** are a power function of the form `f(x) = x^1/n`, where `n` is a positive integer greater than one.
-20. For root functions, If `n` is even, the domain of `f(x) = x^1/n` is `[0, ∞)`.
-21. For root functions, If `n` is odd, the domain of `f(x) = x^1/n` is `[-∞, ∞)` and the function is an odd function.
-22. **Transcendental functions** cannot be described by basic algebraic operations. They are said to “transcend,” or go beyond, algebra.
-23. The most common transcendental functions are trigonometric, exponential, and logarithmic functions.
-24. A **piecewise-defined function** is defined by different formulas on different parts of its domain. An example is the absolute-value function:
+59. For root functions, If `n` is even, the domain of `f(x) = x^1/n` is `[0, ∞)`.
+60. For root functions, If `n` is odd, the domain of `f(x) = x^1/n` is `[-∞, ∞)` and the function is an odd function.
+61. **Transcendental functions** cannot be described by basic algebraic operations. They are said to “transcend,” or go beyond, algebra.
+62. The most common transcendental functions are trigonometric, exponential, and logarithmic functions.
+63. A **piecewise-defined function** is defined by different formulas on different parts of its domain. An example is the absolute-value function:
     $$
     f(x) = \begin{cases}
       a &\text{if } b \\
       c &\text{if } d
    \end{cases}
     $$
-25. To graph a piecewise-defined function, we graph each part of the function in its respective domain, on the same coordinate system. If the formula for a function is different for `x < a` and `x > a`, we need to pay special attention to what happens at `x = a` when we graph the function. Sometimes the graph needs to include an open or closed circle to indicate the value of the function at `x = a`. An open circle is used to denote that a graph doesn’t define the function output at `x = a`. A closed circle is used for the opposite effect.
-26. Given the base function `y = f(x)`, we can apply multiple function transformations to it: `y = cf(a(x + b)) + d`. When function transformations are combined, you can follow the order below to get the transformed function’s graph from the  base function’s graph:
+64. To graph a piecewise-defined function, we graph each part of the function in its respective domain, on the same coordinate system. If the formula for a function is different for `x < a` and `x > a`, we need to pay special attention to what happens at `x = a` when we graph the function. Sometimes the graph needs to include an open or closed circle to indicate the value of the function at `x = a`. An open circle is used to denote that a graph doesn’t define the function output at `x = a`. A closed circle is used for the opposite effect.
+65. Given the base function `y = f(x)`, we can apply multiple function transformations to it: `y = cf(a(x + b)) + d`. When function transformations are combined, you can follow the order below to get the transformed function’s graph from the  base function’s graph:
     * **Horizontal shift** of the graph of `y = f(x)`.
     * **Horizontal scaling** of the graph of `y = f(x + b)` by a factor of `|a|`. If `a < 0`, reflect the graph about the y-axis.
     * **Vertical scaling** of the graph of `y = f(a(x + b))` by a factor of `|c|`. If `c < 0`, reflect the graph about the x-axis.
