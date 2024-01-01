@@ -11,7 +11,7 @@ tags:
 > Pet Peeve: The author sometimes skips steps without an explaination (like the integer truncation in "stop and think: incremental correctness"). Some examples are hard to follow for an international student (like understanding the lottery system in "war story: pschic modeling").
 
 
-## Chapte 1 — Introduction to Algorithm Design
+## Chapter 1 — Introduction to Algorithm Design
 1. An `algorithmic problem` is specified by describing the complete set of **instances** it must work on and of its output after running on one of these instances.
 2. An `algorithm` is a procedure that takes any of the possible input instances and transforms it to the desired output.
 3. There is a distinction between a general problem and an instance of a problem. E.g:
@@ -275,3 +275,161 @@ alert for how the details of your applications differ from a candidate model, bu
 
 #### Induction
 1. Prove that $\sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}$ for n ≥ 0, by induction.
+
+## Chapter 2: Algorithm Analysis
+We use two tools to compare the efficiency of algorithms:
+1. The RAM model of computation
+2. The asymptotic analysis of computational complexity.
+
+### The RAM model of computation
+Machine-independent algorithm design depends upon a hypothetical computation model called the **Random Access Machine** (RAM) where:
+* Each simple operation (`+`, `*`, `-`, `=`, `if`, `call`) takes exactly one time step.
+* Loops and subroutines are the composition of many single-step operations.
+* Each memory access takes exactly one time step, regardless of whether your data was in cache or disk.
+* There is unlimited memory.
+
+The RAM is a simple model of how computers perform. It’s doesn’t capture the full complexity of real computers. However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
+
+>  A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "all models are wrong, but some are useful." — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
+
+Under the RAM model, we measure run time by counting the number of steps an algorithm takes on a given problem instance.
+
+To understand how good or bad an algorithm is in general, we must know how it works over all possible input instances. For the problem of sorting, the set of possible input instances includes every possible arrangement of `n` keys, for all possible values of `n` (number of items to sort).
+
+Time complexity defines the running time of any given algorithm as a function of input size. There are three types:
+* The **worst-case complexity** of an algorithm is the function defined by the maximum number of steps taken in any instance of size `n`.
+* The **best-case complexity** of an algorithm is the function defined by the minimum number of steps taken in any instance of size `n`.
+* The **average-case complexity** of an algorithm is the function defined by the average number of steps over all instances of size `n`.
+
+Figure2.1
+
+In practice, the worst-case complexity is the most useful because:
+* The best-case is usually unlikely.
+* The average-case is difficult to establish.
+
+## Chapter 3: Data structures
+1. A **data type** (or simply **type**) is a collection or grouping of data values, usually specified by:
+   * a set of possible values,
+   * a set of allowed operations on these values, and/or
+   * a representation of these values as machine types.
+2. An **abstract data type** (**ADT**) is a data type that does not specify the concrete representation of the data. They are defined by their behavior (semantics) from the `point of view of a user of the data`, specifically in terms of:
+   * possible values,
+   * possible operations on data of this type, and
+   * the behavior of these operations.
+3. ADT contrasts with **data structures**, which are concrete representations of data, and are the `point of view of an implementer`. The generic definition of "data structure" is anything that can hold your data in a structured way.
+4. The distinction between ADTs and data-structures lies in the POV / level of abstraction:
+   * An `int` in a programming language sense is usually a 32-bit data structure. An integer in a mathematical sense is an ADT.
+   * An array is an ADT when viewed as a collection of items that can be accessed by an index; An array is a data-structure when viewed as a collection of fixed sized items stored as contiguous blocks in memory.
+   * A list can be implemented as an array or a linked-list.
+5. Data-structures can be classified into:
+   * **Contiguous data-structures**: composed of single slabs of memory. E.g. arrays, matrices, heaps and hash tables.
+   * **Linked data-structures**: composed of distinct chunks of memory bound together by pointers. E.g. LinkedList, Trees, Graph adjacency lists, etc.
+6. Arrays are structures of fixed-size elements stored contiguously such that each element can be efficiently located by its index.
+7. Advantages of arrays:
+   * **Constant-time access given the index**: because the index of each element maps directly to a particular memory address.
+   * **Space efficiency**: because no space is wasted with links, end-of-element information, or other metadata.
+   * **Memory locality**: because the physical continuity between successive data access helps exploit the high-speed cache memory on modern computer architecture.
+8. The primary disadvantage of arrays is that the number of elements (i.e. the array size) is fixed. The capacity needs to be specified at allocation.
+9. **Dynamic arrays** overcome the above limit of static arrays.
+10. Amortized analysis helps us assess the overall efficiency of dynamic arrays by considering the average cost of a sequence of operations. While individual resize operations may be expensive, they are relatively rare compared to the numerous cheap insertion operations. This balancing act ensures that the average cost of inserting elements into a dynamic array remains constant, even though individual resize operations may be costly.
+11. Amortized analysis is a technique used to evaluate the average cost of a sequence of operations, taking into account the occasional high-cost operations. It is particularly useful for analyzing data structures that may perform expensive operations like resizing or rebalancing, even though the majority of operations are relatively cheap. The goal of amortized analysis is to provide a more realistic measure of the data structure's performance by considering the overall trend of costs over a series of operations. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. This way, the overall cost of the sequence of operations is spread out over time, and the average cost per operation is lower than the worst-case cost of any single operation.
+12. Pointers represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
+13. In C:
+    * `*p` denotes the item that is pointed to by pointer `p`
+    * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
+    * A special `NULL` pointer value is used to denote unassigned pointers.
+14. All linked data-structures share certain properties:
+    * Each node contains one or more data field.
+    * Each node contains a pointer field to at least one other node.
+    * Finally, we need a pointer to the head of the data-structure, so we know where to access it.
+    Example linked-list displaying these properties:
+    ```c
+    
+    typedef struct list {
+        data_type data; /* Data field */
+        struct list *next; /* Pointer field */
+    
+    } list;
+    ```
+15. The linked-list is the simplest linked structure.
+16. Singly linked-list has a pointer to only the successor whereas a doubly linked-list has a pointer to both the predecessor and successor.
+17. Searching for data `x` in a linked-list recursively:
+    ```c
+    
+    list *search_list(list *listz, data_type x) {
+        if (listz == NULL) {
+            return(NULL);
+        }
+    
+        // If `x` is in the list, it's either the first element or located in the rest of the list.
+        if (listz->data == x) {
+            return(listz);
+        } else {
+            return(search_list(listz.next, x));
+        }
+    }
+    ```
+18. Inserting into a singly linked-list at the head:
+    ```c
+    
+    list *insert_list(list **listz, data_type x) {
+       list *p; /* temporary pointer */
+       p = malloc(sizeof(list));
+       p->data = x;
+       p->next = *listz;
+       // `**listz` denotes that `listz` is a pointer to a pointer to a list node. This line copies `p` to the place pointed to by `listz`, which is the external variable maintaining access to the head of the list.
+       *listz = p;
+    }
+    ```
+19. Deletion from a list:
+    ```c
+    // Used to find the predecessor of the item to be deleted.
+    list *item_ahead(list *listz, list *x) {
+       if ((listz == NULL) || (listz->next == NULL) {
+           return(NULL);
+       }
+    
+    
+       if ((listz->next) == x) {
+           return(listz);
+       } else {
+           return(item_ahead(listz->next, x));
+       }
+    }
+    
+    // This is called only if `x` exists in the list.
+    void *delete_list(list **listz, list **x) {
+       list *p; /* element pointer */
+       list *pred; /* predecessor pointer */
+    
+       p = *listz;
+       pred = item_ahead(*listz, *x);
+    
+       // Given that we assume `x` exists in the list, `pred` is only null when the first element is the target.
+       if (pred == NULL) { /* splice out of list */
+          // Special case: resets the pointer to the head of the list when the first element is deleted.
+          *listz = p->next;
+       } else {
+          pred->next = (*x)->next
+       }
+    
+       free(*x) /* free memory used by node */
+    }
+    ```
+20. The advantages of linked structures over static arrays include:
+    * Overflow on linked structures never occurs unless the memory is actually full.
+    * Insertion and deletion are simpler than for static arrays.
+    * With large records, moving pointers is easier and faster than moving the items themselves.
+21. Both arrays and lists can be thought of as recursive objects:
+    * Lists — Chopping the first element off a linked-list leaves a smaller linked-list.
+    * Arrays — Splitting the first `k` elements off of an `n` element array gives two smaller arrays, of size `k` and `n - k`, respectively.
+    * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
+22. A container is an  ADT that permits storage and retrieval of data items independent of content.
+23. Two most important types of containers:
+    * **Stacks**: Supports retrieval by last-in, first-out (LIFO). Primary operations are:
+      * `push(x)` — Inserts item `x` at the top of the stack.
+      * `pop` — Return and remove the top item of the stack.
+    * **Queue**: Supports retrieval by first-in, first-out (FIFO). Primary operations are:
+      * `enqueue(x)` — Inserts item `x` at the back of the queue.
+      * `dequeue` — Return and remove the front item from the queue.
+24. Stacks and Queues can be effectively implemented using arrays or linked-list.
