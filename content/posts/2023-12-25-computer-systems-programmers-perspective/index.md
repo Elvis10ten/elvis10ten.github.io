@@ -8,6 +8,224 @@ tags:
   - notes
 ---
 
+## Chapter 1
+
+### Information is bits + context
+
+1. Computer stores the bits, we decide how to interpret it.
+For example, in different contexts, the same sequence of bytes might represent an integer, floating-point number, character string, or machine instruction.
+[https://en.wikipedia.org/wiki/Information](https://en.wikipedia.org/wiki/Information)
+[https://www.quora.com/What-does-information-means-bits-in-context-mean](https://www.quora.com/What-does-information-means-bits-in-context-mean)
+2. 1 byte = 8 bits
+[https://en.wikipedia.org/wiki/Byte](https://en.wikipedia.org/wiki/Byte)
+3. Binary file vs Text file:
+[https://dev.to/sharkdp/what-is-a-binary-file-2cf5](https://dev.to/sharkdp/what-is-a-binary-file-2cf5)
+[https://fileinfo.com/help/binary_vs_text_files](https://fileinfo.com/help/binary_vs_text_files)
+[https://en.wikipedia.org/wiki/Binary_file](https://en.wikipedia.org/wiki/Binary_file)
+4. ASCII is a **7-bit character** set containing **128 characters**. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters. The character sets used in modern computers, in HTML, and on the Internet, are all based on ASCII.
+[https://en.wikipedia.org/wiki/ASCII](https://en.wikipedia.org/wiki/ASCII)
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled.png)
+
+### Programs Are Translated by Other Programs into Different Forms
+
+```c
+1 #include <stdio.h>
+2
+3 int main()
+4 {
+5 printf("hello, world\n");
+6 return 0;
+7 }
+// code/intro/hello.c
+```
+
+1. 
+    
+    ![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%201.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%201.png)
+    
+2. `gcc -o hello hello.c`
+The GCC compiler driver reads the source file **hello.c** and translates it into
+an executable object file **hello**. The translation is performed in the sequence
+of four phases shown in Figure 1.3. The programs that perform the four phases
+(preprocessor, compiler, assembler, and linker) are known collectively as the
+**compilation system**.
+3. **Preprocessing phase**: The preprocessor (**cpp**) modifies the original C program
+according to directives that begin with the **‘#’** character. For example, the
+**#include <stdio.h>** command in line 1 of **hello.c** tells the preprocessor
+to read the contents of the system header file **stdio.h** and insert it directly
+into the program text. The result is another C program, typically with the .i
+suffix.
+4. **Compilation phase:** The compiler (**cc1**) translates the text file **hello.i** into
+the text file **hello.s**, which contains an assembly-language program. This
+program includes the following definition of function **main**:
+
+```c
+1 main:
+2 subq $8, %rsp
+3 movl $.LC0, %edi
+4 call puts
+5 movl $0, %eax
+6 addq $8, %rsp
+7 ret
+// Each of lines, 2–7 in this definition describes one low-level machine language instruction in a textual form.
+```
+
+5. **Assembly phase:** Next, the assembler (**as**) translates **hello.s** into machine language
+instructions, packages them in a form known as a **relocatable object
+program**, and stores the result in the object file **hello.o**. This file is a **binary
+file** containing 17 bytes to encode the instructions for function main.
+
+6. **Linking phase:** Notice that our hello program calls the **printf** function, which
+is part of the standard C library provided by every C compiler.
+
+The **printf** function resides in a separate precompiled object file called **printf.o**, which
+must somehow be merged with our **hello.o** program. The linker (**ld**) handles
+this merging. The result is the hello file, which is an **executable object file** (or
+simply executable) that is ready to be loaded into memory and executed by
+the system.
+
+### Hardware Organization
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%202.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%202.png)
+
+1. **Buses**: Running throughout the system is a collection of **electrical conduits** called buses
+that carry bytes of information back and forth between the components.
+
+Buses are typically designed to transfer fixed-size chunks of bytes known as **words**. The
+number of bytes in a word (the word size) is a fundamental system parameter that varies across systems. Most machines today have word sizes of either 4 bytes (32 bits) or 8 bytes (64 bits).
+2. **IO Devices**: IO devices are the system’s connection to the external world.
+
+Our example system has four I/O devices: a keyboard and mouse for user input, a
+display for user output, and a disk drive (or simply disk) for long-term storage of
+data and programs.
+
+Initially, the executable *hello* program resides on the disk.
+
+Each I/O device is connected to the I/O bus by either a **controller** or an **adapter**. The distinction between the two is mainly one of packaging.
+
+**Controllers** are chipsets in the device itself or on the system’s main printed circuit board (often called the motherboard).
+
+An **adapter** is a card that plugs into a slot on the motherboard.
+
+Regardless, the purpose of each is to transfer information back and forth between the I/O bus and an I/O device.
+3. **Main Memory**: The main memory is a temporary storage device that holds both a **program** and the **data** it manipulates while the processor is executing the program.
+
+Physically, the main memory consists of a collection of **dynamic random access memory(DRAM)** chips.
+
+Logically, memory is organized as a linear array of bytes, each with its own
+**unique address** (array index) starting at zero.
+
+In general, each of the machine instructions that constitute a program can consist of a variable number of bytes. The sizes of data items that correspond to C program variables vary according to type. For example, on an x86-64 machine running Linux, data of type short
+require 2 bytes, types int and float 4 bytes, and types long and double 8 bytes.
+4. **Processor**: The **central processing unit (CPU)**, or simply processor, is the engine that interprets (or executes) instructions stored in main memory.
+
+At its core is a word-size storage **device (or register)** called the **program counter (PC)**. At any point in time, the PC points at (contains the address of) some machine-language instruction in main memory.
+
+From the time that power is applied to the system until the time that the power is shut off, a processor repeatedly executes the instruction pointed at by the program counter and updates the program counter to point to the next instruction.
+
+A processor appears to operate according to a very simple instruction execution
+model, defined by its **instruction set architecture**. In this model, instructions execute in strict sequence, and executing a single instruction involves performing a series
+of steps.
+
+The processor reads the instruction from memory pointed at by the program counter (PC), interprets the bits in the instruction, performs some simple operation dictated by the instruction, and then updates the PC to point to the next instruction, which may or may not be contiguous in memory to the instruction that was just executed.
+
+There are only a few of these simple operations, and they revolve around the main memory, the **register file**, and the **arithmetic/logic unit (ALU)**.
+
+The **register file** is a small storage device that consists of a collection of word-size registers, each with its own unique name.
+
+The **ALU** computes new data and address values.
+
+Here are some examples of the simple operations that the CPU might carry out at the request of an instruction:
+
+* **Load**: Copy a byte or a word from main memory into a register, overwriting
+the previous contents of the register.
+
+* **Store**: Copy a byte or a word from a register to a location in main memory,
+overwriting the previous contents of that location.
+
+* **Operate**: Copy the contents of two registers to the ALU, perform an arithmetic
+operation on the two words, and store the result in a register, overwriting the
+previous contents of that register.
+
+* **Jump**: Extract a word from the instruction itself and copy that word into the
+the program counter (PC), overwriting the previous value of the PC.
+
+We can distinguish the processor’s **instruction set architecture**, describing the effect of each machine-code instruction, from its **microarchitecture**, describing how the processor is actually implemented.
+
+### Running the hello Program
+
+Initially, the shell program is executing its instructions, waiting for us to type a command. As we type the characters ./hello at the keyboard, the shell program reads each one into a register and then stores it in memory, as shown in Figure 1.5.
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%203.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%203.png)
+
+When we hit the enter key on the keyboard, the shell knows that we have finished typing the command. The shell then loads the executable hello file by executing a sequence of instructions that copies the code and data in the hello object file from disk to main memory. The data includes the string of characters **hello, world\n** that will eventually be printed out.
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%204.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%204.png)
+
+Once the code and data in the hello object file are loaded into memory, the processor begins executing the machine-language instructions in the hello program’s main routine. These instructions copy the bytes in the hello, world\n string from memory to the register file, and from there to the display device, where they are displayed on the screen.
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%205.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%205.png)
+
+### Caches Matter
+
+An important lesson from this simple example is that a system spends a lot of time moving information from one place to another.
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%206.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%206.png)
+
+Because of physical laws, larger storage devices are slower than smaller storage devices.
+
+The idea behind caching is that a system can get the effect of both a very large memory and a very fast one by exploiting locality, the tendency for programs to access data and code in localized regions.
+
+SRAM are used for CPU caches.
+
+[SRAM vs DRAM](https://www.google.com/search?q=sram+vs+dram&oq=SRAM+&aqs=chrome.3.69i57j0l7.5489j0j1&sourceid=chrome&ie=UTF-8)
+
+[https://en.wikipedia.org/wiki/Computer_data_storage](https://en.wikipedia.org/wiki/Computer_data_storage)
+
+### Storage Devices Form a Hierarchy
+
+[https://en.wikipedia.org/wiki/Memory_hierarchy](https://en.wikipedia.org/wiki/Memory_hierarchy)
+
+The main idea of a memory hierarchy is that storage at one level serves as a cache for storage at the next lower level.
+
+Thus, the register file is a cache for the **L1 cache**.
+
+Caches L1 and L2 are caches for L2 and L3, respectively.
+
+The L3 cache is a cache for the main memory, which is a cache for the disk.
+
+On some networked systems with distributed file systems, the local disk serves as a cache for data stored on the disks of other systems.
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%207.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%207.png)
+
+### The Operating System Manages the Hardware
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%208.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%208.png)
+
+The operating system has two primary purposes:
+
+1. to protect the hardware from misuse by runaway applications and
+
+2. to provide applications with simple and uniform mechanisms for manipulating complicated and often wildly different low-level hardware devices.
+
+The operating system achieves both goals via the fundamental abstractions shown in Figure 1.11: processes, virtual memory, and files.
+
+As this figure suggests, files are abstractions for I/O devices, virtual memory is an abstraction for both the main memory and disk I/O devices, and processes are abstractions for the processor, main memory, and I/O devices.
+
+![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%209.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%209.png)
+
+### Processes
+
+fa
+
+## Representing and Manipulating Information
+
+1. In isolation, a single bit is not very useful. When we group bits together and
+apply some **interpretation** that gives meaning to the different possible **bit patterns**,
+however, we can represent the elements of any **finite set**.
+
+
 ## Chapter 2
 1. Modern computers store and process information stored as two-valued signals — called bits or binary digits.
 2. Two-value signals were chosen because they can readily be represented, stored, and transmitted. For example, as:
