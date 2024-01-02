@@ -30,7 +30,7 @@ For example, in different contexts, the same sequence of bytes might represent a
 ### Programs Are Translated by Other Programs into Different Forms
 
 ```c
-1 #include <stdio.h>
+1 #include &lt;stdio.h&gt;
 2
 3 int main()
 4 {
@@ -40,19 +40,16 @@ For example, in different contexts, the same sequence of bytes might represent a
 // code/intro/hello.c
 ```
 
-1. 
+1. ![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%201.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%201.png)
     
-    ![Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%201.png](Computer%20Systems%20A%20Programmer's%20Perspective%204e0ac7c5eac445bea26649d27f558f96/Untitled%201.png)
-    
-2. `gcc -o hello hello.c`
-The GCC compiler driver reads the source file **hello.c** and translates it into
+2. `gcc -o hello hello.c` The GCC compiler driver reads the source file **hello.c** and translates it into
 an executable object file **hello**. The translation is performed in the sequence
 of four phases shown in Figure 1.3. The programs that perform the four phases
 (preprocessor, compiler, assembler, and linker) are known collectively as the
 **compilation system**.
 3. **Preprocessing phase**: The preprocessor (**cpp**) modifies the original C program
 according to directives that begin with the **‘#’** character. For example, the
-**#include <stdio.h>** command in line 1 of **hello.c** tells the preprocessor
+**#include &lt;stdio.h&gt;** command in line 1 of **hello.c** tells the preprocessor
 to read the contents of the system header file **stdio.h** and insert it directly
 into the program text. The result is another C program, typically with the .i
 suffix.
