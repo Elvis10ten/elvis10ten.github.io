@@ -435,6 +435,7 @@ In practice, the worst-case complexity is the most useful because:
 24. Stacks and Queues can be effectively implemented using arrays or linked-list.
 
 ### Hash tables
+![Hash table](assets/hash_table.svg)
 1. **Hash tables** are a data-structure that efficiently implements a dictionary. They exploit the fact that looking an element up in an array takes constant time once you have its index.
 2. The basic idea is to pick a hash function $h$ that maps every possible key $x$ to a small integer $h(x)$. Then we store $x$ and its value in an array at index $h(x)$; the array itself is essentially the hash table.
 3. A **hash function** $h$ maps the universe $U$ of keys to array indices within the hash table.
@@ -468,15 +469,24 @@ In practice, the worst-case complexity is the most useful because:
    * **Separate chaining** — the values of the hash-table’s array is a linked-list.
      * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in $O(1)$ time. Keys that collided hence form a chain.
      * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
+   ![Hash table separate chaining](assets/hash_table_separate_chaining.svg)
    * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
      * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
      * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
      * Well known probing sequences are:
        * Linear probing — simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$.
-       * Quadratic probing. 
+       * Quadratic probing.
+   ![Hash table open addressing](assets/hash_table_open_addressing.svg)
 10. Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
-11. Other uses of hashing:
+11. Other uses of hashing (or a hash table):
     * Plagiarism detection using Rabin-Karp string matching algorithm
     * English dictionary search
     * Finding distinct elements
     * Counting frequencies of items
+12. Time complexity in big O notation
+    | Operation	| Average | Worst case |
+    |-----------|---------|------------|
+    | Search | $Θ(1)$ | $O(n)$ |
+    | Insert | $Θ(1)$ | $O(n)$|
+    | Delete | $Θ(1)$ | $O(n)$ |
+13. Space complexity is $O(n)$.
