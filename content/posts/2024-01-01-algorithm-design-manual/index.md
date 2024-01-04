@@ -473,20 +473,19 @@ In practice, the worst-case complexity is the most useful because:
    * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
      * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
      * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
-     * Well known probing sequences are:
-       * Linear probing — simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$.
-       * Quadratic probing.
+     * Linear probing is often used — it simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$. But there is quadratic probing and other probing sequences.
    ![Hash table open addressing](assets/hash_table_open_addressing.svg)
-10. Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
-11. Other uses of hashing (or a hash table):
+1.  Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
+2.  Other uses of hashing (or a hash table):
     * Plagiarism detection using Rabin-Karp string matching algorithm
     * English dictionary search
     * Finding distinct elements
     * Counting frequencies of items
-12. Time complexity in big O notation
+3.  Time complexity in big O notation
+
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
     | Search | $Θ(1)$ | $O(n)$ |
     | Insert | $Θ(1)$ | $O(n)$|
     | Delete | $Θ(1)$ | $O(n)$ |
-13. Space complexity is $O(n)$.
+4.  Space complexity is $O(n)$.
