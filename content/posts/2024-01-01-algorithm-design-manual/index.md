@@ -433,3 +433,50 @@ In practice, the worst-case complexity is the most useful because:
       * `enqueue(x)` — Inserts item `x` at the back of the queue.
       * `dequeue` — Return and remove the front item from the queue.
 24. Stacks and Queues can be effectively implemented using arrays or linked-list.
+
+### Hash tables
+1. **Hash tables** are a data-structure that efficiently implements a dictionary. They exploit the fact that looking an element up in an array takes constant time once you have its index.
+2. The basic idea is to pick a hash function $h$ that maps every possible key $x$ to a small integer $h(x)$. Then we store $x$ and its value in an array at index $h(x)$; the array itself is essentially the hash table.
+3. A **hash function** $h$ maps the universe $U$ of keys to array indices within the hash table.
+   $$
+   h : U → \{ 0, …, n - 1 \}
+   $$
+4. Properties of a good hash function:
+   * **Efficient** — Computing $h(x)$ should require a constant number of steps per bit of $x$.
+   * **Uniform** — $h$ should ideally map elements randomly and uniformly over the entire range of integers.
+5. A hash function for an arbitrary key $x$ (like a string) is typically defined as:
+   $$
+   h(x) = toInteger(x) \bmod n
+   $$
+6. This is the polynomial function that Java uses to convert strings to integers:
+   $$
+   s[0]*31^{n-1} + s[1]*31^{n-2} + ... + s[n-1]
+   $$
+   Which translates into the following code:
+   ```java
+    int hashcode = 0;
+    for (int i = 0; i < s.length(); i++) {
+        hashcode = (hashcode * 31) + s.charAt(i);
+    }
+   ```
+7. A collision occurs when:
+   $$
+   h(j) = h(k) \land j \neq k
+   $$
+8. Collisions can be minimized but cannot be eliminated (see Pigeon hole principle). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
+9. The two common methods for collision resolution:
+   * **Separate chaining** — the values of the hash-table’s array is a linked-list.
+     * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in $O(1)$ time. Keys that collided hence form a chain.
+     * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
+   * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
+     * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
+     * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
+     * Well known probing sequences are:
+       * Linear probing — simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$.
+       * Quadratic probing. 
+10. Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
+11. Other uses of hashing:
+    * Plagiarism detection using Rabin-Karp string matching algorithm
+    * English dictionary search
+    * Finding distinct elements
+    * Counting frequencies of items
