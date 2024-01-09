@@ -335,9 +335,15 @@ In practice, the worst-case complexity is the most useful because:
    * **Memory locality**: because the physical continuity between successive data access helps exploit the high-speed cache memory on modern computer architecture.
 3. The primary disadvantage of arrays is that the number of elements (i.e. the array size) is fixed. The capacity needs to be specified at allocation.
 4. **Dynamic arrays** overcome the fixed-size limit limitation of static arrays.
-5. The key idea of **amortized analysis** is to consider the `worst-case cost of a sequence of operations` on a data structure, rather than the worst-case individual cost of any particular operation.
-6. The **aggregate method** is one of the methods for performing amortized analysis. In this method, the total cost of performing a sequence of $m$ operations on the data structure is divided by the number of operations $m$, yielding an average cost per operation, which is defined as the amortized cost.
-7. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
+   [![Dynamic array](assets/dynamic_array.svg)](https://en.wikipedia.org/wiki/Dynamic_array#/media/File:Dynamic_array.svg)
+5. When a dynamic array's capacity is exceeded, it internally resizes:
+   * Allocates a new bigger contiguous array.
+   * Copy the content of the old array to the new array
+6. To avoid incurring the cost of resizing many times, dynamic arrays resize by a large amount, such as doubling in size, and use the reserved space for future expansion.
+7. As $n$ elements are added, the capacities form a geometric progression. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes $O(n)$ time overall, meaning that each insertion takes **amortized** constant time.
+8. The key idea of **amortized analysis** is to consider the `worst-case cost of a sequence of operations` on a data structure, rather than the worst-case individual cost of any particular operation.
+9.  The **aggregate method** is one of the methods for performing amortized analysis. In this method, the total cost of performing a sequence of $m$ operations on the data structure is divided by the number of operations $m$, yielding an average cost per operation, which is defined as the amortized cost.
+10. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
    * $$
      t(i) = \begin{cases}
      2^{k}+1 &\text{if } i = 2^{k} \\
@@ -347,20 +353,22 @@ In practice, the worst-case complexity is the most useful because:
    * $t(i)$ defines the time it takes to perform the i-th `addition` (0 indexed).
    * The first case of $t(i)$ defines the time taken when the array’s capacity is exceeded and has to doubled. Because of the doubling, this case happens on every power of 2 ($2^{k}$). The time taken is $2^{k}+1$ because:
      * $2^{k}$ has to be copied to the new array and
-     * The i-th element has to be `addeed` into the new array.
+     * The i-th element has to be `added` into the new array.
    * The second case of $t(i)$ defines the time taken when the array capacity is not exceeded. This is constant time because only a single `addition` is performed.
-   *  <details><summary>$t(i)$ example on a dynamic array initialized with a capacity of $1$:</summary>
-        $t(0) = 1$; Capacity = 1<br/>
-        $t(1) = 2$; Capacity = 2<br/>
-        $t(2) = 3$; Capacity = 4<br/>
-        $t(3) = 1$; Capacity = 4<br/>
-        $t(4) = 5$; Capacity = 8<br/>
-        $t(5) = 1$; Capacity = 8<br/>
-        $t(6) = 1$; Capacity = 8<br/>
-        $t(7) = 1$; Capacity = 8<br/>
-        $t(8) = 9$; Capacity = 16<br/>
-        $t(9) = 1$; Capacity = 16
-    </details>
+   *  $t(i)$ example on a dynamic array initialized with a capacity of $1$:
+
+        | i | t(i) | Capacity |
+        |---|------|----------|
+        | $0$ | $1$ | 1 |
+        | $1$ | $2$ | 2 |
+        | $2$ | $3$ | 4 |
+        | $3$ | $1$ | 4 |
+        | $4$ | $5$ | 8 |
+        | $5$ | $1$ | 8 |
+        | $6$ | $1$ | 8 |
+        | $7$ | $1$ | 8 |
+        | $8$ | $9$ | 16 |
+        | $9$ | $1$ | 16 |
 
    * $$
      Amortized \space cost = \frac{\sum_{i=0}^{n}t(i)}{n}
@@ -389,15 +397,16 @@ In practice, the worst-case complexity is the most useful because:
    $$
    \sum_{i=0}^{n}t(i) \leq 3n
    $$
-   * > Conclusion: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most 3 on average (constant time), which is the amortized cost according to the aggregate method. Hence the amortized cost of insertion is O(1).
-8.  Amortized analysis helps us assess the overall efficiency of dynamic arrays by considering the average cost of a sequence of operations. While individual resize operations may be expensive, they are relatively rare compared to the numerous cheap insertion operations. This balancing act ensures that the average cost of inserting elements into a dynamic array remains constant, even though individual resize operations may be costly.
-9.  Amortized analysis is a technique used to evaluate the average cost of a sequence of operations, taking into account the occasional high-cost operations. It is particularly useful for analyzing data structures that may perform expensive operations like resizing or rebalancing, even though the majority of operations are relatively cheap. The goal of amortized analysis is to provide a more realistic measure of the data structure's performance by considering the overall trend of costs over a series of operations. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. This way, the overall cost of the sequence of operations is spread out over time, and the average cost per operation is lower than the worst-case cost of any single operation.
-10. Pointers represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
-11. In C:
+   * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.
+     > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is $O(1)$.
+1.  Amortized analysis helps us assess the overall efficiency of dynamic arrays by considering the average cost of a sequence of operations. While individual resize operations may be expensive, they are relatively rare compared to the numerous cheap insertion operations. This balancing act ensures that the average cost of inserting elements into a dynamic array remains constant, even though individual resize operations may be costly.
+2.  Amortized analysis is a technique used to evaluate the average cost of a sequence of operations, taking into account the occasional high-cost operations. It is particularly useful for analyzing data structures that may perform expensive operations like resizing or rebalancing, even though the majority of operations are relatively cheap. The goal of amortized analysis is to provide a more realistic measure of the data structure's performance by considering the overall trend of costs over a series of operations. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. This way, the overall cost of the sequence of operations is spread out over time, and the average cost per operation is lower than the worst-case cost of any single operation.
+3.  Pointers represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
+4.  In C:
     * `*p` denotes the item that is pointed to by pointer `p`
     * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
     * A special `NULL` pointer value is used to denote unassigned pointers.
-12. All linked data-structures share certain properties:
+5.  All linked data-structures share certain properties:
     * Each node contains one or more data field.
     * Each node contains a pointer field to at least one other node.
     * Finally, we need a pointer to the head of the data-structure, so we know where to access it.
@@ -410,9 +419,9 @@ In practice, the worst-case complexity is the most useful because:
     
     } list;
     ```
-13. The linked-list is the simplest linked structure.
-14. Singly linked-list has a pointer to only the successor whereas a doubly linked-list has a pointer to both the predecessor and successor.
-15. Searching for data `x` in a linked-list recursively:
+6.  The linked-list is the simplest linked structure.
+7.  Singly linked-list has a pointer to only the successor whereas a doubly linked-list has a pointer to both the predecessor and successor.
+8.  Searching for data `x` in a linked-list recursively:
     ```c
     
     list *search_list(list *listz, data_type x) {
@@ -428,7 +437,7 @@ In practice, the worst-case complexity is the most useful because:
         }
     }
     ```
-16. Inserting into a singly linked-list at the head:
+9.  Inserting into a singly linked-list at the head:
     ```c
     
     list *insert_list(list **listz, data_type x) {
@@ -440,7 +449,7 @@ In practice, the worst-case complexity is the most useful because:
        *listz = p;
     }
     ```
-17. Deletion from a list:
+10. Deletion from a list:
     ```c
     // Used to find the predecessor of the item to be deleted.
     list *item_ahead(list *listz, list *x) {
@@ -475,23 +484,23 @@ In practice, the worst-case complexity is the most useful because:
        free(*x) /* free memory used by node */
     }
     ```
-18. The advantages of linked structures over static arrays include:
+11. The advantages of linked structures over static arrays include:
     * Overflow on linked structures never occurs unless the memory is actually full.
     * Insertion and deletion are simpler than for static arrays.
     * With large records, moving pointers is easier and faster than moving the items themselves.
-19. Both arrays and lists can be thought of as recursive objects:
+12. Both arrays and lists can be thought of as recursive objects:
     * Lists — Chopping the first element off a linked-list leaves a smaller linked-list.
     * Arrays — Splitting the first `k` elements off of an `n` element array gives two smaller arrays, of size `k` and `n - k`, respectively.
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
-20. A container is an  ADT that permits storage and retrieval of data items independent of content.
-21. Two most important types of containers:
+13. A container is an  ADT that permits storage and retrieval of data items independent of content.
+14. Two most important types of containers:
     * **Stacks**: Supports retrieval by last-in, first-out (LIFO). Primary operations are:
       * `push(x)` — Inserts item `x` at the top of the stack.
       * `pop` — Return and remove the top item of the stack.
     * **Queue**: Supports retrieval by first-in, first-out (FIFO). Primary operations are:
       * `enqueue(x)` — Inserts item `x` at the back of the queue.
       * `dequeue` — Return and remove the front item from the queue.
-22. Stacks and Queues can be effectively implemented using arrays or linked-list.
+15. Stacks and Queues can be effectively implemented using arrays or linked-list.
 
 ### Hash tables
 ![Hash table](assets/hash_table.svg)
