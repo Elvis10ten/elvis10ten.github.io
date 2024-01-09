@@ -357,18 +357,10 @@ In practice, the worst-case complexity is the most useful because:
    * The second case of $t(i)$ defines the time taken when the array capacity is not exceeded. This is constant time because only a single `addition` is performed.
    *  $t(i)$ example on a dynamic array initialized with a capacity of $1$:
 
-        | i | t(i) | Capacity |
-        |---|------|----------|
-        | $0$ | $1$ | 1 |
-        | $1$ | $2$ | 2 |
-        | $2$ | $3$ | 4 |
-        | $3$ | $1$ | 4 |
-        | $4$ | $5$ | 8 |
-        | $5$ | $1$ | 8 |
-        | $6$ | $1$ | 8 |
-        | $7$ | $1$ | 8 |
-        | $8$ | $9$ | 16 |
-        | $9$ | $1$ | 16 |
+        | i | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+        |---|---|---|---|---|---|---|---|---|---|---|
+        | $t(i)$ | $1$ | $3$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
+        | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
 
    * $$
      Amortized \space cost = \frac{\sum_{i=0}^{n}t(i)}{n}
@@ -399,14 +391,14 @@ In practice, the worst-case complexity is the most useful because:
    $$
    * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.
      > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is $O(1)$.
-1.  Amortized analysis helps us assess the overall efficiency of dynamic arrays by considering the average cost of a sequence of operations. While individual resize operations may be expensive, they are relatively rare compared to the numerous cheap insertion operations. This balancing act ensures that the average cost of inserting elements into a dynamic array remains constant, even though individual resize operations may be costly.
-2.  Amortized analysis is a technique used to evaluate the average cost of a sequence of operations, taking into account the occasional high-cost operations. It is particularly useful for analyzing data structures that may perform expensive operations like resizing or rebalancing, even though the majority of operations are relatively cheap. The goal of amortized analysis is to provide a more realistic measure of the data structure's performance by considering the overall trend of costs over a series of operations. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. This way, the overall cost of the sequence of operations is spread out over time, and the average cost per operation is lower than the worst-case cost of any single operation.
-3.  Pointers represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
-4.  In C:
+11. Amortized analysis helps us assess the overall efficiency of dynamic arrays by considering the average cost of a sequence of operations. While individual resize operations may be expensive, they are relatively rare compared to the numerous cheap insertion operations. This balancing act ensures that the average cost of inserting elements into a dynamic array remains constant, even though individual resize operations may be costly.
+12. Amortized analysis is a technique used to evaluate the average cost of a sequence of operations, taking into account the occasional high-cost operations. It is particularly useful for analyzing data structures that may perform expensive operations like resizing or rebalancing, even though the majority of operations are relatively cheap. The goal of amortized analysis is to provide a more realistic measure of the data structure's performance by considering the overall trend of costs over a series of operations. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. This way, the overall cost of the sequence of operations is spread out over time, and the average cost per operation is lower than the worst-case cost of any single operation.
+13. Pointers represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
+14. In C:
     * `*p` denotes the item that is pointed to by pointer `p`
     * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
     * A special `NULL` pointer value is used to denote unassigned pointers.
-5.  All linked data-structures share certain properties:
+15. All linked data-structures share certain properties:
     * Each node contains one or more data field.
     * Each node contains a pointer field to at least one other node.
     * Finally, we need a pointer to the head of the data-structure, so we know where to access it.
@@ -419,9 +411,9 @@ In practice, the worst-case complexity is the most useful because:
     
     } list;
     ```
-6.  The linked-list is the simplest linked structure.
-7.  Singly linked-list has a pointer to only the successor whereas a doubly linked-list has a pointer to both the predecessor and successor.
-8.  Searching for data `x` in a linked-list recursively:
+16. The linked-list is the simplest linked structure.
+17. Singly linked-list has a pointer to only the successor whereas a doubly linked-list has a pointer to both the predecessor and successor.
+18. Searching for data `x` in a linked-list recursively:
     ```c
     
     list *search_list(list *listz, data_type x) {
@@ -437,7 +429,7 @@ In practice, the worst-case complexity is the most useful because:
         }
     }
     ```
-9.  Inserting into a singly linked-list at the head:
+19. Inserting into a singly linked-list at the head:
     ```c
     
     list *insert_list(list **listz, data_type x) {
@@ -449,7 +441,7 @@ In practice, the worst-case complexity is the most useful because:
        *listz = p;
     }
     ```
-10. Deletion from a list:
+20. Deletion from a list:
     ```c
     // Used to find the predecessor of the item to be deleted.
     list *item_ahead(list *listz, list *x) {
@@ -484,23 +476,23 @@ In practice, the worst-case complexity is the most useful because:
        free(*x) /* free memory used by node */
     }
     ```
-11. The advantages of linked structures over static arrays include:
+21. The advantages of linked structures over static arrays include:
     * Overflow on linked structures never occurs unless the memory is actually full.
     * Insertion and deletion are simpler than for static arrays.
     * With large records, moving pointers is easier and faster than moving the items themselves.
-12. Both arrays and lists can be thought of as recursive objects:
+22. Both arrays and lists can be thought of as recursive objects:
     * Lists — Chopping the first element off a linked-list leaves a smaller linked-list.
     * Arrays — Splitting the first `k` elements off of an `n` element array gives two smaller arrays, of size `k` and `n - k`, respectively.
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
-13. A container is an  ADT that permits storage and retrieval of data items independent of content.
-14. Two most important types of containers:
+23. A container is an  ADT that permits storage and retrieval of data items independent of content.
+24. Two most important types of containers:
     * **Stacks**: Supports retrieval by last-in, first-out (LIFO). Primary operations are:
       * `push(x)` — Inserts item `x` at the top of the stack.
       * `pop` — Return and remove the top item of the stack.
     * **Queue**: Supports retrieval by first-in, first-out (FIFO). Primary operations are:
       * `enqueue(x)` — Inserts item `x` at the back of the queue.
       * `dequeue` — Return and remove the front item from the queue.
-15. Stacks and Queues can be effectively implemented using arrays or linked-list.
+25. Stacks and Queues can be effectively implemented using arrays or linked-list.
 
 ### Hash tables
 ![Hash table](assets/hash_table.svg)
