@@ -394,6 +394,7 @@ In practice, the worst-case complexity is the most useful because:
 11. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently.
 
 ### Pointers and linked structures
+[![Singly linked list](assets/singly_linked_list.svg)](https://en.wikipedia.org/wiki/Linked_list#/media/File:Singly-linked-list.svg)
 1. **Pointers** represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
 2. In C:
    * `*p` denotes the item that is pointed to by pointer `p`
@@ -487,12 +488,14 @@ In practice, the worst-case complexity is the most useful because:
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
 
 ### Stacks
+[![Stack](assets/stack.svg)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)#/media/File:Lifo_stack.svg)
 1. **Stacks** are an ADT that supports retrieval by last-in, first-out (LIFO).
 2. Primary operations are:
    * `push(x)` — Inserts item `x` at the top of the stack.
    * `pop` — Return and remove the top item of the stack.
 
 ### Queues
+[![Queue](assets/queue.svg)](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)#/media/File:Data_Queue.svg)
 1. **Queues** are an ADT that supports retrieval by first-in, first-out (FIFO).
 2. Primary operations are:
    * `enqueue(x)` — Inserts item `x` at the back of the queue.
@@ -500,7 +503,7 @@ In practice, the worst-case complexity is the most useful because:
 3. Stacks and queues can be effectively implemented using arrays or linked-list.
 
 ### Hash tables
-![Hash table](assets/hash_table.svg)
+[![Hash table](assets/hash_table.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_3_1_1_0_1_0_0_SP.svg)
 1. **Hash tables** are a data-structure that efficiently implements a dictionary. They exploit the fact that looking an element up in an array takes constant time once you have its index.
 2. The basic idea is to pick a hash function $h$ that maps every possible key $x$ to a small integer $h(x)$. Then we store $x$ and its value in an array at index $h(x)$; the array itself is essentially the hash table.
 3. A **hash function** $h$ maps the universe $U$ of keys to array indices within the hash table.
@@ -534,7 +537,7 @@ In practice, the worst-case complexity is the most useful because:
    * **Separate chaining** — the values of the hash-table’s array is a linked-list.
      * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in $O(1)$ time. Keys that collided hence form a chain.
      * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
-   ![Hash table separate chaining](assets/hash_table_separate_chaining.svg)
+   [![Hash table separate chaining](assets/hash_table_separate_chaining.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_5_0_1_1_1_1_1_LL.svg)
    * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
      * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
      * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
