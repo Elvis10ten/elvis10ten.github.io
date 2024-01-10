@@ -389,110 +389,115 @@ In practice, the worst-case complexity is the most useful because:
    $$
    \sum_{i=0}^{n}t(i) \leq 3n
    $$
-   * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.
+   * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.<br/>
      > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is $O(1)$.
-11. Amortized analysis helps us assess the overall efficiency of dynamic arrays by considering the average cost of a sequence of operations. While individual resize operations may be expensive, they are relatively rare compared to the numerous cheap insertion operations. This balancing act ensures that the average cost of inserting elements into a dynamic array remains constant, even though individual resize operations may be costly.
-12. Amortized analysis is a technique used to evaluate the average cost of a sequence of operations, taking into account the occasional high-cost operations. It is particularly useful for analyzing data structures that may perform expensive operations like resizing or rebalancing, even though the majority of operations are relatively cheap. The goal of amortized analysis is to provide a more realistic measure of the data structure's performance by considering the overall trend of costs over a series of operations. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. This way, the overall cost of the sequence of operations is spread out over time, and the average cost per operation is lower than the worst-case cost of any single operation.
-13. Pointers represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
-14. In C:
-    * `*p` denotes the item that is pointed to by pointer `p`
-    * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
-    * A special `NULL` pointer value is used to denote unassigned pointers.
-15. All linked data-structures share certain properties:
-    * Each node contains one or more data field.
-    * Each node contains a pointer field to at least one other node.
-    * Finally, we need a pointer to the head of the data-structure, so we know where to access it.
-    Example linked-list displaying these properties:
-    ```c
+11. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently.
+
+### Pointers and linked structures
+1. **Pointers** represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
+2. In C:
+   * `*p` denotes the item that is pointed to by pointer `p`
+   * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
+   * A special `NULL` pointer value is used to denote unassigned pointers.
+3. All linked data-structures share certain properties:
+   * Each node contains one or more data field.
+   * Each node contains a pointer field to at least one other node.
+   * Finally, we need a pointer to the head of the data-structure, so we know where to access it.
+   Example linked-list displaying these properties:
+   ```c
     
-    typedef struct list {
-        data_type data; /* Data field */
-        struct list *next; /* Pointer field */
+   typedef struct list {
+       data_type data; /* Data field */
+       struct list *next; /* Pointer field */
+   
+   } list;
+   ```
+4. The **linked-list** is the simplest linked structure.
+5. **Singly linked-list** has a pointer to only the successor whereas a **doubly linked-list** has a pointer to both the predecessor and successor.
+6. Searching for data `x` in a linked-list recursively:
+   ```c
     
-    } list;
-    ```
-16. The linked-list is the simplest linked structure.
-17. Singly linked-list has a pointer to only the successor whereas a doubly linked-list has a pointer to both the predecessor and successor.
-18. Searching for data `x` in a linked-list recursively:
-    ```c
-    
-    list *search_list(list *listz, data_type x) {
-        if (listz == NULL) {
-            return(NULL);
-        }
-    
-        // If `x` is in the list, it's either the first element or located in the rest of the list.
-        if (listz->data == x) {
-            return(listz);
-        } else {
-            return(search_list(listz.next, x));
-        }
-    }
-    ```
-19. Inserting into a singly linked-list at the head:
-    ```c
-    
-    list *insert_list(list **listz, data_type x) {
-       list *p; /* temporary pointer */
-       p = malloc(sizeof(list));
-       p->data = x;
-       p->next = *listz;
-       // `**listz` denotes that `listz` is a pointer to a pointer to a list node. This line copies `p` to the place pointed to by `listz`, which is the external variable maintaining access to the head of the list.
-       *listz = p;
-    }
-    ```
-20. Deletion from a list:
-    ```c
-    // Used to find the predecessor of the item to be deleted.
-    list *item_ahead(list *listz, list *x) {
-       if ((listz == NULL) || (listz->next == NULL) {
+   list *search_list(list *listz, data_type x) {
+       if (listz == NULL) {
            return(NULL);
        }
-    
-    
-       if ((listz->next) == x) {
+   
+       // If `x` is in the list, it's either the first element or located in the rest of the list.
+       if (listz->data == x) {
            return(listz);
        } else {
-           return(item_ahead(listz->next, x));
+           return(search_list(listz.next, x));
        }
-    }
+   }
+   ```
+7. Inserting into a singly linked-list at the head:
+   ```c
     
-    // This is called only if `x` exists in the list.
-    void *delete_list(list **listz, list **x) {
-       list *p; /* element pointer */
-       list *pred; /* predecessor pointer */
-    
-       p = *listz;
-       pred = item_ahead(*listz, *x);
-    
-       // Given that we assume `x` exists in the list, `pred` is only null when the first element is the target.
-       if (pred == NULL) { /* splice out of list */
-          // Special case: resets the pointer to the head of the list when the first element is deleted.
-          *listz = p->next;
-       } else {
-          pred->next = (*x)->next
-       }
-    
-       free(*x) /* free memory used by node */
-    }
-    ```
-21. The advantages of linked structures over static arrays include:
-    * Overflow on linked structures never occurs unless the memory is actually full.
-    * Insertion and deletion are simpler than for static arrays.
-    * With large records, moving pointers is easier and faster than moving the items themselves.
-22. Both arrays and lists can be thought of as recursive objects:
+   list *insert_list(list **listz, data_type x) {
+      list *p; /* temporary pointer */
+      p = malloc(sizeof(list));
+      p->data = x;
+      p->next = *listz;
+      // `**listz` denotes that `listz` is a pointer to a pointer to a list node. This line copies `p` to the place pointed to by `listz`, which is the external variable maintaining access to the head of the list.
+      *listz = p;
+   }
+   ```
+8. Deletion from a list:
+   ```c
+    // Used to find the predecessor of the item to be deleted.
+   list *item_ahead(list *listz, list *x) {
+      if ((listz == NULL) || (listz->next == NULL) {
+          return(NULL);
+      }
+   
+   
+      if ((listz->next) == x) {
+          return(listz);
+      } else {
+          return(item_ahead(listz->next, x));
+      }
+   }
+   
+   // This is called only if `x` exists in the list.
+   void *delete_list(list **listz, list **x) {
+      list *p; /* element pointer */
+      list *pred; /* predecessor pointer */
+   
+      p = *listz;
+      pred = item_ahead(*listz, *x);
+   
+      // Given that we assume `x` exists in the list, `pred` is only null when the first element is the target.
+      if (pred == NULL) { /* splice out of list */
+         // Special case: resets the pointer to the head of the list when the first element is deleted.
+         *listz = p->next;
+      } else {
+         pred->next = (*x)->next
+      }
+   
+      free(*x) /* free memory used by node */
+   }
+   ```
+9. The advantages of linked structures over static arrays include:
+   * Overflow on linked structures never occurs unless the memory is actually full.
+   * Insertion and deletion are simpler than for static arrays. With static arrays, insertions and deletions into the middle requires manually shifting elements.
+   * With large records, moving pointers is easier and faster than moving the items themselves.
+10. Both arrays and lists can be thought of as recursive objects:
     * Lists — Chopping the first element off a linked-list leaves a smaller linked-list.
-    * Arrays — Splitting the first `k` elements off of an `n` element array gives two smaller arrays, of size `k` and `n - k`, respectively.
+    * Arrays — Splitting the first $k$ elements off of an $n$ element array gives two smaller arrays, of size $k$ and $n - k$, respectively.
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
-23. A container is an  ADT that permits storage and retrieval of data items independent of content.
-24. Two most important types of containers:
-    * **Stacks**: Supports retrieval by last-in, first-out (LIFO). Primary operations are:
-      * `push(x)` — Inserts item `x` at the top of the stack.
-      * `pop` — Return and remove the top item of the stack.
-    * **Queue**: Supports retrieval by first-in, first-out (FIFO). Primary operations are:
-      * `enqueue(x)` — Inserts item `x` at the back of the queue.
-      * `dequeue` — Return and remove the front item from the queue.
-25. Stacks and Queues can be effectively implemented using arrays or linked-list.
+
+### Stacks
+1. **Stacks** are an ADT that supports retrieval by last-in, first-out (LIFO).
+2. Primary operations are:
+   * `push(x)` — Inserts item `x` at the top of the stack.
+   * `pop` — Return and remove the top item of the stack.
+
+### Queues
+1. **Queues** are an ADT that supports retrieval by first-in, first-out (FIFO).
+2. Primary operations are:
+   * `enqueue(x)` — Inserts item `x` at the back of the queue.
+   * `dequeue` — Return and remove the front item from the queue.
+3. Stacks and queues can be effectively implemented using arrays or linked-list.
 
 ### Hash tables
 ![Hash table](assets/hash_table.svg)
@@ -535,17 +540,17 @@ In practice, the worst-case complexity is the most useful because:
      * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
      * Linear probing is often used — it simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$. But there is quadratic probing and other probing sequences.
    ![Hash table open addressing](assets/hash_table_open_addressing.svg)
-1.  Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
-2.  Other uses of hashing (or a hash table):
+10. Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
+11. Other uses of hashing (or a hash table):
     * Plagiarism detection using Rabin-Karp string matching algorithm
     * English dictionary search
     * Finding distinct elements
     * Counting frequencies of items
-3.  Time complexity in big O notation
+12. Time complexity in big O notation
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
     | Search | $Θ(1)$ | $O(n)$ |
     | Insert | $Θ(1)$ | $O(n)$|
     | Delete | $Θ(1)$ | $O(n)$ |
-4.  Space complexity is $O(n)$.
+13. Space complexity is $O(n)$.
