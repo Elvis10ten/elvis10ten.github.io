@@ -340,7 +340,7 @@ In practice, the worst-case complexity is the most useful because:
    * Allocates a new bigger contiguous array.
    * Copy the content of the old array to the new array
 6. To avoid incurring the cost of resizing many times, dynamic arrays resize by a large amount, such as doubling in size, and use the reserved space for future expansion.
-7. As $n$ elements are added, the capacities form a geometric progression. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes $O(n)$ time overall, meaning that each insertion takes **amortized** constant time.
+7. As $n$ elements are added, the capacities form a geometric progression. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes <span style="color:#df4759">$O(n)$</span> time overall, meaning that each insertion takes **amortized** constant time.
 8. The key idea of **amortized analysis** is to consider the `worst-case cost of a sequence of operations` on a data structure, rather than the worst-case individual cost of any particular operation.
 9.  The **aggregate method** is one of the methods for performing amortized analysis. In this method, the total cost of performing a sequence of $m$ operations on the data structure is divided by the number of operations $m$, yielding an average cost per operation, which is defined as the amortized cost.
 10. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
@@ -390,7 +390,7 @@ In practice, the worst-case complexity is the most useful because:
    \sum_{i=0}^{n}t(i) \leq 3n
    $$
    * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.<br/>
-     > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is $O(1)$.
+     > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is <span style="color:#42ba96">$O(1)$</span>.
 11. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently.
 
 ### Pointers and linked structures
@@ -488,7 +488,8 @@ In practice, the worst-case complexity is the most useful because:
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
 
 ### Stacks
-[![Stack](assets/stack.svg)](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)#/media/File:Lifo_stack.svg)
+[![Stack](assets/stack.webp)](https://www.programiz.com/dsa/stack)
+
 1. **Stacks** are an ADT that supports retrieval by last-in, first-out (LIFO).
 2. Primary operations are:
    * `push(x)` — Inserts item `x` at the top of the stack.
@@ -496,11 +497,72 @@ In practice, the worst-case complexity is the most useful because:
 
 ### Queues
 [![Queue](assets/queue.svg)](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)#/media/File:Data_Queue.svg)
+
 1. **Queues** are an ADT that supports retrieval by first-in, first-out (FIFO).
 2. Primary operations are:
    * `enqueue(x)` — Inserts item `x` at the back of the queue.
    * `dequeue` — Return and remove the front item from the queue.
 3. Stacks and queues can be effectively implemented using arrays or linked-list.
+
+
+### Dictionaries
+![Dictionary](assets/dictionary.svg)
+
+1. A **dictionary** is an abstract data type that stores a collection of `(key, value) pairs`, such that each possible `key` appears at most once in the collection.
+2. The primary operations of a dictionary are:
+   * `put(key, value)`
+   * `remove(key)`
+   * `get(key)`
+3. These are two simple but less common implementations of a dictionary:
+   * An **association list** is a linked list in which each node comprises a key and a value:
+     * The time complexity of get and remove is <span style="color:#df4759">$O(n)$</span>.
+     * The time complexity of put is <span style="color:#42ba96">$O(1)$</span> — if the list is unsorted.
+   * Direct addressing into an **array**:
+     * Potential keys are numbers from the universe $M \subseteq U$
+     * A value with key $k \in M$ can be kept under index $k$ in a $\lvert M \rvert$-element array.
+     * The time complexity of put, get and remove is <span style="color:#42ba96">$O(1)$</span>.
+     * The space complexity is $\lvert U \rvert$. Hence, this structure is impractical when $\lvert U \rvert >> n$; where $n$ is the number of values inserted.
+4. These are the two common data-structures used to implement a dictionary:
+   * **Hash tables**.
+   * **Self-balancing binary search tree**.
+5. Binary search tree based maps are in-order and hence can satisfy range queries (find all values between two bounds) whereas a hash-map can only find exact values.
+
+### Binary search tree (BST)
+1. A **binary tree** is a tree data-structure in which each node has at most two children, referred to as the left child and the right child.
+2. A binary tree can be viewed as a linked-list with two pointers per node.
+3. A **rooted tree** is a tree in which one node has been designated the root.
+4. A **rooted binary tree** is recursively defined as either being:
+   * Empty or
+   * Consisting of a node called the root, together with two **rooted binary trees** called the left and right subtrees.
+5. A **binary search tree** is a rooted binary tree data-structure such that for any node $x$, all nodes in the left subtree of $x$ have keys $<x$ while all nodes in the right subtree of $x$ have keys $>x$.
+6. Binary search trees’ height range from $\log_2 n$ (when balanced) to $n$ (when degenerate).
+7. The time complexity of operations on the binary search tree is linear with respect to the height of the tree $O(h)$.
+8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm <span style="color:#ffc107">$O(\log n)$</span>.
+9. An implementation of a binary tree:
+   ```c
+    
+   typedef struct tree {
+       data_type data; /* Data field */
+       struct tree *parent; /* Pointer to parent */
+       struct tree *left; /* Pointer to left chid */
+       struct tree *right; /* Pointer to right child */
+   } tree;
+   ```
+10. Searching in a binary search tree:
+11. 
+
+### Priority queue
+1. A **priority queue** is an abstract data-type similar to a regular queue or stack data-structure. Each element in a priority queue has an associated `priority`.
+2. In a priority queue, elements with high priority are served before elements with low priority.
+3. Priority queues are often implemented using **heaps**.
+4. A priority queue can also be inefficiently implemented as an unsorted list or a sorted list.
+5. A priority queue can be used for sorting: insert all the elements to be sorted into a priority queue, and sequentially remove them.
+6. The primary operations of a priority queue are:
+   * `Add` an element with a given priority,
+   * `Delete`  an element,
+   * Get the the highest priority element and remove it (`Pull`),
+   * Get the the highest priority element without removing it (`Peek`).
+7. Stacks and queues can be implemented as particular kinds of priority queues, with the priority determined by the order in which the elements are inserted.
 
 ### Hash tables
 [![Hash table](assets/hash_table.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_3_1_1_0_1_0_0_SP.svg)
@@ -535,7 +597,7 @@ In practice, the worst-case complexity is the most useful because:
 8. Collisions can be minimized but cannot be eliminated (see Pigeon hole principle). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
 9. The two common methods for collision resolution:
    * **Separate chaining** — the values of the hash-table’s array is a linked-list.
-     * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in $O(1)$ time. Keys that collided hence form a chain.
+     * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in <span style="color:#42ba96">$O(1)$</span> time. Keys that collided hence form a chain.
      * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
    [![Hash table separate chaining](assets/hash_table_separate_chaining.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_5_0_1_1_1_1_1_LL.svg)
    * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
@@ -553,7 +615,7 @@ In practice, the worst-case complexity is the most useful because:
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
-    | Search | $Θ(1)$ | $O(n)$ |
-    | Insert | $Θ(1)$ | $O(n)$|
-    | Delete | $Θ(1)$ | $O(n)$ |
-13. Space complexity is $O(n)$.
+    | Search | $Θ(1)$ | <span style="color:#df4759">$O(n)$</span> |
+    | Insert | $Θ(1)$ | <span style="color:#df4759">$O(n)$</span>|
+    | Delete | $Θ(1)$ | <span style="color:#df4759">$O(n)$</span> |
+13. Space complexity is <span style="color:#df4759">$O(n)$</span>.
