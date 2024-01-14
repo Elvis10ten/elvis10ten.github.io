@@ -11,6 +11,10 @@ tags:
 > Pet Peeve: The author sometimes skips steps without an explaination (like the integer truncation in "stop and think: incremental correctness"). Some examples are hard to follow for an international student (like understanding the lottery system in "war story: pschic modeling").
 
 
+<span style="color:#42ba96">Good</span>
+<span style="color:#ffc107">Ok</span>
+<span style="color:#df4759">Bad</span>
+
 ## Chapter 1 — Introduction to Algorithm Design
 1. An `algorithmic problem` is specified by describing the complete set of **instances** it must work on and of its output after running on one of these instances.
 2. An `algorithm` is a procedure that takes any of the possible input instances and transforms it to the desired output.
@@ -308,24 +312,25 @@ In practice, the worst-case complexity is the most useful because:
 * The average-case is difficult to establish.
 
 ## Chapter 3: Data structures
-1. A **data type** (or simply **type**) is a collection or grouping of data values, usually specified by:
+1. A **data type** (or simply **type**) is a collection of data values, usually specified by:
    * a set of possible values,
-   * a set of allowed operations on these values, and/or
+   * a set of allowed operations on these values, and
    * a representation of these values as machine types.
-2. An **abstract data type** (**ADT**) is a data type that does not specify the concrete representation of the data. They are defined by their behavior (semantics) from the `point of view of a user of the data`, specifically in terms of:
+2. An **abstract data type** (**ADT**) is a data type that does not specify the concrete representation of the data. They are defined by their behavior (semantics) from the *point of view of a user of the data*, specifically in terms of:
    * possible values,
    * possible operations on data of this type, and
    * the behavior of these operations.
-3. ADT contrasts with **data structures**, which are concrete representations of data, and are the `point of view of an implementer`. The generic definition of "data structure" is anything that can hold your data in a structured way.
-4. The distinction between ADTs and data-structures lies in the POV / level of abstraction. Some important points:
+3. ADT contrasts with **data structures**, which are concrete representations of data, and are the *point of view of an implementer*. The generic definition of "data structure" is anything that can hold your data in a structured way.
+4. The distinction between ADTs and data structures lies in the POV / level of abstraction. Some important points:
    * User’s POV: An `int` in a programming language sense is a fixed-width data structure. An integer in a mathematical sense is an ADT. For most purposes the user can work with the abstraction rather than the concrete choice of representation, and can simply use the data as if the type were truly abstract.
-   * Name overloading: An array is an ADT when viewed as a collection of items that can be accessed by an index; An array is a data-structure when viewed as a collection of fixed sized items stored as contiguous blocks in memory.
+   * Name overloading: An array is an ADT when viewed as a collection of items that can be accessed by an index; An array is a data structure when viewed as a collection of fixed sized items stored as contiguous blocks in memory.
    * ADT implementations: There are multiple implementations of an ADT. E.g: A list can be implemented as an array or a linked-list.
-5. Data-structures can be classified into:
-   * **Contiguous data-structures**: composed of single slabs of memory. E.g. arrays, matrices, heaps and hash tables, etc.
-   * **Linked data-structures**: composed of distinct chunks of memory bound together by pointers. E.g: linked-list, trees, graph adjacency lists, etc.
+5. Data structures can be classified into:
+   * **Contiguous data structures**: composed of single slabs of memory. E.g. arrays, matrices, heaps, hash tables, etc.
+   * **Linked data structures**: composed of distinct chunks of memory bound together by pointers. E.g. linked-list, trees, graph adjacency lists, etc.
+
 ### Arrays
-1. Arrays are data-structures of fixed-size elements stored contiguously such that each element can be efficiently located by its index.
+1. Arrays are data structures of fixed-size elements stored contiguously such that each element can be efficiently located by its index.
    $$
    MemoryAddress(i) = FirstAddress + (i \cdot ElementWordSize)
    $$
@@ -334,14 +339,14 @@ In practice, the worst-case complexity is the most useful because:
    * **Space efficiency**: because no space is wasted with links, end-of-element information, or other per element metadata.
    * **Memory locality**: because the physical continuity between successive data access helps exploit the high-speed cache memory on modern computer architecture.
 3. The primary disadvantage of arrays is that the number of elements (i.e. the array size) is fixed. The capacity needs to be specified at allocation.
-4. **Dynamic arrays** overcome the fixed-size limit limitation of static arrays.
+4. **Dynamic arrays** overcome the fixed-size limitation of static arrays.
    [![Dynamic array](assets/dynamic_array.svg)](https://en.wikipedia.org/wiki/Dynamic_array#/media/File:Dynamic_array.svg)
 5. When a dynamic array's capacity is exceeded, it internally resizes:
    * Allocates a new bigger contiguous array.
    * Copy the content of the old array to the new array
 6. To avoid incurring the cost of resizing many times, dynamic arrays resize by a large amount, such as doubling in size, and use the reserved space for future expansion.
-7. As $n$ elements are added, the capacities form a geometric progression. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes <span style="color:#df4759">$O(n)$</span> time overall, meaning that each insertion takes **amortized** constant time.
-8. The key idea of **amortized analysis** is to consider the `worst-case cost of a sequence of operations` on a data structure, rather than the worst-case individual cost of any particular operation.
+7. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes <span style="color:#ffc107">$O(n)$</span> time overall, meaning that each insertion takes **amortized** <span style="color:#42ba96">$O(1)$</span> time. As $n$ elements are added, the capacities form a geometric progression.
+8. The key idea of **amortized analysis** is to consider the *worst-case cost of a sequence of operations* on a data structure, rather than the worst-case individual cost of any particular operation.
 9.  The **aggregate method** is one of the methods for performing amortized analysis. In this method, the total cost of performing a sequence of $m$ operations on the data structure is divided by the number of operations $m$, yielding an average cost per operation, which is defined as the amortized cost.
 10. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
    * $$
@@ -351,7 +356,7 @@ In practice, the worst-case complexity is the most useful because:
      \end{cases}
      $$
    * $t(i)$ defines the time it takes to perform the i-th `addition` (0 indexed).
-   * The first case of $t(i)$ defines the time taken when the array’s capacity is exceeded and has to doubled. Because of the doubling, this case happens on every power of 2 ($2^{k}$). The time taken is $2^{k}+1$ because:
+   * The first case of $t(i)$ defines the time taken when the array’s capacity is exceeded and has to doubled. Because of the doubling, this case happens on every $2^{k}$. The time taken is $2^{k}+1$ because:
      * $2^{k}$ has to be copied to the new array and
      * The i-th element has to be `added` into the new array.
    * The second case of $t(i)$ defines the time taken when the array capacity is not exceeded. This is constant time because only a single `addition` is performed.
@@ -359,7 +364,7 @@ In practice, the worst-case complexity is the most useful because:
 
         | i | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
         |---|---|---|---|---|---|---|---|---|---|---|
-        | $t(i)$ | $1$ | $3$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
+        | $t(i)$ | $1$ | $2$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
         | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
 
    * $$
@@ -395,15 +400,15 @@ In practice, the worst-case complexity is the most useful because:
 
 ### Pointers and linked structures
 [![Singly linked list](assets/singly_linked_list.svg)](https://en.wikipedia.org/wiki/Linked_list#/media/File:Singly-linked-list.svg)
-1. **Pointers** represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data-structures together.
+1. **Pointers** represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data structures together.
 2. In C:
    * `*p` denotes the item that is pointed to by pointer `p`
    * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
    * A special `NULL` pointer value is used to denote unassigned pointers.
-3. All linked data-structures share certain properties:
+3. All linked data structures share certain properties:
    * Each node contains one or more data field.
    * Each node contains a pointer field to at least one other node.
-   * Finally, we need a pointer to the head of the data-structure, so we know where to access it.
+   * Finally, we need a pointer to the head of the data structure, so we know where to access it.
    Example linked-list displaying these properties:
    ```c
     
@@ -515,29 +520,29 @@ In practice, the worst-case complexity is the most useful because:
    * `get(key)`
 3. These are two simple but less common implementations of a dictionary:
    * An **association list** is a linked list in which each node comprises a key and a value:
-     * The time complexity of get and remove is <span style="color:#df4759">$O(n)$</span>.
+     * The time complexity of get and remove is <span style="color:#ffc107">$O(n)$</span>.
      * The time complexity of put is <span style="color:#42ba96">$O(1)$</span> — if the list is unsorted.
    * Direct addressing into an **array**:
      * Potential keys are numbers from the universe $M \subseteq U$
      * A value with key $k \in M$ can be kept under index $k$ in a $\lvert M \rvert$-element array.
      * The time complexity of put, get and remove is <span style="color:#42ba96">$O(1)$</span>.
      * The space complexity is $\lvert U \rvert$. Hence, this structure is impractical when $\lvert U \rvert >> n$; where $n$ is the number of values inserted.
-4. These are the two common data-structures used to implement a dictionary:
+4. These are the two common data structures used to implement a dictionary:
    * **Hash tables**.
    * **Self-balancing binary search tree**.
 5. Binary search tree based maps are in-order and hence can satisfy range queries (find all values between two bounds) whereas a hash-map can only find exact values.
 
 ### Binary search tree (BST)
-1. A **binary tree** is a tree data-structure in which each node has at most two children, referred to as the left child and the right child.
+1. A **binary tree** is a tree data structure in which each node has at most two children, referred to as the left child and the right child.
 2. A binary tree can be viewed as a linked-list with two pointers per node.
 3. A **rooted tree** is a tree in which one node has been designated the root.
 4. A **rooted binary tree** is recursively defined as either being:
    * Empty or
    * Consisting of a node called the root, together with two **rooted binary trees** called the left and right subtrees.
-5. A **binary search tree** is a rooted binary tree data-structure such that for any node $x$, all nodes in the left subtree of $x$ have keys $<x$ while all nodes in the right subtree of $x$ have keys $>x$.
+5. A **binary search tree** is a rooted binary tree data structure such that for any node $x$, all nodes in the left subtree of $x$ have keys $<x$ while all nodes in the right subtree of $x$ have keys $>x$.
 6. Binary search trees’ height range from $\log_2 n$ (when balanced) to $n$ (when degenerate).
 7. The time complexity of operations on the binary search tree is linear with respect to the height of the tree $O(h)$.
-8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm <span style="color:#ffc107">$O(\log n)$</span>.
+8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm <span style="color:#42ba96">$O(\log n)$</span>.
 9. An implementation of a binary tree:
    ```c
     
@@ -552,7 +557,7 @@ In practice, the worst-case complexity is the most useful because:
 11. 
 
 ### Priority queue
-1. A **priority queue** is an abstract data-type similar to a regular queue or stack data-structure. Each element in a priority queue has an associated `priority`.
+1. A **priority queue** is an abstract data-type similar to a regular queue or stack data structure. Each element in a priority queue has an associated `priority`.
 2. In a priority queue, elements with high priority are served before elements with low priority.
 3. Priority queues are often implemented using **heaps**.
 4. A priority queue can also be inefficiently implemented as an unsorted list or a sorted list.
@@ -566,7 +571,7 @@ In practice, the worst-case complexity is the most useful because:
 
 ### Hash tables
 [![Hash table](assets/hash_table.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_3_1_1_0_1_0_0_SP.svg)
-1. **Hash tables** are a data-structure that efficiently implements a dictionary. They exploit the fact that looking an element up in an array takes constant time once you have its index.
+1. **Hash tables** are a data structure that efficiently implements a dictionary. They exploit the fact that looking an element up in an array takes constant time once you have its index.
 2. The basic idea is to pick a hash function $h$ that maps every possible key $x$ to a small integer $h(x)$. Then we store $x$ and its value in an array at index $h(x)$; the array itself is essentially the hash table.
 3. A **hash function** $h$ maps the universe $U$ of keys to array indices within the hash table.
    $$
@@ -615,7 +620,47 @@ In practice, the worst-case complexity is the most useful because:
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
-    | Search | $Θ(1)$ | <span style="color:#df4759">$O(n)$</span> |
-    | Insert | $Θ(1)$ | <span style="color:#df4759">$O(n)$</span>|
-    | Delete | $Θ(1)$ | <span style="color:#df4759">$O(n)$</span> |
-13. Space complexity is <span style="color:#df4759">$O(n)$</span>.
+    | Search | $Θ(1)$ | <span style="color:#ffc107">$O(n)$</span> |
+    | Insert | $Θ(1)$ | <span style="color:#ffc107">$O(n)$</span>|
+    | Delete | $Θ(1)$ | <span style="color:#ffc107">$O(n)$</span> |
+13. Space complexity is <span style="color:#ffc107">$O(n)$</span>.
+
+### Excercises
+1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.
+   <details>
+   <summary>Solution</summary>
+   ```kotlin
+       fun test() {
+        System.out.println(solution("((())())()"))
+        System.out.println(solution(")()("))
+        System.out.println(solution("())"))
+        System.out.println(solution(")))"))
+        System.out.println(solution("(("))
+    }
+
+    /**
+     * @return -1 if [string] is valid, else a positive integer
+     * that providesthe position of the offending index.
+     */
+    fun solution(string: String): Int {
+        val stack = Stack<Pair<Char, Int>>()
+    
+        string.forEachIndexed { index, char ->
+    	    if (char == '(') {
+    	        stack.push(char to index)
+    	    } else if (char == ')') {
+    	        if (stack.empty()) {
+    	            return index
+    	        }
+
+    	        stack.pop()
+    	    } else {
+    	        throw IllegalArgumentException("Only parenthesis are supported")
+    	    }
+    	}
+
+        return if (stack.empty()) -1 else stack.peek().second
+    }
+   ```
+   </summary>
+2. 
