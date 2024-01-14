@@ -627,40 +627,40 @@ In practice, the worst-case complexity is the most useful because:
 
 ### Excercises
 1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.
-   <details>
-   <summary>Solution</summary>
-   ```kotlin
-       fun test() {
-        System.out.println(solution("((())())()"))
-        System.out.println(solution(")()("))
-        System.out.println(solution("())"))
-        System.out.println(solution(")))"))
-        System.out.println(solution("(("))
-    }
+    <details>
+    <summary>Click me</summary>
 
-    /**
-     * @return -1 if [string] is valid, else a positive integer
-     * that providesthe position of the offending index.
-     */
-    fun solution(string: String): Int {
-        val stack = Stack<Pair<Char, Int>>()
+    ```kotlin
+        fun test() {
+         System.out.println(solution("((())())()"))
+         System.out.println(solution(")()("))
+         System.out.println(solution("())"))
+         System.out.println(solution(")))"))
+         System.out.println(solution("(("))
+     }
+
+     /**
+      * @return -1 if [string] is valid, else a positive integer
+      * that providesthe position of the offending index.
+      */
+     fun solution(string: String): Int {
+         val stack = Stack<Pair<Char, Int>>()
     
-        string.forEachIndexed { index, char ->
-    	    if (char == '(') {
-    	        stack.push(char to index)
-    	    } else if (char == ')') {
-    	        if (stack.empty()) {
-    	            return index
-    	        }
+         string.forEachIndexed { index, char ->
+     	    if (char == '(') {
+     	        stack.push(char to index)
+     	    } else if (char == ')') {
+     	        if (stack.empty()) {
+     	            return index
+     	        }   
+     	        stack.pop()
+     	    } else {
+     	        throw IllegalArgumentException("Only parenthesis are supported")
+     	    }
+     	}   
+         return if (stack.empty()) -1 else stack.peek().second
+     }
+    ```
 
-    	        stack.pop()
-    	    } else {
-    	        throw IllegalArgumentException("Only parenthesis are supported")
-    	    }
-    	}
-
-        return if (stack.empty()) -1 else stack.peek().second
-    }
-   ```
-   </summary>
+    </details>
 2. 
