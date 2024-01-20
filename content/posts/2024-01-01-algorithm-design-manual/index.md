@@ -678,7 +678,6 @@ In practice, the worst-case complexity is the most useful because:
     	System.out.println(lengthOfLongestBalancedParentheses("(("))
 	}
 
-
 	fun lengthOfLongestBalancedParentheses(string: String): Int {
 		val stack = Stack<Char>()
     	var numBalancedParenthesis = 0
@@ -718,7 +717,6 @@ In practice, the worst-case complexity is the most useful because:
         System.out.println(node1)
         System.out.println(reverse(node1))
 	}
-	
 	
     data class Node(
     	val element: String,
@@ -788,7 +786,6 @@ In practice, the worst-case complexity is the most useful because:
         stack.pop()
 	}
 	
-	
     data class Element(
     	val num: Int,
         internal val minNumSoFar: Int
@@ -841,7 +838,6 @@ In practice, the worst-case complexity is the most useful because:
         System.out.println(stack.findMin())
         stack.pop()
 	}
-	
 	
     data class Element(
     	val num: Int,
@@ -919,9 +915,9 @@ In practice, the worst-case complexity is the most useful because:
         dictionary.delete(4)
         println(dictionary.search(4))
     }
-
+    
     class Dictionary(val capacity: Int) {
-
+        
         private val array = Array<Int?>(capacity) { null }
 
         fun search(element: Int): Int? {
