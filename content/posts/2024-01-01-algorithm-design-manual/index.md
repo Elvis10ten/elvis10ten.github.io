@@ -628,22 +628,22 @@ In practice, the worst-case complexity is the most useful because:
 ### Excercises
 1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.
     <details>
-    <summary>Click me</summary>
+    <summary>Solution</summary>
 
     ```kotlin
-        fun test() {
-         System.out.println(solution("((())())()"))
-         System.out.println(solution(")()("))
-         System.out.println(solution("())"))
-         System.out.println(solution(")))"))
-         System.out.println(solution("(("))
+    fun test() {
+         System.out.println(areParentheseProperlyBalanced("((())())()"))
+         System.out.println(areParentheseProperlyBalanced(")()("))
+         System.out.println(areParentheseProperlyBalanced("())"))
+         System.out.println(areParentheseProperlyBalanced(")))"))
+         System.out.println(areParentheseProperlyBalanced("(("))
      }
 
      /**
       * @return -1 if [string] is valid, else a positive integer
       * that providesthe position of the offending index.
       */
-     fun solution(string: String): Int {
+     fun areParentheseProperlyBalanced(string: String): Int {
          val stack = Stack<Pair<Char, Int>>()
     
          string.forEachIndexed { index, char ->
@@ -663,4 +663,246 @@ In practice, the worst-case complexity is the most useful because:
     ```
 
     </details>
-2. 
+
+2. Give an algorithm that takes a string $S$ consisting of opening and closing parentheses, say `)()(())()()))())))(`, and finds the length of the longest balanced parentheses in $S$, which is 12 in the example above. (Hint: The solution is not necessarily a contiguous run of parenthesis from $S$)
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+	fun test() {
+    	System.out.println(lengthOfLongestBalancedParentheses("((())())()"))
+    	System.out.println(lengthOfLongestBalancedParentheses(")()(())()()))())))("))
+    	System.out.println(lengthOfLongestBalancedParentheses(")()("))
+    	System.out.println(lengthOfLongestBalancedParentheses("())"))
+    	System.out.println(lengthOfLongestBalancedParentheses(")))"))
+    	System.out.println(lengthOfLongestBalancedParentheses("(("))
+	}
+
+
+	fun lengthOfLongestBalancedParentheses(string: String): Int {
+		val stack = Stack<Char>()
+    	var numBalancedParenthesis = 0
+    
+		string.forEachIndexed { index, char ->
+			if (char == '(') {
+				stack.push(char)
+			} else if (char == ')') {
+            	if (!stack.empty()) {
+					stack.pop()
+                	numBalancedParenthesis++
+            	}
+			}
+		}
+    
+	    // Multiplied by 2 because each balanced pair has a length of 2.
+		return numBalancedParenthesis * 2
+	}
+    ```
+
+    </details>
+
+3. Give an algorithm to reverse the direction of a given singly linked list. In other words, after the reversal all pointers should now point backwards. Your algorithm should take linear time.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+	fun test() {
+        val node1 = Node("Elvis", null)
+        
+        val node2 = Node("Chidera", null)
+        node1.next = node2
+        
+        val node3 = Node("Nnajiofor", null)
+        node2.next = node3
+        
+        System.out.println(node1)
+        System.out.println(reverse(node1))
+	}
+	
+	
+    data class Node(
+    	val element: String,
+        var next: Node?
+    )
+    
+    /**
+     * Work through an example:
+     * reverse(Node1 -> Node2 -> Node3)
+     * 
+     * Node1 level:
+     * val last = reverse(Node2 -> Node3) 🛑
+     * 
+     * Node2 level:
+     * val last = reverse(Node3) 🛑
+     * 
+     * Node3 level:
+     * return Node3
+     * 
+     * Back to Node2 level:
+     * val last = Node3 🟢
+     * Node3.next = Node2
+     * Node2.next = null
+     * return last
+     * 
+     * Back to Node1 level:
+     * val last = Node3 🟢
+     * Node2.next = Node1
+     * Node1.next = null
+     * return last
+     */
+	fun reverse(node: Node): Node {
+        // Base case
+        if (node.next == null) return node
+        
+        val last = reverse(node.next!!)
+        node.next!!.next = node
+        node.next = null
+        return last
+	}
+    ```
+
+    </details>
+
+4. Design a stack $S$ that supports `S.push(x)`, `S.pop()`, and `S.findmin()`, which returns the minimum element of $S$. All operations should run in constant time.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+	fun test() {
+        val stack = Stack()
+        stack.push(50)
+        stack.push(40)
+        stack.push(30)
+        stack.push(20)
+        stack.push(10)
+        
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+	}
+	
+	
+    data class Element(
+    	val num: Int,
+        internal val minNumSoFar: Int
+    )
+    
+    class Stack {
+        
+        private val list = mutableListOf<Element>()
+        
+        fun push(num: Int) {
+        	list += Element(
+            	num = num,
+                minNumSoFar = Math.min(num, list.lastOrNull()?.minNumSoFar ?: num)
+            )    
+        }
+        
+        fun pop(): Int {
+            return list.removeLast().num
+        }
+        
+        fun findMin(): Int {
+            return list.last().minNumSoFar
+        }
+    }
+    ```
+
+    </details>
+ 
+7. Work out the details of supporting constant-time deletion from a singly linked list as per the footnote from page 79, ideally to an actual implementation. Support the other operations as efficiently as possible.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+	fun test() {
+        val stack = Stack()
+        stack.push(50)
+        stack.push(40)
+        stack.push(30)
+        stack.push(20)
+        stack.push(10)
+        
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+        System.out.println(stack.findMin())
+        stack.pop()
+	}
+	
+	
+    data class Element(
+    	val num: Int,
+        internal val minNumSoFar: Int
+    )
+    
+    class Stack {
+        
+        private val list = mutableListOf<Element>()
+        
+        fun push(num: Int) {
+        	list += Element(
+            	num = num,
+                minNumSoFar = Math.min(num, list.lastOrNull()?.minNumSoFar ?: num)
+            )    
+        }
+        
+        fun pop(): Int {
+            return list.removeLast().num
+        }
+        
+        fun findMin(): Int {
+            return list.last().minNumSoFar
+        }
+    }
+    ```
+
+
+10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, `silent`/`listen`, and `incest`/`insect` are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.\
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+	fun test() {
+        println(isAnagram("silent", "listen"))
+        println(isAnagram("silence", "listen"))
+        println(isAnagram("incest", "insect"))
+        println(isAnagram("incest", "insects"))
+    }
+
+    fun isAnagram(s1: String, s2: String): Boolean {
+        val map = mutableMapOf<Char, Int>()
+
+        s1.forEach { char ->
+            map[char] = map.getOrPut(char) { 0 } + 1
+        }
+
+        s2.forEach { char ->
+            if (map.containsKey(char)) {
+                map[char] = map.getValue(char) - 1
+            } else {
+                return false
+            }
+        }
+
+        map.values.forEach { number ->
+            if (number != 0) {
+                return false
+            }
+        }
+
+        return true
+    }
+    ```
