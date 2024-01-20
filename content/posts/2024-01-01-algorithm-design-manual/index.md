@@ -870,7 +870,7 @@ In practice, the worst-case complexity is the most useful because:
     ```
 
 
-10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, `silent`/`listen`, and `incest`/`insect` are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.\
+10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, _silent_/_listen_, and _incest_/_insect_ are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.\
     <details>
     <summary>Solution</summary>
 
@@ -904,5 +904,38 @@ In practice, the worst-case complexity is the most useful because:
         }
 
         return true
+    }
+    ```
+
+11. Design a dictionary data structure in which `search`, `insertion`, and `deletion` can all be processed in $O(1)$ time in the worst case. You may assume the set elements are integers drawn from a finite set $1, 2, ..., n$ and initialization can take $O(N)$ time.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+	fun test() {
+        val dictionary = Dictionary(10)
+        dictionary.insert(4)
+        println(dictionary.search(4))
+        dictionary.delete(4)
+        println(dictionary.search(4))
+    }
+
+    class Dictionary(val capacity: Int) {
+
+        private val array = Array<Int?>(capacity) { null }
+
+        fun search(element: Int): Int? {
+            return array[element.toIndex]
+        }
+
+        fun delete(element: Int) {
+            array[element.toIndex] = null
+        }
+
+        fun insert(element: Int) {
+            array[element.toIndex] = element
+        }
+
+        private val Int.toIndex get() = this - 1
     }
     ```
