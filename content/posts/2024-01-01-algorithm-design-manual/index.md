@@ -866,6 +866,7 @@ In practice, the worst-case complexity is the most useful because:
     }
     ```
 
+    </details>
 
 10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, _silent_/_listen_, and _incest_/_insect_ are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.\
     <details>
@@ -903,6 +904,8 @@ In practice, the worst-case complexity is the most useful because:
         return true
     }
     ```
+    
+    </details>
 
 11. Design a dictionary data structure in which `search`, `insertion`, and `deletion` can all be processed in $O(1)$ time in the worst case. You may assume the set elements are integers drawn from a finite set $1, 2, ..., n$ and initialization can take $O(N)$ time.
     <details>
@@ -936,3 +939,5 @@ In practice, the worst-case complexity is the most useful because:
         private val Int.toIndex get() = this - 1
     }
     ```
+
+    </details>
