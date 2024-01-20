@@ -632,21 +632,21 @@ In practice, the worst-case complexity is the most useful because:
 
     ```kotlin
     fun test() {
-         System.out.println(areParentheseProperlyBalanced("((())())()"))
-         System.out.println(areParentheseProperlyBalanced(")()("))
-         System.out.println(areParentheseProperlyBalanced("())"))
-         System.out.println(areParentheseProperlyBalanced(")))"))
-         System.out.println(areParentheseProperlyBalanced("(("))
+        System.out.println(areParentheseProperlyBalanced("((())())()"))
+        System.out.println(areParentheseProperlyBalanced(")()("))
+        System.out.println(areParentheseProperlyBalanced("())"))
+        System.out.println(areParentheseProperlyBalanced(")))"))
+        System.out.println(areParentheseProperlyBalanced("(("))
      }
 
-     /**
+    /**
       * @return -1 if [string] is valid, else a positive integer
       * that providesthe position of the offending index.
       */
-     fun areParentheseProperlyBalanced(string: String): Int {
-         val stack = Stack<Pair<Char, Int>>()
+    fun areParentheseProperlyBalanced(string: String): Int {
+        val stack = Stack<Pair<Char, Int>>()
     
-         string.forEachIndexed { index, char ->
+        string.forEachIndexed { index, char ->
      	    if (char == '(') {
      	        stack.push(char to index)
      	    } else if (char == ')') {
@@ -658,7 +658,8 @@ In practice, the worst-case complexity is the most useful because:
      	        throw IllegalArgumentException("Only parenthesis are supported")
      	    }
      	}   
-         return if (stack.empty()) -1 else stack.peek().second
+        
+        return if (stack.empty()) -1 else stack.peek().second
      }
     ```
 
@@ -669,14 +670,14 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-	fun test() {
+    fun test() {
     	System.out.println(lengthOfLongestBalancedParentheses("((())())()"))
     	System.out.println(lengthOfLongestBalancedParentheses(")()(())()()))())))("))
     	System.out.println(lengthOfLongestBalancedParentheses(")()("))
     	System.out.println(lengthOfLongestBalancedParentheses("())"))
     	System.out.println(lengthOfLongestBalancedParentheses(")))"))
     	System.out.println(lengthOfLongestBalancedParentheses("(("))
-	}
+    }
 
 	fun lengthOfLongestBalancedParentheses(string: String): Int {
 		val stack = Stack<Char>()
@@ -705,7 +706,7 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-	fun test() {
+    fun test() {
         val node1 = Node("Elvis", null)
         
         val node2 = Node("Chidera", null)
@@ -716,7 +717,7 @@ In practice, the worst-case complexity is the most useful because:
         
         System.out.println(node1)
         System.out.println(reverse(node1))
-	}
+    }
 	
     data class Node(
     	val element: String,
@@ -747,7 +748,7 @@ In practice, the worst-case complexity is the most useful because:
      * Node2.next = Node1
      * Node1.next = null
      * return last
-     */
+    */
 	fun reverse(node: Node): Node {
         // Base case
         if (node.next == null) return node
@@ -766,7 +767,7 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-	fun test() {
+    fun test() {
         val stack = Stack()
         stack.push(50)
         stack.push(40)
@@ -784,7 +785,7 @@ In practice, the worst-case complexity is the most useful because:
         stack.pop()
         System.out.println(stack.findMin())
         stack.pop()
-	}
+    }
 	
     data class Element(
     	val num: Int,
@@ -819,7 +820,7 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-	fun test() {
+    fun test() {
         val stack = Stack()
         stack.push(50)
         stack.push(40)
@@ -837,7 +838,7 @@ In practice, the worst-case complexity is the most useful because:
         stack.pop()
         System.out.println(stack.findMin())
         stack.pop()
-	}
+    }
 	
     data class Element(
     	val num: Int,
@@ -871,20 +872,20 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-	fun test() {
+    fun test() {
         println(isAnagram("silent", "listen"))
         println(isAnagram("silence", "listen"))
         println(isAnagram("incest", "insect"))
         println(isAnagram("incest", "insects"))
     }
-
+    
     fun isAnagram(s1: String, s2: String): Boolean {
         val map = mutableMapOf<Char, Int>()
-
+        
         s1.forEach { char ->
             map[char] = map.getOrPut(char) { 0 } + 1
         }
-
+        
         s2.forEach { char ->
             if (map.containsKey(char)) {
                 map[char] = map.getValue(char) - 1
@@ -892,13 +893,13 @@ In practice, the worst-case complexity is the most useful because:
                 return false
             }
         }
-
+        
         map.values.forEach { number ->
             if (number != 0) {
                 return false
             }
         }
-
+        
         return true
     }
     ```
@@ -908,30 +909,30 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-	fun test() {
+    fun test() {
         val dictionary = Dictionary(10)
         dictionary.insert(4)
         println(dictionary.search(4))
         dictionary.delete(4)
         println(dictionary.search(4))
     }
-    
+
     class Dictionary(val capacity: Int) {
         
         private val array = Array<Int?>(capacity) { null }
-
+        
         fun search(element: Int): Int? {
             return array[element.toIndex]
         }
-
+	
         fun delete(element: Int) {
             array[element.toIndex] = null
         }
-
+	
         fun insert(element: Int) {
             array[element.toIndex] = element
         }
-
+        
         private val Int.toIndex get() = this - 1
     }
     ```
