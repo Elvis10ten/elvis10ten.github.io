@@ -868,6 +868,74 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
+9. Write a function which, given a sequence of digits 2–9 and a dictionary of $n$ words, reports all words described by this sequence when typed in on a standard telephone keypad. For the sequence _269_ you should return _any_, _box_, _boy_, and _cow_, among other words.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        println(words(arrayOf(2, 6, 9)))
+        println(words(arrayOf(7, 6, 7, 7)))
+    }
+
+    fun words(inputDigits: Array<Int>): List<String> {
+        val words = setOf(
+            "pops",
+            "any",
+            "box",
+            "boy",
+            "cow",
+            "dad",
+            "mom",
+        )
+        val charToDigitMapping = mapOf(
+            'a' to 2,
+            'b' to 2,
+            'c' to 2,
+            'd' to 3,
+            'e' to 3,
+            'f' to 3,
+            'g' to 4,
+            'h' to 4,
+            'i' to 4,
+            'j' to 5,
+            'k' to 5,
+            'l' to 5,
+            'm' to 6,
+            'n' to 6,
+            'o' to 6,
+            'p' to 7,
+            'q' to 7,
+            'r' to 7,
+            's' to 7,
+            't' to 8,
+            'u' to 8,
+            'v' to 8,
+            'w' to 9,
+            'x' to 9,
+            'y' to 9,
+            'z' to 9,
+        )
+
+        val matchingWords = mutableListOf<String>()
+        words.forEach { word ->
+            word.forEachIndexed { index, char ->
+                val charDigit = charToDigitMapping[char] ?: return@forEach
+                val inputDigitAtIndex = inputDigits.getOrNull(index) ?: return@forEach
+                if (charDigit != inputDigitAtIndex) {
+                    return@forEach
+                }
+            }
+
+            matchingWords += word
+        }
+
+        return matchingWords
+    }
+    ```
+
+    </details>
+
 10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, _silent_/_listen_, and _incest_/_insect_ are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.\
     <details>
     <summary>Solution</summary>
@@ -904,7 +972,7 @@ In practice, the worst-case complexity is the most useful because:
         return true
     }
     ```
-    
+
     </details>
 
 11. Design a dictionary data structure in which `search`, `insertion`, and `deletion` can all be processed in $O(1)$ time in the worst case. You may assume the set elements are integers drawn from a finite set $1, 2, ..., n$ and initialization can take $O(N)$ time.
