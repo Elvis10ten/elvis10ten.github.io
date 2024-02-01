@@ -1116,7 +1116,6 @@ In practice, the worst-case complexity is the most useful because:
     </details>
 
 37. Write a function to determine whether two binary trees are identical. Identical trees have the same key value at each position and the same structure.
-Solution
     <details>
     <summary>Solution</summary>
 
@@ -1150,7 +1149,6 @@ Solution
     </details>
 
 41. You are given a search string and a magazine. You seek to generate all the characters in the search string by cutting them out from the magazine. Give an algorithm to efficiently determine whether the magazine contains all the letters in the search string.
-Solution
     <details>
     <summary>Solution</summary>
 
