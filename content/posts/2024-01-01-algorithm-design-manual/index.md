@@ -511,8 +511,6 @@ In practice, the worst-case complexity is the most useful because:
 
 
 ### Dictionaries
-![Dictionary](assets/dictionary.svg)
-
 1. A **dictionary** is an abstract data type that stores a collection of `(key, value) pairs`, such that each possible `key` appears at most once in the collection.
 2. The primary operations of a dictionary are:
    * `put(key, value)`
