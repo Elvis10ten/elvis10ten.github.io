@@ -814,61 +814,141 @@ In practice, the worst-case complexity is the most useful because:
     ```
 
     </details>
+
+5. We have seen how dynamic arrays enable arrays to grow while still achieving constant-time amortized performance. This problem concerns extending dynamic arrays to let them both grow and shrink on demand.
+    
+    (a) Consider an underflow strategy that cuts the array size in half whenever the array falls below half full. Give an example sequence of insertions and deletions where this strategy gives a bad amortized cost.
+    
+    (b) Then, give a better underflow strategy than that suggested above, one that achieves constant amortized cost per deletion.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+    ```
+    </details>
+
+6. Suppose you seek to maintain the contents of a refrigerator so as to minimize food spoilage. What data structure should you use, and how should you use it?
+    <details>
+    <summary>Solution</summary>
+
+    Use a priority queue. The expiry date is the priority of each element. Elements with the lowest expiry date are served first (`minElement`).
+    </details>
  
 7. Work out the details of supporting constant-time deletion from a singly linked list as per the footnote from page 79, ideally to an actual implementation. Support the other operations as efficiently as possible.
     <details>
     <summary>Solution</summary>
 
     ```kotlin
-    fun test() {
-        val stack = Stack()
-        stack.push(50)
-        stack.push(40)
-        stack.push(30)
-        stack.push(20)
-        stack.push(10)
-        
-        System.out.println(stack.findMin())
-        stack.pop()
-        System.out.println(stack.findMin())
-        stack.pop()
-        System.out.println(stack.findMin())
-        stack.pop()
-        System.out.println(stack.findMin())
-        stack.pop()
-        System.out.println(stack.findMin())
-        stack.pop()
-    }
-	
-    data class Element(
-    	val num: Int,
-        internal val minNumSoFar: Int
-    )
     
-    class Stack {
-        
-        private val list = mutableListOf<Element>()
-        
-        fun push(num: Int) {
-        	list += Element(
-            	num = num,
-                minNumSoFar = Math.min(num, list.lastOrNull()?.minNumSoFar ?: num)
-            )    
-        }
-        
-        fun pop(): Int {
-            return list.removeLast().num
-        }
-        
-        fun findMin(): Int {
-            return list.last().minNumSoFar
-        }
-    }
     ```
 
     </details>
 
-9. Write a function which, given a sequence of digits 2–9 and a dictionary of $n$ words, reports all words described by this sequence when typed in on a standard telephone keypad. For the sequence _269_ you should return _any_, _box_, _boy_, and _cow_, among other words.
+8. Tic-tac-toe is a game played on an $n * n$ board (typically $n = 3$) where two players take consecutive turns placing “O” and “X” marks onto the board cells. The game is won if n consecutive “O” or “X” marks are placed in a row, column, or diagonal. Create a data structure with $O(n)$ space that accepts a sequence of moves, and reports in constant time whether the last move won the game.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        var tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playX(1, 1))
+        assertFalse(tickTacToe.playO(1, 2))
+        assertFalse(tickTacToe.playX(1, 3))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playO(2, 1))
+        assertFalse(tickTacToe.playX(2, 2))
+        assertFalse(tickTacToe.playO(2, 3))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playX(3, 1))
+        assertFalse(tickTacToe.playX(3, 2))
+        assertTrue(tickTacToe.playX(3, 3))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playX(1, 1))
+        assertFalse(tickTacToe.playO(2, 1))
+        assertFalse(tickTacToe.playX(3, 1))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playO(1, 2))
+        assertFalse(tickTacToe.playX(2, 2))
+        assertFalse(tickTacToe.playO(3, 2))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playX(1, 3))
+        assertFalse(tickTacToe.playX(2, 3))
+        assertTrue(tickTacToe.playX(3, 3))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playO(1, 1))
+        assertFalse(tickTacToe.playO(2, 2))
+        assertTrue(tickTacToe.playO(3, 3))
+
+        tickTacToe = TickTacToe(3)
+        assertFalse(tickTacToe.playO(1, 3))
+        assertFalse(tickTacToe.playO(2, 2))
+        assertTrue(tickTacToe.playO(3, 1))
+    }
+    
+    private fun assertTrue(value: Boolean) {
+        require(value)
+        println("Won!!!")
+    }
+
+    private fun assertFalse(value: Boolean) {
+        require(!value)
+        println("Not won yet")
+    }
+
+    class TickTacToe(private val n: Int) {
+
+        private val columns = Array(n) {
+            Slot(n)
+        }
+
+        private val rows = Array(n) {
+            Slot(n)
+        }
+
+        private val diagonal = Slot(n)
+
+        private val antiDiagonal = Slot(n)
+
+        fun playX(rowPosition: Int, columnPosition: Int): Boolean {
+            return play('X', rowPosition, columnPosition)
+        }
+
+        fun playO(rowPosition: Int, columnPosition: Int): Boolean {
+            return play('O', rowPosition, columnPosition)
+        }
+
+        private fun play(char: Char, rowPosition: Int, columnPosition: Int): Boolean {
+            return rows[rowPosition.toIndex].play(char) ||
+                    columns[columnPosition.toIndex].play(char) ||
+                    (rowPosition == columnPosition && diagonal.play(char)) ||
+                    ((rowPosition + columnPosition) == (n + 1) && antiDiagonal.play(char))
+        }
+
+        private val Int.toIndex get() = this - 1
+
+        class Slot(private val n: Int) {
+
+            private var number = 0
+
+            fun play(char: Char): Boolean {
+                val increment = if (char == 'X') 1 else -1
+                val target = if (char == 'X') n else -n
+
+                number += increment
+                return number == target
+            }
+        }
+    }
+    ```
+    </details>
+
+9.  Write a function which, given a sequence of digits 2–9 and a dictionary of $n$ words, reports all words described by this sequence when typed in on a standard telephone keypad. For the sequence _269_ you should return _any_, _box_, _boy_, and _cow_, among other words.
     <details>
     <summary>Solution</summary>
 
@@ -1007,5 +1087,187 @@ In practice, the worst-case complexity is the most useful because:
         private val Int.toIndex get() = this - 1
     }
     ```
+
+    </details>
+
+
+34. What method would you use to look up a word in a dictionary?
+    <details>
+    <summary>Solution</summary>
+
+    Use a hash table: Store the word as the key and the definition as the value.
+
+    </details>
+
+35. Imagine you have a closet full of shirts. What can you do to organize your shirts for easy retrieval?
+    <details>
+    <summary>Solution</summary>
+
+    Sort them based on specific property like color.
+
+    </details>
+
+36. Write a function to find the middle node of a singly linked list.
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+37. Write a function to determine whether two binary trees are identical. Identical trees have the same key value at each position and the same structure.
+Solution
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+38. Write a program to convert a binary search tree into a linked list.
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+39. Implement an algorithm to reverse a linked list. Now do it without recursion.
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+
+40. What is the best data structure for maintaining URLs that have been visited by a web crawler? Give an algorithm to test whether a given URL has already been visited, optimizing both space and time.
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+41. You are given a search string and a magazine. You seek to generate all the characters in the search string by cutting them out from the magazine. Give an algorithm to efficiently determine whether the magazine contains all the letters in the search string.
+Solution
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+42. Reverse the words in a sentence—that is, “My name is Chris” becomes “Chris is name My.” Optimize for time and space.
+    <details>
+    <summary>Solution</summary>
+
+    fun test() {
+        println(reverse("My name is Chris"))
+    }
+
+    fun reverse(sentence: String): String {
+        val words = sentence.split(" ")
+        var reversedSentence = ""
+
+        var i = words.lastIndex
+        while (i >= 0) {
+            val word = words[i]
+            reversedSentence += word
+            i--
+
+            if (i >= 0) {
+                reversedSentence += " "
+            }
+        }
+
+        return reversedSentence
+    }
+
+    </details>
+
+43. Determine whether a linked list contains a loop as quickly as possible without using any extra storage. Also, identify the location of the loop.
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+
+44. You have an unordered array $X$ of $n$ integers. Find the array $M$ containing $n$ elements where $M_i$ is the product of all integers in $X$ except for $X_i$. You may not use division. You can use extra memory. (Hint: there are solutions faster than $O(n^2)$.)
+    <details>
+    <summary>Solution</summary>
+
+    fun test() {
+        println(transform(arrayOf(3, 5, 4)).toList())
+        println(transform(arrayOf(2, 3, 4, 5, 6)).toList())
+    }
+
+    fun transform(x: Array<Int>): Array<Int> {
+        val prefixProducts = Array(x.size) { 0 }
+        val suffixProducts = Array(x.size) { 0 }
+
+        var prefixProduct = 1
+        x.forEachIndexed { i, xi ->
+            prefixProducts[i] = prefixProduct
+            prefixProduct *= xi
+        }
+
+        var suffixProduct = 1
+        var i = x.lastIndex
+        while (i >= 0) {
+            val xi = x[i]
+            suffixProducts[i] = suffixProduct
+            suffixProduct *= xi
+            i--
+        }
+
+        return Array(x.size) {
+            prefixProducts[it] * suffixProducts[it]
+        }
+    }
+
+    </details>
+
+45. Give an algorithm for finding an ordered word pair (e.g. “New York”) occurring with the greatest frequency in a given webpage. Which data structures would you use? Optimize both time and space.
+    <details>
+    <summary>Solution</summary>
+
+    fun test() {
+        println(findOrderedWordPairWithMaxFrequency("New york is a great city. I love new york."))
+        println(findOrderedWordPairWithMaxFrequency("My name is Elvis Chidera. Elvis Chidera is me."))
+    }
+
+    /*
+    Punctuation marks can mess up the algorithm. Only "." is handled.
+     */
+    fun findOrderedWordPairWithMaxFrequency(text: String): Pair<String, String> {
+        val words = text.replace(".", "").split(" ")
+        if (words.size <= 1) throw IllegalArgumentException("Text is empty or only has one word")
+
+        val wordPairs = mutableMapOf<Pair<String, String>, Int>()
+
+        var i = 1
+        while (i < words.size) {
+            val previousWord = words[i - 1]
+            val currentWord = words[i]
+            val wordPair = previousWord to currentWord
+
+            wordPairs[wordPair] = wordPairs.getOrDefault(wordPair, 1) + 1
+            i++
+        }
+
+        var maxFrequency = 0
+        var wordPairWithMaxFrequency: Pair<String, String>? = null
+        wordPairs.forEach { (wordPair, frequency) ->
+            if (frequency > maxFrequency) {
+                maxFrequency = frequency
+                wordPairWithMaxFrequency = wordPair
+            }
+        }
+
+        return wordPairWithMaxFrequency!!
+    }
 
     </details>
