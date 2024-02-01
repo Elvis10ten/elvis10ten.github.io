@@ -1109,7 +1109,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    h
 
     </details>
 
@@ -1117,7 +1117,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    j
 
     </details>
 
@@ -1125,7 +1125,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    j
 
     </details>
 
@@ -1133,7 +1133,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    j
 
     </details>
 
@@ -1142,7 +1142,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    j
 
     </details>
 
@@ -1150,7 +1150,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    k
 
     </details>
 
@@ -1158,6 +1158,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
+    ```kotlin
     fun test() {
         println(reverse("My name is Chris"))
     }
@@ -1179,6 +1180,7 @@ In practice, the worst-case complexity is the most useful because:
 
         return reversedSentence
     }
+    ```
 
     </details>
 
@@ -1186,7 +1188,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    
+    k
 
     </details>
 
@@ -1195,6 +1197,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
+    ```kotlin
     fun test() {
         println(transform(arrayOf(3, 5, 4)).toList())
         println(transform(arrayOf(2, 3, 4, 5, 6)).toList())
@@ -1223,6 +1226,7 @@ In practice, the worst-case complexity is the most useful because:
             prefixProducts[it] * suffixProducts[it]
         }
     }
+    ```
 
     </details>
 
@@ -1230,6 +1234,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
+    ```kotlin
     fun test() {
         println(findOrderedWordPairWithMaxFrequency("New york is a great city. I love new york."))
         println(findOrderedWordPairWithMaxFrequency("My name is Elvis Chidera. Elvis Chidera is me."))
@@ -1265,5 +1270,6 @@ In practice, the worst-case complexity is the most useful because:
 
         return wordPairWithMaxFrequency!!
     }
+    ```
 
     </details>
