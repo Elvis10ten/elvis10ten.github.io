@@ -493,8 +493,6 @@ In practice, the worst-case complexity is the most useful because:
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
 
 ### Stacks
-[![Stack](assets/stack.webp)](https://www.programiz.com/dsa/stack)
-
 1. **Stacks** are an ADT that supports retrieval by last-in, first-out (LIFO).
 2. Primary operations are:
    * `push(x)` — Inserts item `x` at the top of the stack.
