@@ -1107,7 +1107,42 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    h
+    ```kotlin
+    fun test() {
+        val node1 = Node("Elvis", null)
+
+        val node2 = Node("Chidera", null)
+        node1.next = node2
+
+        val node3 = Node("Nnajiofor", null)
+        node2.next = node3
+
+        val node4 = Node("Jollof", null)
+        node3.next = node4
+
+        val node5 = Node("List", null)
+        node4.next = node5
+
+        println(middleElement(node1))
+    }
+
+    data class Node(
+        val element: String,
+        var next: Node?
+    )
+
+    fun middleElement(head: Node): Node {
+        var hare: Node? = head
+        var tortoise: Node = head
+
+        while (hare?.next != null) {
+            hare = hare.next?.next
+            tortoise = tortoise.next!!
+        }
+
+        return tortoise
+    }
+    ```
 
     </details>
 
@@ -1140,7 +1175,9 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    j
+    A dictionary that acts as a set:
+        * When a URL is visited, it's added to the dictionary.
+        * To check if a URL has been visited, check if the dictionary contains the URL as a key.
 
     </details>
 
@@ -1148,7 +1185,38 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    k
+    ```kotlin
+    fun test() {
+        val node1 = Node("Elvis", null)
+
+        println(containsAllCharacters("Elvis", "The Elfs are very happy"))
+        println(containsAllCharacters("Elvis", "The Elfs are very happy because it is christmas"))
+    }
+
+    fun containsAllCharacters(string: String, magazine: String): Boolean {
+        val map = mutableMapOf<Char, Int>()
+
+        string.forEach { char ->
+            map[char] = map.getOrDefault(char, 0) + 1
+        }
+
+        var matched = 0
+        magazine.forEach { char ->
+            val count = map[char] ?: 0
+
+            if (count > 0) {
+                matched++
+                map[char] = count - 1
+            }
+
+            if (matched == string.length) {
+                return true
+            }
+        }
+
+        return false
+    }
+    ```
 
     </details>
 
@@ -1186,7 +1254,61 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    k
+    ```kotlin
+    fun test() {
+        val node1 = Node("Elvis", null)
+
+        val node2 = Node("Chidera", null)
+        node1.next = node2
+
+        val node3 = Node("Nnajiofor", null)
+        node2.next = node3
+
+        val node4 = Node("Jollof", null)
+        node3.next = node4
+
+        val node5 = Node("List", null)
+        node4.next = node5
+
+        node5.next = node3
+
+        println(detectLoopLocation(node1)?.element)
+    }
+
+    data class Node(
+        val element: String,
+        var next: Node?
+    )
+
+    /**
+    * https://en.wikipedia.org/wiki/Cycle_detection#:~:text=Floyd's%20cycle%2Dfinding%20algorithm%20is,The%20Tortoise%20and%20the%20Hare.
+    */
+    fun detectLoopLocation(head: Node): Node? {
+        var hare: Node? = head
+        var tortoise: Node? = head
+
+        while (hare != null) {
+            hare = hare.next?.next
+            tortoise = tortoise?.next
+
+            if (hare == tortoise) {
+                break
+            }
+        }
+
+        if (head.next != null && hare == tortoise) {
+            hare = head
+            while (hare != tortoise) {
+                hare = hare?.next
+                tortoise = tortoise?.next
+            }
+
+            return tortoise!!
+        }
+
+        return null
+    }
+    ```
 
     </details>
 
