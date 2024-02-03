@@ -1012,7 +1012,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, _silent_/_listen_, and _incest_/_insect_ are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.\
+10. Two strings $X$ and $Y$ are anagrams if the letters of $X$ can be rearranged to form $Y$. For example, _silent_/_listen_, and _incest_/_insect_ are anagrams. Give an efficient algorithm to determine whether strings $X$ and $Y$ are anagrams.
     <details>
     <summary>Solution</summary>
 
@@ -1087,6 +1087,7 @@ In practice, the worst-case complexity is the most useful because:
     </details>
 
 12. The maximum depth of a binary tree is the number of nodes on the path from the root down to the most distant leaf node. Give an $O(n)$ algorithm to find the maximum depth of a binary tree with $n$ nodes.
+    <details>
     <summary>Solution</summary>
 
     ```kotlin
@@ -1135,13 +1136,15 @@ In practice, the worst-case complexity is the most useful because:
     </details>
 
 13. Two elements of a binary search tree have been swapped by mistake. Give an $O(n)$ algorithm to identify these two elements so they can be swapped back.
+    <details>
     <summary>Solution</summary>
 
-    
+    s
 
     </details>
 
 14. Given two binary search trees, merge them into a doubly linked list in sorted order.
+    <details>
     <summary>Solution</summary>
 
     ```kotlin
@@ -1240,22 +1243,26 @@ In practice, the worst-case complexity is the most useful because:
     </details>
 
 15. Describe an $O(n)$-time algorithm that takes an $n$-node binary search tree and constructs an equivalent height-balanced binary search tree. In a height-balanced binary search tree, the difference between the height of the left and right subtrees of every node is never more than 1.
+    <details>
     <summary>Solution</summary>
 
-    
+    f
 
     </details>
 
 16. Find the storage efficiency ratio (the ratio of data space over total space) for each of the following binary tree implementations on $n$ nodes:
     * All nodes store data, two child pointers, and a parent pointer. The data field requires 4 bytes and each pointer requires 4 bytes.
     * Only leaf nodes store data; internal nodes store two child pointers. The data field requires four bytes and each pointer requires two bytes.
+    
+    <details>
     <summary>Solution</summary>
 
-    
+    f
 
     </details>
 
 17. Give an $O(n)$ algorithm that determines whether a given $n$-node binary tree is height-balanced (see Problem 3-15).
+    <details>
     <summary>Solution</summary>
 
     ```kotlin
@@ -1321,13 +1328,15 @@ In practice, the worst-case complexity is the most useful because:
     </details>
 
 18. Describe how to modify any balanced tree data structure such that search, insert, delete, minimum, and maximum still take $O(log n)$ time each, but successor and predecessor now take $O(1)$ time each. Which operations have to be modified to support this?
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 19. Suppose you have access to a balanced dictionary data structure that supports each of the operations search, insert, delete, minimum, maximum, successor, and predecessor in $O(log n)$ time. Explain how to modify the insert and delete operations so they still take $O(log n)$ but now minimum and maximum take $O(1)$ time. (Hint: think in terms of using the abstract dictionary operations, instead of mucking about with pointers and the like.)
+    <details>
     <summary>Solution</summary>
 
     Use two variables to maintain the maximum and minimum element. On:
@@ -1342,13 +1351,15 @@ In practice, the worst-case complexity is the most useful because:
     * `member(x,T)` – Return true iff $x \in T$.
     
     All operations must take $O(log n)$ time on an $n$-element set.
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 21. A _concatenate operation_ takes two sets $S_1$ and $S_2$, where every key in $S_1$ is smaller than any key in $S_2$, and merges them. Give an algorithm to concatenate two binary search trees into one binary search tree. The worst-case running time should be $O(h)$, where $h$ is the maximal height of the two trees.
+    <details>
     <summary>Solution</summary>
 
     ```kotlin
@@ -1409,53 +1420,61 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-22.  Design a data structure that supports the following two operations:
+22. Design a data structure that supports the following two operations:
     * `insert(x)` – Insert item $x$ from the data stream to the data structure.
     * `median()` – Return the median of all elements so far.
-    
+
     All operations must take $O(\log n) time on an $n$-element set.
+    
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 23. Assume we are given a standard dictionary (balanced binary search tree) defined on a set of $n$ strings, each of length at most $l$. We seek to print out all strings beginning with a particular prefix $p$. Show how to do this in $O(m \cdot l \cdot \log n)$ time, where $m$ is the number of strings.
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 24. An array $A$ is called $k$-unique if it does not contain a pair of duplicate elements within $k$ positions of each other, that is, there is no $i$ and $j$ such that $A[i] = A[j]$ and $|j - i| \leq k$. Design a worst-case $O(n \cdot \log k)$ algorithm to test if $A$ is $k$-unique.
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 25. In the **bin-packing problem**, we are given $n$ objects, each weighing at most 1 kilogram. Our goal is to find the smallest number of bins that will hold the $n$ objects, with each bin holding 1 kilogram at most.
     * The **best-fit heuristic** for bin packing is as follows. Consider the objects in the order in which they are given. For each object, place it into the partially filled bin with the smallest amount of extra room after the object is inserted. If no such bin exists, start a new bin. Design an algorithm that implements the best-fit heuristic (taking as input the $n$ weights $w_1, w_2, ..., w_n$ and outputting the number of bins used) in $O(n log n)$ time.
     * Repeat the above using the **worst-fit heuristic**, where we put the next object into the partially filled bin with the largest amount of extra room after the object is inserted.
+    
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 26.  Suppose that we are given a sequence of $n$ values $x_1, x_2, ..., x_n$ and seek to quickly answer repeated queries of the form: given $i$ and $j$, find the smallest value in $x_i, . . . , x_j$.
     a. Design a data structure that uses $O(n^2)$ space and answers queries in $O(1)$ time.
     b. Design a data structure that uses $O(n)$ space and answers queries in $O(log n)$ time. For partial credit, your data structure can use $O(n log n)$ space and have $O(log n)$ query time.
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
 27.  Suppose you are given an input set $S$ of $n$ integers, and a black box that if given any sequence of integers and an integer $k$ instantly and correctly answers whether there is a subset of the input sequence whose sum is exactly $k$. Show how to use the black box $O(n)$ times to find a subset of $S$ that adds up to $k$.
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
@@ -1464,30 +1483,37 @@ In practice, the worst-case complexity is the most useful because:
     * `Partial-sum(i)` – Return the sum of the first $i$ numbers, that is, $\sum_{j=1}^i A[j]$.
 
     There are no insertions or deletions; the only change is to the values of the numbers. Each operation should take $O(log n)$ steps. You may use one additional array of size $n$ as a work space.
+    <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
-29.  Extend the data structure of the previous problem to support insertions and deletions. Each element now has both a ''key'' and a ''value''. An element is accessed by its key, but the addition operation is applied to the values. The ''Partial_sum'' operation is different.
+29. Extend the data structure of the previous problem to support insertions and deletions. Each element now has both a ''key'' and a ''value''. An element is accessed by its key, but the addition operation is applied to the values. The ''Partial_sum'' operation is different.
     * `Add(k,y)` – Add the value $y$ to the item with key $k$.
     * `Insert(k,y)` – Insert a new item with key $k$ and value $y$.
     * `Delete(k)` – Delete the item with key $k$.
     * `Partial-sum(k)` – Return the sum of all the elements currently in the set whose key is less than $k$, that is, $\sum_{i < k} x_i$. 
     
     The worst-case running time should still be $O(n log n)$ for any sequence of $O(n)$ operations.
+    <details>
+    <summary>Solution</summary>
 
+    g
 
-30.  You are consulting for a hotel that has $n$ one-bed rooms. When a guest checks in, they ask for a room whose number is in the range $[l, h]$. Propose a data structure that supports the following data operations in the allotted time:
+    </details>
+
+30. You are consulting for a hotel that has $n$ one-bed rooms. When a guest checks in, they ask for a room whose number is in the range $[l, h]$. Propose a data structure that supports the following data operations in the allotted time:
     * `Initialize(n)`: Initialize the data structure for empty rooms numbered $1, 2, . . . , n$, in polynomial time.
     * `Count(l, h)`: Return the number of available rooms in $[l, h]$, in $O(log n)$ time.
     * `Checkin(l, h)`: In $O(log n)$ time, return the first empty room in $[l, h]$ and mark it occupied, or return NIL if all the rooms in $[l, h]$ are occupied.
     * `Checkout(x)`: Mark room $x$ as unoccupied, in $O(log n)$ time.
+    
     <details>
     <summary>Solution</summary>
 
-    
+    g
 
     </details>
 
