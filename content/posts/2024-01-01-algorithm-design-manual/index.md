@@ -1086,7 +1086,330 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-22. Design a data structure that supports the following two operations:
+12. The maximum depth of a binary tree is the number of nodes on the path from the root down to the most distant leaf node. Give an $O(n)$ algorithm to find the maximum depth of a binary tree with $n$ nodes.
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        val root = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = BNode(
+                    element = 2,
+                    left = BNode(
+                        element = 1,
+                        left = null,
+                        right = null
+                    ),
+                    right = null
+                ),
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = BNode(
+                    element = 8,
+                    left = null,
+                    right = null
+                )
+            )
+        )
+
+        println(maxDepth(root))
+    }
+
+    fun maxDepth(root: BNode?): Int {
+        if (root == null) {
+            return 0
+        }
+
+        val leftDepth = maxDepth(root.left)
+        val rightDepth = maxDepth(root.right)
+
+        return max(leftDepth, rightDepth) + 1
+    }
+    ```
+
+    </details>
+
+13. Two elements of a binary search tree have been swapped by mistake. Give an $O(n)$ algorithm to identify these two elements so they can be swapped back.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+14. Given two binary search trees, merge them into a doubly linked list in sorted order.
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        val s1 = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = null,
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = null
+            )
+        )
+
+        val s2 = BNode(
+            element = 10,
+            left = BNode(
+                element = 8,
+                left = null,
+                right = null
+            ),
+            right = BNode(
+                element = 12,
+                left = null,
+                right = null
+            )
+        )
+
+        println(merge(s1, s2))
+    }
+
+    fun merge(tree1: BNode, tree2: BNode): Node {
+        val tree1Nodes = toList(tree1)
+        val tree2Nodes = toList(tree2)
+
+        var i1 = 0
+        var i2 = 0
+        val list = Node(Integer.MIN_VALUE) // Sentinel
+        var lastListNode = list
+        val addListNode = { node: Node ->
+            lastListNode.next = node
+            lastListNode = node
+        }
+
+        while (i1 < tree1Nodes.size || i2 < tree2Nodes.size) {
+            val tree1Node = tree1Nodes.getOrNull(i1)
+            val tree2Node = tree2Nodes.getOrNull(i2)
+
+            if (tree1Node == null && tree2Node != null) {
+                addListNode(Node(tree2Node.element))
+                i2++
+            } else if (tree2Node == null && tree1Node != null) {
+                addListNode(Node(tree1Node.element))
+                i1++
+            } else if (tree1Node!!.element < tree2Node!!.element) {
+                addListNode(Node(tree1Node.element))
+                i1++
+            } else if(tree1Node.element > tree2Node.element) {
+                addListNode(Node(tree2Node.element))
+                i2++
+            } else {
+                addListNode(Node(tree1Node.element))
+                i1++
+                addListNode(Node(tree2Node.element))
+                i2++
+            }
+        }
+
+        return list.next!!
+    }
+
+    fun toList(tree: BNode?): MutableList<BNode> {
+        if (tree == null) {
+            return mutableListOf()
+        }
+
+        return (toList(tree.left) + tree + toList(tree.right)).toMutableList()
+    }
+
+    data class BNode(
+        val element: Int,
+        var left: BNode?,
+        var right: BNode?,
+    )
+
+    data class Node(
+        val element: Int,
+        var next: Node? = null
+    )
+    ```
+
+    </details>
+
+15. Describe an $O(n)$-time algorithm that takes an $n$-node binary search tree and constructs an equivalent height-balanced binary search tree. In a height-balanced binary search tree, the difference between the height of the left and right subtrees of every node is never more than 1.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+16. Find the storage efficiency ratio (the ratio of data space over total space) for each of the following binary tree implementations on $n$ nodes:
+    * All nodes store data, two child pointers, and a parent pointer. The data field requires 4 bytes and each pointer requires 4 bytes.
+    * Only leaf nodes store data; internal nodes store two child pointers. The data field requires four bytes and each pointer requires two bytes.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+17. Give an $O(n)$ algorithm that determines whether a given $n$-node binary tree is height-balanced (see Problem 3-15).
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        val root = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = BNode(
+                    element = 2,
+                    left = BNode(
+                        element = 1,
+                        left = null,
+                        right = null
+                    ),
+                    right = null
+                ),
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = BNode(
+                    element = 8,
+                    left = null,
+                    right = null
+                )
+            )
+        )
+
+        println(isBalanced(root))
+    }
+
+    fun isBalanced(root: BNode?): Pair<Boolean, Int> {
+        if (root == null) {
+            return true to 0
+        }
+
+        val (isLeftBalanced, leftHeight) = isBalanced(root.left)
+        if (!isLeftBalanced) {
+            return false to 0
+        }
+
+        val (isRightBalanced, rightHeight) = isBalanced(root.right)
+        if (!isRightBalanced) {
+            return false to 0
+        }
+
+        if (abs(leftHeight - rightHeight) > 1) {
+            return false to 0
+        }
+
+        return true to (max(leftHeight, rightHeight) + 1)
+    }
+
+    data class BNode(
+        val element: Int,
+        val left: BNode?,
+        val right: BNode?,
+    )
+    ```
+
+    </details>
+
+18. Describe how to modify any balanced tree data structure such that search, insert, delete, minimum, and maximum still take $O(log n)$ time each, but successor and predecessor now take $O(1)$ time each. Which operations have to be modified to support this?
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+19. Suppose you have access to a balanced dictionary data structure that supports each of the operations search, insert, delete, minimum, maximum, successor, and predecessor in $O(log n)$ time. Explain how to modify the insert and delete operations so they still take $O(log n)$ but now minimum and maximum take $O(1)$ time. (Hint: think in terms of using the abstract dictionary operations, instead of mucking about with pointers and the like.)
+    <summary>Solution</summary>
+
+    Use two variables to maintain the maximum and minimum element. On:
+    * `Insert(x)`: If $x < minimum$, set $x$ as new minimum; If $x > maximum$, set $x$ as new maximum.
+    * `Delete(x)`: If $x = minimum$, set $minimum = sucessor(x)$; If $x = maximum$, set $maximum = predecessor(x)$.
+
+    </details>
+
+20. Design a data structure to support the following operations:
+    * `insert(x,T)` – Insert item $x$ into the set $T$.
+    * `delete(k,T)` – Delete the $k$th smallest element from $T$.
+    * `member(x,T)` – Return true iff $x \in T$.
+    
+    All operations must take $O(log n)$ time on an $n$-element set.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+21. A _concatenate operation_ takes two sets $S_1$ and $S_2$, where every key in $S_1$ is smaller than any key in $S_2$, and merges them. Give an algorithm to concatenate two binary search trees into one binary search tree. The worst-case running time should be $O(h)$, where $h$ is the maximal height of the two trees.
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        val s1 = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = null,
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = null
+            )
+        )
+
+        val s2 = BNode(
+            element = 10,
+            left = BNode(
+                element = 8,
+                left = null,
+                right = null
+            ),
+            right = BNode(
+                element = 12,
+                left = null,
+                right = null
+            )
+        )
+
+        println(concat(s1, s2))
+    }
+
+    fun concat(s1: BNode, s2: BNode): BNode {
+        val s1RightMostNode = rightMostNode(s1)
+
+        s1RightMostNode.right = s2
+
+        return s1
+    }
+
+    fun rightMostNode(node: BNode): BNode {
+        if (node.right == null) {
+            return node
+        }
+
+        return rightMostNode(node.right!!)
+    }
+
+    data class BNode(
+        val element: Int,
+        var left: BNode?,
+        var right: BNode?,
+    )
+    ```
+
+    </details>
+
+22.  Design a data structure that supports the following two operations:
     * `insert(x)` – Insert item $x$ from the data stream to the data structure.
     * `median()` – Return the median of all elements so far.
     
