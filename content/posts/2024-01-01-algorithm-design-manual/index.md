@@ -1086,8 +1086,149 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
+22. Design a data structure that supports the following two operations:
+    * `insert(x)` – Insert item $x$ from the data stream to the data structure.
+    * `median()` – Return the median of all elements so far.
+    
+    All operations must take $O(\log n) time on an $n$-element set.
+    <summary>Solution</summary>
 
-34. What method would you use to look up a word in a dictionary?
+    
+
+    </details>
+
+23. Assume we are given a standard dictionary (balanced binary search tree) defined on a set of $n$ strings, each of length at most $l$. We seek to print out all strings beginning with a particular prefix $p$. Show how to do this in $O(m \cdot l \cdot \log n)$ time, where $m$ is the number of strings.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+24. An array $A$ is called $k$-unique if it does not contain a pair of duplicate elements within $k$ positions of each other, that is, there is no $i$ and $j$ such that $A[i] = A[j]$ and $|j - i| \leq k$. Design a worst-case $O(n \cdot \log k)$ algorithm to test if $A$ is $k$-unique.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+25. In the **bin-packing problem**, we are given $n$ objects, each weighing at most 1 kilogram. Our goal is to find the smallest number of bins that will hold the $n$ objects, with each bin holding 1 kilogram at most.
+    * The **best-fit heuristic** for bin packing is as follows. Consider the objects in the order in which they are given. For each object, place it into the partially filled bin with the smallest amount of extra room after the object is inserted. If no such bin exists, start a new bin. Design an algorithm that implements the best-fit heuristic (taking as input the $n$ weights $w_1, w_2, ..., w_n$ and outputting the number of bins used) in $O(n log n)$ time.
+    * Repeat the above using the **worst-fit heuristic**, where we put the next object into the partially filled bin with the largest amount of extra room after the object is inserted.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+26.  Suppose that we are given a sequence of $n$ values $x_1, x_2, ..., x_n$ and seek to quickly answer repeated queries of the form: given $i$ and $j$, find the smallest value in $x_i, . . . , x_j$.
+    a. Design a data structure that uses $O(n^2)$ space and answers queries in $O(1)$ time.
+    b. Design a data structure that uses $O(n)$ space and answers queries in $O(log n)$ time. For partial credit, your data structure can use $O(n log n)$ space and have $O(log n)$ query time.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+27.  Suppose you are given an input set $S$ of $n$ integers, and a black box that if given any sequence of integers and an integer $k$ instantly and correctly answers whether there is a subset of the input sequence whose sum is exactly $k$. Show how to use the black box $O(n)$ times to find a subset of $S$ that adds up to $k$.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+28. Let $A[1..n]$ be an array of real numbers. Design an algorithm to perform any sequence of the following operations:
+    * `Add(i,y)` – Add the value $y$ to the $i$th number.
+    * `Partial-sum(i)` – Return the sum of the first $i$ numbers, that is, $\sum_{j=1}^i A[j]$.
+
+    There are no insertions or deletions; the only change is to the values of the numbers. Each operation should take $O(log n)$ steps. You may use one additional array of size $n$ as a work space.
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+29.  Extend the data structure of the previous problem to support insertions and deletions. Each element now has both a ''key'' and a ''value''. An element is accessed by its key, but the addition operation is applied to the values. The ''Partial_sum'' operation is different.
+    * `Add(k,y)` – Add the value $y$ to the item with key $k$.
+    * `Insert(k,y)` – Insert a new item with key $k$ and value $y$.
+    * `Delete(k)` – Delete the item with key $k$.
+    * `Partial-sum(k)` – Return the sum of all the elements currently in the set whose key is less than $k$, that is, $\sum_{i < k} x_i$. 
+    
+    The worst-case running time should still be $O(n log n)$ for any sequence of $O(n)$ operations.
+
+
+30.  You are consulting for a hotel that has $n$ one-bed rooms. When a guest checks in, they ask for a room whose number is in the range $[l, h]$. Propose a data structure that supports the following data operations in the allotted time:
+    * `Initialize(n)`: Initialize the data structure for empty rooms numbered $1, 2, . . . , n$, in polynomial time.
+    * `Count(l, h)`: Return the number of available rooms in $[l, h]$, in $O(log n)$ time.
+    * `Checkin(l, h)`: In $O(log n)$ time, return the first empty room in $[l, h]$ and mark it occupied, or return NIL if all the rooms in $[l, h]$ are occupied.
+    * `Checkout(x)`: Mark room $x$ as unoccupied, in $O(log n)$ time.
+    <details>
+    <summary>Solution</summary>
+
+    
+
+    </details>
+
+31. Design a data structure that allows one to search, insert, and delete an integer $X$ in $O(1)$ time (i.e., constant time, independent of the total number of integers stored). Assume that $1 \leq X \leq n$ and that there are $m + n$ units of space available, where $m$ is the maximum number of integers that can be in the table at any one time. (Hint: use two arrays $A[1..n]$ and $B[1..m]$.) You are not allowed to initialize either $A$ or $B$, as that would take $O(m)$ or $O(n)$ operations. This means the arrays are full of random garbage to begin with, so you must be very careful.
+    <details>
+    <summary>Solution</summary>
+
+    ```kotlin
+    fun test() {
+        val ds = DataStructure(m = 5, n = 10)
+        ds.insert(7)
+        ds.insert(3)
+        ds.insert(6)
+        ds.insert(5)
+        ds.insert(9)
+
+        println(ds.search(6))
+        println(ds.search(9))
+
+        ds.delete(6)
+        ds.delete(9)
+
+        println(ds.search(6))
+        println(ds.search(9))
+    }
+
+    class DataStructure(
+        val m: Int,
+        val n: Int
+    ) {
+
+        val indices = arrayOfNulls<Int>(n + 1)
+        val values = arrayOfNulls<Int>(m + 1)
+        var k = 0
+
+        fun insert(x: Int) {
+            k++
+            indices[x] = k
+            values[k] = x
+        }
+
+        fun search(x: Int): Int? {
+            val index = indices[x] ?: return null
+            return values[index]
+        }
+
+        fun delete(x: Int) {
+            val xIndex = indices[x] ?: return
+            if (k == 0) return
+
+            val lastValue = values[k]!!
+            indices[lastValue] = xIndex
+            values[xIndex] = lastValue
+            values[k] = null
+            indices[x] = null
+
+            k--
+        }
+    }
+    ```
+
+    </details>
+
+32.  What method would you use to look up a word in a dictionary?
     <details>
     <summary>Solution</summary>
 
@@ -1095,7 +1236,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-35. Imagine you have a closet full of shirts. What can you do to organize your shirts for easy retrieval?
+33. Imagine you have a closet full of shirts. What can you do to organize your shirts for easy retrieval?
     <details>
     <summary>Solution</summary>
 
@@ -1103,7 +1244,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-36. Write a function to find the middle node of a singly linked list.
+34. Write a function to find the middle node of a singly linked list.
     <details>
     <summary>Solution</summary>
 
@@ -1146,7 +1287,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-37. Write a function to determine whether two binary trees are identical. Identical trees have the same key value at each position and the same structure.
+35. Write a function to determine whether two binary trees are identical. Identical trees have the same key value at each position and the same structure.
     <details>
     <summary>Solution</summary>
 
@@ -1154,7 +1295,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-38. Write a program to convert a binary search tree into a linked list.
+36. Write a program to convert a binary search tree into a linked list.
     <details>
     <summary>Solution</summary>
 
@@ -1162,7 +1303,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-39. Implement an algorithm to reverse a linked list. Now do it without recursion.
+37. Implement an algorithm to reverse a linked list. Now do it without recursion.
     <details>
     <summary>Solution</summary>
 
