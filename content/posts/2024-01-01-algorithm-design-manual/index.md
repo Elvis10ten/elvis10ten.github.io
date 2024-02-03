@@ -1640,15 +1640,65 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    j
+    ```kotlin
+    fun test() {
+        val s1 = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = null,
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = null
+            )
+        )
+
+        val s2 = BNode(
+            element = 10,
+            left = BNode(
+                element = 8,
+                left = null,
+                right = null
+            ),
+            right = BNode(
+                element = 12,
+                left = null,
+                right = null
+            )
+        )
+
+        println(isIdentical(s1, s2))
+        println(isIdentical(s1, s1))
+        println(isIdentical(s2, s2))
+    }
+
+    fun isIdentical(tree1: BNode?, tree2: BNode?): Boolean {
+        if (tree1 == null || tree2 == null) {
+            return tree1 == tree2
+        }
+
+        return tree1.element == tree2.element &&
+                isIdentical(tree1.left, tree2.left) &&
+                isIdentical(tree1.right, tree2.right)
+    }
+
+    data class BNode(
+        val element: Int,
+        var left: BNode?,
+        var right: BNode?,
+    )
+    ```
 
     </details>
 
-36. Write a program to convert a binary search tree into a linked list.
+36. Write a program to convert a binary search tree into a linked-list.
     <details>
     <summary>Solution</summary>
 
-    j
+    See **Problem 14**: Part of the solution involves converting a tree into a linked-list.
 
     </details>
 
@@ -1697,8 +1747,8 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     A dictionary that acts as a set:
-        * When a URL is visited, it's added to the dictionary.
-        * To check if a URL has been visited, check if the dictionary contains the URL as a key.
+    * When a URL is visited, it's added to the dictionary.
+    * To check if a URL has been visited, check if the dictionary contains the URL as a key.
 
     </details>
 
