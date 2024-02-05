@@ -1246,7 +1246,70 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    f
+    ```kotlin
+    fun test() {
+        val root = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = BNode(
+                    element = 2,
+                    left = BNode(
+                        element = 1,
+                        left = null,
+                        right = null
+                    ),
+                    right = null
+                ),
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = BNode(
+                    element = 8,
+                    left = null,
+                    right = null
+                )
+            )
+        )
+
+        println("Unbalanced tree: $root")
+        println("Balanced tree: " + toBalancedTree(root))
+    }
+
+    fun toBalancedTree(root: BNode): BNode {
+        val nodes = toList(root)
+        return sortedListToBinaryTree(nodes)!!
+    }
+
+    fun sortedListToBinaryTree(list: List<BNode>): BNode? {
+        if (list.isEmpty()) {
+            return null
+        }
+
+        val mid = list.size / 2
+        val root = BNode(list[mid].element)
+        root.left = sortedListToBinaryTree(list.slice(0 until mid))
+        root.right = sortedListToBinaryTree(list.slice((mid + 1) until list.size))
+
+        return root
+    }
+
+    fun toList(tree: BNode?): MutableList<BNode> {
+        if (tree == null) {
+            return mutableListOf()
+        }
+
+        return (toList(tree.left) + tree + toList(tree.right)).toMutableList()
+    }
+
+    data class BNode(
+        val element: Int,
+        var left: BNode? = null,
+        var right: BNode? = null,
+    )
+    ```
 
     </details>
 
@@ -1424,12 +1487,56 @@ In practice, the worst-case complexity is the most useful because:
     * `insert(x)` – Insert item $x$ from the data stream to the data structure.
     * `median()` – Return the median of all elements so far.
 
-    All operations must take $O(\log n) time on an $n$-element set.
+    All operations must take $O(\log n)$ time on an $n$-element set.
     
     <details>
     <summary>Solution</summary>
 
-    g
+    ```kotlin
+    fun test() {
+        val ds = DataStructure()
+
+        ds.insert(5)
+        ds.insert(2)
+        ds.insert(3)
+
+        println("Median: ${ds.median()}")
+        
+        ds.insert(4)
+        println("Median: ${ds.median()}")
+    }
+
+    class DataStructure {
+
+        /* The head of this queue is the least element with respect to the specified ordering. */
+        private val minHeap = PriorityQueue<Int>() // Represents the upper half
+        private val maxHeap = PriorityQueue<Int>() // Represents the lower half
+
+        fun insert(x: Int) {
+            if (maxHeap.isEmpty() || x <= -maxHeap.peek()) {
+                maxHeap.offer(-x)
+            } else {
+                minHeap.offer(x)
+            }
+
+            // Balance the heaps to ensure the size difference is at most 1
+            if (maxHeap.size > minHeap.size + 1) {
+                minHeap.offer(-maxHeap.poll())
+            } else if (minHeap.size > maxHeap.size) {
+                maxHeap.offer(-minHeap.poll())
+            }
+        }
+
+        fun median(): Double {
+            return if (minHeap.size == maxHeap.size) {
+                //  If the number of elements is even, take the average of the middle two
+                (minHeap.peek() + (-maxHeap.peek())) / 2.0
+            } else {
+                -maxHeap.peek().toDouble()
+            }
+        }
+    }
+    ```
 
     </details>
 
@@ -1513,7 +1620,116 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    g
+    ```kotlin
+    fun test() {
+        val ds = DataStructure()
+        ds.initialize(10)
+        println(ds.root)
+
+        println("Available in [2, 5]: ${ds.count(2, 5)}")
+        val checkIn1 = ds.checkIn(2, 5)
+        println("Available in [2, 5]: ${ds.count(2, 5)}")
+        val checkIn2 = ds.checkIn(2, 5)
+        println("Available in [2, 5]: ${ds.count(2, 5)}")
+
+        ds.checkOut(checkIn2!!)
+        println("Available in [2, 5]: ${ds.count(2, 5)}")
+        ds.checkOut(checkIn2)
+        ds.checkOut(checkIn1!!)
+        println("Available in [2, 5]: ${ds.count(2, 5)}")
+    }
+
+    class DataStructure() {
+
+        lateinit var root: BNode
+
+        fun initialize(n: Int) {
+            root = sortedListToBinaryTree((1..n).toList())!!
+        }
+
+        fun sortedListToBinaryTree(list: List<Int>): BNode? {
+            if (list.isEmpty()) {
+                return null
+            }
+
+            val mid = list.size / 2
+            val root = BNode(list[mid])
+            root.left = sortedListToBinaryTree(list.slice(0 until mid))
+            root.right = sortedListToBinaryTree(list.slice((mid + 1) until list.size))
+
+            return root
+        }
+
+        fun count(l: Int, h: Int): Int {
+            return countInRange(l, h, root)
+        }
+
+        fun checkIn(l: Int, h: Int): Int? {
+            val first = findFirstInRange(l, h, root)
+            first?.isCheckedIn = true
+            return first?.element
+        }
+
+        fun checkOut(x: Int) {
+            find(x, root)?.isCheckedIn = false
+        }
+
+        fun countInRange(l: Int, h: Int, node: BNode?): Int {
+            if (node == null) {
+                return 0
+            }
+
+            val count = if (node.element in l..h && !node.isCheckedIn) 1 else 0
+
+            return if (node.element in l..h) {
+                count + countInRange(l, h, node.left) + countInRange(l, h, node.right)
+            } else if (node.element < l) {
+                count + countInRange(l, h, node.right)
+            } else {
+                count + countInRange(l, h, node.left)
+            }
+        }
+
+        fun findFirstInRange(l: Int, h: Int, node: BNode?): BNode? {
+            if (node == null) {
+                return null
+            }
+
+            if (node.element in l..h && !node.isCheckedIn) {
+                return node
+            }
+
+            return if (node.element < l) {
+                findFirstInRange(l, h, node.right)
+            } else if (node.element > h)  {
+                findFirstInRange(l, h, node.left)
+            } else {
+                findFirstInRange(l, h, node.left) ?: findFirstInRange(l, h, node.right)
+            }
+        }
+
+        fun find(x: Int, node: BNode?): BNode? {
+            if (node == null) {
+                return null
+            }
+
+            return if (node.element == x) {
+                node
+            } else if (node.element < x) {
+                find(x, node.right)
+            } else {
+                find(x, node.left)
+            }
+        }
+    }
+
+    data class BNode(
+        val element: Int,
+        var isCheckedIn: Boolean = false,
+        var left: BNode? = null,
+        var right: BNode? = null,
+    )
+    ```
 
     </details>
 
