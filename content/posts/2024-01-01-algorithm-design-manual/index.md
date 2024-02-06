@@ -813,14 +813,15 @@ In practice, the worst-case complexity is the most useful because:
 
 5. We have seen how dynamic arrays enable arrays to grow while still achieving constant-time amortized performance. This problem concerns extending dynamic arrays to let them both grow and shrink on demand.
     
-    (a) Consider an underflow strategy that cuts the array size in half whenever the array falls below half full. Give an example sequence of insertions and deletions where this strategy gives a bad amortized cost.
+    a. Consider an underflow strategy that cuts the array size in half whenever the array falls below half full. Give an example sequence of insertions and deletions where this strategy gives a bad amortized cost.
     
-    (b) Then, give a better underflow strategy than that suggested above, one that achieves constant amortized cost per deletion.
+    b. Then, give a better underflow strategy than that suggested above, one that achieves constant amortized cost per deletion.
     <details>
     <summary>Solution</summary>
 
-    ```kotlin
-    ```
+    a.  A sequence of `insert`, `insert`, `delete`, `insert`, `delete`, `insert` will lead to a bad amortized cost because the array will be busy resizing for most of the operations.
+
+    b. A better underflow strategy is to cut the array size in half whenever the array falls below $1/4$. $1/4$ is arbitrary, but it gives the array good "slack" space. The goal is to select a number such that the array is not busy resizing for most of the operation. The smaller the cut-off ratio, the smaller the number of resizing but the more space the array uses.
     </details>
 
 6. Suppose you seek to maintain the contents of a refrigerator so as to minimize food spoilage. What data structure should you use, and how should you use it?
@@ -835,7 +836,49 @@ In practice, the worst-case complexity is the most useful because:
     <summary>Solution</summary>
 
     ```kotlin
-    
+    fun test() {
+        val node3 = Node(3)
+        val node2 = Node(2, node3)
+        val node1 = Node(1, node2)
+
+        println(node1)
+        println(deleteInConstantTime(node1, node2))
+        println(deleteInConstantTime(node1, node3))
+        println(deleteInConstantTime(node1, node1))
+    }
+
+    fun deleteInConstantTime(head: Node, search: Node): Node? {
+        if (head == search) {
+            // Handle head case
+            return head.next
+        }
+
+        var node: Node? = head
+        var prevNode: Node? = null
+        while (node != null) {
+            if (node == search) {
+                if (node.next == null) {
+                    // Handle tail case
+                    prevNode?.next = null
+                } else {
+                    node.element = node.next!!.element
+                    node.next = node.next?.next
+                }
+
+                break
+            } else {
+                prevNode = node
+                node = node.next
+            }
+        }
+
+        return head
+    }
+
+    data class Node(
+        var element: Int,
+        var next: Node? = null
+    )
     ```
 
     </details>
@@ -1139,7 +1182,81 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    s
+    ```kotlin
+    fun test() {
+        val root = BNode(
+            element = 5,
+            left = BNode(
+                element = 3,
+                left = BNode(
+                    element = 8, // Swapped
+                    left = null,
+                    right = null
+                ),
+                right = null
+            ),
+            right = BNode(
+                element = 7,
+                left = null,
+                right = BNode(
+                    element = 2, // Swapped
+                    left = null,
+                    right = null
+                )
+            )
+        )
+
+        println(root)
+        val recoverer = SwappedNodeRecoverer()
+        recoverer.recover(root)
+        println(root)
+    }
+
+    class SwappedNodeRecoverer {
+
+        private var prev: BNode? = null
+        private var first: BNode? = null
+        private var second: BNode? = null
+
+        fun recover(root: BNode?) {
+            recoverInternal(root)
+
+            if (first != null) {
+                val firstElement = first!!.element
+                first!!.element = second!!.element
+                second!!.element = firstElement
+            }
+        }
+
+        private fun recoverInternal(root: BNode?) {
+            if (root == null) {
+                return
+            }
+
+            recoverInternal(root.left)
+
+            if (prev != null && root.element < prev!!.element) {
+                if (first == null) {
+                    // This handles adjacent node case
+                    first = prev
+                    second = root
+                } else {
+                    second = root
+                }
+            }
+
+            prev = root
+
+            recoverInternal(root.right)
+        }
+    }
+
+    data class BNode(
+        var element: Int,
+        var left: BNode? = null,
+        var right: BNode? = null,
+    )
+    ```
 
     </details>
 
@@ -1320,7 +1437,20 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    f
+    Storage efficiency ratio = $/frac{Space \space used \space to \space store \space data}{Space \space used \space to \space store \space data \space and \space pointers}$
+    For **option A**:
+    Space taken by a single node = (2 pointers * 4 bytes) + (1 pointer * 4 bytes) + (4 bytes) = 16 bytes
+    Given $n$ nodes
+    Storage efficiency ratio = $\frac{4n}{16n} = \frac{1}{4}$
+
+
+    For **option B**:
+    Space taken by a single internal node = 2 pointers * 2 bytes = 4 bytes
+    Space taken by a single leaf node = 4 bytes
+    In a full tree, given $n$ leaf nodes, there are $n-1$ internal nodes.
+    Storage efficiency ratio = $\frac{4n}{4n + 4(n-1)} = \frac{4n}{4n + 4n - 4} = \frac{4n}{8n - 4} = \frac{4n}{8n} = \frac{1}/{2}$ (As $n$ gets larger, the constant $4$ doesn't matter, hence why it was dropped)
+
+    **Option B** has a higher storage efficiency to **option A**. 
 
     </details>
 
@@ -1577,7 +1707,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-27.  Suppose you are given an input set $S$ of $n$ integers, and a black box that if given any sequence of integers and an integer $k$ instantly and correctly answers whether there is a subset of the input sequence whose sum is exactly $k$. Show how to use the black box $O(n)$ times to find a subset of $S$ that adds up to $k$.
+27. Suppose you are given an input set $S$ of $n$ integers, and a black box that if given any sequence of integers and an integer $k$ instantly and correctly answers whether there is a subset of the input sequence whose sum is exactly $k$. Show how to use the black box $O(n)$ times to find a subset of $S$ that adds up to $k$.
     <details>
     <summary>Solution</summary>
 
