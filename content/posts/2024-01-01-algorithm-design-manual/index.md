@@ -1443,7 +1443,6 @@ In practice, the worst-case complexity is the most useful because:
     Given $n$ nodes
     Storage efficiency ratio = $\frac{4n}{16n} = \frac{1}{4}$
 
-
     For **option B**:
     Space taken by a single internal node = 2 pointers * 2 bytes = 4 bytes
     Space taken by a single leaf node = 4 bytes
