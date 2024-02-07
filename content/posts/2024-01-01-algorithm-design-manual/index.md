@@ -1523,7 +1523,7 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    g
+    TODO
 
     </details>
 
@@ -1702,7 +1702,38 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    g
+    ```kotlin
+    fun test() {
+        val numbers1 = listOf(1, 3, 9, 2, 5)
+        println(solutionA(numbers1, 2, 5))
+        println(solutionA(numbers1, 1, 3))
+        println(solutionB(numbers1, 2, 5))
+        println(solutionB(numbers1, 1, 3))
+    }
+
+    fun solutionA(numbers: List<Int>, i: Int, j: Int): Int? {
+        val list = Array<Array<Int?>>(numbers.size) { Array(numbers.size) { null } }
+
+        for (p in numbers.indices) {
+            var minimumSoFar = Int.MAX_VALUE
+
+            for (q in (p+1) until numbers.size) {
+                val qthNumber = numbers[q]
+                if (qthNumber < minimumSoFar) {
+                    minimumSoFar = qthNumber
+                }
+
+                list[p][q] = minimumSoFar
+            }
+        }
+
+        return list[i-1][j-1]
+    }
+
+    fun solutionB(numbers: List<Int>, i: Int, j: Int): Int? {
+        TODO()
+    }
+    ```
 
     </details>
 
@@ -1710,7 +1741,38 @@ In practice, the worst-case complexity is the most useful because:
     <details>
     <summary>Solution</summary>
 
-    g
+    ```kotlin
+    fun test() {
+        println(findSubset(listOf(3, 5, 8, 2, 1), 6))
+        println(findSubset(listOf(2, 3, 5, 8, 6, 4), 20))
+    }
+
+    fun findSubset(s: List<Int>, k: Int): List<Int>? {
+        if (!blackBox(s, k)) return null
+
+        var subset = s
+        for (i in s.indices) {
+            val subsetWithoutIthNumber = subset.filter { it != s[i] }
+
+            if (blackBox(subsetWithoutIthNumber, k)) {
+                subset = subsetWithoutIthNumber
+            }
+        }
+
+        return subset
+    }
+
+    fun blackBox(integers: List<Int>, k: Int): Boolean {
+        // We were not told to implement the black box, so we will hack it for the tests
+        return if (k == 6) {
+            integers.containsAll(listOf(1, 2, 3))
+        } else return if (k == 20) {
+            integers.containsAll(listOf(2, 8, 6, 4)) || integers.containsAll(listOf(3, 5, 8, 4))
+        } else {
+            throw IllegalArgumentException()
+        }
+    }
+    ```
 
     </details>
 
