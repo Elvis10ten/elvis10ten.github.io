@@ -326,7 +326,7 @@ In practice, the worst-case complexity is the most useful because:
 ### Arrays
 1. **Arrays** are data structures of <mark>fixed-size</mark> elements stored <mark>contiguously</mark> such that each element can be efficiently located by its index.
    $$
-   Address(i) = FirstAddress + (i \cdot ElementSize)
+   ElementAddress(i) = FirstElementAddress + (i \cdot ElementSize)
    $$
 2. Advantages of arrays:
    * **Constant-time access given the index**: because the index of each element maps directly to a particular memory address.
@@ -345,28 +345,28 @@ In practice, the worst-case complexity is the most useful because:
 10. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
    * $$
      t(i) = \begin{cases}
-     2^{k}+1 &\text{if } i = 2^{k} - 1 \\
+     2^{k}+1 &\text{if } i = 2^{k} + 1\\
      1&\text{otherwise}
      \end{cases}
      $$
-   * $t(i)$ defines the time it takes to perform the i-th `addition` (0 indexed).
-   * The first case of $t(i)$ defines the time taken when the array’s capacity is exceeded and has to doubled. Because of the doubling, this case happens on every $2^{k}$. The time taken is $2^{k}+1$ because:
+   * $t(i)$ defines the time it takes to perform the i-th `addition`.
+   * The first case of $t(i)$ defines the time taken when the array’s capacity is exceeded and has to doubled. Because of the doubling, this case happens on every $2^{k} + 1$ addition. $k$ is any non-negative integer. The time taken is $2^{k}+1$ because:
      * $2^{k}$ has to be copied to the new array and
-     * The i-th element has to be `added` into the new array.
+     * The i-th element has to be `added` into the new array. This represents the $+1$.
    * The second case of $t(i)$ defines the time taken when the array capacity is not exceeded. This is constant time because only a single `addition` is performed.
    *  $t(i)$ example on a dynamic array initialized with a capacity of $1$:
 
-        | i | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+        | i | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
         |---|---|---|---|---|---|---|---|---|---|---|
         | $t(i)$ | $1$ | $2$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
-        | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
+        | Capacity | $1$ | $2$ (🐢) | $4$ (🐢) | $4$ | $8$ (🐢) | $8$ | $8$ | $8$ | $16$ (🐢) | $16$ |
 
    * $$
-     Amortized \space cost = \frac{\sum_{i=0}^{n}t(i)}{n}
+     Amortized \space cost = \frac{\sum_{i=1}^{n}t(i)}{n}
      $$
-   * In both cases of the function, there is a $1$. So summation from $0$ to $n$ results in an $n$. We are left with $2^{i}$ when $i = 2^{k}$. Hence,
+   * In both cases of the function, there is a $1$. So summation from $1$ to $n$ results in an $n$ plus the sum of $2^{k}$ when $i = 2^{k} + 1$ (this case happens $\log_2 (n - 1)$ times):
    $$
-   \sum_{i=0}^{n}t(i) = n + \sum_{i=0}^{\log_2 n}2^{i}
+   \sum_{i=1}^{n}t(i) = n + \sum_{k=0}^{\log_2 (n - 1)}2^{k}
    $$
    * The second operand is the partial sum of a geometric series. Applying the formula:
    $$
