@@ -5,19 +5,19 @@
 } */
 
 mark {
-	background-color: yellow;
+	background-color: #c3effc;
 }
 
 .good {
-	color: #42ba96
+	color: #42ba96;
 }
 
 .okay {
-	color: #ffc107
+	color: #ffc107;
 }
 
 .bad {
-	color: #df4759
+	color: #df4759;
 }
 
 .image_row {
