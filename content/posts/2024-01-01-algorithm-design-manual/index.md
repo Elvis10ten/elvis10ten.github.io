@@ -10,11 +10,6 @@ tags:
 
 > Pet Peeve: The author sometimes skips steps without an explaination (like the integer truncation in "stop and think: incremental correctness"). Some examples are hard to follow for an international student (like understanding the lottery system in "war story: pschic modeling").
 
-
-<span style="color:#42ba96">Good</span>
-<span style="color:#ffc107">Ok</span>
-<span style="color:#df4759">Bad</span>
-
 ## Chapter 1 — Introduction to Algorithm Design
 1. An `algorithmic problem` is specified by describing the complete set of **instances** it must work on and of its output after running on one of these instances.
 2. An `algorithm` is a procedure that takes any of the possible input instances and transforms it to the desired output.
@@ -316,10 +311,10 @@ In practice, the worst-case complexity is the most useful because:
    * A set of possible values,
    * A set of allowed operations on these values, and/or
    * A representation of these values as machine types.
-2. An **abstract data type** (**ADT**) is a data type that does not specify the concrete representation of the data. They are defined by their behavior (semantics) from the *point of view of a user of the data*, specifically in terms of:
+2. An **abstract data type** (**ADT**) is a data type that does not specify the concrete representation of the data. They are defined by their behavior (semantics) from the <mark>point of view of a user of the data</mark>, specifically in terms of:
    * Possible values, and
    * Possible operations on data of this type.
-3. The generic definition of **data structure** is anything that can hold your data in a structured way. ADT contrasts with data structures, which are concrete representations of data, and are the *point of view of an implementer*.
+3. The generic definition of **data structure** is anything that can hold your data in a structured way. ADT contrasts with data structures, which are concrete representations of data, and are the <mark>point of view of an implementer</mark>.
 4. The distinction between ADTs and data structures lies in the POV / level of abstraction. Some important points:
    * User’s POV: An `int` in a programming language sense is a fixed-width data structure. An integer in a mathematical sense is an ADT. For most purposes the user can work with the abstraction rather than the concrete choice of representation, and can simply use the data as if the type were truly abstract.
    * Name overloading: An array is an ADT when viewed as a collection of items that can be accessed by an index. An array is a data structure when viewed as a collection of fixed sized items stored as contiguous blocks in memory.
@@ -339,13 +334,13 @@ In practice, the worst-case complexity is the most useful because:
    * **Memory locality**: because the physical continuity between successive data access helps exploit the high-speed cache memory on modern computer architecture.
 3. The primary disadvantage of arrays is that the number of elements (i.e. the array size) is fixed. The capacity needs to be specified at allocation.
 4. **Dynamic arrays** overcome the fixed-size limitation of static arrays.
-   [![Dynamic array](assets/dynamic_array.svg)](https://en.wikipedia.org/wiki/Dynamic_array#/media/File:Dynamic_array.svg)
-5. When a dynamic array's capacity is exceeded, it internally resizes:
+5. It does so by internally resizing when its capacity is exceeded:
    * Allocates a new bigger contiguous array.
-   * Copy the content of the old array to the new array
-6. To avoid incurring the cost of resizing many times, dynamic arrays resize by a large amount, such as doubling in size, and use the reserved space for future expansion.
-7. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes <span style="color:#ffc107">$O(n)$</span> time overall, meaning that each insertion takes **amortized** <span style="color:#42ba96">$O(1)$</span> time. As $n$ elements are added, the capacities form a geometric progression.
-8. The key idea of **amortized analysis** is to consider the *worst-case cost of a sequence of operations* on a data structure, rather than the worst-case individual cost of any particular operation.
+   * Copy the content of the old array to the new array.
+   [![Dynamic array](assets/dynamic_array.svg)](https://en.wikipedia.org/wiki/Dynamic_array#/media/File:Dynamic_array.svg)
+6. To avoid incurring the cost of resizing many times, dynamic arrays resize by a large amount, such as doubling in size.
+7. Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes <span class="okay">$O(n)$</span> time overall, meaning that each insertion takes **amortized** <span class="good">$O(1)$</span> time. As $n$ elements are added, the capacities form a geometric progression.
+8. The key idea of **amortized analysis** is to consider the <mark>worst-case cost of a sequence of operations</mark> on a data structure, rather than the <mark>worst-case individual cost of any particular operation</mark>.
 9.  The **aggregate method** is one of the methods for performing amortized analysis. In this method, the total cost of performing a sequence of $m$ operations on the data structure is divided by the number of operations $m$, yielding an average cost per operation, which is defined as the amortized cost.
 10. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
    * $$
@@ -394,8 +389,8 @@ In practice, the worst-case complexity is the most useful because:
    \sum_{i=0}^{n}t(i) \leq 3n
    $$
    * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.<br/>
-     > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is <span style="color:#42ba96">$O(1)$</span>.
-11. The key idea behind amortized analysis is that the cost of a particular operation can be partially paid for by the cost of other operations that are performed later. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently.
+     > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is <span class="good">$O(1)$</span>.
+11. The key idea behind amortized analysis is that the <mark>cost of a particular operation can be partially paid for by the cost of other operations</mark> that are performed later. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently.
 
 ### Pointers and linked structures
 [![Singly linked list](assets/singly_linked_list.svg)](https://en.wikipedia.org/wiki/Linked_list#/media/File:Singly-linked-list.svg)
@@ -515,12 +510,12 @@ In practice, the worst-case complexity is the most useful because:
    * `get(key)`
 3. These are two simple but less common implementations of a dictionary:
    * An **association list** is a linked list in which each node comprises a key and a value:
-     * The time complexity of get and remove is <span style="color:#ffc107">$O(n)$</span>.
-     * The time complexity of put is <span style="color:#42ba96">$O(1)$</span> — if the list is unsorted.
+     * The time complexity of get and remove is <span class="okay">$O(n)$</span>.
+     * The time complexity of put is <span class="good">$O(1)$</span> — if the list is unsorted.
    * Direct addressing into an **array**:
      * Potential keys are numbers from the universe $M \subseteq U$
      * A value with key $k \in M$ can be kept under index $k$ in a $\lvert M \rvert$-element array.
-     * The time complexity of put, get and remove is <span style="color:#42ba96">$O(1)$</span>.
+     * The time complexity of put, get and remove is <span class="good">$O(1)$</span>.
      * The space complexity is $\lvert U \rvert$. Hence, this structure is impractical when $\lvert U \rvert >> n$; where $n$ is the number of values inserted.
 4. These are the two common data structures used to implement a dictionary:
    * **Hash tables**.
@@ -537,7 +532,7 @@ In practice, the worst-case complexity is the most useful because:
 5. A **binary search tree** is a rooted binary tree data structure such that for any node $x$, all nodes in the left subtree of $x$ have keys $<x$ while all nodes in the right subtree of $x$ have keys $>x$.
 6. Binary search trees’ height range from $\log_2 n$ (when balanced) to $n$ (when degenerate).
 7. The time complexity of operations on the binary search tree is linear with respect to the height of the tree $O(h)$.
-8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm <span style="color:#42ba96">$O(\log n)$</span>.
+8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm <span class="good">$O(\log n)$</span>.
 9. An implementation of a binary tree:
    ```c
     
@@ -597,7 +592,7 @@ In practice, the worst-case complexity is the most useful because:
 8. Collisions can be minimized but cannot be eliminated (see Pigeon hole principle). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
 9. The two common methods for collision resolution:
    * **Separate chaining** — the values of the hash-table’s array is a linked-list.
-     * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in <span style="color:#42ba96">$O(1)$</span> time. Keys that collided hence form a chain.
+     * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in <span class="good">$O(1)$</span> time. Keys that collided hence form a chain.
      * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
 [![Hash table separate chaining](assets/hash_table_separate_chaining.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_5_0_1_1_1_1_1_LL.svg)
    * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
@@ -615,10 +610,10 @@ In practice, the worst-case complexity is the most useful because:
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
-    | Search | $Θ(1)$ | <span style="color:#ffc107">$O(n)$</span> |
-    | Insert | $Θ(1)$ | <span style="color:#ffc107">$O(n)$</span>|
-    | Delete | $Θ(1)$ | <span style="color:#ffc107">$O(n)$</span> |
-13.  Space complexity is <span style="color:#ffc107">$O(n)$</span>.
+    | Search | $Θ(1)$ | <span class="okay">$O(n)$</span> |
+    | Insert | $Θ(1)$ | <span class="okay">$O(n)$</span>|
+    | Delete | $Θ(1)$ | <span class="okay">$O(n)$</span> |
+13.  Space complexity is <span class="okay">$O(n)$</span>.
 
 ### Excercises
 1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.

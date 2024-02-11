@@ -8,6 +8,18 @@ mark {
 	background-color: yellow;
 }
 
+.good {
+	color: #42ba96
+}
+
+.okay {
+	color: #ffc107
+}
+
+.bad {
+	color: #df4759
+}
+
 .image_row {
   display: flex;
 }
