@@ -4,6 +4,10 @@
   color: white;
 } */
 
+mark {
+	background-color: yellow;
+}
+
 .image_row {
   display: flex;
 }

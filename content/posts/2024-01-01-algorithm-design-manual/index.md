@@ -313,26 +313,25 @@ In practice, the worst-case complexity is the most useful because:
 
 ## Chapter 3: Data structures
 1. A **data type** (or simply **type**) is a collection of data values, usually specified by:
-   * a set of possible values,
-   * a set of allowed operations on these values, and
-   * a representation of these values as machine types.
+   * A set of possible values,
+   * A set of allowed operations on these values, and/or
+   * A representation of these values as machine types.
 2. An **abstract data type** (**ADT**) is a data type that does not specify the concrete representation of the data. They are defined by their behavior (semantics) from the *point of view of a user of the data*, specifically in terms of:
-   * possible values,
-   * possible operations on data of this type, and
-   * the behavior of these operations.
-3. ADT contrasts with **data structures**, which are concrete representations of data, and are the *point of view of an implementer*. The generic definition of "data structure" is anything that can hold your data in a structured way.
+   * Possible values, and
+   * Possible operations on data of this type.
+3. The generic definition of **data structure** is anything that can hold your data in a structured way. ADT contrasts with data structures, which are concrete representations of data, and are the *point of view of an implementer*.
 4. The distinction between ADTs and data structures lies in the POV / level of abstraction. Some important points:
    * User’s POV: An `int` in a programming language sense is a fixed-width data structure. An integer in a mathematical sense is an ADT. For most purposes the user can work with the abstraction rather than the concrete choice of representation, and can simply use the data as if the type were truly abstract.
-   * Name overloading: An array is an ADT when viewed as a collection of items that can be accessed by an index; An array is a data structure when viewed as a collection of fixed sized items stored as contiguous blocks in memory.
+   * Name overloading: An array is an ADT when viewed as a collection of items that can be accessed by an index. An array is a data structure when viewed as a collection of fixed sized items stored as contiguous blocks in memory.
    * ADT implementations: There are multiple implementations of an ADT. E.g: A list can be implemented as an array or a linked-list.
 5. Data structures can be classified into:
    * **Contiguous data structures**: composed of single slabs of memory. E.g. arrays, matrices, heaps, hash tables, etc.
    * **Linked data structures**: composed of distinct chunks of memory bound together by pointers. E.g. linked-list, trees, graph adjacency lists, etc.
 
 ### Arrays
-1. Arrays are data structures of fixed-size elements stored contiguously such that each element can be efficiently located by its index.
+1. **Arrays** are data structures of <mark>fixed-size</mark> elements stored <mark>contiguously</mark> such that each element can be efficiently located by its index.
    $$
-   MemoryAddress(i) = FirstAddress + (i \cdot ElementWordSize)
+   MemoryAddress(i) = FirstAddress + (i \cdot ElementSize)
    $$
 2. Advantages of arrays:
    * **Constant-time access given the index**: because the index of each element maps directly to a particular memory address.
