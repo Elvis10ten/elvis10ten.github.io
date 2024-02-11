@@ -326,7 +326,7 @@ In practice, the worst-case complexity is the most useful because:
 ### Arrays
 1. **Arrays** are data structures of <mark>fixed-size</mark> elements stored <mark>contiguously</mark> such that each element can be efficiently located by its index.
    $$
-   MemoryAddress(i) = FirstAddress + (i \cdot ElementSize)
+   Address(i) = FirstAddress + (i \cdot ElementSize)
    $$
 2. Advantages of arrays:
    * **Constant-time access given the index**: because the index of each element maps directly to a particular memory address.
@@ -345,7 +345,7 @@ In practice, the worst-case complexity is the most useful because:
 10. The aggregate method of amortized analysis applied to dynamic arrays with doubling:
    * $$
      t(i) = \begin{cases}
-     2^{k}+1 &\text{if } i = 2^{k} \\
+     2^{k}+1 &\text{if } i = 2^{k} - 1 \\
      1&\text{otherwise}
      \end{cases}
      $$
