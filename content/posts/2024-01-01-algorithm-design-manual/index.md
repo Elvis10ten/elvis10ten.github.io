@@ -415,12 +415,13 @@ In practice, the worst-case complexity is the most useful because:
 1. **Pointers** represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data structures together.
 2. In C:
    * `*p` denotes the item that is pointed to by pointer `p`
-   * `&x` denotes the address of (i.e. pointer to) a particular variable `x`.
+   * `&x\p` denotes the address of (i.e. pointer to) a particular variable `p`.
    * A special `NULL` pointer value is used to denote unassigned pointers.
-3. All linked data structures share certain properties:
+3. All linked data structures share these properties:
    * Each node contains one or more data field.
    * Each node contains a pointer field to at least one other node.
    * Finally, we need a pointer to the head of the data structure, so we know where to access it.
+   
    Example linked-list displaying these properties:
    ```c
     
@@ -456,7 +457,9 @@ In practice, the worst-case complexity is the most useful because:
       p = malloc(sizeof(list));
       p->data = x;
       p->next = *listz;
-      // `**listz` denotes that `listz` is a pointer to a pointer to a list node. This line copies `p` to the place pointed to by `listz`, which is the external variable maintaining access to the head of the list.
+      // `**listz` denotes that `listz` is a pointer to a pointer to a list node.
+      // This line copies `p` to the place pointed to by `listz`,
+      // which is the external variable maintaining access to the head of the list.
       *listz = p;
    }
    ```
@@ -484,9 +487,11 @@ In practice, the worst-case complexity is the most useful because:
       p = *listz;
       pred = item_ahead(*listz, *x);
    
-      // Given that we assume `x` exists in the list, `pred` is only null when the first element is the target.
+      // Given that we assume `x` exists in the list,
+      // `pred` is only null when the first element is the target.
       if (pred == NULL) { /* splice out of list */
-         // Special case: resets the pointer to the head of the list when the first element is deleted.
+         // Special case: resets the pointer to the head of the list
+         // when the first element is deleted.
          *listz = p->next;
       } else {
          pred->next = (*x)->next
@@ -503,12 +508,13 @@ In practice, the worst-case complexity is the most useful because:
     * Lists — Chopping the first element off a linked-list leaves a smaller linked-list.
     * Arrays — Splitting the first $k$ elements off of an $n$ element array gives two smaller arrays, of size $k$ and $n - k$, respectively.
     * This insight leads to simpler list processing, and efficient divide-and-conquer algorithms like quick-sort and binary search.
+11. An array is only recursive conceptually: Every array "contains" a sub-array. However, an array isn't recursive in code: A structure is recursive if while navigating through it, you come across "smaller" versions of the whole structure. While navigating through an array, you only come across the elements that the array holds, not smaller arrays.
 
 ### Stacks
 1. **Stacks** are an ADT that supports retrieval by last-in, first-out (LIFO).
 2. Primary operations are:
    * `push(x)` — Inserts item `x` at the top of the stack.
-   * `pop` — Return and remove the top item of the stack.
+   * `pop()` — Return and remove the top item of the stack.
 
 ### Queues
 [![Queue](assets/queue.svg)](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)#/media/File:Data_Queue.svg)
@@ -516,12 +522,12 @@ In practice, the worst-case complexity is the most useful because:
 1. **Queues** are an ADT that supports retrieval by first-in, first-out (FIFO).
 2. Primary operations are:
    * `enqueue(x)` — Inserts item `x` at the back of the queue.
-   * `dequeue` — Return and remove the front item from the queue.
+   * `dequeue()` — Return and remove the front item from the queue.
 3. Stacks and queues can be effectively implemented using arrays or linked-list.
 
 
 ### Dictionaries
-1. A **dictionary** is an abstract data type that stores a collection of `(key, value) pairs`, such that each possible `key` appears at most once in the collection.
+1. A **dictionary** is an ADT that stores a collection of `(key, value) pairs`, such that each possible `key` appears at most once in the collection.
 2. The primary operations of a dictionary are:
    * `put(key, value)`
    * `remove(key)`
@@ -531,14 +537,15 @@ In practice, the worst-case complexity is the most useful because:
      * The time complexity of get and remove is <span class="okay">$O(n)$</span>.
      * The time complexity of put is <span class="good">$O(1)$</span> — if the list is unsorted.
    * Direct addressing into an **array**:
-     * Potential keys are numbers from the universe $M \subseteq U$
-     * A value with key $k \in M$ can be kept under index $k$ in a $\lvert M \rvert$-element array.
+     * $U$ is the universe of numbers.
+     * $K$ is a set of potential keys and $K \subseteq U$.
+     * $K_i$ can be kept under index $K_i$ in a $\lvert K \rvert$-element array.
      * The time complexity of put, get and remove is <span class="good">$O(1)$</span>.
-     * The space complexity is $\lvert U \rvert$. Hence, this structure is impractical when $\lvert U \rvert >> n$; where $n$ is the number of values inserted.
+     * The space complexity is $\lvert K \rvert$. Hence, this structure is impractical when $\lvert K \rvert >> n$; where $n$ is the number of values actually inserted.
 4. These are the two common data structures used to implement a dictionary:
    * **Hash tables**.
    * **Self-balancing binary search tree**.
-5. Binary search tree based maps are in-order and hence can satisfy range queries (find all values between two bounds) whereas a hash-map can only find exact values.
+5. <mark>Binary search tree based maps are in-order and hence can satisfy range queries</mark> (i.e. find all values between two bounds) whereas a hash-map can only efficiently find exact values.
 
 ### Binary search tree (BST)
 1. A **binary tree** is a tree data structure in which each node has at most two children, referred to as the left child and the right child.
@@ -547,10 +554,10 @@ In practice, the worst-case complexity is the most useful because:
 4. A **rooted binary tree** is recursively defined as either being:
    * Empty or
    * Consisting of a node called the root, together with two **rooted binary trees** called the left and right subtrees.
-5. A **binary search tree** is a rooted binary tree data structure such that for any node $x$, all nodes in the left subtree of $x$ have keys $<x$ while all nodes in the right subtree of $x$ have keys $>x$.
+5. A **binary search tree** is a rooted binary tree data structure such that for any node $x$, all nodes in the left subtree of $x$ have $keys < x$ while all nodes in the right subtree of $x$ have $keys > x$.
 6. Binary search trees’ height range from $\log_2 n$ (when balanced) to $n$ (when degenerate).
-7. The time complexity of operations on the binary search tree is linear with respect to the height of the tree $O(h)$.
-8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm <span class="good">$O(\log n)$</span>.
+7. The <mark>time complexity of operations on the binary search tree is linear with respect to the height of the tree</mark> $O(h)$.
+8. Hence, in a balanced binary search tree, the nodes are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of the binary logarithm <span class="good">$O(\log n)$</span>.
 9. An implementation of a binary tree:
    ```c
     
@@ -565,16 +572,16 @@ In practice, the worst-case complexity is the most useful because:
 11. 
 
 ### Priority queue
-1. A **priority queue** is an abstract data-type similar to a regular queue or stack data structure. Each element in a priority queue has an associated `priority`.
-2. In a priority queue, elements with high priority are served before elements with low priority.
+1. A **priority queue** is an ADT similar to a regular queue or stack ADT. Each element in a priority queue has an associated `priority`.
+2. Depending on the implementation, a priority queue can serve minimum priority elements first or maximum priority elements first. You can convert one implementation into the other by negating the priority on each element addition.
 3. Priority queues are often implemented using **heaps**.
 4. A priority queue can also be inefficiently implemented as an unsorted list or a sorted list.
 5. A priority queue can be used for sorting: insert all the elements to be sorted into a priority queue, and sequentially remove them.
 6. The primary operations of a priority queue are:
-   * `Add` an element with a given priority,
-   * `Delete`  an element,
-   * Get the the highest priority element and remove it (`Pull`),
-   * Get the the highest priority element without removing it (`Peek`).
+   * `add()` — an element with a given priority,
+   * `delete(x)` —  an element,
+   * `pull()` — Get the the highest priority element and remove it, and
+   * `peek()` — Get the the highest priority element without removing it.
 7. Stacks and queues can be implemented as particular kinds of priority queues, with the priority determined by the order in which the elements are inserted.
 
 ### Hash tables
