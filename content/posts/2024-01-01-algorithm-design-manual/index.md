@@ -349,25 +349,43 @@ In practice, the worst-case complexity is the most useful because:
      1&\text{otherwise}
      \end{cases}
      $$
-   * $t(i)$ defines the time it takes to perform the i-th `addition`.
-   * The first case of $t(i)$ defines the time taken when the array’s capacity is exceeded and has to doubled. Because of the doubling, this case happens on every $2^{k} + 1$ addition. $k$ is any non-negative integer. The time taken is $2^{k}+1$ because:
-     * $2^{k}$ has to be copied to the new array and
-     * The i-th element has to be `added` into the new array. This represents the $+1$.
-   * The second case of $t(i)$ defines the time taken when the array capacity is not exceeded. This is constant time because only a single `addition` is performed.
-   *  $t(i)$ example on a dynamic array initialized with a capacity of $1$:
+   * $t(i)$ defines the time it takes to perform the $i$-th `addition`.
+   * The first case of $t(i)$:
+     * Defines the time taken when the array’s capacity is exceeded and has to doubled.
+     * $k$ is a non-negative integer.
+     * Because the array's capacity is doubled, this case happens when: $i = 2^{0} + 1$, $i = 2^{1} + 1$, ... $i = 2^{n} + 1$.
+     * The time taken is $2^{k}+1$ because:
+       * $2^{k}$ elements has to be copied to the new array and
+       * The $i$-th element has to be `added` into the new array. This represents the $+1$.
+   * The second case of $t(i)$:
+     * Defines the time taken when the array capacity is not exceeded.
+     * This is constant time because only a single `addition` is performed.
+   * e.g. Given a dynamic array initialized with a capacity of $1$:
 
-        | i | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+        | i | 1 | 2 (🐢) | 3 (🐢) | 4 | 5 (🐢) | 6 | 7 | 8 | 9 (🐢) | 10 |
         |---|---|---|---|---|---|---|---|---|---|---|
         | $t(i)$ | $1$ | $2$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
-        | Capacity | $1$ | $2$ (🐢) | $4$ (🐢) | $4$ | $8$ (🐢) | $8$ | $8$ | $8$ | $16$ (🐢) | $16$ |
+        | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
 
    * $$
      Amortized \space cost = \frac{\sum_{i=1}^{n}t(i)}{n}
      $$
-   * In both cases of the function, there is a $1$. So summation from $1$ to $n$ results in an $n$ plus the sum of $2^{k}$ when $i = 2^{k} + 1$ (this case happens $\log_2 (n - 1)$ times):
+   * e.g. Given $n = 4$:
+    $$
+    Amortized \space cost = \frac{\sum_{i=1}^{4}t(i)}{n}\\
+    = 1 + (2^0 + 1) + (2^1 + 1) + 1
+    $$
+   * We see that in both cases of the function, there is a $+1$. So summation from $1$ to $n$ results in:
    $$
    \sum_{i=1}^{n}t(i) = n + \sum_{k=0}^{\log_2 (n - 1)}2^{k}
    $$
+   * The second operand represents the total cost of the copy operation that occurs on each resizing. For $n$ `addition`, this happens $\log_2 (n - 1)$ times. e.g.
+
+        | n | 1 | 2 (🐢) | 3 (🐢) | 4 | 5 (🐢) | 6 | 7 | 8 | 9 (🐢) | 10 |
+        |---|---|---|---|---|---|---|---|---|---|---|
+        | Copy count | $1$ | $1$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
+        | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
+
    * The second operand is the partial sum of a geometric series. Applying the formula:
    $$
    \sum_{i=0}^{n}r^{i} = \frac{1 - r^{n+1}}{1 - r}\\
