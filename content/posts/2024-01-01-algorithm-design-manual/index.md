@@ -604,17 +604,17 @@ In practice, the worst-case complexity is the most useful because:
    s[0]*31^{n-1} + s[1]*31^{n-2} + ... + s[n-1]
    $$
    Which translates into the following code:
-   ```java
+    ```java
     int hashcode = 0;
     for (int i = 0; i < s.length(); i++) {
         hashcode = (hashcode * 31) + s.charAt(i);
     }
-   ```
+    ```
 7. A collision occurs when:
    $$
    h(j) = h(k) \land j \neq k
    $$
-8. Collisions can be minimized but cannot be eliminated (see Pigeon hole principle). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
+8. Collisions can be minimized but cannot be eliminated (see [Pigeon hole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle)). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
 9. The two common methods for collision resolution:
    * **Separate chaining** — the values of the hash-table’s array is a linked-list.
           
@@ -631,20 +631,20 @@ In practice, the worst-case complexity is the most useful because:
      
      * Linear probing is often used — it simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$. But there is quadratic probing and other probing sequences.
 ![Hash table open addressing](assets/hash_table_open_addressing.svg)
-10.   Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
-11.   Other uses of hashing (or a hash table):
+10. Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
+11. Other uses of hashing (or a hash table):
     * Plagiarism detection using Rabin-Karp string matching algorithm
     * English dictionary search
     * Finding distinct elements
     * Counting frequencies of items
-12.   Time complexity in big O notation
+12. Time complexity in big O notation
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
     | Search | $Θ(1)$ | <span class="okay">$O(n)$</span> |
     | Insert | $Θ(1)$ | <span class="okay">$O(n)$</span>|
     | Delete | $Θ(1)$ | <span class="okay">$O(n)$</span> |
-13.   Space complexity is <span class="okay">$O(n)$</span>.
+13. Space complexity is <span class="okay">$O(n)$</span>.
 
 ### Excercises
 1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.
