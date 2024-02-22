@@ -362,9 +362,9 @@ In practice, the worst-case complexity is the most useful because:
      * This is constant time because only a single `addition` is performed.
    * e.g. Given a dynamic array initialized with a capacity of $1$:
 
-        | i | 1 | 2 (🐢) | 3 (🐢) | 4 | 5 (🐢) | 6 | 7 | 8 | 9 (🐢) | 10 |
+        | i | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
         |---|---|---|---|---|---|---|---|---|---|---|
-        | $t(i)$ | $1$ | $2$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
+        | $t(i)$ | <span class="good">$1$</span> | <span class="bad">$2$</span> | <span class="bad">$3$</span> | <span class="good">$1$</span> | <span class="bad">$5$</span> | <span class="good">$1$</span> | <span class="good">$1$</span> | <span class="good">$1$</span> | <span class="good">$9$</span> | <span class="good">$1$</span> |
         | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
 
    * $$
