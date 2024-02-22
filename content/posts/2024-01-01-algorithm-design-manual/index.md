@@ -353,7 +353,7 @@ In practice, the worst-case complexity is the most useful because:
    * The first case of $t(i)$:
      * Defines the time taken when the array’s capacity is exceeded and has to doubled.
      * $k$ is a non-negative integer.
-     * Because the array's capacity is doubled, this case happens when: $i = 2^{0} + 1$, $i = 2^{1} + 1$, ... $i = 2^{n} + 1$.
+     * Because the array's capacity is doubled, this case happens when: $i = 2^{0} + 1$, $i = 2^{1} + 1$, ..., $i = 2^{n} + 1$.
      * The time taken is $2^{k}+1$ because:
        * $2^{k}$ elements has to be copied to the new array and
        * The $i$-th element has to be `added` into the new array. This represents the $+1$.
@@ -379,34 +379,40 @@ In practice, the worst-case complexity is the most useful because:
    $$
    \sum_{i=1}^{n}t(i) = n + \sum_{k=0}^{\log_2 (n - 1)}2^{k}
    $$
-   * The second operand represents the total cost of the copy operation that occurs on each resizing. For $n$ `addition`, this happens $\log_2 (n - 1)$ times. e.g.
+   * The second operand represents the total cost of the copy operation that occurs on each resizing. For $n$ `addition`, this happens $\log_2 (n - 1) + 1$ times. e.g.
 
-        | n | 1 | 2 (🐢) | 3 (🐢) | 4 | 5 (🐢) | 6 | 7 | 8 | 9 (🐢) | 10 |
+        | n | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
         |---|---|---|---|---|---|---|---|---|---|---|
-        | Copy count | $1$ | $1$ | $3$ | $1$ | $5$ | $1$ | $1$ | $1$ | $9$ | $1$ |
-        | Capacity | $1$ | $2$ | $4$ | $4$ | $8$ | $8$ | $8$ | $8$ | $16$ | $16$ |
+        | $\log_2 (n - 1)$ | | <span class="bad">$0$</span> | <span class="bad">$1$</span> | $1$ | <span class="bad">$2$</span> | $2$ | $2$ | $2$ | <span class="bad">$3$</span> | $3$ |
+        | $\sum_{k=0}^{\log_2 (n - 1)}2^{k}$ | | $1$ | $3$ | $3$ | $7$ | $7$ | $7$ | $7$ | $15$ | $15$ |
 
-   * The second operand is the partial sum of a geometric series. Applying the formula:
+   * The second operand is the partial sum of a geometric series, which has the formula:
    $$
-   \sum_{i=0}^{n}r^{i} = \frac{1 - r^{n+1}}{1 - r}\\
-   = \frac{1 - 2^{(\log_2 n) + 1}}{1 - 2} = \frac{- 2^{(\log_2 n) + 1} + 1}{-1}\\
-   = 2^{(\log_2 n) + 1} - 1\\
-   = 2^{\log_2 n} \cdot 2^{1} - 1
+   \sum_{k=0}^{n}x^{k} = \frac{x^{n+1} - 1}{x - 1}
    $$
-   * $\log_2 n$ is the number to which $2$ must be raised to obtain $n$. Raising that number then to $2$ results in $n$. Hence, the last expression can be simplified to:
+
+   * Applying the formula to the second operand:
    $$
-   = n \cdot 2^{1} - 1\\
-   = 2n - 1
+   \sum_{k=0}^{\log_2 (n - 1)}2^{k} = \frac{2^{\log_2 (n - 1) + 1} - 1}{2 - 1}\\
+   = \frac{2^{\log_2 (n - 1) + 1} - 1}{1}\\
+   = 2^{\log_2 (n - 1) + 1} - 1\\
+   = 2^{\log_2 (n - 1)} \cdot 2^{1} - 1
+   $$
+   * $\log_2 (n - 1)$ is the number to which $2$ must be raised to obtain $n - 1$. Raising that number then to $2$ results in $n - 1$. Hence, the last expression can be simplified to:
+   $$
+   = (n - 1) \cdot 2^{1} - 1\\
+   = 2(n - 1) - 1\\
+   = 2n - 3
    $$
    * The summation can be re-expressed again as:
    $$
-   \sum_{i=0}^{n}t(i) = n + 2n - 1
+   \sum_{i=1}^{n}t(i) = n + 2n - 3
    $$
-   * The $-1$ is inconsequencial in the time analysis, hence the summation can be simplified into:
+   * The $-3$ is inconsequencial in the time analysis, hence the summation can be simplified into:
    $$
-   \sum_{i=0}^{n}t(i) \leq 3n
+   \sum_{i=1}^{n}t(i) \leq 3n
    $$
-   * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.<br/>
+   * > **Interpretation**: A sequence of $n$ `add` operations costs at most $3n$, hence each `add` in the sequence costs at most $3$ (constant time) on average, which is the amortized cost according to the aggregate method.<br/><br/>
      > **Conclusion**: This proves that the amortized cost of insertion to a dynamic array with doubling is <span class="good">$O(1)$</span>.
 11. The key idea behind amortized analysis is that the <mark>cost of a particular operation can be partially paid for by the cost of other operations</mark> that are performed later. It avoids the limitations of worst-case analysis, which can overestimate the performance of a data structure if the worst-case scenario is unlikely to occur frequently.
 
