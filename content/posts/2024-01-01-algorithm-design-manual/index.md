@@ -415,7 +415,7 @@ In practice, the worst-case complexity is the most useful because:
 1. **Pointers** represent the address of a location in memory. Pointers are the connections that hold the nodes (i.e. elements) of linked data structures together.
 2. In C:
    * `*p` denotes the item that is pointed to by pointer `p`
-   * `&x\p` denotes the address of (i.e. pointer to) a particular variable `p`.
+   * `&p` denotes the address of (i.e. pointer to) a particular variable `p`.
    * A special `NULL` pointer value is used to denote unassigned pointers.
 3. All linked data structures share these properties:
    * Each node contains one or more data field.
@@ -617,28 +617,34 @@ In practice, the worst-case complexity is the most useful because:
 8. Collisions can be minimized but cannot be eliminated (see Pigeon hole principle). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
 9. The two common methods for collision resolution:
    * **Separate chaining** — the values of the hash-table’s array is a linked-list.
+          
      * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in <span class="good">$O(1)$</span> time. Keys that collided hence form a chain.
+     
      * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
 [![Hash table separate chaining](assets/hash_table_separate_chaining.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_5_0_1_1_1_1_1_LL.svg)
+
    * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
+     
      * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
+     
      * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
+     
      * Linear probing is often used — it simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$. But there is quadratic probing and other probing sequences.
 ![Hash table open addressing](assets/hash_table_open_addressing.svg)
-10.  Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
-11.  Other uses of hashing (or a hash table):
+10.   Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
+11.   Other uses of hashing (or a hash table):
     * Plagiarism detection using Rabin-Karp string matching algorithm
     * English dictionary search
     * Finding distinct elements
     * Counting frequencies of items
-12.  Time complexity in big O notation
+12.   Time complexity in big O notation
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
     | Search | $Θ(1)$ | <span class="okay">$O(n)$</span> |
     | Insert | $Θ(1)$ | <span class="okay">$O(n)$</span>|
     | Delete | $Θ(1)$ | <span class="okay">$O(n)$</span> |
-13.  Space complexity is <span class="okay">$O(n)$</span>.
+13.   Space complexity is <span class="okay">$O(n)$</span>.
 
 ### Excercises
 1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.
