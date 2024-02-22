@@ -53,7 +53,7 @@ tags:
    ```
     
   An animation of the logical flow of this algorithm on a particular instance (the letters in the word `“INSERTIONSORT”`) 
-    <!-- ![](assets/fig1.1.png) -->
+    ![](assets/fig1.1.png)
 
 5. There is a fundamental difference between algorithms,
 which always produce a correct result, and heuristics, which may usually do a
@@ -70,7 +70,7 @@ good job but without providing any guarantee.
 > **Output**: What is the shortest cycle tour that visits each point in the set `S`?
 
 #### Nearest-neighbor heuristic
-<!-- ![A good instance for the nearest-neighbor heuristic](assets/fig1.2.png) -->
+![A good instance for the nearest-neighbor heuristic](assets/fig1.2.png)
 
 1. English Description:
    > Starting from some point `p0`, we walk first to its nearest neighbor `p1`
@@ -95,7 +95,7 @@ good job but without providing any guarantee.
    - Reasonably efficient
 4. Cons: It's wrong — It always finds a tour, but it doesn’t necessarily find the shortest possible tour.
    E.g: A bad instance for the nearest-neighbor heuristic (top) & the optimal solution (bottom):
-   <!-- ![](assets/fig1.3.png) -->
+   ![](assets/fig1.3.png)
 
 #### Closest-pair heuristic
 1. English description:
@@ -177,7 +177,7 @@ alert for how the details of your applications differ from a candidate model, bu
 6. **Polygons** define regions in some geometric spaces.
 7. **Strings** represent sequences of characters, or patterns.
 
-<!-- ![](assets/fig1.8.png) -->
+![](assets/fig1.8.png)
 <small> Modeling real-world structures with trees and graphs</small>
 
 #### Recursive Objects
@@ -194,7 +194,7 @@ alert for how the details of your applications differ from a candidate model, bu
 
 > Recursive descriptions of objects require both decomposition rules and basis cases, namely the specification of the smallest and simplest objects where the decomposition stops.  
 
-<!-- ![](assets/fig1.9.png) -->
+![](assets/fig1.9.png)
 <small>Recursive decompositions of combinatorial objects. (left column) Permutations, subsets, trees, and graphs. (right column) Point sets, polygons, and strings</small>
 
 ### Proof by Contradiction
