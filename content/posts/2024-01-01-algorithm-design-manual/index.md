@@ -434,7 +434,6 @@ In practice, the worst-case complexity is the most useful because:
    typedef struct list {
        data_type data; /* Data field */
        struct list *next; /* Pointer field */
-   
    } list;
    ```
 4. The **linked-list** is the simplest linked structure.
@@ -442,63 +441,62 @@ In practice, the worst-case complexity is the most useful because:
 6. Searching for data `x` in a linked-list recursively:
    ```c
     
-   list *search_list(list *listz, data_type x) {
-       if (listz == NULL) {
+   list *search_list(list *my_list, data_type x) {
+       if (my_list == NULL) {
            return(NULL);
        }
    
        // If `x` is in the list, it's either the first element or located in the rest of the list.
-       if (listz->data == x) {
-           return(listz);
+       if (my_list->data == x) {
+           return(my_list);
        } else {
-           return(search_list(listz.next, x));
+           return(search_list(my_list.next, x));
        }
    }
    ```
 7. Inserting into a singly linked-list at the head:
    ```c
     
-   list *insert_list(list **listz, data_type x) {
+   list *insert_list(list **my_list, data_type x) {
       list *p; /* temporary pointer */
       p = malloc(sizeof(list));
       p->data = x;
-      p->next = *listz;
-      // `**listz` denotes that `listz` is a pointer to a pointer to a list node.
-      // This line copies `p` to the place pointed to by `listz`,
+      p->next = *my_list;
+      // `**my_list` denotes that `my_list` is a pointer to a pointer to a list node.
+      // This line copies `p` to the place pointed to by `my_list`,
       // which is the external variable maintaining access to the head of the list.
-      *listz = p;
+      *my_list = p;
    }
    ```
 8. Deletion from a list:
    ```c
     // Used to find the predecessor of the item to be deleted.
-   list *item_ahead(list *listz, list *x) {
-      if ((listz == NULL) || (listz->next == NULL) {
+   list *item_ahead(list *my_list, list *x) {
+      if ((my_list == NULL) || (my_list->next == NULL) {
           return(NULL);
       }
    
-   
-      if ((listz->next) == x) {
-          return(listz);
+      if ((my_list->next) == x) {
+          return(my_list);
       } else {
-          return(item_ahead(listz->next, x));
+          return(item_ahead(my_list->next, x));
       }
    }
    
    // This is called only if `x` exists in the list.
-   void *delete_list(list **listz, list **x) {
+   void *delete_list(list **my_list, list **x) {
       list *p; /* element pointer */
       list *pred; /* predecessor pointer */
    
-      p = *listz;
-      pred = item_ahead(*listz, *x);
+      p = *my_list;
+      pred = item_ahead(*my_list, *x);
    
       // Given that we assume `x` exists in the list,
       // `pred` is only null when the first element is the target.
       if (pred == NULL) { /* splice out of list */
          // Special case: resets the pointer to the head of the list
          // when the first element is deleted.
-         *listz = p->next;
+         *my_list = p->next;
       } else {
          pred->next = (*x)->next
       }
@@ -621,36 +619,31 @@ In practice, the worst-case complexity is the most useful because:
    h(j) = h(k) \land j \neq k
    $$
 8. Collisions can be minimized but cannot be eliminated (see [Pigeon hole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle)). It’s impossible to eliminate collisions without knowing the $U$ ahead of time.
-9. The two common methods for collision resolution:
-   * **Separate chaining** — the values of the hash-table’s array is a linked-list.
-          
-     * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in <span class="good">$O(1)$</span> time. Keys that collided hence form a chain.
-     
-     * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
-[![Hash table separate chaining](assets/hash_table_separate_chaining.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_5_0_1_1_1_1_1_LL.svg)
-
-   * **Open addressing** — every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
-     
-     * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
-     
-     * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
-     
-     * Linear probing is often used — it simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$. But there is quadratic probing and other probing sequences.
-![Hash table open addressing](assets/hash_table_open_addressing.svg)
-10. Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
-11. Other uses of hashing (or a hash table):
+9. The two common methods for collision resolution are **separate chaining** and **open addressing**.
+10. In **separate chaining**, the values of the hash-table’s array is a linked-list.
+    * Inserting adds the key and its value to the head of the linked-list at $h(x)$ index in <span class="good">$O(1)$</span> time. Keys that collided hence form a chain.
+    
+    * Searching involves going to $h(x)$ index and iterating through the linked-list until a key equality check passes.
+    [![Hash table separate chaining](assets/hash_table_separate_chaining.svg)](https://en.wikipedia.org/wiki/Hash_table#/media/File:Hash_table_5_0_1_1_1_1_1_LL.svg)
+11. In **open addressing**, every key and its value is stored in the hash-table’s array itself, and the resolution is performed through `probing`.
+    * Inserting goes to $h(x)$ index. If it is occupied, it proceeds on some probe sequence until an unoccupied index is found.
+    * Searching is done in the same sequence, until either the key is found, or an unoccupied array index is found, which indicates an unsuccessful search.
+    * Linear probing is often used — it simply checks the next indices linearly: $h(x) + 1$, $h(x) + 2$. But there is quadratic probing and other probing sequences.
+    ![Hash table open addressing](assets/hash_table_open_addressing.svg)
+12.  Search algorithms that use hashing consist of two separate parts: hashing and collision resolution.
+13.  Other uses of hashing (or a hash table):
     * Plagiarism detection using Rabin-Karp string matching algorithm
     * English dictionary search
     * Finding distinct elements
     * Counting frequencies of items
-12. Time complexity in big O notation
+14.  Time complexity in big O notation
 
     | Operation	| Average | Worst case |
     |-----------|---------|------------|
     | Search | $Θ(1)$ | <span class="okay">$O(n)$</span> |
     | Insert | $Θ(1)$ | <span class="okay">$O(n)$</span>|
     | Delete | $Θ(1)$ | <span class="okay">$O(n)$</span> |
-13. Space complexity is <span class="okay">$O(n)$</span>.
+15.  Space complexity is <span class="okay">$O(n)$</span>.
 
 ### Excercises
 1. A common problem for compilers and text editors is determining whether the parentheses in a string are balanced and properly nested. For example, the string `((())())()` contains properly nested pairs of parentheses, while the strings `)()(` and `())` do not. Give an algorithm that returns true if a string contains properly nested and balanced parentheses, and false if otherwise. For full credit, identify the position of the first offending parenthesis if the string is not properly nested and balanced.
@@ -668,7 +661,7 @@ In practice, the worst-case complexity is the most useful because:
 
     /**
       * @return -1 if [string] is valid, else a positive integer
-      * that providesthe position of the offending index.
+      * that provides the position of the offending index.
       */
     fun areParentheseProperlyBalanced(string: String): Int {
         val stack = Stack<Pair<Char, Int>>()
@@ -914,7 +907,7 @@ In practice, the worst-case complexity is the most useful because:
 
     </details>
 
-8. Tic-tac-toe is a game played on an $n * n$ board (typically $n = 3$) where two players take consecutive turns placing “O” and “X” marks onto the board cells. The game is won if n consecutive “O” or “X” marks are placed in a row, column, or diagonal. Create a data structure with $O(n)$ space that accepts a sequence of moves, and reports in constant time whether the last move won the game.
+8. Tic-tac-toe is a game played on an $n * n$ board (typically $n = 3$) where two players take consecutive turns placing “O” and “X” marks onto the board cells. The game is won if $n$ consecutive “O” or “X” marks are placed in a row, column, or diagonal. Create a data structure with $O(n)$ space that accepts a sequence of moves, and reports in constant time whether the last move won the game.
     <details>
     <summary>Solution</summary>
 
