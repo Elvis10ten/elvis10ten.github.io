@@ -11,30 +11,27 @@ tags:
 ## Chapter 1: What is a proof?
 1. A **proposition** is a statement that is either true or false. e.g.
 > **Fermat’s last theorem**: is a proposition that states there are no positive integers $x$, $y$, and $z$ such that $x^n + y^n = z^n$.
-> <br/>
-> Rewritten, in logical notation: $x, y, z \in \mathbb{Z}^+ . x^n + y^n = z^n$.
-> * $\mathbb{Z}^+$ is a symbol for the positive integers.
-> * The period $.$ after the $\mathbb{Z}^+$ is just a separator between phrases.
+> <br/>j
 > <br/>
 > The proposition was shared by Format in 1630 and was only proven in 1994.
-2. The symbol $:=$ means **equal by definition**. It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.
-3. It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality.
-4. You can't check a claim about an infinite set by checking a finite sample of its elements, no matter how large the sample.
-5. A **conjecture** is a statement that is believed to be true based on limited evidence but has not been proven. e.g.
+1. The symbol $:=$ means **equal by definition**. It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.
+2. It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality.
+3. You can't check a claim about an infinite set by checking a finite sample of its elements, no matter how large the sample.
+4. A **conjecture** is a statement that is believed to be true based on limited evidence but has not been proven. e.g.
 > **Goldbach’s conjecture**: Every even integer greater than 2 is the sum of two prime numbers.
 
-6. $\forall n \in ℕ . p(n) is prime$
+1. $\forall n \in ℕ . p(n) is prime$
 Here the symbol $\forall$ is read “for all.”
 The symbol **ℕ** stands for the set of nonnegative integers.
 The symbol $\in$ is read as “is a member of".
-6. A **predicate** is a proposition whose truth depends on the value of one or more variables. e.g “n is a perfect square”.
-7. Like propositions, predicates are named with letters, often with function notation.  The output is either true or false depending on the input. This is in contrast to ordinary functions where the output is a numerical value. e.g. $p(n) ::= n is a perfect square$.
-8. Important true propositions are called **theorems**.
-9. A **lemma** is a preliminary proposition useful for proving later propositions.
-10. A **corollary** is a proposition that follows in just a few logical steps from a theorem.
-11. Euler (pronounced “oiler”).
-12. **Logical deductions** or **inference rules** are used to prove new propositions using previously proved ones.
-13. The notation for inference rules is:
+1. A **predicate** is a proposition whose truth depends on the value of one or more variables. e.g “n is a perfect square”.
+2. Like propositions, predicates are named with letters, often with function notation.  The output is either true or false depending on the input. This is in contrast to ordinary functions where the output is a numerical value. e.g. $p(n) ::= n is a perfect square$.
+3. Important true propositions are called **theorems**.
+4. A **lemma** is a preliminary proposition useful for proving later propositions.
+5.  A **corollary** is a proposition that follows in just a few logical steps from a theorem.
+6.  Euler (pronounced “oiler”).
+7.  **Logical deductions** or **inference rules** are used to prove new propositions using previously proved ones.
+8.  The notation for inference rules is:
 
 When the statements above the line (antecedents) are proved, then the statement below the line (the conclusion or consequent) is considered to also be proved.
 1.  **Implies** is a logical term used to express a relationship between two statements. In the context of $p \implies q$, it means "if $p$ is true, then $q$ must also be true." 
@@ -47,14 +44,14 @@ When the statements above the line (antecedents) are proved, then the statement 
       $$
       (NOT(p) \implies NOT(q)) \implies (p \implies r)
       $$
-* 
-1.  An **antecedent** is the first half of a hypothetical proposition, whenever the if-clause precedes the then-clause. E.g. If $P$, then $Q$. $P$ is the antecedent.
-2.  A **consequent** is the second half of a hypothetical proposition. In the standard form of such a proposition, it is the part that follows "then". In an implication, if $P$ implies $Q$, then $P$ is called the antecedent and $Q$ is called the consequent.
 
-The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \implies q$. A result of symbolic logic is that p --> q is equivalent to the implication ~q --> ~p, i.e. p --> q = ~q --> ~p. e.g. ``If it is raining, then I'll stay indoors'' is equivalent to the contraposition, ``If I am not indoors, then it is not raining''.
+3.  An **antecedent** is the first half of a hypothetical proposition, whenever the if-clause precedes the then-clause. E.g. If $P$, then $Q$. $P$ is the antecedent.
+4.  A **consequent** is the second half of a hypothetical proposition. In the standard form of such a proposition, it is the part that follows "then". In an implication, if $P$ implies $Q$, then $P$ is called the antecedent and $Q$ is called the consequent.
+
+The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \implies q$. A result of symbolic logic is that p --> q is equivalent to the implication ~q --> ~p, i.e. p --> q = ~q --> ~p. e.g. If it is raining, then I'll stay indoors is equivalent to the contraposition, If I am not indoors, then it is not raining.
 
 In symbolic logic, the tilde (~) is used to indicate the negation of a statement.
-* If p is the statement, ``It is raining'', then ~p is ``It is not raining''.
+* If p is the statement, It is raining, then ~p is It is not raining.
 
 ### Proofs
 An **axiom** or **postulate** is a proposition that is <mark>taken to be true</mark>, to serve as a premise or starting point for further reasoning and arguments. For instance, Euclid begun with five assumptions (axioms) about geometry, which seemed undeniable based on direct experience, e.g. “There is a straight line segment between every pair of points”.
