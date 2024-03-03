@@ -5,8 +5,8 @@
 } */
 
 mark {
-	color: rgb(100,71,58);
-	background: rgb(233,229,227);
+	text-decoration: underline;
+  	text-decoration-color: rgb(223,171,1);
 }
 
 .good {
