@@ -53,27 +53,23 @@ The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \i
 In symbolic logic, the tilde (~) is used to indicate the negation of a statement.
 * If p is the statement, It is raining, then ~p is It is not raining.
 
-### Proofs
+### 🧑‍⚖️ Proofs
 An **axiom** or **postulate** is a proposition that is <mark>taken to be true</mark>, to serve as a premise or starting point for further reasoning and arguments. For instance, Euclid begun with five assumptions (axioms) about geometry, which seemed undeniable based on direct experience, e.g. “There is a straight line segment between every pair of points”.
 
 A **proof** is a sequence of <mark>logical deductions</mark> from <mark>axioms</mark> or <mark>previously proved statements</mark> (like theorems) that concludes with the proposition of interest.
 
 The **axiomatic method**, invented by Euclid, is the standard procedure for establishing truth in mathematics using axioms and proofs.
 
-#### Proof terminologies
+#### 📜 Proof terminologies
 1. Important true propositions are called **theorems**.
 2. A **lemma** is a preliminary proposition useful for proving later propositions.
 3. A **corollary** is a proposition that follows in just a few logical steps from a theorem.
 
-#### Types of proofs
-Proving an implication:
+#### 🧱 Types of proofs
+##### 1. 🎯 Direct proof
+To prove $p \implies q$ directly, assume $p$ is true, then use <mark>axioms</mark>, <mark>definitions</mark>, <mark>rules of inference</mark>, and <mark>logical equivalences</mark> to prove $q$ is also true.
 
------
-
-##### 🎯 Direct proof
-To prove $p \implies q$ directly, assume $p$ is true, then use the <mark>rules of inference</mark>, <mark>axioms</mark>, <mark>definitions</mark>, and <mark>logical equivalences</mark> to prove $q$ is also true.
-
-💡 A useful technique in constructing direct proofs is working backwards:
+A useful technique in constructing direct proofs is working backwards:
 * Examine the conclusion $q$ and try to determine what statements <mark>would imply it</mark>.
 * Ask the same question about that statement and so on.
 * Combined with working forwards (what does $p$ <mark>imply</mark>?), you can work towards the middle.
@@ -82,38 +78,38 @@ e.g.
 >  Prove “If a number is divisible by $6$, then it is also divisible by $3$”
 > 
 > **Proof**:
-> * Assume $x$ is divisible by $6$.
+> * Assume $x$ is divisible by $6$ (💬 Assume $p$).
 > * $x = k \cdot 6$ (for some $k$ in $\mathbb{Z}$, by definition of division).
 > * $x = k \cdot (2 \cdot 3)$ (known fact about numbers).
 > * $x = (k \cdot 2) \cdot 3$ (associative property of multiplication).
 > * $x = m \cdot 3$ (where $m = k \cdot  2$ is an integer).
-> * $x$ is divisible by $3$. $\blacksquare$
+> * $x$ is divisible by $3$ $\blacksquare$ (💬 Demonstrated that $q$ logically follows).
 
 -----
 
-##### 🙃 Proof by contraposition (a type of indirect proof)
+##### 2. 🙃 Proof by contraposition (a type of indirect proof)
 
-To prove $p \implies q$ by **contraposition**, assume $q$ is false, then use the <mark>rules of inference</mark>, <mark>axioms</mark>, <mark>definitions</mark>, and <mark>logical equivalences</mark> to prove $p$ is also false. This is essentially a **direct proof** that $\neg q \implies \neg p$.
+To prove $p \implies q$ by **contraposition**, assume $q$ is false, then use <mark>axioms</mark>, <mark>definitions</mark>, <mark>rules of inference</mark>, and <mark>logical equivalences</mark> to prove $p$ is also false. This is essentially a **direct proof** that $\neg q \implies \neg p$.
 
-💡 The best approach in doing a proof by contrapositive is to restate the original problem in the form, If $p$, then $q$'. The contrapositive is then, If not $q$, then not $p$.
+The best approach in doing a proof by contrapositive is to restate the original problem in the form, If $p$, then $q$. The contrapositive is then, If not $q$, then not $p$.
 
 e.g.
 >  Prove “If $x$ is divisible by $6$, then x is divisible by $3$”
 > 
 > **Proof**:
-> * Assume $x$ is not divisible by $3$.
+> * Assume $x$ is not divisible by $3$ (💬 Assume $\neg q$). 
 > * $x \neq k \cdot 3$ ($\forall k \in \mathbb{Z}$)
 > * $x \neq 2m \cdot 3$ ($\forall m \in \mathbb{Z}$)
 > * $x \neq m \cdot 6$ ($\forall m \in \mathbb{Z}$)
-> * $x$ is not divisible by $6$. $\blacksquare$
+> * $x$ is not divisible by $6$ $\blacksquare$ (💬 $\neg p$).
 
 -----
 
-##### 🙅 Proof by contradiction (also a type of indirect proof)
+##### 3. 🙅 Proof by contradiction (also a type of indirect proof)
 
 This method works by assuming your implication is not true, then deriving a contradiction. Recall that if $p$ is false then $p \implies q$ is always true, thus the only way our implication can be false is if $p$ is true and $q$ is false.
 
-💡 In practice then, we assume our premise is true but our conclusion is false and use these assumptions to derive a contradiction. This contradiction may be a violation of a law or a previously established result. Having derived the contradiction you can then conclude that your assumption (that $p \implies q$ is false) was false and so the implication is true.
+In practice then, we assume our premise is true but our conclusion is false and use this to derive a contradiction: either a violation of a law or a previously established result. Having derived the contradiction you can then conclude that your assumption (that $p \implies q$ is false) was false and so the implication is true.
 
 e.g.
 >  Prove “If $x + x = x$ then $x = 0$”
@@ -121,23 +117,34 @@ e.g.
 > **Proof**:
 > * Assume $x + x = x$ and $x \neq 0$.
 > * Then $2x = x$ and since $x \neq 0$ we can divide both sides by $x$ to get $2 = 1$ which is a contradiction.
-> * Our assumption that the implication “If $x + x = x$ then x = 0$” is false is itself false, therefore the original implication is proven to be true.
+> * Our assumption that the implication “If $x + x = x$ then x = 0$” is false is itself false, therefore the original implication is proven to be true. $\blacksquare$
 
 -----
 
-##### 🙄 Trivial proof
-If the statement $q$ in the implication $p \implies q$ is <mark>true regardless of the truth value of $p$</mark>, we have a trivial proof.
+##### 4. 🙄 Trivial proof
+A proof is trivial if the statement $q$ in the implication $p \implies q$ is <mark>true regardless of the truth value of $p$</mark>.
 
 e.g.
-> Prove $A /neq {} \implies A$ is a subset of $A \cup B$ for any set $B$.
+> Prove $A \neq \{\} \implies A$ is a subset of $A \cup B$ for any set $B$.
 
 -----
 
-##### 🤷 Vacuous proof
+##### 5. 🤷 Vacuous proof
 If the statement $p$ in the implication $p \implies q$ is false then the implication is always true.
 
 e.g.
 > $A$ is a proper subset of $A \implies A$ is a proper subset of $A \cap B$ for any set $B$, where the containments here are strict.
+
+
+#### 💪 Properties of a good proof
+> The same rigorous thinking needed for proofs is essential in the design of critical computer systems. When algorithms and protocols only "mostly work" due to reliance on hand-waving arguments, the results can range from problematic to catastrophic
+1. Concise — Not unnecessarily long.
+   * When your proof need facts that are easily stated, but not readily proved, those facts can be pulled out as lemmas.
+   * Also, repeated arguments can be captured in lemmas.
+2. Clear — A proof is an essay, not a calculation. Keep it unambiguous and include explanations.
+3. Linear & logical — Every statement logically follows from prior statements.
+4. Complete — Doesn't skip intermediary steps.
+5. Rigorous — Uses mathematical expressions.
 
 ### Proposition:
 
