@@ -5,6 +5,7 @@
 } */
 
 mark {
+	background: rgba(0,0,0,0);
 	text-decoration: underline;
   	text-decoration-color: rgb(223,171,1);
 }
