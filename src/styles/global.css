@@ -5,10 +5,8 @@
 } */
 
 mark {
-	background: rgba(0,0,0,0);
-	text-decoration: underline;
-  	text-decoration-color: rgb(223,171,1);
-	text-decoration-thickness: 2px;
+	color: rgb(223,171,1);
+	background: rgb(251,243,219);
 }
 
 .good {
