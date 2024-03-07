@@ -65,6 +65,7 @@ The **axiomatic method**, invented by Euclid, is the standard procedure for esta
 2. A **lemma** is a preliminary proposition useful for proving later propositions.
 3. A **corollary** is a proposition that follows in just a few logical steps from a theorem.
 
+
 #### 🧱 Types of proofs
 ##### 1. 🎯 Direct proof
 To prove $p \implies q$ directly, assume $p$ is true, then use <mark>axioms</mark>, <mark>definitions</mark>, <mark>rules of inference</mark>, and <mark>logical equivalences</mark> to prove $q$ is also true.
@@ -75,7 +76,7 @@ A useful technique in constructing direct proofs is working backwards:
 * Combined with working forwards (what does $p$ <mark>imply</mark>?), you can work towards the middle.
 
 e.g.
->  Prove “If a number is divisible by $6$, then it is also divisible by $3$”
+>  **Proposition**: “If a number is divisible by $6$, then it is also divisible by $3$”
 > 
 > **Proof**:
 > * Assume $x$ is divisible by $6$ (💬 Assume $p$).
@@ -94,7 +95,7 @@ To prove $p \implies q$ by **contraposition**, assume $q$ is false, then use <ma
 The best approach in doing a proof by contrapositive is to restate the original problem in the form, If $p$, then $q$. The contrapositive is then, If not $q$, then not $p$.
 
 e.g.
->  Prove “If $x$ is divisible by $6$, then x is divisible by $3$”
+>  **Proposition**: “If $x$ is divisible by $6$, then x is divisible by $3$”
 > 
 > **Proof**:
 > * Assume $x$ is not divisible by $3$ (💬 Assume $\neg q$). 
@@ -112,7 +113,7 @@ This method works by assuming your implication is not true, then deriving a cont
 In practice then, we assume our premise is true but our conclusion is false and use this to derive a contradiction: either a violation of a law or a previously established result. Having derived the contradiction you can then conclude that your assumption (that $p \implies q$ is false) was false and so the implication is true.
 
 e.g.
->  Prove “If $x + x = x$ then $x = 0$”
+>  **Proposition**: If $x + x = x$ then $x = 0$
 > 
 > **Proof**:
 > * Assume $x + x = x$ and $x \neq 0$.
@@ -135,6 +136,49 @@ If the statement $p$ in the implication $p \implies q$ is false then the implica
 e.g.
 > $A$ is a proper subset of $A \implies A$ is a proper subset of $A \cap B$ for any set $B$, where the containments here are strict.
 
+#### 🧱 8. Proof by cases
+Some implications come in the form, $p_1 \lor p_2 \lor ... \lor p_n \implies q$. Often these cases will be derived in the course of the proof. In this case you must prove that EACH of the separate implications, $p_i \implies q$ is true.
+
+#### 👉👈 7. Proving an if and only if (iff)
+##### 🤝 Method 1: Prove each statement implies the other
+The statement $P \iff Q$ is equivalent to the the two statements:
+* $P \implies Q$ and
+* $Q \implies P$
+
+Hence, $P \iff Q$ can be proved by proving the two implications.
+
+e.g.
+> **Proposition**: “$P \iff Q$”
+> 
+> **Proof**:
+> First, we show $P \implies Q$
+> Use any of the types of proof above to prove this.
+> 
+> Finally, we show $Q \implies P$
+> Use any of the types of proof above to prove this.
+> 
+> This proves the proposition because $P \iff Q = (P \implies Q) \land (Q \implies P) \blacksquare$
+
+##### ⛓️ Method 2: Construct a chain of Iffs
+To prove $P \iff Q$ is true, prove $P$ is equivalent to a second statement which is equivalent to a third statement and so forth until you reach $Q$.
+
+This method can lead to short & elegant proofs, but it requires more ingenuity than the first.
+
+e.g.
+> **Proposition**: The standard deviation of a sequence of values $x_1$, … , $x_n$ is zero iff all the values are equal to the mean ($\bar{x}$).
+> 
+> **Proof**:
+> We construct a chain of “iff” implications, starting with the statement that the standard deviation is zero:
+>  \$\sqrt{\frac{ (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + ... + (x_n - \bar{x})^2}{n}} = 0$
+> 
+> Now, since zero is the only number whose square root is zero, the equation above holds iff:
+> $(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + ... + (x_n - \bar{x})^2 = 0$
+> 
+> Squares of real numbers are always non-negative, so every term on the left-hand side of the equation above is non-negative. This means the above equation holds iff:
+>  `Every term on the left-hand side of the equation is zero.`
+> 
+> But a term (x_i - \bar{x})^2  is zero iff $x_i = \bar{x}$, so the above statement is true iff:
+> Every $x_i$ equals the mean ($\bar{x}$) $\blacksquare$
 
 #### 💪 Properties of a good proof
 > The same rigorous thinking needed for proofs is essential in the design of critical computer systems. When algorithms and protocols only "mostly work" due to reliance on hand-waving arguments, the results can range from problematic to catastrophic
