@@ -15,7 +15,7 @@ tags:
 | Symbol         | Meaning                                                      |
 |----------------|--------------------------------------------------------------|
 | $\mathbb{Z}^+$ | Positive integers                                            |
-| $:=$           | **Equal by definition**: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.<br><br>It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality. |
+| $:=$           | **Equal by definition**: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.<br/><br/>It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality. |
 | $\forall$      | For all                                                      |
 | $ℕ$            | Non-negative integers                                        |
 | $\in$          | Element of                                                   |
