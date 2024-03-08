@@ -1,3 +1,5 @@
+# MFCS
+
 ---
 title: "[WIP] Mathematics for Computer Science - Notes"
 slug: "/2024-01-02-mathematics-for-computer-science"
@@ -9,33 +11,146 @@ tags:
 ---
 
 ## Chapter 1: What is a proof?
-1. A **proposition** is a statement that is either true or false. e.g.
-> **Fermat’s last theorem**: is a proposition that states there are no positive integers $x$, $y$, and $z$ such that $x^n + y^n = z^n$.
-> <br/>j
-> <br/>
-> The proposition was shared by Format in 1630 and was only proven in 1994.
-1. The symbol $:=$ means **equal by definition**. It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.
-2. It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality.
-3. You can't check a claim about an infinite set by checking a finite sample of its elements, no matter how large the sample.
-4. A **conjecture** is a statement that is believed to be true based on limited evidence but has not been proven. e.g.
-> **Goldbach’s conjecture**: Every even integer greater than 2 is the sum of two prime numbers.
+### 🥷 Symbols
+| Symbol         | Meaning                                                      |
+|----------------|--------------------------------------------------------------|
+| $\mathbb{Z}^+$ | Positive integers                                            |
+| $:=$           | **Equal by definition**: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.<br><br>It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality. |
+| $\forall$      | For all                                                      |
+| $ℕ$            | Non-negative integers                                        |
+| $\in$          | Element of                                                   |
 
-1. $\forall n \in ℕ . p(n) is prime$
-Here the symbol $\forall$ is read “for all.”
-The symbol **ℕ** stands for the set of nonnegative integers.
-The symbol $\in$ is read as “is a member of".
-1. A **predicate** is a proposition whose truth depends on the value of one or more variables. e.g “n is a perfect square”.
-2. Like propositions, predicates are named with letters, often with function notation.  The output is either true or false depending on the input. This is in contrast to ordinary functions where the output is a numerical value. e.g. $p(n) ::= n is a perfect square$.
-3. Important true propositions are called **theorems**.
-4. A **lemma** is a preliminary proposition useful for proving later propositions.
-5.  A **corollary** is a proposition that follows in just a few logical steps from a theorem.
-6.  Euler (pronounced “oiler”).
-7.  **Logical deductions** or **inference rules** are used to prove new propositions using previously proved ones.
-8.  The notation for inference rules is:
+### 🙊 Propositions
+A **proposition** is a statement that is either true or false. e.g. Fermat’s last theorem is a proposition that states there are no positive integers $x$, $y$, and $z$ such that $x^n + y^n = z^n$. The proposition was shared by Fermat in 1630 and was only proven in 1994.
 
-When the statements above the line (antecedents) are proved, then the statement below the line (the conclusion or consequent) is considered to also be proved.
-1.  **Implies** is a logical term used to express a relationship between two statements. In the context of $p \implies q$, it means "if $p$ is true, then $q$ must also be true." 
-2.  Some inference rules:
+> 💡 You can't check a claim about an infinite set by checking a finite sample of its elements, no matter how large the sample.
+
+A **conjecture** is a proposition that is believed to be true based on limited evidence but has not been proven. e.g. Goldbach’s conjecture states that every even integer greater than 2 is the sum of two prime numbers.
+
+A **predicate** is a proposition whose truth depends on the value of one or more variables. e.g “n is a perfect square”.
+
+Like propositions, predicates are named with letters, often with function notation.  The output is either true or false depending on the input. This is in contrast to ordinary functions where the output is a numerical value. e.g. $p(n) ::= n \; is \; a \; perfect \; square$.
+
+> 💡 Euler is pronounced “oiler”.
+
+### 🧩 Logical operators
+**Logical operators** or connectives are used to combine or modify logical propositions. These are the common logical connectives:
+
+#### 🫠 1. Negation (NOT)
+**Symbol**: $\neg$
+
+**Negation** is a unary logical connective that takes a proposition $P$ to another proposition “not $P$”, standing for “$P$ is not true”. It is interpreted intuitively as being `true` when $P$ is `false`, and `false` when $P$ is `true`.
+
+| P   | ¬P  |
+|-----|-----|
+| 1   | 0   |
+| 0   | 1   |
+
+#### 🪢 2. Conjunction (AND)
+**Symbol**: $\land$
+
+A **conjunction** is a (binary) logical connective on two propositions that produces a value of `true` <mark>if and only if</mark> both propositions are `true`.
+
+| A   | B   | A $\land$ B |
+|-----|-----|-------------|
+| 0   | 0   | 0           |
+| 0   | 1   | 0           |
+| 1   | 0   | 0           |
+| 1   | 1   | 1           |
+
+#### 💁 3. (Inclusive) Disjunction (OR)
+**Symbol**: $\lor$
+
+A **disjunction** is a (binary) logical connective on two propositions that produces a value of `true` <mark>if either one</mark> of the propositions is `true`.
+
+| A   | B   | A $\lor$ B |
+|-----|-----|------------|
+| 0   | 0   | 0          |
+| 0   | 1   | 1          |
+| 1   | 0   | 1          |
+| 1   | 1   | 1          |
+
+#### 👉 4. Implication (if…then)
+**Symbol**: $\implies$
+
+A **material** **implication** or **material** **conditional** is a (binary) logical connective on two propositions that produces a value of `true` unless its first proposition (antecedent) is `true` and its second proposition (consequent) is `false`.
+
+The only circumstance in which a conditional is `false` is if the consequent ($Q$) does not follow when the antecedent ($P$) is `true`. The material conditional is only concerned with the hypothetical relationship between $P$ and $Q$, not their actual truth values.
+
+> ✏️ I have always scratched my head as to why the conditional was defined to be true if the antecedent is false.
+> 
+> One explanation is that if the antecedent is `false`, then the relationship (implication) doesn't matter. But then this begs the question: Why not define it to be `false`?
+> 
+> One argument against that is that it would make the implication operator have the same truth table as the conjunction operator. But why is that a problem?
+> 
+> The argument that sits well with me so far is: The logical connectives must be truth-functional, i.e. its truth value is determined exclusively by the truth values of its arguments. Hence, we must define them to have a stable value. When $P$ is `false`, we have two viable options: return `false` or return `true`. We are using the latter option because of legacy reasons and because it “plays nicely” with the rest of the subject.
+
+The material conditional ($P \implies Q$) can be expressed in various ways:
+1. If $P$, then $Q$.
+2. $P$ implies $Q$.
+3. $P$ only if $Q$.
+4. $Q$ if $P$.
+5. $Q$ whenever $P$.
+
+| P | Q | P → Q |
+|---|---|-------|
+| 0 | 0 |   1   |
+| 0 | 1 |   1   |
+| 1 | 0 |   0   |
+| 1 | 1 |   1   |
+
+####  👉👈 5. Equivalence (if and only if)
+**Symbol**: $\iff$
+
+"$P$ if and only if $Q$" can be decomposed into "$P$ if $Q$" and "$P$ only if $Q$":
+* "$P$ if $Q$" — This is simply a different way of saying "If $Q$ then $P$" (i.e. $Q \implies P$).
+* "$P$ only if $Q$" — which means $P$ can be true only if $Q$ is `true`, which is to say that when $Q$ is `false`, $P$ must also be `false`. Notice that it does not tell us anything about the truth value of $P$ if $Q$ is true.
+
+If we know that P is true, then we know Q must also be true; however, if we know Q is true, we do not necessarily know anything about the truth value of P.
+
+Consider the example: "The light bulb will go on only if the light switch works." If the light bulb goes on, then the switch must have worked, since failure of the switch would have meant darkness; however, if the light switch works, you don't necessarily know that the light bulb will go on, since there could be something wrong in the wiring or the bulb itself that keeps it from illuminating.
+
+This is translated into FOL as P > Q.
+
+So P if and only if Q resolves into P > Q and Q > P, which is to say that
+
+P iff Q is logically equivalent to (P > Q) & (Q > P) .
+
+
+
+| P | Q | P ≡ Q |
+|---|---|-------|
+| 1 | 1 |   1   |
+| 1 | 0 |   0   |
+| 0 | 1 |   0   |
+| 0 | 0 |   1   |
+
+### Inference rules
+An inference is a set of premises together with a conclusion.
+
+**Logical deductions** or **inference rules** are used to prove new propositions using axioms or previously proved propositions.
+
+a sound argument is an argument that is valid and all of its premises are true (and as a consequence its conclusion is true as well). An argument is valid if, assuming its premises are true, the conclusion must be true.
+
+*(premises)*
+All men are mortal.
+Socrates is a man.
+*(conclusion)*
+Therefore, Socrates is mortal.
+
+However, an argument can be valid without being sound. For example:
+All birds can fly.
+Penguins are birds.
+Therefore, penguins can fly.
+
+The standard form for inference rules is:
+$$
+\frac{\text{Premise 1} \quad \text{Premise 2}}{\text{Conclusion}}
+$$
+
+When the statements above the line (the premises or antecedents) are proved, then the statement below the line (the conclusion or consequent) is considered to also be proved.
+
+16. Some inference rules:
     * **Transitive property of implication**: if "p implies q" is true, and "q implies r" is also true, then you can infer that "p implies r" is true as well.
       $$
       (p \implies q) \land (q \implies r) \implies (p \implies r)
@@ -44,14 +159,16 @@ When the statements above the line (antecedents) are proved, then the statement 
       $$
       (NOT(p) \implies NOT(q)) \implies (p \implies r)
       $$
+* 
+17. An **antecedent** is the first half of a hypothetical proposition, whenever the if-clause precedes the then-clause. E.g. If $P$, then $Q$. $P$ is the antecedent.
+18. A **consequent** is the second half of a hypothetical proposition. In the standard form of such a proposition, it is the part that follows "then". In an implication, if $P$ implies $Q$, then $P$ is called the antecedent and $Q$ is called the consequent.
 
-3.  An **antecedent** is the first half of a hypothetical proposition, whenever the if-clause precedes the then-clause. E.g. If $P$, then $Q$. $P$ is the antecedent.
-4.  A **consequent** is the second half of a hypothetical proposition. In the standard form of such a proposition, it is the part that follows "then". In an implication, if $P$ implies $Q$, then $P$ is called the antecedent and $Q$ is called the consequent.
-
-The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \implies q$. A result of symbolic logic is that p --> q is equivalent to the implication ~q --> ~p, i.e. p --> q = ~q --> ~p. e.g. If it is raining, then I'll stay indoors is equivalent to the contraposition, If I am not indoors, then it is not raining.
+The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \implies q$. A result of symbolic logic is that p --> q is equivalent to the implication ~q --> ~p, i.e. p --> q = ~q --> ~p. e.g. ``If it is raining, then I'll stay indoors'' is equivalent to the contraposition, ``If I am not indoors, then it is not raining''.
 
 In symbolic logic, the tilde (~) is used to indicate the negation of a statement.
-* If p is the statement, It is raining, then ~p is It is not raining.
+* If p is the statement, ``It is raining'', then ~p is ``It is not raining''.
+
+When an implication is translated by a hypothetical (or conditional) judgment, the antecedent is called the hypothesis (or the condition) and the consequent is called the thesis.
 
 ### 🧑‍⚖️ Proofs
 An **axiom** or **postulate** is a proposition that is <mark>taken to be true</mark>, to serve as a premise or starting point for further reasoning and arguments. For instance, Euclid begun with five assumptions (axioms) about geometry, which seemed undeniable based on direct experience, e.g. “There is a straight line segment between every pair of points”.
@@ -64,7 +181,6 @@ The **axiomatic method**, invented by Euclid, is the standard procedure for esta
 1. Important true propositions are called **theorems**.
 2. A **lemma** is a preliminary proposition useful for proving later propositions.
 3. A **corollary** is a proposition that follows in just a few logical steps from a theorem.
-
 
 #### 🧱 Types of proofs
 ##### 1. 🎯 Direct proof
@@ -118,7 +234,7 @@ e.g.
 > **Proof**:
 > * Assume $x + x = x$ and $x \neq 0$.
 > * Then $2x = x$ and since $x \neq 0$ we can divide both sides by $x$ to get $2 = 1$ which is a contradiction.
-> * Our assumption that the implication “If $x + x = x$ then x = 0$” is false is itself false, therefore the original implication is proven to be true. $\blacksquare$
+> * Our assumption that the implication “If $x + x = x$ then $x = 0$” is false is itself false, therefore the original implication is proven to be true. $\blacksquare$
 
 -----
 
@@ -169,7 +285,9 @@ e.g.
 > 
 > **Proof**:
 > We construct a chain of “iff” implications, starting with the statement that the standard deviation is zero:
->  \$\sqrt{\frac{ (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + ... + (x_n - \bar{x})^2}{n}} = 0$
+>  \$$
+> \sqrt{\frac{ (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + ... + (x_n - \bar{x})^2}{n}} = 0
+> $$
 > 
 > Now, since zero is the only number whose square root is zero, the equation above holds iff:
 > $(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + ... + (x_n - \bar{x})^2 = 0$
@@ -177,34 +295,16 @@ e.g.
 > Squares of real numbers are always non-negative, so every term on the left-hand side of the equation above is non-negative. This means the above equation holds iff:
 >  `Every term on the left-hand side of the equation is zero.`
 > 
-> But a term (x_i - \bar{x})^2  is zero iff $x_i = \bar{x}$, so the above statement is true iff:
+> But a term $(x_i - \bar{x})^2$  is zero iff $x_i = \bar{x}$, so the above statement is true iff:
 > Every $x_i$ equals the mean ($\bar{x}$) $\blacksquare$
 
 #### 💪 Properties of a good proof
 > The same rigorous thinking needed for proofs is essential in the design of critical computer systems. When algorithms and protocols only "mostly work" due to reliance on hand-waving arguments, the results can range from problematic to catastrophic
-1. Concise — Not unnecessarily long.
+
+1. **Concise** — Not unnecessarily long.
    * When your proof need facts that are easily stated, but not readily proved, those facts can be pulled out as lemmas.
    * Also, repeated arguments can be captured in lemmas.
-2. Clear — A proof is an essay, not a calculation. Keep it unambiguous and include explanations.
-3. Linear & logical — Every statement logically follows from prior statements.
-4. Complete — Doesn't skip intermediary steps.
-5. Rigorous — Uses mathematical expressions.
-
-### Proposition:
-
-1. A **proposition** is a statement (communication) that is either true or false.
-2. The symbol ":=" is defined to read "equal by definition", and is used to define letters or symbols used to refer to commonly occurring objects.
-Statements involving the symbol ":=" are always assumed to be true.
-There is a subtle, but important difference between the symbols ":=" and "=".
-For example, we may first write "a:=4". This defines the symbol 'a' to equal 4, which is then assumed to be true.
-Then "a=5" and "a=4" are statements, the first of which is false and the second true.
-3. In general, you can’t check a claim about an infinite set by checking a finite sample of its elements, no matter how large the sample.
-4. $\forall n \in ℕ. \; p(n) \; is \; prime$
-Here the symbol $\forall$ is read “for all.”
-The symbol **ℕ** stands for the set of nonnegative integers.
-The symbol $\in$ is read as “is a member of".
-The period after the **ℕ** is just a separator between phrases.
-5. 
-6. A conjecture is a conclusion or a proposition which is suspected to be true due to preliminary supporting evidence, but for which no proof or disproof has yet been found.
-7. $\forall \; a, \; b, \;, c, \; d \in \mathbb{Z}^+ . \; a^4 + b^4 + c^4 = d^4$
-Here, $\mathbb{Z}^+$ is a symbol for the positive integers.
+2. **Clear** — A proof is an essay, not a calculation. Keep it unambiguous and include explanations.
+3. **Linear & logical** — Every statement logically follows from prior statements.
+4. **Complete** — Doesn't skip intermediary steps.
+5. **Rigorous** — Uses mathematical expressions.
