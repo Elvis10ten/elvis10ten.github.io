@@ -285,7 +285,7 @@ e.g.
 > 
 > **Proof**:
 > We construct a chain of “iff” implications, starting with the statement that the standard deviation is zero:
->  \$$
+> $$
 > \sqrt{\frac{ (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + ... + (x_n - \bar{x})^2}{n}} = 0
 > $$
 > 
