@@ -1,5 +1,3 @@
-# MFCS
-
 ---
 title: "[WIP] Mathematics for Computer Science - Notes"
 slug: "/2024-01-02-mathematics-for-computer-science"
