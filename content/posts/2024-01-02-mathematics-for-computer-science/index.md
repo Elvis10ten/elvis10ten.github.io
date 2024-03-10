@@ -124,26 +124,43 @@ P iff Q is logically equivalent to (P > Q) & (Q > P) .
 | 0 | 0 |   1   |
 
 ### Inference rules
-An inference is a set of premises together with a conclusion.
+An **inference** is a set of premises together with a conclusion.
 
-**Logical deductions** or **inference rules** are used to prove new propositions using axioms or previously proved propositions.
+A **rule of inference** is a way or schema of drawing a conclusion from a set of premises, usually based only on the logical form of the premises.
 
-a sound argument is an argument that is valid and all of its premises are true (and as a consequence its conclusion is true as well). An argument is valid if, assuming its premises are true, the conclusion must be true.
+#### ✅ Validity & Soundness
+An inference is **valid** if, assuming its premises are true, the conclusion must be true.
 
-*(premises)*
-All men are mortal.
-Socrates is a man.
-*(conclusion)*
-Therefore, Socrates is mortal.
+An inference is **sound** if it is **valid** and all of its premises are true (and as a consequence its conclusion is true as well). 
 
-However, an argument can be valid without being sound. For example:
-All birds can fly.
-Penguins are birds.
-Therefore, penguins can fly.
+e.g.
+> A sound inference
+> 
+> *(premises)*
+> All men are mortal.
+> Socrates is a man.
+> *(conclusion)*
+> Therefore, Socrates is mortal.
 
+e.g.
+> A valid but unsound inference
+> 
+> All birds can fly.
+> Penguins are birds.
+> Therefore, penguins can fly.
+
+#### ✒️ Standard form
 The standard form for inference rules is:
+
 $$
-\frac{\text{Premise 1} \quad \text{Premise 2}}{\text{Conclusion}}
+\begin{gathered}
+    \frac{
+        \begin{aligned}
+            \text{Premise 1} \\
+            \text{Premise 2}
+        \end{aligned}
+    }{\text{Conclusion}}
+\end{gathered}
 $$
 
 When the statements above the line (the premises or antecedents) are proved, then the statement below the line (the conclusion or consequent) is considered to also be proved.
@@ -173,6 +190,8 @@ An **axiom** or **postulate** is a proposition that is <mark>taken to be true</m
 
 A **proof** is a sequence of <mark>logical deductions</mark> from <mark>axioms</mark> or <mark>previously proved statements</mark> (like theorems) that concludes with the proposition of interest.
 
+**Logical deductions** or **inference rules** are used to prove new propositions using axioms or previously proved propositions.
+
 The **axiomatic method**, invented by Euclid, is the standard procedure for establishing truth in mathematics using axioms and proofs.
 
 #### 📜 Proof terminologies
@@ -191,6 +210,7 @@ A useful technique in constructing direct proofs is working backwards:
 
 e.g.
 >  **Proposition**: “If a number is divisible by $6$, then it is also divisible by $3$”
+> 
 > 
 > **Proof**:
 > * Assume $x$ is divisible by $6$ (💬 Assume $p$).
