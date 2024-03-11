@@ -9,7 +9,6 @@ tags:
 ---
 
 ## Chapter 1: What is a proof?
-### 🥷 Symbols
 | Symbol         | Meaning                                                      |
 |----------------|--------------------------------------------------------------|
 | $\mathbb{Z}^+$ | Positive integers                                            |
@@ -39,34 +38,34 @@ Like propositions, predicates are named with letters, often with function notati
 
 **Negation** is a unary logical connective that takes a proposition $P$ to another proposition “not $P$”, standing for “$P$ is not true”. It is interpreted intuitively as being `true` when $P$ is `false`, and `false` when $P$ is `true`.
 
-| P   | ¬P  |
+| $P$ | $ \neg P$ |
 |-----|-----|
-| 1   | 0   |
-| 0   | 1   |
+| <span class="good">1</span> | <span class="bad">0</span> |
+| <span class="bad">0</span> | <span class="good">1</span> |
 
 #### 🪢 2. Conjunction (AND)
 **Symbol**: $\land$
 
 A **conjunction** is a (binary) logical connective on two propositions that produces a value of `true` <mark>if and only if</mark> both propositions are `true`.
 
-| A   | B   | A $\land$ B |
+| $A$ | $B$ | $A \land B$ |
 |-----|-----|-------------|
-| 0   | 0   | 0           |
-| 0   | 1   | 0           |
-| 1   | 0   | 0           |
-| 1   | 1   | 1           |
+| <span class="bad">0</span> | <span class="bad">0</span> | <span class="bad">0</span> |
+| <span class="bad">0</span> | <span class="good">1</span> | <span class="bad">0</span> |
+| <span class="good">1</span> | <span class="bad">0</span> | <span class="bad">0</span> |
+| <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
 
 #### 💁 3. (Inclusive) Disjunction (OR)
 **Symbol**: $\lor$
 
 A **disjunction** is a (binary) logical connective on two propositions that produces a value of `true` <mark>if either one</mark> of the propositions is `true`.
 
-| A   | B   | A $\lor$ B |
+| $A$ | $B$ | $A \lor B$ |
 |-----|-----|------------|
-| 0   | 0   | 0          |
-| 0   | 1   | 1          |
-| 1   | 0   | 1          |
-| 1   | 1   | 1          |
+| <span class="bad">0</span> | <span class="bad">0</span> | <span class="bad">0</span> |
+| <span class="bad">0</span> | <span class="good">1</span> | <span class="good">1</span> |
+| <span class="good">1</span> | <span class="bad">0</span> | <span class="good">1</span> |
+| <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
 
 #### 👉 4. Implication (if…then)
 **Symbol**: $\implies$
@@ -75,7 +74,7 @@ A **material** **implication** or **material** **conditional** is a (binary) log
 
 The only circumstance in which a conditional is `false` is if the consequent ($Q$) does not follow when the antecedent ($P$) is `true`. The material conditional is only concerned with the hypothetical relationship between $P$ and $Q$, not their actual truth values.
 
-> ✏️ I have always scratched my head as to why the conditional was defined to be true if the antecedent is false.
+> ✏️ I have always scratched my head as to why the conditional was defined to be `true` if the antecedent is `false`.
 > 
 > One explanation is that if the antecedent is `false`, then the relationship (implication) doesn't matter. But then this begs the question: Why not define it to be `false`?
 > 
@@ -86,48 +85,89 @@ The only circumstance in which a conditional is `false` is if the consequent ($Q
 The material conditional ($P \implies Q$) can be expressed in various ways:
 1. If $P$, then $Q$.
 2. $P$ implies $Q$.
-3. $P$ only if $Q$.
+3. $P$ only if $Q$
 4. $Q$ if $P$.
 5. $Q$ whenever $P$.
 
-| P | Q | P → Q |
+| $P$ | $Q$ | $P \implies Q$ |
 |---|---|-------|
-| 0 | 0 |   1   |
-| 0 | 1 |   1   |
-| 1 | 0 |   0   |
-| 1 | 1 |   1   |
+| 0 | 0 | <span class="good">1</span> |
+| 0 | 1 | <span class="good">1</span> |
+| 1 | 0 | <span class="bad">0</span> |
+| 1 | 1 | <span class="good">1</span> |
+
 
 ####  👉👈 5. Equivalence (if and only if)
 **Symbol**: $\iff$
 
+A **material** **equivalence** is a (binary) logical connective on two propositions that produces a value of `true` only if both both propositions are `true` or both are `false`.
+
 "$P$ if and only if $Q$" can be decomposed into "$P$ if $Q$" and "$P$ only if $Q$":
 * "$P$ if $Q$" — This is simply a different way of saying "If $Q$ then $P$" (i.e. $Q \implies P$).
-* "$P$ only if $Q$" — which means $P$ can be true only if $Q$ is `true`, which is to say that when $Q$ is `false`, $P$ must also be `false`. Notice that it does not tell us anything about the truth value of $P$ if $Q$ is true.
+* "$P$ only if $Q$" — which means $P$ can be true only if $Q$ is `true`, which is to say that when $Q$ is `false`, $P$ must also be `false` (i.e. $P \implies Q$). Notice that it does not tell us anything about the truth value of $P$ if $Q$ is true.
+  * If we know that $P$ is `true`, then we know $Q$ must also be `true`; however, if we know $Q$ is `true`, we do not necessarily know anything about the truth value of $P$.
+  * Consider the example: "The light bulb will go on only if the light switch works." If the light bulb goes on, then the switch must have worked, since failure of the switch would have meant darkness; however, if the light switch works, you don't necessarily know that the light bulb will go on, since there could be something wrong in the wiring or the bulb itself that keeps it from illuminating.
 
-If we know that P is true, then we know Q must also be true; however, if we know Q is true, we do not necessarily know anything about the truth value of P.
+So, $P$ if and only if $Q$ is logically equivalent to $(Q \implies P$) \land ($P \implies Q)$
 
-Consider the example: "The light bulb will go on only if the light switch works." If the light bulb goes on, then the switch must have worked, since failure of the switch would have meant darkness; however, if the light switch works, you don't necessarily know that the light bulb will go on, since there could be something wrong in the wiring or the bulb itself that keeps it from illuminating.
+| $P$ | $Q$ | $P \implies Q$ | $Q \implies P$ | $P \iff Q$ |
+|---|---|-------|-------|-------|
+| 1 | 1 | <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
+| 1 | 0 | <span class="bad">0</span> | <span class="good">1</span> | <span class="bad">0</span> |
+| 0 | 1 | <span class="good">1</span> | <span class="bad">0</span> | <span class="bad">0</span> |
+| 0 | 0 | <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
 
-This is translated into FOL as P > Q.
+### 👫 Sufficiency and necessity
+In implications relationships, a **necessary condition** is one (possibly one of multiple conditions) that must be present in order for another condition to occur, while a **sufficient condition** is one that produces the said condition.
 
-So P if and only if Q resolves into P > Q and Q > P, which is to say that
+In a conditional statement ($P \implies Q$) that is `true`, the antecedent ($P$) is a sufficient condition for the consequent ($Q$) and the consequent is a necessary condition for the antecedent:
+* $P$ is a sufficient condition for $Q$ — because $P$ being `true` always implies that $Q$ is `true`.
+* $Q$ is a necessary condition for $P$ — because it is impossible to have $P$ without $Q$ (or put another way, the falsity of $Q$ ensures the falsity of $P$).
 
-P iff Q is logically equivalent to (P > Q) & (Q > P) .
+[![](./assets/sufficiency_and_necessity.svg)](https://en.wikipedia.org/wiki/Necessity_and_sufficiency#/media/File:Set_intersection.svg)
+Being in the purple region is **sufficient** for being in $A$, but not **necessary**. Being in $A$ is **necessary** for being in the purple region, but not **sufficient**. Being in $A$ and being in $B$ is **necessary** and **sufficient** for being in the purple region.
 
+e.g.
+> A number's being divisible by 4 is **sufficient** (but not **necessary**) for it to be even, but being divisible by 2 is both **sufficient** and **necessary** for it to be even.
 
-
-| P | Q | P ≡ Q |
-|---|---|-------|
-| 1 | 1 |   1   |
-| 1 | 0 |   0   |
-| 0 | 1 |   0   |
-| 0 | 0 |   1   |
-
-### Inference rules
+### 🕵️ Inference rules
 An **inference** is a set of premises together with a conclusion.
 
 A **rule of inference** is a way or schema of drawing a conclusion from a set of premises, usually based only on the logical form of the premises.
 
+Some common inference rules:
+1. **Modus ponens**:
+   * $((P \implies Q) \land P) \implies Q$
+   * $P$ implies $Q$ is `true`. $P$ is `true`. Therefore, $Q$ must also be `true`.
+   * e.g.
+   > 	If today is Tuesday, then John will go to work.
+   > Today is Tuesday.
+   > Therefore, John will go to work.
+
+2. **Modus tollens**:
+   * $((P \implies Q) \land \neg Q) \implies \neg P$
+   * $P$ implies $Q$. $Q$ is `false`. Therefore, $P$ must also be `false`.
+   * e.g.
+   > If the dog detects an intruder, the dog will bark.
+   > The dog did not bark.
+   > Therefore, no intruder was detected by the dog.
+
+3. **Hypothetical syllogism**:
+   * $((P \implies Q) \land (Q \implies R)) \implies (P \implies R)$
+   * The antecedent of one premise must match the consequent of the other for the conditional to be valid.
+   * e.g.
+   > If I do not wake up, then I cannot go to work.
+   > If I cannot go to work, then I will not get paid.
+   > Therefore, if I do not wake up, then I will not get paid.
+
+4. **Disjunctive syllogism**
+   * $((P \lor Q) \land \neg P) \implies Q$
+   * If $P$ is `true` or $Q$ is `true` and $P$ is `false`, then $Q$ is `true`.
+
+5. **Contraposition**:
+   * $(P \implies Q) \iff (\neg Q \implies \neg P)$
+   * The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \implies q$.
+ 
 #### ✅ Validity & Soundness
 An inference is **valid** if, assuming its premises are true, the conclusion must be true.
 
@@ -165,25 +205,13 @@ $$
 
 When the statements above the line (the premises or antecedents) are proved, then the statement below the line (the conclusion or consequent) is considered to also be proved.
 
-16. Some inference rules:
-    * **Transitive property of implication**: if "p implies q" is true, and "q implies r" is also true, then you can infer that "p implies r" is true as well.
-      $$
-      (p \implies q) \land (q \implies r) \implies (p \implies r)
-      $$
-    * **Contraposition**: It states that if a statement "not p" implies "not q" then "q" implies "p." In simpler terms, if the absence of $p$ implies the absence of $q$, then the presence of $q$ implies the presence of $p$.
-      $$
-      (NOT(p) \implies NOT(q)) \implies (p \implies r)
-      $$
-* 
-17. An **antecedent** is the first half of a hypothetical proposition, whenever the if-clause precedes the then-clause. E.g. If $P$, then $Q$. $P$ is the antecedent.
-18. A **consequent** is the second half of a hypothetical proposition. In the standard form of such a proposition, it is the part that follows "then". In an implication, if $P$ implies $Q$, then $P$ is called the antecedent and $Q$ is called the consequent.
-
-The statement $\neg q \implies \neg p$ is called the **contraposition** of $p \implies q$. A result of symbolic logic is that p --> q is equivalent to the implication ~q --> ~p, i.e. p --> q = ~q --> ~p. e.g. ``If it is raining, then I'll stay indoors'' is equivalent to the contraposition, ``If I am not indoors, then it is not raining''.
-
-In symbolic logic, the tilde (~) is used to indicate the negation of a statement.
-* If p is the statement, ``It is raining'', then ~p is ``It is not raining''.
-
-When an implication is translated by a hypothetical (or conditional) judgment, the antecedent is called the hypothesis (or the condition) and the consequent is called the thesis.
+❌ Fallacies
+1. **Affirming the consequent**:
+   * G
+2. **Denying the antecedent**:
+   * F
+3. Begging the question:
+   * 
 
 ### 🧑‍⚖️ Proofs
 An **axiom** or **postulate** is a proposition that is <mark>taken to be true</mark>, to serve as a premise or starting point for further reasoning and arguments. For instance, Euclid begun with five assumptions (axioms) about geometry, which seemed undeniable based on direct experience, e.g. “There is a straight line segment between every pair of points”.
@@ -198,6 +226,7 @@ The **axiomatic method**, invented by Euclid, is the standard procedure for esta
 1. Important true propositions are called **theorems**.
 2. A **lemma** is a preliminary proposition useful for proving later propositions.
 3. A **corollary** is a proposition that follows in just a few logical steps from a theorem.
+4. When an implication is translated by a hypothetical (or conditional) judgment, the antecedent is called the **hypothesis** (or the condition) and the consequent is called the **thesis**.
 
 #### 🧱 Types of proofs
 ##### 1. 🎯 Direct proof
@@ -326,3 +355,8 @@ e.g.
 3. **Linear & logical** — Every statement logically follows from prior statements.
 4. **Complete** — Doesn't skip intermediary steps.
 5. **Rigorous** — Uses mathematical expressions.
+
+### Links
+* [The Meaning of "If and Only If"](https://www.webpages.uidaho.edu/~morourke/404-phil/Summer-99/Handouts/Philosophical/Material-Biconditional.htm)
+* [Methods of Proof](https://condor.depaul.edu/ichu/csc383/notes/notes1/Proof.htm)
+* [Wikipedia](https://en.wikipedia.org/)
