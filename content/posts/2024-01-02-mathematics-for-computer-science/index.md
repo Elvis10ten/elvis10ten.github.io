@@ -12,7 +12,7 @@ tags:
 | Symbol         | Meaning                                                      |
 |----------------|--------------------------------------------------------------|
 | $\mathbb{Z}^+$ | Positive integers                                            |
-| $:=$           | **Equal by definition**: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.<br/><br/>It’s always ok simply to write $=$ instead of $::=$. Something that is equal by definition is a form of equality. |
+| $:=$           | **Equal by definition**: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.<br/><br/>It’s always ok simply to write $=$ instead of $::=$ because something that is equal by definition is a form of equality. |
 | $\forall$      | For all                                                      |
 | $ℕ$            | Non-negative integers                                        |
 | $\in$          | Element of                                                   |
@@ -26,22 +26,22 @@ A **conjecture** is a proposition that is believed to be true based on limited e
 
 A **predicate** is a proposition whose truth depends on the value of one or more variables. e.g “n is a perfect square”.
 
-Like propositions, predicates are named with letters, often with function notation.  The output is either true or false depending on the input. This is in contrast to ordinary functions where the output is a numerical value. e.g. $p(n) ::= n \; is \; a \; perfect \; square$.
+Like propositions, predicates are named with letters, often with function notation.  The output is either true or false depending on the input. This is in contrast to ordinary functions where the output is a numerical value. e.g. p(n) ::= n is a perfect square.
 
 > 💡 Euler is pronounced “oiler”.
 
 ### 🧩 Logical operators
 **Logical operators** or connectives are used to combine or modify logical propositions. These are the common logical connectives:
 
-#### 🫠 1. Negation (NOT)
+#### 🙃 1. Negation (NOT)
 **Symbol**: $\neg$
 
 **Negation** is a unary logical connective that takes a proposition $P$ to another proposition “not $P$”, standing for “$P$ is not true”. It is interpreted intuitively as being `true` when $P$ is `false`, and `false` when $P$ is `true`.
 
 | $P$ | $ \neg P$ |
 |-----|-----|
-| <span class="good">1</span> | <span class="bad">0</span> |
-| <span class="bad">0</span> | <span class="good">1</span> |
+| <span class="good">T</span> | <span class="bad">F</span> |
+| <span class="bad">F</span> | <span class="good">T</span> |
 
 #### 🪢 2. Conjunction (AND)
 **Symbol**: $\land$
@@ -50,10 +50,10 @@ A **conjunction** is a (binary) logical connective on two propositions that prod
 
 | $A$ | $B$ | $A \land B$ |
 |-----|-----|-------------|
-| <span class="bad">0</span> | <span class="bad">0</span> | <span class="bad">0</span> |
-| <span class="bad">0</span> | <span class="good">1</span> | <span class="bad">0</span> |
-| <span class="good">1</span> | <span class="bad">0</span> | <span class="bad">0</span> |
-| <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
+| <span class="bad">F</span> | <span class="bad">F</span> | <span class="bad">F</span> |
+| <span class="bad">F</span> | <span class="good">T</span> | <span class="bad">F</span> |
+| <span class="good">T</span> | <span class="bad">F</span> | <span class="bad">F</span> |
+| <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> |
 
 #### 💁 3. (Inclusive) Disjunction (OR)
 **Symbol**: $\lor$
@@ -62,10 +62,10 @@ A **disjunction** is a (binary) logical connective on two propositions that prod
 
 | $A$ | $B$ | $A \lor B$ |
 |-----|-----|------------|
-| <span class="bad">0</span> | <span class="bad">0</span> | <span class="bad">0</span> |
-| <span class="bad">0</span> | <span class="good">1</span> | <span class="good">1</span> |
-| <span class="good">1</span> | <span class="bad">0</span> | <span class="good">1</span> |
-| <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
+| <span class="bad">F</span> | <span class="bad">F</span> | <span class="bad">F</span> |
+| <span class="bad">F</span> | <span class="good">T</span> | <span class="good">T</span> |
+| <span class="good">T</span> | <span class="bad">F</span> | <span class="good">T</span> |
+| <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> |
 
 #### 👉 4. Implication (if…then)
 **Symbol**: $\implies$
@@ -91,10 +91,10 @@ The material conditional ($P \implies Q$) can be expressed in various ways:
 
 | $P$ | $Q$ | $P \implies Q$ |
 |---|---|-------|
-| 0 | 0 | <span class="good">1</span> |
-| 0 | 1 | <span class="good">1</span> |
-| 1 | 0 | <span class="bad">0</span> |
-| 1 | 1 | <span class="good">1</span> |
+| <span class="bad">F</span> | <span class="bad">F</span> | <span class="good">T</span> |
+| <span class="bad">F</span> | <span class="good">T</span> | <span class="good">T</span> |
+| <span class="good">T</span> | <span class="bad">F</span> | <span class="bad">F</span> |
+| <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> |
 
 
 ####  👉👈 5. Equivalence (if and only if)
@@ -103,26 +103,26 @@ The material conditional ($P \implies Q$) can be expressed in various ways:
 A **material** **equivalence** is a (binary) logical connective on two propositions that produces a value of `true` only if both both propositions are `true` or both are `false`.
 
 "$P$ if and only if $Q$" can be decomposed into "$P$ if $Q$" and "$P$ only if $Q$":
-* "$P$ if $Q$" — This is simply a different way of saying "If $Q$ then $P$" (i.e. $Q \implies P$).
-* "$P$ only if $Q$" — which means $P$ can be true only if $Q$ is `true`, which is to say that when $Q$ is `false`, $P$ must also be `false` (i.e. $P \implies Q$). Notice that it does not tell us anything about the truth value of $P$ if $Q$ is true.
+* "$P$ if $Q$": This is simply a different way of saying "If $Q$ then $P$" (i.e. $Q \implies P$).
+* "$P$ only if $Q$": which means $P$ can be true only if $Q$ is `true`, which is to say that when $Q$ is `false`, $P$ must also be `false` (i.e. $P \implies Q$). Notice that it does not tell us anything about the truth value of $P$ if $Q$ is true.
   * If we know that $P$ is `true`, then we know $Q$ must also be `true`; however, if we know $Q$ is `true`, we do not necessarily know anything about the truth value of $P$.
   * Consider the example: "The light bulb will go on only if the light switch works." If the light bulb goes on, then the switch must have worked, since failure of the switch would have meant darkness; however, if the light switch works, you don't necessarily know that the light bulb will go on, since there could be something wrong in the wiring or the bulb itself that keeps it from illuminating.
 
-So, $P$ if and only if $Q$ is logically equivalent to $(Q \implies P$) \land ($P \implies Q)$
+So, $P$ if and only if $Q$ is logically equivalent to $(Q \implies P) \land (P \implies Q)$
 
 | $P$ | $Q$ | $P \implies Q$ | $Q \implies P$ | $P \iff Q$ |
 |---|---|-------|-------|-------|
-| 1 | 1 | <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
-| 1 | 0 | <span class="bad">0</span> | <span class="good">1</span> | <span class="bad">0</span> |
-| 0 | 1 | <span class="good">1</span> | <span class="bad">0</span> | <span class="bad">0</span> |
-| 0 | 0 | <span class="good">1</span> | <span class="good">1</span> | <span class="good">1</span> |
+| <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> |
+| <span class="good">T</span> | <span class="bad">F</span> | <span class="bad">F</span> | <span class="good">T</span> | <span class="bad">F</span> |
+| <span class="bad">F</span> | <span class="good">T</span> | <span class="good">T</span> | <span class="bad">F</span> | <span class="bad">F</span> |
+| <span class="bad">F</span> | <span class="bad">F</span> | <span class="good">T</span> | <span class="good">T</span> | <span class="good">T</span> |
 
 ### 👫 Sufficiency and necessity
 In implications relationships, a **necessary condition** is one (possibly one of multiple conditions) that must be present in order for another condition to occur, while a **sufficient condition** is one that produces the said condition.
 
-In a conditional statement ($P \implies Q$) that is `true`, the antecedent ($P$) is a sufficient condition for the consequent ($Q$) and the consequent is a necessary condition for the antecedent:
-* $P$ is a sufficient condition for $Q$ — because $P$ being `true` always implies that $Q$ is `true`.
-* $Q$ is a necessary condition for $P$ — because it is impossible to have $P$ without $Q$ (or put another way, the falsity of $Q$ ensures the falsity of $P$).
+In a conditional statement ($P \implies Q$) that is `true`, the antecedent ($P$) is a **sufficient condition** for the consequent ($Q$) and the consequent is a **necessary condition** for the antecedent:
+* $P$ is a **sufficient condition** for $Q$ — because $P$ being `true` always implies that $Q$ is `true`.
+* $Q$ is a **necessary condition** for $P$ — because it is impossible to have $P$ without $Q$ (or put another way, the falsity of $Q$ ensures the falsity of $P$).
 
 <a href="https://en.wikipedia.org/wiki/Necessity_and_sufficiency#/media/File:Set_intersection.svg"><img class="full_width_image" src="./assets/sufficiency_and_necessity.svg" alt="Sufficiency and necessity venn diagram" /></a>
 
@@ -141,7 +141,7 @@ Some common inference rules:
    * $((P \implies Q) \land P) \implies Q$
    * $P$ implies $Q$ is `true`. $P$ is `true`. Therefore, $Q$ must also be `true`.
    * e.g.
-   > 	If today is Tuesday, then John will go to work.
+   > If today is Tuesday, then John will go to work.
    > Today is Tuesday.
    > Therefore, John will go to work.
 
@@ -178,16 +178,22 @@ e.g.
 > A sound inference
 > 
 > *(premises)*
+> 
 > All men are mortal.
+> 
 > Socrates is a man.
+> 
 > *(conclusion)*
+> 
 > Therefore, Socrates is mortal.
 
 e.g.
 > A valid but unsound inference
 > 
 > All birds can fly.
+> 
 > Penguins are birds.
+> 
 > Therefore, penguins can fly.
 
 #### ✒️ Standard form
@@ -208,10 +214,22 @@ When the statements above the line (the premises or antecedents) are proved, the
 
 ❌ Fallacies
 1. **Affirming the consequent**:
-   * G
+   * e.g.
+   > If an animal is a dog, then it has four legs.
+   
+   > My cat has four legs.
+   
+   >Therefore, my cat is a dog.
+
 2. **Denying the antecedent**:
-   * F
-3. Begging the question:
+   * e.g.
+   > If you are a ski instructor, then you have a job.
+   >
+   > You are not a ski instructor.
+   >
+   > Therefore, you have no job.
+
+3. **Begging the question**:
    * 
 
 ### 🧑‍⚖️ Proofs
