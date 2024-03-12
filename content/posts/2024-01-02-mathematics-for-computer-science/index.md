@@ -124,7 +124,8 @@ In a conditional statement ($P \implies Q$) that is `true`, the antecedent ($P$)
 * $P$ is a sufficient condition for $Q$ — because $P$ being `true` always implies that $Q$ is `true`.
 * $Q$ is a necessary condition for $P$ — because it is impossible to have $P$ without $Q$ (or put another way, the falsity of $Q$ ensures the falsity of $P$).
 
-[![](./assets/sufficiency_and_necessity.svg)](https://en.wikipedia.org/wiki/Necessity_and_sufficiency#/media/File:Set_intersection.svg)
+<a href="https://en.wikipedia.org/wiki/Necessity_and_sufficiency#/media/File:Set_intersection.svg"><img class="full_width_image" src="./assets/sufficiency_and_necessity.svg" alt="Sufficiency and necessity venn diagram" /></a>
+
 Being in the purple region is **sufficient** for being in $A$, but not **necessary**. Being in $A$ is **necessary** for being in the purple region, but not **sufficient**. Being in $A$ and being in $B$ is **necessary** and **sufficient** for being in the purple region.
 
 e.g.
