@@ -11,18 +11,18 @@ tags:
 ## Chapter 1: What is a proof?
 | Symbol         | Meaning                                                      |
 |----------------|--------------------------------------------------------------|
-| $\mathbb{Z}^+$ | Positive integers                                            |
-| $:=$           | **Equal by definition**: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence.<br/><br/>It’s always ok simply to write $=$ instead of $::=$ because something that is equal by definition is a form of equality. |
-| $\forall$      | For all                                                      |
-| $ℕ$            | Non-negative integers                                        |
-| $\in$          | Element of                                                   |
+| $\mathbb{Z}^+$ | Positive integers.                                            |
+| $:=$           | Equal by definition: It implies that the equality is based on a specific definition or set of rules rather than just numerical equivalence. It’s always ok simply to write $=$ instead of $::=$ because something that is equal by definition is a form of equality. |
+| $\forall$      | For all.                                                      |
+| $ℕ$            | Non-negative integers.                                        |
+| $\in$          | Element of.                                                   |
 
 ### 🙊 Propositions
-A **proposition** is a statement that is either true or false. e.g. Fermat’s last theorem is a proposition that states there are no positive integers $x$, $y$, and $z$ such that $x^n + y^n = z^n$. The proposition was shared by Fermat in 1630 and was only proven in 1994.
+A **proposition** is a statement that is either true or false. e.g. Fermat’s last theorem is a proposition that states “there are no positive integers $x$, $y$, and $z$ such that $x^n + y^n = z^n$”. The proposition was shared by Fermat in 1630 and was only proven in 1994.
 
 > 💡 You can't check a claim about an infinite set by checking a finite sample of its elements, no matter how large the sample.
 
-A **conjecture** is a proposition that is believed to be true based on limited evidence but has not been proven. e.g. Goldbach’s conjecture states that every even integer greater than 2 is the sum of two prime numbers.
+A **conjecture** is a proposition that is believed to be true based on limited evidence but has not been proven. e.g. Goldbach’s conjecture states that “every even integer greater than 2 is the sum of two prime numbers”.
 
 A **predicate** is a proposition whose truth depends on the value of one or more variables. e.g “n is a perfect square”.
 
