@@ -276,35 +276,96 @@ alert for how the details of your applications differ from a candidate model, bu
 1. Prove that $\sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}$ for n ≥ 0, by induction.
 
 ## Chapter 2: Algorithm Analysis
-We use two tools to compare the efficiency of algorithms:
-1. The RAM model of computation
-2. The asymptotic analysis of computational complexity.
+The **analysis of algorithms** is the process of finding the computational complexity of algorithms.
 
-### The RAM model of computation
-Machine-independent algorithm design depends upon a hypothetical computation model called the **Random Access Machine** (RAM) where:
-* Each simple operation (`+`, `*`, `-`, `=`, `if`, `call`) takes exactly one time step.
-* Loops and subroutines are the composition of many single-step operations.
-* Each memory access takes exactly one time step, regardless of whether your data was in cache or disk.
-* There is unlimited memory.
+[![](./assets/binary_search_vs_linear_search_example.svg)](https://en.wikipedia.org/wiki/Analysis_of_algorithms#/media/File:Binary_search_vs_Linear_search_example_svg.svg)
 
-The RAM is a simple model of how computers perform. It’s doesn’t capture the full complexity of real computers. However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
+### 🏋️‍♀️ Computational complexity
+The **computational complexity** or simply **complexity** of an algorithm is the amount of resources required to run it.
 
->  A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "all models are wrong, but some are useful." — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
+Common types of resources include:
+1. Time — see time complexity below.
+2. Memory — see space complexity below.
+3. Communication — The necessary amount of communication between executing parties in a distributed algorithm.
 
-Under the RAM model, we measure run time by counting the number of steps an algorithm takes on a given problem instance.
+> 🐣 Tacit assumption: When "complexity" is used without qualification, this generally means time complexity.
 
-To understand how good or bad an algorithm is in general, we must know how it works over all possible input instances. For the problem of sorting, the set of possible input instances includes every possible arrangement of `n` keys, for all possible values of `n` (number of items to sort).
+The computational complexity of an algorithm can be measured only when given a model of computation.
 
-Time complexity defines the running time of any given algorithm as a function of input size. There are three types:
-* The **worst-case complexity** of an algorithm is the function defined by the maximum number of steps taken in any instance of size `n`.
-* The **best-case complexity** of an algorithm is the function defined by the minimum number of steps taken in any instance of size `n`.
-* The **average-case complexity** of an algorithm is the function defined by the average number of steps over all instances of size `n`.
+### 💻 The RAM model of computation
+The most commonly used model of computation is the **Random Access Machine** (**RAM**) which is a  hypothetical computation model where:
+* Each simple operation (like `+`, `*`, `-`, `=`, `if`, `call`, etc) takes exactly unit-time.
+* Each complex operation (like loops and subroutines) is the composition of simple operations. The time it takes to run through a loop or execute a subprogram depends upon the number of loop iterations or the specific nature of the subprogram.
+* Each memory access takes exactly unit-time, regardless of data location (cache or disk) and there is unlimited memory.
 
-Figure2.1
+The RAM is a simple model of how computers perform. It allows the analysis of algorithms in a machine-independent way by assuming that simple operations take a constant amount of time on a given computer and change only by a constant factor when run on a different computer.
 
-In practice, the worst-case complexity is the most useful because:
-* The best-case is usually unlikely.
-* The average-case is difficult to establish.
+It doesn’t capture the full complexity of real computers (e.g multiplying two numbers takes more time than adding two numbers on most processors). However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
+
+> 💡 A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "all models are wrong, but some are useful." — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
+
+
+### ⏳ Time complexity
+**Time complexity** is the [computational complexity](#computational-complexity) that describes the amount of computer time it takes to run an algorithm.
+
+> 🐣 Tacit assumption: Generally, when "complexity" is used without being further specified, this is the worst-case time complexity that is considered.
+
+### 🫙 Space complexity
+**Space complexity** is the [computational complexity](#computational-complexity) that describes the amount of memory it takes to run an algorithm.
+
+### 🏭 Computational complexity functions
+Under the RAM model, we measure the time complexity by counting the number of simple operations (also called steps) an algorithm takes on a given problem instance.
+
+As the amount of resources required to run an algorithm generally varies with the size of the input, the complexity is typically expressed as a function $n \rightarrow f(n)$, where $n$ is the size of the input and $f(n)$ is the computational complexity.
+
+> 💡 Aside: We can also use any other characteristic of the input influencing the computational complexity.
+
+However, the complexity of an algorithm may vary dramatically for different inputs of the same size. Therefore, several complexity functions are commonly used:
+1. **Worst-case complexity**: is the maximum of the complexity over all inputs of size $n$.
+   * It expresses the resources used by an algorithm *at most*.
+   * e.g. the worst-case time complexity for a simple linear search on a list is $n$ and occurs when the desired element is the last element of the list or is not in the list.
+   * Worst-case analysis gives a *safe* analysis (the worst case is never underestimated), but one which can be overly *pessimistic*, since there may be no (realistic) input that would take this many steps.
+2. **Average-case complexity**: is the average of the complexity over all inputs of size $n$.
+   * It expresses the resources used by an algorithm *on average*.
+   * Average-case analysis requires a notion of an "average" input to an algorithm, which leads to the problem of devising a probability distribution over inputs.
+   * e.g. the average case time complexity for a simple linear search on a list is $n/2$ assuming the value searched for is in the list and each list element is equally likely to be the value searched for.
+   * Con: Determining what typical input means is difficult and average case analysis tends to be more difficult.
+3. **Best-case complexity**: is the minimum of the complexity over all inputs of size $n$.
+   * It expresses the resources used by an algorithm *at least*.
+   * e.g. the best case time complexity for a simple linear search on a list is $1$ and occurs when the desired element is the first element of the list.
+   * Con: Unlikely.
+
+![Line graph of worst, average, best case complexity](./assets/worst_average_best_case.webp)
+
+### Big oh notation
+There are three problems with the complexity functions above:
+1. The exact time complexity functions for any algorithm is liable to be complicated because they tend to have lots of up and down bumps.
+2. In addition, these exact values provide little practical application, as any change of computer or of model of computation would change the complexity somewhat.
+3. Moreover, the resource use is not critical for small values of $n$.
+
+> 💡 Complexity theory seeks to quantify the <mark>intrinsic time requirements</mark> of algorithms (independent of any external factors), that is, the basic time constraints an algorithm would place on <mark> any computer </mark>.
+
+For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to the infinity. Therefore, the complexity is generally expressed by using big O notation.
+
+**Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. The formal definition of the big O notation are:
+1. Todo
+2. Todo
+3. Todo
+
+> 🧠 Tacit assumption: Unless specified otherwise, the term "computational complexity" usually refers to the upper bound for the asymptotic computational complexity of an algorithm or a problem, which is usually written in terms of the big O notation.
+
+Informally, an algorithm can be said to exhibit a growth rate on the order of a mathematical function if beyond a certain input size *n*, the function *f*(*n*) times a positive constant provides an [upper bound or limit](https://en.m.wikipedia.org/wiki/Asymptotic_analysis) for the run-time of that algorithm.
+
+Todo, Insert dominance class. Common functions used in big O notation are:
+1. Constant functions
+
+> 💡In practice: An asymptotically inefficient algorithm may be more efficient for small input sizes. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
+
+#### Properties
+1. Sum:
+   * The sum of two functions is governed by the dominant one.
+   * Todo
+2. Product
 
 ## Chapter 3: Data structures
 1. A **data type** (or simply **type**) is a collection of data values, usually specified by:
