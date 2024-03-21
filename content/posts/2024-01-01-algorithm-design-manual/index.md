@@ -335,7 +335,7 @@ However, the complexity of an algorithm may vary dramatically for different inpu
    * e.g. the best case time complexity for a simple linear search on a list is $1$ and occurs when the desired element is the first element of the list.
    * Con: Unlikely.
 
-![Line graph of worst, average, best case complexity](./assets/worst_average_best_case.webp)
+<img class="full_width_image" src="./assets/worst_average_best_case.webp" alt="Line graph of worst, average, best case complexity" />
 
 ### Big oh notation
 There are three problems with the complexity functions above:
