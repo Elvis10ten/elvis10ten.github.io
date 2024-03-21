@@ -367,6 +367,66 @@ Todo, Insert dominance class. Common functions used in big O notation are:
    * Todo
 2. Product
 
+### Reasoning about an alogrithm's efficiency
+
+#### 1. Selection sort
+```c
+// Selection sort repeatedly identifies the smallest remaining unsorted element
+// and puts it at the end of the sorted portion of the array.
+void selectionSort(int arr[], int n) {
+    int i, j, minimum_element_index;
+
+    // One by one move boundary of unsorted subarray
+    for (i = 0; i < n; i++) {
+
+        // Find the minimum element in unsorted array
+        minimum_element_index = i;  // Assume the current element is the minimum
+        
+        for (j = i + 1; j < n; j++) {
+            // If we find a smaller element, update the minimum_element_index
+            if (arr[j] < arr[minimum_element_index]) {
+                minimum_element_index = j;
+            }
+        }
+
+        // Swap the found minimum element with the first element
+        swap(&arr[minimum_element_index], &arr[i]);
+    }
+}
+```
+
+Analysis of the selection sort algorithm:
+1. The outer loop goes around $n$ times.
+2. The nested inner loop goes around $n - (i + 1)$ times, where $i$ is the index of the outer loop.
+3. The exact number of times the `if` statement is executed is:
+   $$
+   T(n) = \sum_{i=0}^{n-1} \sum_{j=i+1}^{n-1} 1
+   $$
+   * To calculate the inner summation, we multiply the number of terms by $1$.
+   * The number of terms in a summation can be calculated by subtracting the lower limit from the upper limit of the summation and then adding 1.
+   * This gives $(n - 1) - (i + 1) + 1$ which equals $n - i - 1$.
+   * Hence, the original equation simplifies to:
+   $$
+   \sum_{i=0}^{n-1} n - i - 1
+   $$
+4. What the sum is doing is adding up the non-negative integers in decreasing order starting from $n - 1$:
+   $$
+   T(n) = (n - 1) + (n - 2) + (n - 3) + ... + 2 + 1 + 0
+   $$
+5. The formula for the sum of the first $n$ non-negiatve integers (also known as the sum of an arithmetic series) is given by:
+   $$
+   \sum_{i=0}^{n-1} i = \frac{n(n - 1)}{2}
+   $$
+6. Hence, we can simply the summation to:
+   $$
+   \sum_{i=0}^{n-1} n - i - 1 = \frac{n(n - 1)}{2}\\
+   = \frac{n^2 - n}{2}
+   $$
+7. Therefore the time complexity of selection sort is:
+   * $\mathcal{O}(n^2)$
+   * $\Omega(n^2)$
+   * $\Theta(n^2)$
+
 ## Chapter 3: Data structures
 1. A **data type** (or simply **type**) is a collection of data values, usually specified by:
    * A set of possible values,
