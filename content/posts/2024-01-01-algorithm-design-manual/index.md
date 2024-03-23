@@ -279,39 +279,29 @@ alert for how the details of your applications differ from a candidate model, bu
 The **analysis of algorithms** is the process of finding the computational complexity of algorithms.
 
 [![](./assets/binary_search_vs_linear_search_example.svg)](https://en.wikipedia.org/wiki/Analysis_of_algorithms#/media/File:Binary_search_vs_Linear_search_example_svg.svg)
+<small>For an ordered list of size $n$ (32 in the example above), binary search takes at most $log_2 n$ check steps (5 steps in the example above); while linear search takes at most $n$ check steps (33 steps in the example above).</small>
 
 ### 🏋️‍♀️ Computational complexity
 The **computational complexity** or simply **complexity** of an algorithm is the amount of resources required to run it.
 
 Common types of resources include:
-1. Time — see time complexity below.
-2. Memory — see space complexity below.
-3. Communication — The necessary amount of communication between executing parties in a distributed algorithm.
+1. ⏳ Time: Time complexity is the computational complexity that describes the amount of computer time it takes to run an algorithm.. When "complexity" is used without qualification, this generally means time complexity.
+2. 🫙 Memory: Space complexity is the computational complexity that describes the amount of memory it takes to run an algorithm.
+3. 🎙️ Communication — The necessary amount of communication between executing parties in a distributed algorithm.
 
-> 🐣 Tacit assumption: When "complexity" is used without qualification, this generally means time complexity.
-
-The computational complexity of an algorithm can be measured only when given a model of computation.
+The computational complexity of an algorithm can be measured only when given a **model of computation**.
 
 ### 💻 The RAM model of computation
 The most commonly used model of computation is the **Random Access Machine** (**RAM**) which is a  hypothetical computation model where:
-* Each simple operation (like `+`, `*`, `-`, `=`, `if`, `call`, etc) takes exactly unit-time.
+* Each simple operation (like `+`, `*`, `-`, `=`, `if`, `call`, etc) takes exactly unit-time (i.e. 1 step).
 * Each complex operation (like loops and subroutines) is the composition of simple operations. The time it takes to run through a loop or execute a subprogram depends upon the number of loop iterations or the specific nature of the subprogram.
-* Each memory access takes exactly unit-time, regardless of data location (cache or disk) and there is unlimited memory.
+* Each memory access takes exactly unit-time (i.e. 1 step), regardless of data location (cache or disk). There is also unlimited memory.
 
 The RAM is a simple model of how computers perform. It allows the analysis of algorithms in a machine-independent way by assuming that simple operations take a constant amount of time on a given computer and change only by a constant factor when run on a different computer.
 
 It doesn’t capture the full complexity of real computers (e.g multiplying two numbers takes more time than adding two numbers on most processors). However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
 
 > 💡 A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "all models are wrong, but some are useful." — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
-
-
-### ⏳ Time complexity
-**Time complexity** is the [computational complexity](#computational-complexity) that describes the amount of computer time it takes to run an algorithm.
-
-> 🐣 Tacit assumption: Generally, when "complexity" is used without being further specified, this is the worst-case time complexity that is considered.
-
-### 🫙 Space complexity
-**Space complexity** is the [computational complexity](#computational-complexity) that describes the amount of memory it takes to run an algorithm.
 
 ### 🏭 Computational complexity functions
 Under the RAM model, we measure the time complexity by counting the number of simple operations (also called steps) an algorithm takes on a given problem instance.
@@ -320,20 +310,21 @@ As the amount of resources required to run an algorithm generally varies with th
 
 > 💡 Aside: We can also use any other characteristic of the input influencing the computational complexity.
 
-However, the complexity of an algorithm may vary dramatically for different inputs of the same size. Therefore, several complexity functions are commonly used:
-1. **Worst-case complexity**: is the maximum of the complexity over all inputs of size $n$.
-   * It expresses the resources used by an algorithm *at most*.
+However, the complexity of an algorithm may vary dramatically for different inputs of the same size. Therefore, three complexity functions are commonly used:
+1. 🔵 **Worst-case complexity**: is the maximum of the complexity over all inputs of size $n$.
+   * It expresses the resources used by an algorithm <mark>at most</mark>.
    * e.g. the worst-case time complexity for a simple linear search on a list is $n$ and occurs when the desired element is the last element of the list or is not in the list.
    * Worst-case analysis gives a *safe* analysis (the worst case is never underestimated), but one which can be overly *pessimistic*, since there may be no (realistic) input that would take this many steps.
-2. **Average-case complexity**: is the average of the complexity over all inputs of size $n$.
-   * It expresses the resources used by an algorithm *on average*.
+   * Generally, when "complexity" is used without being further specified, this is the worst-case time complexity that is considered.
+2. 🟢 **Average-case complexity**: is the average of the complexity over all inputs of size $n$.
+   * It expresses the resources used by an algorithm <mark>on average</mark>.
    * Average-case analysis requires a notion of an "average" input to an algorithm, which leads to the problem of devising a probability distribution over inputs.
-   * e.g. the average case time complexity for a simple linear search on a list is $n/2$ assuming the value searched for is in the list and each list element is equally likely to be the value searched for.
+   * e.g. the average-case time complexity for a simple linear search on a list is $n/2$ assuming the value searched for is in the list and each list element is equally likely to be the value searched for.
    * Con: Determining what typical input means is difficult and average case analysis tends to be more difficult.
-3. **Best-case complexity**: is the minimum of the complexity over all inputs of size $n$.
-   * It expresses the resources used by an algorithm *at least*.
+3. 🔴 **Best-case complexity**: is the minimum of the complexity over all inputs of size $n$.
+   * It expresses the resources used by an algorithm <mark>at least</mark>.
    * e.g. the best case time complexity for a simple linear search on a list is $1$ and occurs when the desired element is the first element of the list.
-   * Con: Unlikely.
+   * Con: It's unlikely to happen in practice.
 
 <img class="full_width_image" src="./assets/worst_average_best_case.webp" alt="Line graph of worst, average, best case complexity" />
 
