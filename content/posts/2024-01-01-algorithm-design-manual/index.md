@@ -339,13 +339,84 @@ There are three problems with the complexity functions above:
 For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to the infinity. Therefore, the complexity is generally expressed by using big O notation.
 
 **Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. The formal definition of the big O notation are:
-1. Todo
-2. Todo
-3. Todo
+1. Big O (Upper bound):
+   * $f(n) = O(g(n))$
+   * Means there exists some constant $c$ such that $|f(n)| \leq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
+   * <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/big0.webp" alt="Big O graph" /></a>
 
-> 🧠 Tacit assumption: Unless specified otherwise, the term "computational complexity" usually refers to the upper bound for the asymptotic computational complexity of an algorithm or a problem, which is usually written in terms of the big O notation.
+2. Big Omega (Lower bound):
+   * $f(n) = \Omega(g(n))$
+   * Means there exists some constant $c$ such that $|f(n)| \geq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
+   * <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/omega.webp" alt="Big Omega graph" /></a>
 
-Informally, an algorithm can be said to exhibit a growth rate on the order of a mathematical function if beyond a certain input size *n*, the function *f*(*n*) times a positive constant provides an [upper bound or limit](https://en.m.wikipedia.org/wiki/Asymptotic_analysis) for the run-time of that algorithm.
+3. Big Theta (Tight bound [upper & lower bound]):
+   * $f(n) = \Theta(g(n))$
+   * Means there exists some constants $c_1$ and $c_2$ such that $|f(n)| \leq c_1 \cdot |g(x)|$ and $|f(n)| \geq c_2 \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
+   * <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/theta.webp" alt="Big Theta graph" /></a>
+
+#### 🙅‍♂️ Misconception: Conflating Big-O with complexity functions
+The best/average/worst case computational complexity is a function of the size of the input for a certain algorithm.
+
+The $O$, $\Omega$ and $\Theta$ notations are used to describe the relationship between two functions.
+
+Hence, each best/average/worst case computational complexity function has its corresponding $O$, $\Omega$ and $\Theta$ notation.
+
+Unless specified otherwise, the term "computational complexity" usually refers to the 
+
+Conflating the big O notations with the computational complexity functions likely stems from the fact that in every day use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
+
+#### Common Big O function classes
+<a href="https://blog.stackademic.com/how-to-calculate-big-o-notation-time-complexity-5504bed8d292"><img class="full_width_image" src="./assets/big_o_functions_chart.jpeg" alt="Common Big O function classes" /></a>
+
+* **Constant functions**:
+  * $f(n) = 1$
+  * In the big picture, there is no dependence on the parameter $n$.
+  * Such functions might measure the cost of adding two numbers or the growth realized by functions such as $f(n) = min(n, 100)$.
+
+* **Logarithmic functions**:
+  * $f(n) = \log_2 n$
+  * Logarithmic time-complexity shows up in algorithms such as binary search
+  * Such functions grow quite slowly as $n$ gets big.
+
+* **Linear functions**:
+  * $f(n) = n$
+  * Such functions measure the cost of looking at each item once (or twice, or ten times) in an $n$-element array, say to identify the biggest item, the smallest item, or compute the average value.
+
+* **Superlinear functions**:
+  * $f(n) = n \log_2 n$
+  * This important class of functions arises in such algorithms as Quicksort and Mergesort.
+
+* **Quadratic functions**:
+  * $f(n) = n^2$
+  * Such functions measure the cost of looking at most or all pairs of items in an $n$-element universe. This arises in algorithms such as insertion sort and selection sort.
+
+* **Cubic functions**:
+  * $f(n) = n^3$
+  * Such functions enumerate through all triples of items in an $n$-element universe.
+
+* **Exponential functions**:
+  * $f(n) = c^n$ for a given constant $c > 1$
+  * Functions like $2^n$ arise when enumerating all subsets of $n$ items.
+
+* **Factorial functions**:
+  * $f(n) = n!$
+  * Functions like $n!$ arise when generating all permutations or orderings of $n$ items.
+
+In typical usage the *O* notation is asymptotical, that is, it refers to very large *x*. In this setting, the contribution of the terms that grow "most quickly" will eventually make the other ones irrelevant. As a result, the following simplification rules can be applied:
+* If *f*(*x*) is a sum of several terms, if there is one with largest growth rate, it can be kept, and all others omitted.
+* If *f*(*x*) is a product of several factors, any constants (factors in the product that do not depend on *x*) can be omitted.
+
+the function *g*(*x*) appearing within the *O*(·) is typically chosen to be as simple as possible, omitting constant factors and lower order terms.
+
+An upper bound is said to be a *tight upper bound*, a *least upper bound*, or a *supremum*, if no smaller value is an upper bound.
+
+Informally, especially in computer science, the big *O* notation often can be used somewhat differently to describe an asymptotic [tight](https://en.m.wikipedia.org/wiki/Upper_and_lower_bounds#Tight_bounds) bound where using big Theta Θ notation might be more factually appropriate in a given context.
+
+For example, when considering a function *T*(*n*) = 73*n*3 + 22*n*2 + 58, all of the following are generally acceptable, but tighter bounds (such as numbers 2 and 3 below) are usually strongly preferred over looser bounds (such as number 1 below).
+	*1	T*(*n*) = *O*(*n*100)
+	*2	T*(*n*) = *O*(*n*3)
+	*3	T*(*n*) = Θ(*n*3)
+
 
 Todo, Insert dominance class. Common functions used in big O notation are:
 1. Constant functions
@@ -458,7 +529,6 @@ Analysis of the selection sort algorithm:
    * $$
      t(i) = \begin{cases}
      2^{k}+1 &\text{if } i = 2^{k} + 1\\
-     1&\text{otherwise}
      \end{cases}
      $$
    * $t(i)$ defines the time it takes to perform the $i$-th `addition`.
