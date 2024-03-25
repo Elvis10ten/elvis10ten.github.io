@@ -366,7 +366,7 @@ Unless specified otherwise, the term "computational complexity" usually refers t
 Conflating the big O notations with the computational complexity functions likely stems from the fact that in every day use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
 
 #### Common Big O function classes
-<a href="https://blog.stackademic.com/how-to-calculate-big-o-notation-time-complexity-5504bed8d292"><img class="full_width_image" src="./assets/big_o_functions_chart.jpeg" alt="Common Big O function classes" /></a>
+
 
 * **Constant functions**:
   * $f(n) = 1$
