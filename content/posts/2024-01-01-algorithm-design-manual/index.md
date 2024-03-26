@@ -339,20 +339,28 @@ There are three problems with the complexity functions above:
 For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to the infinity. Therefore, the complexity is generally expressed by using big O notation.
 
 **Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. The formal definition of the big O notation are:
-1. Big O (Upper bound):
-   * $f(n) = O(g(n))$
-   * Means there exists some constant $c$ such that $|f(n)| \leq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
-   * <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/big0.webp" alt="Big O graph" /></a>
 
-2. Big Omega (Lower bound):
-   * $f(n) = \Omega(g(n))$
-   * Means there exists some constant $c$ such that $|f(n)| \geq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
-   * <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/omega.webp" alt="Big Omega graph" /></a>
+#### 1. Big O (Upper bound)
 
-3. Big Theta (Tight bound [upper & lower bound]):
-   * $f(n) = \Theta(g(n))$
-   * Means there exists some constants $c_1$ and $c_2$ such that $|f(n)| \leq c_1 \cdot |g(x)|$ and $|f(n)| \geq c_2 \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
-   * <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/theta.webp" alt="Big Theta graph" /></a>
+**Notation**: $f(n) = O(g(n))$
+
+**Meaning**: There exists some constant $c$ such that $|f(n)| \leq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
+
+<a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/big0.webp" alt="Big O graph" /></a>
+
+#### 2. Big Omega (Lower bound)
+**Notation**: $f(n) = \Omega(g(n))$
+
+**Meaning**: Means there exists some constant $c$ such that $|f(n)| \geq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
+
+<a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/omega.webp" alt="Big Omega graph" /></a>
+
+#### 3. Big Theta (Tight bound [upper & lower bound])
+**Notation**: $f(n) = \Theta(g(n))$
+
+**Meaning**: Means there exists some constants $c_1$ and $c_2$ such that $|f(n)| \leq c_1 \cdot |g(x)|$ and $|f(n)| \geq c_2 \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
+
+<a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/theta.webp" alt="Big Theta graph" /></a>
 
 #### 🙅‍♂️ Misconception: Conflating Big-O with complexity functions
 The best/average/worst case computational complexity is a function of the size of the input for a certain algorithm.
@@ -366,7 +374,7 @@ Unless specified otherwise, the term "computational complexity" usually refers t
 Conflating the big O notations with the computational complexity functions likely stems from the fact that in every day use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
 
 #### Common Big O function classes
-
+<a href="https://blog.stackademic.com/how-to-calculate-big-o-notation-time-complexity-5504bed8d292"><img class="full_width_image" src="./assets/big_o_functions_chart.webp" alt="Common Big O function classes" /></a>
 
 * **Constant functions**:
   * $f(n) = 1$
