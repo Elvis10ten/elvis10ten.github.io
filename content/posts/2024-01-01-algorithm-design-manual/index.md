@@ -511,8 +511,8 @@ Analysis of the selection sort algorithm:
 A logarithm is an inverse exponential function:
 
 $$
-b^x = y\\\
-x = \log_b y\\\
+b^x = y \\
+x = \log_b y \\
 b^(\log_b y) = y
 $$
 
