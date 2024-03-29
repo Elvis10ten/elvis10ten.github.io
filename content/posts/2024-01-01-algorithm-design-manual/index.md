@@ -328,7 +328,7 @@ However, the complexity of an algorithm may vary dramatically for different inpu
 
 <img class="full_width_image" src="./assets/worst_average_best_case.webp" alt="Line graph of worst, average, best case complexity" />
 
-### Big oh notation
+### 📈 Big oh notation
 There are three problems with the complexity functions above:
 1. The exact time complexity functions for any algorithm is liable to be complicated because they tend to have lots of up and down bumps.
 2. In addition, these exact values provide little practical application, as any change of computer or of model of computation would change the complexity somewhat.
@@ -338,7 +338,7 @@ There are three problems with the complexity functions above:
 
 For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to the infinity. Therefore, the complexity is generally expressed by using big O notation.
 
-**Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. The formal definition of the big O notation are:
+**Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards infinity. The formal definition of the big O notation are:
 
 #### 1. Big O (Upper bound)
 
@@ -373,7 +373,21 @@ Unless specified otherwise, the term "computational complexity" usually refers t
 
 Conflating the big O notations with the computational complexity functions likely stems from the fact that in every day use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
 
-#### Common Big O function classes
+#### 🙈 Abuse of notation
+There are two accepted abuse of notation in the computer science industry:
+1. **Abuse of the equal sign**: Technically, the appropriate notation is $f(n) \in O(g(n))$, because the equal sign does not imply symmetry.
+2. todo
+
+Informally, especially in computer science, the big *O* notation often can be used somewhat differently to describe an asymptotic [tight](https://en.m.wikipedia.org/wiki/Upper_and_lower_bounds#Tight_bounds) bound where using big Theta Θ notation might be more factually appropriate in a given context.
+
+For example, when considering a function *T*(*n*) = 73*n*3 + 22*n*2 + 58, all of the following are generally acceptable, but tighter bounds (such as numbers 2 and 3 below) are usually strongly preferred over looser bounds (such as number 1 below).
+	*1	T*(*n*) = *O*(*n*100)
+	*2	T*(*n*) = *O*(*n*3)
+	*3	T*(*n*) = Θ(*n*3)
+
+#### Common Big O functions
+The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as simple as possible, omitting constant factors and lower order terms.
+
 <a href="https://blog.stackademic.com/how-to-calculate-big-o-notation-time-complexity-5504bed8d292"><img class="full_width_image" src="./assets/big_o_functions_chart.webp" alt="Common Big O function classes" /></a>
 
 * **Constant functions**:
@@ -410,32 +424,13 @@ Conflating the big O notations with the computational complexity functions likel
   * $f(n) = n!$
   * Functions like $n!$ arise when generating all permutations or orderings of $n$ items.
 
-In typical usage the *O* notation is asymptotical, that is, it refers to very large *x*. In this setting, the contribution of the terms that grow "most quickly" will eventually make the other ones irrelevant. As a result, the following simplification rules can be applied:
-* If *f*(*x*) is a sum of several terms, if there is one with largest growth rate, it can be kept, and all others omitted.
-* If *f*(*x*) is a product of several factors, any constants (factors in the product that do not depend on *x*) can be omitted.
-
-the function *g*(*x*) appearing within the *O*(·) is typically chosen to be as simple as possible, omitting constant factors and lower order terms.
-
-An upper bound is said to be a *tight upper bound*, a *least upper bound*, or a *supremum*, if no smaller value is an upper bound.
-
-Informally, especially in computer science, the big *O* notation often can be used somewhat differently to describe an asymptotic [tight](https://en.m.wikipedia.org/wiki/Upper_and_lower_bounds#Tight_bounds) bound where using big Theta Θ notation might be more factually appropriate in a given context.
-
-For example, when considering a function *T*(*n*) = 73*n*3 + 22*n*2 + 58, all of the following are generally acceptable, but tighter bounds (such as numbers 2 and 3 below) are usually strongly preferred over looser bounds (such as number 1 below).
-	*1	T*(*n*) = *O*(*n*100)
-	*2	T*(*n*) = *O*(*n*3)
-	*3	T*(*n*) = Θ(*n*3)
-
-
-Todo, Insert dominance class. Common functions used in big O notation are:
-1. Constant functions
-
-> 💡In practice: An asymptotically inefficient algorithm may be more efficient for small input sizes. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
-
-#### Properties
-1. Sum:
+#### Properties of the Big O
+1. **Adding functions**:
    * The sum of two functions is governed by the dominant one.
-   * Todo
-2. Product
+   * $f(n) + g(n) \rightarrow \Theta(max(f(n), g(n)))$
+   * 
+2. **Multiplying functions**:
+   *
 
 ### Reasoning about an alogrithm's efficiency
 
@@ -496,6 +491,8 @@ Analysis of the selection sort algorithm:
    * $\mathcal{O}(n^2)$
    * $\Omega(n^2)$
    * $\Theta(n^2)$
+
+> 💡 In practice: An asymptotically inefficient algorithm may be more efficient for small input sizes. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
 
 ## Chapter 3: Data structures
 1. A **data type** (or simply **type**) is a collection of data values, usually specified by:
