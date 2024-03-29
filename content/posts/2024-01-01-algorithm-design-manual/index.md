@@ -548,7 +548,7 @@ $$
 #### Change of base property of logarithms
 Changing the base of $\log_b (a)$ to base-c simply involves multiplying by $\log_c (b)$:
 $$
-\log_b (a) = /frac{\log_c (a)}{\log_c (b)}\\\
+\log_b (a) = /frac{\log_c (a)}{\log_c (b)} \\
 
 \log_c (a) = \log_b (a) \cdot \log_c (b)
 $$
