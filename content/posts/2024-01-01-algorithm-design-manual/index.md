@@ -346,6 +346,8 @@ For these reasons, one generally focuses on the behavior of the complexity for l
 
 **Meaning**: There exists some constant $c$ such that $|f(n)| \leq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
 
+> TODO: Big O notation provides an upper bound, but it doesn't necessarily provide a tight upper bound. For example, $2n^2 + 3n + 1$ is $O(n^2), but it is also $O(n^3)$, $O(n^4)$, etc.
+
 <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/big0.webp" alt="Big O graph" /></a>
 
 #### 2. Big Omega (Lower bound)
@@ -424,13 +426,26 @@ The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as si
   * $f(n) = n!$
   * Functions like $n!$ arise when generating all permutations or orderings of $n$ items.
 
-#### Properties of the Big O
-1. **Adding functions**:
-   * The sum of two functions is governed by the dominant one.
-   * $f(n) + g(n) \rightarrow \Theta(max(f(n), g(n)))$
-   * 
-2. **Multiplying functions**:
-   *
+#### Arithmetic operations with Big O notation
+1. **Addition**:
+    * If $f(n)$ is $O(g(n))$ and $h(n)$ is $O(k(n))$, then $f(n) + h(n)$ is $O(\max(g(n), k(n)))$.
+    * This is because the dominant function among $g(n)$ and $k(n)$ will dictate the overall growth rate.
+
+2. **Multiplication by a constant**:
+    * If $f(n)$ is $O(g(n))$, then $c \cdot f(n)$ is $O(g(n))$ for any constant $c > 0$.
+    * This is because multiplying a function by a constant simply scales the function but does not change its growth rate.
+
+3. **Multiplication**:
+    * If $f(n)$ is $O(g(n))$ and $h(n)$ is $O(k(n))$, then $f(n) \cdot h(n)$ is $O(g(n) \cdot k(n))$.
+    * TODO: This is because in the worst case, the product of the dominant terms will determine the overall growth rate.
+
+4. **Division**:
+    * If $f(n)$ is $O(g(n))$ and $g(n)$ is bounded away from zero, then $f(n) / g(n)$ is $O(1)$.
+    * This is because in the limit, the ratio converges to a constant.
+
+5. **Transitivity**:
+    * If $f(n)$ is $O(g(n))$ and $g(n)$ is $O(h(n))$, then $f(n)$ is $O(h(n))$.
+    * This property allows for chaining comparisons of functions.
 
 ### Reasoning about an alogrithm's efficiency
 
@@ -491,6 +506,59 @@ Analysis of the selection sort algorithm:
    * $\mathcal{O}(n^2)$
    * $\Omega(n^2)$
    * $\Theta(n^2)$
+
+### Logarithms and their applications
+A logarithm is an inverse exponential function:
+
+$$
+b^x = y\\\
+x = \log_b y\\\
+b^(\log_b y) = y
+$$
+
+Exponential functions grow at a fast rate while logarithmic growth at a slow rate. Logarithms arise in any process where things are repeatedly halved. e.g.
+1. **Logarithms and binary search**:
+   * Binary search is an example of an $O(log n)$ algorithm.
+   * The size of the list is halved with each iteration of the algorithm.
+   * Thus, only $20$ comparisons suffice to find an element in an array with 1 million elements.
+2. **Logarithms and trees**:
+   * A binary tree of height $1$ can have up to $2$ leaf nodes, while one of height $2$ can have up to $4$ leaves. The number of leaves doubles each time we increase the height by $1$.
+   * To generalize to trees that have $d$ children, a tree of height $1$ can have up to $d$ leaf nodes, while one of height $2$ can have up to $d^2$ leaves. The number of leaves multiplies by $d$ each time we increase the height by $1$.
+   * To account for $n$ leaves, $n = d^h$, which implies that $h = \log_d n$
+3. **Logarithms and bits**:
+   * There are $2$ bit patterns of length $1$ (i.e. 0 and 1), $4$ of length $2$ (i.e. 00, 11, 10, 01), and $8$ of length 3.
+   * The number of bit pattern doubles with each increase in the number of bits.
+   * Let $w$ represent number of bits and $n$ represent number of bit patterns. Then $2^w = n$ or $w = \log_2 n$.
+
+#### Product property of logarithms
+$$
+\log_b (a \cdot c) = \log_b (a) + \log_b (c)
+$$
+
+A direct consequence of the product property is the power property:
+$$
+\log_b (a^c) = c \cdot \log_b (a)
+$$
+
+Since $c$ is a constant, this implies raising the logarithm’s argument to a power doesn't have an effect on the growth rate:
+$$
+\log_b (a^c) = z\Theta (\log_b (a))
+$$
+
+#### Change of base property of logarithms
+Changing the base of $\log_b (a)$ to base-c simply involves multiplying by $\log_c (b)$:
+$$
+\log_b (a) = /frac{\log_c (a)}{\log_c (b)}\\\
+
+\log_c (a) = \log_b (a) \cdot \log_c (b)
+$$
+
+Since $c$ and $b$ are constants, the implication of this property is that the base of a logarithm has no impact on the growth rate:
+$$
+\log_2 (1,000,000) = 19.9316
+\log_3 (1,000,000) = 12.5754
+\log_100 (1,000,000) = 3
+$$
 
 > 💡 In practice: An asymptotically inefficient algorithm may be more efficient for small input sizes. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
 
