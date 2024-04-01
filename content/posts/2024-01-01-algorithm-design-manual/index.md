@@ -275,19 +275,19 @@ alert for how the details of your applications differ from a candidate model, bu
 #### Induction
 1. Prove that $\sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}$ for n ≥ 0, by induction.
 
-## Chapter 2: Algorithm Analysis
 The **analysis of algorithms** is the process of finding the computational complexity of algorithms.
 
 [![](./assets/binary_search_vs_linear_search_example.svg)](https://en.wikipedia.org/wiki/Analysis_of_algorithms#/media/File:Binary_search_vs_Linear_search_example_svg.svg)
-<small>For an ordered list of size $n$ (32 in the example above), binary search takes at most $log_2 n$ check steps (5 steps in the example above); while linear search takes at most $n$ check steps (33 steps in the example above).</small>
+
+For an ordered list of size $n$ (33 in the example above), binary search takes at most $log_2 n$ check steps (5 steps in the example above); while linear search takes at most $n$ check steps (28 steps in the example above).
 
 ### 🏋️‍♀️ Computational complexity
 The **computational complexity** or simply **complexity** of an algorithm is the amount of resources required to run it.
 
 Common types of resources include:
-1. ⏳ Time: Time complexity is the computational complexity that describes the amount of computer time it takes to run an algorithm.. When "complexity" is used without qualification, this generally means time complexity.
-2. 🫙 Memory: Space complexity is the computational complexity that describes the amount of memory it takes to run an algorithm.
-3. 🎙️ Communication — The necessary amount of communication between executing parties in a distributed algorithm.
+1. ⏳ **Time** — Time complexity is the computational complexity that describes the amount of computer time it takes to run an algorithm. When "complexity" is used without qualification, this generally means time complexity.
+2. 🫙 **Memory** — Space complexity is the computational complexity that describes the amount of memory it takes to run an algorithm.
+3. 🎙️ **Communication** — The necessary amount of communication between executing parties in a distributed algorithm.
 
 The computational complexity of an algorithm can be measured only when given a **model of computation**.
 
@@ -299,16 +299,16 @@ The most commonly used model of computation is the **Random Access Machine** (**
 
 The RAM is a simple model of how computers perform. It allows the analysis of algorithms in a machine-independent way by assuming that simple operations take a constant amount of time on a given computer and change only by a constant factor when run on a different computer.
 
-It doesn’t capture the full complexity of real computers (e.g multiplying two numbers takes more time than adding two numbers on most processors). However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
+It doesn’t capture the full complexity of real computers (e.g. multiplying two numbers takes more time than adding two numbers on most processors). However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
 
-> 💡 A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "all models are wrong, but some are useful." — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
+> A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "**all models are wrong, but some are useful.**" — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
 
 ### 🏭 Computational complexity functions
 Under the RAM model, we measure the time complexity by counting the number of simple operations (also called steps) an algorithm takes on a given problem instance.
 
 As the amount of resources required to run an algorithm generally varies with the size of the input, the complexity is typically expressed as a function $n \rightarrow f(n)$, where $n$ is the size of the input and $f(n)$ is the computational complexity.
 
-> 💡 Aside: We can also use any other characteristic of the input influencing the computational complexity.
+> **Aside**: We can also use any other characteristic of the input influencing the computational complexity.
 
 However, the complexity of an algorithm may vary dramatically for different inputs of the same size. Therefore, three complexity functions are commonly used:
 1. 🔵 **Worst-case complexity**: is the maximum of the complexity over all inputs of size $n$.
@@ -330,15 +330,15 @@ However, the complexity of an algorithm may vary dramatically for different inpu
 
 ### 📈 Big oh notation
 There are three problems with the complexity functions above:
-1. The exact time complexity functions for any algorithm is liable to be complicated because they tend to have lots of up and down bumps.
-2. In addition, these exact values provide little practical application, as any change of computer or of model of computation would change the complexity somewhat.
+1. The exact time complexity functions for any algorithm are liable to be complicated because they tend to have lots of up-and-down bumps.
+2. In addition, these exact values provide little practical application, as any change of computer or model of computation would change the complexity somewhat.
 3. Moreover, the resource use is not critical for small values of $n$.
 
 > 💡 Complexity theory seeks to quantify the <mark>intrinsic time requirements</mark> of algorithms (independent of any external factors), that is, the basic time constraints an algorithm would place on <mark> any computer </mark>.
 
 For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to the infinity. Therefore, the complexity is generally expressed by using big O notation.
 
-**Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards infinity. The formal definition of the big O notation are:
+**Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards infinity. The formal definition of the big O notations are:
 
 #### 1. Big O (Upper bound)
 
@@ -365,30 +365,30 @@ For these reasons, one generally focuses on the behavior of the complexity for l
 <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/theta.webp" alt="Big Theta graph" /></a>
 
 #### 🙅‍♂️ Misconception: Conflating Big-O with complexity functions
-The best/average/worst case computational complexity is a function of the size of the input for a certain algorithm.
+The best/average/worst-case computational complexity is a function of the size of the input for a certain algorithm.
 
-The $O$, $\Omega$ and $\Theta$ notations are used to describe the relationship between two functions.
+The $O$, $\Omega$, and $\Theta$ notations are used to describe the relationship between two functions.
 
-Hence, each best/average/worst case computational complexity function has its corresponding $O$, $\Omega$ and $\Theta$ notation.
+Hence, each best/average/worst case computational complexity function has its corresponding $O$, $\Omega$, and $\Theta$ notation.
 
 Unless specified otherwise, the term "computational complexity" usually refers to the 
 
-Conflating the big O notations with the computational complexity functions likely stems from the fact that in every day use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
+Conflating the big O notations with the computational complexity functions likely stems from the fact that in everyday use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
 
 #### 🙈 Abuse of notation
-There are two accepted abuse of notation in the computer science industry:
+There are two accepted abuses of notation in the computer science industry:
 1. **Abuse of the equal sign**: Technically, the appropriate notation is $f(n) \in O(g(n))$, because the equal sign does not imply symmetry.
 2. todo
 
 Informally, especially in computer science, the big *O* notation often can be used somewhat differently to describe an asymptotic [tight](https://en.m.wikipedia.org/wiki/Upper_and_lower_bounds#Tight_bounds) bound where using big Theta Θ notation might be more factually appropriate in a given context.
 
 For example, when considering a function *T*(*n*) = 73*n*3 + 22*n*2 + 58, all of the following are generally acceptable, but tighter bounds (such as numbers 2 and 3 below) are usually strongly preferred over looser bounds (such as number 1 below).
-	*1	T*(*n*) = *O*(*n*100)
-	*2	T*(*n*) = *O*(*n*3)
-	*3	T*(*n*) = Θ(*n*3)
+    *1  T*(*n*) = *O*(*n*100)
+    *2  T*(*n*) = *O*(*n*3)
+    *3  T*(*n*) = Θ(*n*3)
 
 #### Common Big O functions
-The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as simple as possible, omitting constant factors and lower order terms.
+The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as simple as possible, omitting constant factors and lower-order terms.
 
 <a href="https://blog.stackademic.com/how-to-calculate-big-o-notation-time-complexity-5504bed8d292"><img class="full_width_image" src="./assets/big_o_functions_chart.webp" alt="Common Big O function classes" /></a>
 
@@ -399,7 +399,7 @@ The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as si
 
 * **Logarithmic functions**:
   * $f(n) = \log_2 n$
-  * Logarithmic time-complexity shows up in algorithms such as binary search
+  * Logarithmic time complexity shows up in algorithms such as binary search
   * Such functions grow quite slowly as $n$ gets big.
 
 * **Linear functions**:
@@ -441,13 +441,13 @@ The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as si
 
 4. **Division**:
     * If $f(n)$ is $O(g(n))$ and $g(n)$ is bounded away from zero, then $f(n) / g(n)$ is $O(1)$.
-    * This is because in the limit, the ratio converges to a constant.
+    * This is because, in the limit, the ratio converges to a constant.
 
 5. **Transitivity**:
     * If $f(n)$ is $O(g(n))$ and $g(n)$ is $O(h(n))$, then $f(n)$ is $O(h(n))$.
     * This property allows for chaining comparisons of functions.
 
-### Reasoning about an alogrithm's efficiency
+### Reasoning about an algorithm's efficiency
 
 #### 1. Selection sort
 ```c
@@ -456,10 +456,10 @@ The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as si
 void selectionSort(int arr[], int n) {
     int i, j, minimum_element_index;
 
-    // One by one move boundary of unsorted subarray
+    // One by one move the boundary of the unsorted subarray
     for (i = 0; i < n; i++) {
 
-        // Find the minimum element in unsorted array
+        // Find the minimum element in the unsorted array
         minimum_element_index = i;  // Assume the current element is the minimum
         
         for (j = i + 1; j < n; j++) {
@@ -493,7 +493,7 @@ Analysis of the selection sort algorithm:
    $$
    T(n) = (n - 1) + (n - 2) + (n - 3) + ... + 2 + 1 + 0
    $$
-5. The formula for the sum of the first $n$ non-negiatve integers (also known as the sum of an arithmetic series) is given by:
+5. The formula for the sum of the first $n$ non-negative integers (also known as the sum of an arithmetic series) is given by:
    $$
    \sum_{i=0}^{n-1} i = \frac{n(n - 1)}{2}
    $$
@@ -503,7 +503,7 @@ Analysis of the selection sort algorithm:
    = \frac{n^2 - n}{2}
    $$
 7. Therefore the time complexity of selection sort is:
-   * $\mathcal{O}(n^2)$
+   * $O(n^2)$
    * $\Omega(n^2)$
    * $\Theta(n^2)$
 
@@ -521,13 +521,16 @@ Exponential functions grow at a fast rate while logarithmic growth at a slow rat
    * Binary search is an example of an $O(log n)$ algorithm.
    * The size of the list is halved with each iteration of the algorithm.
    * Thus, only $20$ comparisons suffice to find an element in an array with 1 million elements.
+   <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm#/media/File:Binary-search-work.gif"><img class="full_width_image" src="./assets/binary_search_work.gif" alt="How binary search works" /></a>
 2. **Logarithms and trees**:
    * A binary tree of height $1$ can have up to $2$ leaf nodes, while one of height $2$ can have up to $4$ leaves. The number of leaves doubles each time we increase the height by $1$.
    * To generalize to trees that have $d$ children, a tree of height $1$ can have up to $d$ leaf nodes, while one of height $2$ can have up to $d^2$ leaves. The number of leaves multiplies by $d$ each time we increase the height by $1$.
    * To account for $n$ leaves, $n = d^h$, which implies that $h = \log_d n$
+   <a href="https://en.wikipedia.org/wiki/Binary_tree#/media/File:Complete_binary2.svg"><img class="full_width_image" src="./assets/binary_tree_complete.svg" alt="Complete binary tree" /></a>
+
 3. **Logarithms and bits**:
    * There are $2$ bit patterns of length $1$ (i.e. 0 and 1), $4$ of length $2$ (i.e. 00, 11, 10, 01), and $8$ of length 3.
-   * The number of bit pattern doubles with each increase in the number of bits.
+   * The number of bit patterns doubles with each increase in the number of bits.
    * Let $w$ represent number of bits and $n$ represent number of bit patterns. Then $2^w = n$ or $w = \log_2 n$.
 
 #### Product property of logarithms
@@ -540,27 +543,27 @@ $$
 \log_b (a^c) = c \cdot \log_b (a)
 $$
 
-Since $c$ is a constant, this implies raising the logarithm’s argument to a power doesn't have an effect on the growth rate:
+Since $c$ is a constant, this implies raising the logarithm’s argument to a power doesn't affect the growth rate:
 $$
-\log_b (a^c) = z\Theta (\log_b (a))
+\log_b (a^c) = \Theta (\log_b (a))
 $$
 
 #### Change of base property of logarithms
 Changing the base of $\log_b (a)$ to base-c simply involves multiplying by $\log_c (b)$:
 $$
-\log_b (a) = /frac{\log_c (a)}{\log_c (b)} \\
+\log_b (a) = \frac{\log_c (a)}{\log_c (b)} \\
 
 \log_c (a) = \log_b (a) \cdot \log_c (b)
 $$
 
-Since $c$ and $b$ are constants, the implication of this property is that the base of a logarithm has no impact on the growth rate:
+Since $c$ and $b$ are constants, this property implies that the base of a logarithm has no impact on the growth rate:
 $$
-\log_2 (1,000,000) = 19.9316
-\log_3 (1,000,000) = 12.5754
+\log_2 (1,000,000) = 19.9316\\
+\log_3 (1,000,000) = 12.5754\\
 \log_100 (1,000,000) = 3
 $$
 
-> 💡 In practice: An asymptotically inefficient algorithm may be more efficient for small input sizes. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
+> **Aside**: In practice, an asymptotically inefficient algorithm may be more efficient for small input sizes. This is particularly used in hybrid algorithms, like Timsort, which use an asymptotically efficient algorithm (here merge sort, with time complexity $n \log n$), but switch to an asymptotically inefficient algorithm (here insertion sort, with time complexity $n^2$) for small data, as the simpler algorithm is faster on small data.
 
 ## Chapter 3: Data structures
 1. A **data type** (or simply **type**) is a collection of data values, usually specified by:
