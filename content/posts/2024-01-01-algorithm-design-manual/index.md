@@ -275,11 +275,12 @@ alert for how the details of your applications differ from a candidate model, bu
 #### Induction
 1. Prove that $\sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}$ for n ≥ 0, by induction.
 
+## Chapter 2: Algorithm Analysis
 The **analysis of algorithms** is the process of finding the computational complexity of algorithms.
 
 [![](./assets/binary_search_vs_linear_search_example.svg)](https://en.wikipedia.org/wiki/Analysis_of_algorithms#/media/File:Binary_search_vs_Linear_search_example_svg.svg)
 
-For an ordered list of size $n$ (33 in the example above), binary search takes at most $log_2 n$ check steps (5 steps in the example above); while linear search takes at most $n$ check steps (28 steps in the example above).
+For an ordered list of size $n$ ($33$ in the example above), binary search takes at most $\log_2 n$ check steps ($5$ steps in the example above); while linear search takes at most $n$ check steps ($28$ steps in the example above).
 
 ### 🏋️‍♀️ Computational complexity
 The **computational complexity** or simply **complexity** of an algorithm is the amount of resources required to run it.
@@ -299,12 +300,12 @@ The most commonly used model of computation is the **Random Access Machine** (**
 
 The RAM is a simple model of how computers perform. It allows the analysis of algorithms in a machine-independent way by assuming that simple operations take a constant amount of time on a given computer and change only by a constant factor when run on a different computer.
 
-It doesn’t capture the full complexity of real computers (e.g. multiplying two numbers takes more time than adding two numbers on most processors). However, the RAM is an excellent model for understanding how an algorithm will perform on a real computer.
+It doesn’t capture the full complexity of real computers (e.g. multiplying two numbers takes more time than adding two numbers on most processors). However, the RAM is still an excellent model for understanding how an algorithm will perform on a real computer.
 
 > A model is a simplification or approximation of reality and hence will not reflect all of reality. […] "**all models are wrong, but some are useful.**" — [Model Selection and Multimodel Inference](https://link.springer.com/book/10.1007/b97636)
 
 ### 🏭 Computational complexity functions
-Under the RAM model, we measure the time complexity by counting the number of simple operations (also called steps) an algorithm takes on a given problem instance.
+Under the RAM model, we measure the computational complexity by counting the number of simple operations (also called steps) an algorithm takes on a given problem instance.
 
 As the amount of resources required to run an algorithm generally varies with the size of the input, the complexity is typically expressed as a function $n \rightarrow f(n)$, where $n$ is the size of the input and $f(n)$ is the computational complexity.
 
@@ -315,7 +316,7 @@ However, the complexity of an algorithm may vary dramatically for different inpu
    * It expresses the resources used by an algorithm <mark>at most</mark>.
    * e.g. the worst-case time complexity for a simple linear search on a list is $n$ and occurs when the desired element is the last element of the list or is not in the list.
    * Worst-case analysis gives a *safe* analysis (the worst case is never underestimated), but one which can be overly *pessimistic*, since there may be no (realistic) input that would take this many steps.
-   * Generally, when "complexity" is used without being further specified, this is the worst-case time complexity that is considered.
+   * Generally, when "complexity" is used without being further specified, this is the worst-case computational complexity that is considered.
 2. 🟢 **Average-case complexity**: is the average of the complexity over all inputs of size $n$.
    * It expresses the resources used by an algorithm <mark>on average</mark>.
    * Average-case analysis requires a notion of an "average" input to an algorithm, which leads to the problem of devising a probability distribution over inputs.
@@ -330,13 +331,13 @@ However, the complexity of an algorithm may vary dramatically for different inpu
 
 ### 📈 Big oh notation
 There are three problems with the complexity functions above:
-1. The exact time complexity functions for any algorithm are liable to be complicated because they tend to have lots of up-and-down bumps.
+1. The exact computational complexity functions for any algorithm are liable to be complicated because they tend to have lots of up-and-down bumps.
 2. In addition, these exact values provide little practical application, as any change of computer or model of computation would change the complexity somewhat.
 3. Moreover, the resource use is not critical for small values of $n$.
 
-> 💡 Complexity theory seeks to quantify the <mark>intrinsic time requirements</mark> of algorithms (independent of any external factors), that is, the basic time constraints an algorithm would place on <mark> any computer </mark>.
+> Complexity theory seeks to quantify the <mark>intrinsic time requirements</mark> of algorithms (independent of any external factors), that is, the basic time constraints an algorithm would place on <mark> any computer </mark>.
 
-For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to the infinity. Therefore, the complexity is generally expressed by using big O notation.
+For these reasons, one generally focuses on the behavior of the complexity for large $n$, that is on its asymptotic behavior when $n$ tends to infinity. Therefore, the complexity is generally expressed by using big O notation.
 
 **Big** ***O*** **notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards infinity. The formal definition of the big O notations are:
 
@@ -345,8 +346,6 @@ For these reasons, one generally focuses on the behavior of the complexity for l
 **Notation**: $f(n) = O(g(n))$
 
 **Meaning**: There exists some constant $c$ such that $|f(n)| \leq c \cdot |g(x)|$ for large enough $n$ (i.e. for all $n \geq n_0$, for some constant $n_0$).
-
-> TODO: Big O notation provides an upper bound, but it doesn't necessarily provide a tight upper bound. For example, $2n^2 + 3n + 1$ is $O(n^2), but it is also $O(n^3)$, $O(n^4)$, etc.
 
 <a href="https://www.programiz.com/dsa/asymptotic-notations"><img class="full_width_image" src="./assets/big0.webp" alt="Big O graph" /></a>
 
@@ -371,21 +370,13 @@ The $O$, $\Omega$, and $\Theta$ notations are used to describe the relationship 
 
 Hence, each best/average/worst case computational complexity function has its corresponding $O$, $\Omega$, and $\Theta$ notation.
 
-Unless specified otherwise, the term "computational complexity" usually refers to the 
-
 Conflating the big O notations with the computational complexity functions likely stems from the fact that in everyday use, “the big O of the worst-case computational complexity function” is used interchangeably with just “big O”, “time complexity”, “complexity”, etc.
 
 #### 🙈 Abuse of notation
 There are two accepted abuses of notation in the computer science industry:
 1. **Abuse of the equal sign**: Technically, the appropriate notation is $f(n) \in O(g(n))$, because the equal sign does not imply symmetry.
-2. todo
 
-Informally, especially in computer science, the big *O* notation often can be used somewhat differently to describe an asymptotic [tight](https://en.m.wikipedia.org/wiki/Upper_and_lower_bounds#Tight_bounds) bound where using big Theta Θ notation might be more factually appropriate in a given context.
-
-For example, when considering a function *T*(*n*) = 73*n*3 + 22*n*2 + 58, all of the following are generally acceptable, but tighter bounds (such as numbers 2 and 3 below) are usually strongly preferred over looser bounds (such as number 1 below).
-    *1  T*(*n*) = *O*(*n*100)
-    *2  T*(*n*) = *O*(*n*3)
-    *3  T*(*n*) = Θ(*n*3)
+2. **Abuse of the Big O notation**: The big O notation is often used to describe an asymptotic tight bound where using big Theta $\Theta$ notation would be more factually appropriate. <mark>Big O notation provides an upper bound, but it doesn't necessarily provide a tight upper bound</mark>. For example, $2n^2 + 3n + 1$ is $O(n^2)$, but it is also $O(n^3)$, $O(n^4)$, etc. For contrast, the equation is only $\Theta(n^2)$.
 
 #### Common Big O functions
 The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as simple as possible, omitting constant factors and lower-order terms.
