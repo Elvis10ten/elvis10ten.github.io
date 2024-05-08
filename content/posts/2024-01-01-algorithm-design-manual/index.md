@@ -10,15 +10,97 @@ tags:
 
 > Pet Peeve: The author sometimes skips steps without an explaination (like the integer truncation in "stop and think: incremental correctness"). Some examples are hard to follow for an international student (like understanding the lottery system in "war story: pschic modeling").
 
-## Chapter 1 — Introduction to Algorithm Design
-1. An `algorithmic problem` is specified by describing the complete set of **instances** it must work on and of its output after running on one of these instances.
-2. An `algorithm` is a procedure that takes any of the possible input instances and transforms it to the desired output.
-3. There is a distinction between a general problem and an instance of a problem. E.g:
-   > **Problem**: Sorting<br/>
-   > **Input**: A sequence of `n` keys a<sub>1</sub>,...,a<sub>n</sub>.<br/>
-   > **Output**: The permutation (reordering) of the input sequence such that: a′<sub>1</sub> ≤ a′<sub>2</sub> ≤ ··· ≤ a′<sub>n−1</sub> ≤ a′<sub>n</sub>.<br/>
-   > **Instance of sorting problem**: { Mike, Bob, Sally}; { 154, 245 }
-4. Insertion sort is an algorithm to the sorting problem:
+## Chapter 1: Introduction to Algorithm Design
+
+A **computational problem** is a specification of a desired input-output relationship. e.g.
+
+> **Computational problem**: Sorting
+> 
+> **Input**: A sequence of $n$ values $a_1$, ..., $a_n$.
+> 
+> **Output**: The permutation (reordering) of the input sequence such that $a'_1 \leq a'_2$ ... $a'_{n-1} \leq a'_n$.
+
+An instance of a problem is all the inputs needed to compute a solution to the problem. Alternatively, a computational problem is the set of all (problem) instances and the desired output. e.g.
+
+> To sort the permutation `{8, 3, 6, 7}` is an instance of the general sorting problem and `{3, 6, 7, 8}` is the desired output.
+
+An algorithm is a <mark>well-defined</mark> <mark>computational procedure</mark> that <mark>halts</mark> with a <mark>desired output</mark> when given <mark>any instance</mark> of the given computational problem. An algorithm is an abstract (idea) and can have multiple implementations (programs). e.g.
+
+```c
+/*
+Insertion sort is an algorithm to the sorting problem: Start with a single
+element (thus forming a trivially sorted list) and then incrementally inserts
+the remaining elements so that the list stays sorted.
+*/
+insertion_sort(item s[], int n)
+{
+  int i,j; /* counters */
+  for (i=0; i<n; i++) {
+    j=i;
+    
+    while ((j>0) && (s[j] < s[j-1])) {
+      swap(&s[j],&s[j-1]);
+      j = j-1;
+    }
+  }
+}
+```
+
+### Modeling the problem
+Real-world applications involve real-world objects. However, most algorithms are designed to work on rigorously defined abstract structures. Modeling is the art of formulating your application in terms of procedures on such fundamental abstract structures so as to exploit the existing algorithms literature.
+
+Determining that you are dealing with an instance of a general problem allows you to solve it using general well-known algorithms.
+
+Certain problems can be modeled in several different ways, some much better than others. Modeling is only the first step in designing an algorithm for a problem. Be
+alert but not dismissive for how the details of your applications differ from a candidate model.
+
+### Combinatorial Objects
+1. **Permutations** are arrangements, or orderings, of items. E.g: `{1,4,3,2}` and `{4,3,2,1}` are two distinct permutations of the same set of four integers.
+2. **Subsets** represent selections from a set of items. E.g: `{1,3,4}` and `{2}` are two distinct subsets of the first four integers. Order does not matter in subsets the way it does with permutations.
+3. **Trees** represent hierarchical relationships between items.
+4. **Graphs** represent relationships between arbitrary pairs of objects.
+5. **Points** define locations in some geometric space.
+6. **Polygons** define regions in some geometric spaces.
+7. **Strings** represent sequences of characters, or patterns.
+
+![](assets/fig1.8.png)
+<small> Modeling real-world structures with trees and graphs</small>
+
+#### Recursive Objects
+> Learning to think recursively is learning to look for big things that are made from smaller things of exactly the same type as the big thing.<br/>
+> If you think of houses as sets of rooms, then adding or deleting a room still leaves a house behind.  
+
+1. **Permutations**: Delete the first element of a permutation of `n` things `{1, ..., n}` and you get a permutation of the remaining `n-1` things. Basis case: {}
+2. **Subsets**: Every subset of `{1, ..., n}` contains a subset of `(1, ..., n - 1)` obtained by deleting element `n`. Basis case: {}
+3. **Trees**: Delete the root of a tree and you get a collection of smaller trees. Delete any leaf of a tree and you get a slightly smaller tree. Basis case: 1 vertex.
+4. **Graphs**: Delete any vertex from a graph, and you get a smaller graph. Now divide the vertices of a graph into two groups, left and right. Cut through all edges that span from left to right, and you get two smaller graphs, and a bunch of broken edges. Basis case: 1 vertex.
+5. **Point sets**: Take a cloud of points, and separate them into two groups by drawing a line. Now you have two smaller clouds of points. Basis case: 1 point.
+6. **Polygons**: Inserting any internal chord between two non-adjacent vertices of a simple polygon cuts it into two smaller polygons. Basis case: triangle.
+7. **Strings**: Delete the first character from a string, and you get a shorter string. Basis case: empty string.
+
+> Recursive descriptions of objects require both decomposition rules and basis cases, namely the specification of the smallest and simplest objects where the decomposition stops.  
+
+![](assets/fig1.9.png)
+<small>Recursive decompositions of combinatorial objects. (left column) Permutations, subsets, trees, and graphs. (right column) Point sets, polygons, and strings</small>
+
+An **algorithmic problem** is specified by describing the complete set of <mark>instances</mark> it must work on and of its output after running on one of these instances.
+
+There is a distinction between a general problem and an instance of a problem. E.g:
+> **Problem**: Sorting<br/>
+> **Input**: A sequence of `n` keys a<sub>1</sub>,...,a<sub>n</sub>.<br/>
+> **Output**: The permutation (reordering) of the input sequence such that: a′<sub>1</sub> ≤ a′<sub>2</sub> ≤ ··· ≤ a′<sub>n−1</sub> ≤ a′<sub>n</sub>.<br/>
+> **Instance of sorting problem**: { Mike, Bob, Sally}; { 154, 245 }
+
+An **algorithm** is a procedure that takes any of the possible input instances and transforms it to the desired output.
+
+Three desirable properties for a good algorithm:
+* Correct
+* Efficient
+* Easy to implement
+
+
+
+1. Insertion sort is an algorithm to the sorting problem:
    **English description**: 
    > Start with a single element (thus forming a trivially sorted list) and then incrementally inserts the remaining elements so that the list stays sorted.
    
@@ -37,32 +119,10 @@ tags:
    ```
 
    **Code**:
-   ```c
-   insertion_sort(item s[], int n)
-    {
-      int i,j; /* counters */
-      for (i=0; i<n; i++) {
-        j=i;
-        
-        while ((j>0) && (s[j] < s[j-1])) {
-          swap(&s[j],&s[j-1]);
-          j = j-1;
-        }
-      }
-    }
-   ```
+
     
   An animation of the logical flow of this algorithm on a particular instance (the letters in the word `“INSERTIONSORT”`) 
     ![](assets/fig1.1.png)
-
-5. There is a fundamental difference between algorithms,
-which always produce a correct result, and heuristics, which may usually do a
-good job but without providing any guarantee.
-6. Three desirable properties for a good algorithm:
-   - correct
-   - efficient
-   - easy to implement
-7. Correct algorithms usually come with a proof of correctness, which is an explanation of why we know that the algorithm must take every instance of the problem to the desired result.
 
 ### Robot Tour Optimization
 > **Problem**: Robot Tour Optimization (aka: Traveling Salesman Problem [TSP]).<br/>
@@ -106,6 +166,7 @@ good job but without providing any guarantee.
 2. Pseudocode:
 
 ### Reasoning about Correctness
+Correct algorithms usually come with a proof of correctness, which is an explanation of why we know that the algorithm must take every instance of the problem to the desired result.
 1. We need tools to distinguish correct algorithms from incorrect ones, the primary one of which is called a `proof`.
 2. A proper mathematical proof consists of several parts:
     * A clear, precise statement of what you are trying to prove.
@@ -164,38 +225,9 @@ back by one position, creating room for `x` in the desired location. ■
 4. Most algorithms, however, are designed to work on rigorously defined abstract structures such as permutations, graphs, and sets.
 5. To exploit the algorithms literature, you must learn to describe your problem abstractly, in terms of procedures on such fundamental structures.
 6. The act of modeling reduces your application to one of a small number of existing problems and structures. Such a process is inherently constraining, and certain details might not fit easily into the given target problem.
-7. Certain problems can be modeled in several different ways, some much better than others.
-8. Modeling is only the first step in designing an algorithm for a problem. Be
-alert for how the details of your applications differ from a candidate model, but don't be too quick to say that your problem is unique and special.
 
-#### Combinatorial Objects
-1. **Permutations** are arrangements, or orderings, of items. E.g: `{1,4,3,2}` and `{4,3,2,1}` are two distinct permutations of the same set of four integers.
-2. **Subsets** represent selections from a set of items. E.g: `{1,3,4}` and `{2}` are two distinct subsets of the first four integers. Order does not matter in subsets the way it does with permutations.
-3. **Trees** represent hierarchical relationships between items.
-4. **Graphs** represent relationships between arbitrary pairs of objects.
-5. **Points** define locations in some geometric space.
-6. **Polygons** define regions in some geometric spaces.
-7. **Strings** represent sequences of characters, or patterns.
 
-![](assets/fig1.8.png)
-<small> Modeling real-world structures with trees and graphs</small>
 
-#### Recursive Objects
-> Learning to think recursively is learning to look for big things that are made from smaller things of exactly the same type as the big thing.<br/>
-> If you think of houses as sets of rooms, then adding or deleting a room still leaves a house behind.  
-
-1. **Permutations**: Delete the first element of a permutation of `n` things `{1, ..., n}` and you get a permutation of the remaining `n-1` things. Basis case: {}
-2. **Subsets**: Every subset of `{1, ..., n}` contains a subset of `(1, ..., n - 1)` obtained by deleting element `n`. Basis case: {}
-3. **Trees**: Delete the root of a tree and you get a collection of smaller trees. Delete any leaf of a tree and you get a slightly smaller tree. Basis case: 1 vertex.
-4. **Graphs**: Delete any vertex from a graph, and you get a smaller graph. Now divide the vertices of a graph into two groups, left and right. Cut through all edges that span from left to right, and you get two smaller graphs, and a bunch of broken edges. Basis case: 1 vertex.
-5. **Point sets**: Take a cloud of points, and separate them into two groups by drawing a line. Now you have two smaller clouds of points. Basis case: 1 point.
-6. **Polygons**: Inserting any internal chord between two non-adjacent vertices of a simple polygon cuts it into two smaller polygons. Basis case: triangle.
-7. **Strings**: Delete the first character from a string, and you get a shorter string. Basis case: empty string.
-
-> Recursive descriptions of objects require both decomposition rules and basis cases, namely the specification of the smallest and simplest objects where the decomposition stops.  
-
-![](assets/fig1.9.png)
-<small>Recursive decompositions of combinatorial objects. (left column) Permutations, subsets, trees, and graphs. (right column) Point sets, polygons, and strings</small>
 
 ### Proof by Contradiction
 1. The basic scheme of a contradiction argument is as follows:
@@ -426,15 +458,11 @@ The function $g(x)$ appearing within the $O(·)$ is typically chosen to be as si
     * If $f(n)$ is $O(g(n))$, then $c \cdot f(n)$ is $O(g(n))$ for any constant $c > 0$.
     * This is because multiplying a function by a constant simply scales the function but does not change its growth rate.
 
-3. **Multiplication**:
+3. **Multiplication by non-constant**:
     * If $f(n)$ is $O(g(n))$ and $h(n)$ is $O(k(n))$, then $f(n) \cdot h(n)$ is $O(g(n) \cdot k(n))$.
-    * TODO: This is because in the worst case, the product of the dominant terms will determine the overall growth rate.
+    * TODO: This is because the product of the dominant terms will determine the overall growth rate.
 
-4. **Division**:
-    * If $f(n)$ is $O(g(n))$ and $g(n)$ is bounded away from zero, then $f(n) / g(n)$ is $O(1)$.
-    * This is because, in the limit, the ratio converges to a constant.
-
-5. **Transitivity**:
+4. **Transitivity**:
     * If $f(n)$ is $O(g(n))$ and $g(n)$ is $O(h(n))$, then $f(n)$ is $O(h(n))$.
     * This property allows for chaining comparisons of functions.
 
@@ -475,7 +503,7 @@ Analysis of the selection sort algorithm:
    $$
    * To calculate the inner summation, we multiply the number of terms by $1$.
    * The number of terms in a summation can be calculated by subtracting the lower limit from the upper limit of the summation and then adding 1.
-   * This gives $(n - 1) - (i + 1) + 1$ which equals $n - i - 1$.
+   * This gives $(n - 1) - (i + 1) + 1$ which equals $n - i - 1$. Obviously, multiplying that by $1$ gives the same result.
    * Hence, the original equation simplifies to:
    $$
    \sum_{i=0}^{n-1} n - i - 1
@@ -484,7 +512,7 @@ Analysis of the selection sort algorithm:
    $$
    T(n) = (n - 1) + (n - 2) + (n - 3) + ... + 2 + 1 + 0
    $$
-5. The formula for the sum of the first $n$ non-negative integers (also known as the sum of an arithmetic series) is given by:
+5. The formula for the sum of the first $n$ non-negative integers (derived from the sum of an arithmetic series) is given by:
    $$
    \sum_{i=0}^{n-1} i = \frac{n(n - 1)}{2}
    $$
@@ -494,7 +522,7 @@ Analysis of the selection sort algorithm:
    = \frac{n^2 - n}{2}
    $$
 7. Therefore the time complexity of selection sort is:
-   * $O(n^2)$
+   * $O(n^2)$, $O(n^3)$, $O(n^4)$, etc.
    * $\Omega(n^2)$
    * $\Theta(n^2)$
 
@@ -507,9 +535,9 @@ x = \log_b y \\
 b^(\log_b y) = y
 $$
 
-Exponential functions grow at a fast rate while logarithmic growth at a slow rate. Logarithms arise in any process where things are repeatedly halved. e.g.
+Exponential functions grow at a fast rate while logarithmic functions grow at a slow rate. Logarithms arise in any process where things are repeatedly halved. e.g.
 1. **Logarithms and binary search**:
-   * Binary search is an example of an $O(log n)$ algorithm.
+   * Binary search is an example of an $O(\log n)$ algorithm.
    * The size of the list is halved with each iteration of the algorithm.
    * Thus, only $20$ comparisons suffice to find an element in an array with 1 million elements.
    <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm#/media/File:Binary-search-work.gif"><img class="full_width_image" src="./assets/binary_search_work.gif" alt="How binary search works" /></a>
@@ -520,7 +548,7 @@ Exponential functions grow at a fast rate while logarithmic growth at a slow rat
    <a href="https://en.wikipedia.org/wiki/Binary_tree#/media/File:Complete_binary2.svg"><img class="full_width_image" src="./assets/binary_tree_complete.svg" alt="Complete binary tree" /></a>
 
 3. **Logarithms and bits**:
-   * There are $2$ bit patterns of length $1$ (i.e. 0 and 1), $4$ of length $2$ (i.e. 00, 11, 10, 01), and $8$ of length 3.
+   * There are $2$ bit patterns of length $1$ (i.e. $0$ and $1$), $4$ of length $2$ (i.e. $00$, $11$, $10$, $01$), and $8$ of length $3$.
    * The number of bit patterns doubles with each increase in the number of bits.
    * Let $w$ represent number of bits and $n$ represent number of bit patterns. Then $2^w = n$ or $w = \log_2 n$.
 
@@ -2644,3 +2672,250 @@ $$
     ```
 
     </details>
+
+## Chaper 4: Sorting
+
+This chapter discusses sorting, algorithm design paradigms espoused by sorting algorithms and how sorting can be applied in solving other problems.
+
+### Applications of sorting
+The first algorithm design paradigm is the application of sorting as an initial step to simplify another computational problem. e.g.
+* Searching – Preprocessing the search items by sorting them allows an efficient $O(\log n)$ algorithm like binary search to be used.
+* Closest pair – Once a set of numbers are sorted, the closest pair of numbers must lie next to each other somewhere in sorted order. Thus, a linear-time scan through the sorted list completes the job, for a total of $O(n \log n)$ time including the sorting.
+* Element uniqueness – An efficient algorithm sorts the elements and then does a linear scan checking all adjacent pairs.
+* Finding the mode – When the items are sorted, we can sweep from left to right and count the number of occurrences of each element, since all identical items will be adjacent to each other after sorting,
+* Selection – If the keys are placed in sorted order, the kth largest item can be found in constant time because it must sit in the kth position of the array.
+
+### Sorting pragmatics
+Pairwise comparison (i.e. is $a$ $>$ or $<$ or $=$ to $b$) is typical abstracted away into a comparison function that is then passed to the sorting algorithm. This allows the sorting algorithm to be independent of application-specific comparison concerns like:
+* Alphabetizing – A collating sequence (also called a sort sequence) defines how characters in a character set relate to each other when they are compared and ordered. This can vary from usecase to usecase, e.g. should "Elvis" be equivalent to "elvis"?
+* Arbitrary elements – What properties of the element should be used as the key for comparisons?
+* Sort order – A set of keys $S$ are sorted in ascending order when $S_i \leq S_{i+1}$ for all $1 \leq i < n$. They are in descending order when $S_i \geq S_{i+1}$ for all $1 \leq i < n$. Different applications call for different orders and this can be handled by only changing the comparison function.
+* Handling equal elements – Elements with equal key values all bunch together in any total order. When the relative order among these keys matters, a common strategy is to sort the equal elements using a secondary key, which can be handled easily with the comparison function.
+
+An example comparison function:
+```kotlin
+/**
+* Returns a negative integer if `e1` is less than `e2`.
+* Returns zero if `e1` is equal `e2`.
+* Returns a positive integer if `e1` is greater than `e2`.
+*/
+fun compare(e1: Element, e2: Element): Int {
+
+}
+```
+
+-----
+
+**Stable sorting algorithms** maintain the relative order of elements with equal keys. That is, a sorting algorithm is stable if whenever there are two elements $R$ and $S$ with the same key and with $R$ appearing before $S$ in the original list, $R$ will appear before $S$ in the sorted list.
+
+Few fast algorithms are naturally stable. Stability can be achieved for any sorting algorithm by adding the initial position as a secondary key.
+
+When equal elements are indistinguishable, such as with integers, or more generally, any data where the entire element is the key, stability is not an issue.
+
+### Heap: Data structure
+A heap is a tree-based data structure that satisfies the heap property:
+* In a max heap, for any given node $C$, if $P$ is a parent node of $C$, then the key (the value) of $P$ is greater than or equal to the key of $C$.
+* In a min heap, the key of $P$ is less than or equal to the key of $C$.
+
+The heap is one maximally efficient implementation of a priority queue ADT. In a heap, the highest (or lowest) priority element is always stored at the root. A heap is a useful data structure when it is necessary to repeatedly remove the object with the highest (or lowest) priority.
+
+However, a heap is not a sorted structure; it can be regarded as being <mark>partially ordered</mark>: there is no implied ordering between siblings or cousins and no implied sequence for an in-order traversal. The heap relation mentioned above applies only between nodes and their parents, grandparents, etc.
+
+### Implementation
+Heaps are usually implemented with an array:
+* Each element in the array represents a node of the heap, and
+* The parent / child relationship is defined implicitly by the elements' indices in the array. This implicit structure is space efficient as it eliminates the need for pointers to give an explicit relationship between elements.
+
+For a binary heap, in the array:
+* The first index contains the root element.
+* The next two indices of the array contain the root's children.
+* The next four indices contain the four children of the root's two child nodes, and so on.
+
+This can be generalized into:
+> Given a node at index $i$,
+> 
+> Its left child is at index $2i + 1$
+>
+> Its right child is at index $2i + 2$
+>
+> And its parent is at index $\lfloor (i - 1) / 2 \rfloor$
+>
+> This simple indexing scheme makes it efficient to move "up" or "down" the tree.
+
+This implicit structure trades space efficiency for flexibility. e.g. With pointers, we can move subtrees around by changing a single pointer.
+
+To avoid potentially requiring a $2^n - 1$ array to store an $n$-element heap, it's required that the binary heap is complete with its element inserted from left to right. This structural constraint allows us to store the $n$-element heap with the first $n$ indices of the array. When a heap is a complete binary tree, it has the smallest possible height — a heap with $N$ nodes and $a$ branches for each node always has $\log_a N$ height.
+
+[![Heap as an array](assets/heap_as_array.svg)](https://en.wikipedia.org/wiki/Heap_(data_structure))
+
+```kotlin
+/**
+ * Put elements of [array] in heap order, in-place.
+ *
+ * Consider the array in reverse order, starting from the last (nth) position. It represents a leaf of the tree and
+ * so trivial obeys the heap property (i.e. it's larger than its non-existent children). The same is the case for
+ * the last n/2 positions in the array, because all are leaves.
+ *
+ * If we continue to walk backwards through the array we will eventually encounter an internal node with children.
+ * This element may not obey the heap property (because it might be smaller than its children),
+ * but its children represent well-formed (if small) heaps. This situation is exactly what [siftDown] was designed
+ * to do: given a "damaged" binary heap, where the max-heap property (no child is greater than its parent) holds
+ * everywhere except possibly between the root node and its children, repair it to produce an undamaged heap.
+ *
+ * To see that this takes O(n) time, count the worst-case number of [siftDown] iterations.
+ * The last half of the array requires zero iterations, the preceding quarter requires at most one iteration,
+ * the eighth before that requires at most two iterations, the sixteenth before that requires at most three, and so on.
+ */
+private fun heapify(array: ArrayList<Int>) {
+    // Start is initialized to the first leaf node
+    // Find the parent of the last element.
+    var start = iParent(array.lastIndex) + 1
+
+    while (start > 0) {
+        // Go to the last non-heap node
+        start -= 1
+        // Sift down the node at index 'start' to the proper place such that all nodes below the start index are in heap order
+        siftDown(array, start, array.lastIndex)
+    }
+
+    // After sifting down the root all nodes/elements are in heap order.
+}
+
+private fun siftUp(array: ArrayList<Int>, index: Int) {
+    var index = index
+
+    while (index > 0) {
+        val parentIndex = iParent(index)
+
+        if (array[parentIndex] < array[index]) {
+            swap(array, parentIndex, index)
+            index = parentIndex
+        } else {
+            return
+        }
+    }
+}
+
+/**
+ * Repair the heap whose root element is at index 'start', assuming the heaps rooted at its children are valid.
+ *
+ * The number of iterations in any one [siftDown] call is bounded by the height of the tree, which is ⌊log2 n⌋ = O(log n).
+ */
+fun siftDown(array: ArrayList<Int>, rootIndex: Int, endIndex: Int) {
+    var rootIndex = rootIndex
+    while (iLeftChild(rootIndex) <= endIndex) { // While the root has at least one child
+        var biggerChildIndex = iLeftChild(rootIndex)
+
+        // If there is right child and that child is greater
+        if (iRightChild(rootIndex) <= endIndex && array[biggerChildIndex] < array[iRightChild(rootIndex)]) {
+            biggerChildIndex = iRightChild(rootIndex)
+        }
+
+        if (array[rootIndex] < array[biggerChildIndex]) {
+            swap(array, rootIndex, biggerChildIndex)
+            rootIndex = biggerChildIndex
+            // Repeat to continue sifting down the child now.
+        } else {
+            // The root holds the largest element. Since we may assume the heaps rooted at the children are valid,
+            // this means that we are done.
+            return
+        }
+    }
+}
+
+private fun swap(array: ArrayList<Int>, i: Int, j: Int) {
+    val temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+}
+
+fun iParent(i: Int): Int {
+    return floor(i / 2.0).toInt()
+}
+
+fun iLeftChild(i: Int): Int {
+    return (i * 2) + 1
+}
+
+fun iRightChild(i: Int): Int {
+    return (i * 2) + 2
+}
+
+data class Heap(private val array: ArrayList<Int>) {
+
+    init {
+        heapify(array)
+    }
+
+    /**
+     * Add the new element at the end of the heap, in the first available free space.
+     * If this violates the heap property, sift up the new element until the heap property has been reestablished.
+     * Since the heap is balanced, the height is $log_2 n$ and hence each insertion costs at most $O(log_2 n)$.
+     */
+    fun insert(element: Int) {
+        array.add(element)
+        siftUp(array, array.lastIndex)
+    }
+
+    /**
+     * Remove the root and insert the last element of the heap in the root.
+     * If this violates the heap property, sift down the new root to reestablish the heap property.
+     */
+    fun pop(): Int {
+        val root = array[0]
+        val lastChild = array.removeLast()
+        array[0] = lastChild
+        siftDown(array, 0, array.lastIndex)
+        return root
+    }
+
+    /**
+     * Remove the root and put the new element in the root and sift down.
+     * When compared to pop followed by insert, this avoids a sift up step.
+     */
+    fun replaceRoot(element: Int) {
+        array[0] = element
+        siftDown(array, 0, array.lastIndex)
+    }
+}
+```
+
+### Heapsort: Fast sorting via data structures
+Heapsort is an in-place comparison-based sorting algorithm which can be thought of as "an implementation of selection sort using the right data structure." Like selection sort, heapsort divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element from it and inserting it into the sorted region. Unlike selection sort, heapsort does not waste time with a linear-time scan of the unsorted region; rather, heap sort maintains the unsorted region in a heap data structure to efficiently find the largest element in each step.
+
+Although somewhat slower in practice on most machines than a well-implemented quicksort, it has the advantages of very simple implementation and a more favorable worst-case $O(n \log n)$ runtime. Most real-world quicksort variants include an implementation of heapsort as a fallback should they detect that quicksort is becoming degenerate.
+
+Heapsort is an example of the second algorithm design paradigm: Use an appropriate data structure.
+
+```kotlin
+/**
+ * The steps are:
+ *
+ * 1. Call the [heapify] function on the array. This builds a heap from an array in O(n) operations.
+ * 2. Swap the first element of the array (the largest element in the heap) with the final element of the heap. Decrease the considered range of the heap by one.
+ * 3. Call the [siftDown] function on the array to move the new first element to its correct place in the heap.
+ * 4. Go back to step (2) until the remaining array is a single element.
+ *
+ * The [heapify] operation is run once, and is O(n) in performance.
+ * The [siftDown] function is called n times and requires O(log n) work each time, due to its traversal starting from the root node.
+ * Therefore, the performance of this algorithm is O(n + n log n) = O(n log n).
+ */
+fun heapsort(array: ArrayList<Int>): ArrayList<Int> {
+    // Build the heap in the array so that largest value is at the root
+    heapify(array)
+    var endIndex = array.lastIndex
+
+    // The following loop maintains the invariants that every element between 0 to endIndex is a heap, and
+    // every element beyond endIndex is greater than everything before it (in sorted order).
+    while (endIndex > 0) {
+        // [0] is the root and largest value. The swap moves it in front of the sorted elements.
+        swap(array, 0, endIndex)
+        // The heap size is reduced by one.
+        endIndex--
+        // The swap ruined the heap property, so restore it.
+        siftDown(array, 0, endIndex)
+    }
+
+    return array
+}
+```
