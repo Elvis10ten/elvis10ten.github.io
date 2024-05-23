@@ -20,7 +20,7 @@ The essay is organized into three sections, each focusing on a reoccurring issue
 
 > Nonlinear thinking means which way you should go depends on where you already are — [Jordan Ellenburg](https://amzn.to/3yeskID~)
 
-![](assets/false_linearity.svg)
+![](assets/false_linearity.png)
 <small>Not every curve is a straight line.</small>
 
 The relationship between two things is [seldom linear](https://www.lesswrong.com/posts/dgvTCGS5egCdZ6uJF/linearity-fallacies-1). A linearity fallacy is committed when you incorrectly assume a linear relationship relates two variables. There is such a thing as “too much of a good thing”. I will expand on this point with test coverage in the following paragraphs.
