@@ -78,6 +78,8 @@ The specifications of the logic gates needed to build the chips of our computer 
 
 #### Primitive gates
 ##### Nand gate
+![](assets/nand_gate.svg)
+
 Shorthand for **Not-And** because its equivalent to `Not(And(a, b))`.
 
 Truth table:
@@ -108,15 +110,19 @@ The NAND gate is a primitive gate because it can be used to implement any boolea
 These gates implement classical logical operators.
 
 ##### Not (aka inverter) gate
+![](assets/not_gate.svg)
+
 This gate outputs the opposite value of its input’s value.
 
 Truth table:
+
 | a | Not(a) |
 |-------|---------|
 |   0   |    1    |
 |   1   |    0    |
 
 API:
+
 |           |                                           |
 |-----------|-------------------------------------------|
 | Chip name | `Not`                                     |
@@ -136,6 +142,8 @@ CHIP Not {
 ```
 
 ##### And gate
+![](assets/and_gate.svg)
+
 Returns $1$ when both its inputs are $1$, and $0$ otherwise.
 
 Truth table:
@@ -170,9 +178,12 @@ CHIP And {
 ```
 
 ##### Or gate
+![](assets/or_gate.svg)
+
 Returns $1$ when at least one of its inputs is $1$, and $0$ otherwise.
 
 Truth table:
+
 | a   | b   | Or(a, b) |
 |:---:|:---:|:--------:|
 | 0   | 0   | 0        |
@@ -181,6 +192,7 @@ Truth table:
 | 1   | 1   | 1        |
 
 API:
+
 |           |                                                         |
 |-----------|---------------------------------------------------------|
 | Chip name | `Or`                                                    |
@@ -188,10 +200,28 @@ API:
 | Output    | `out`                                                   |
 | Function  | `if ((a == 0) and (b == 0)) then out = 0, else out = 1` |
 
+HDL:
+
+```hdl
+CHIP Or {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Not(in= a, out= nota);
+    Not(in= b, out= notb);
+    And(a= nota, b= notb, out= notaandnotb);
+    Not(in= notaandnotb, out= out);
+}
+```
+
 ##### Xor (aka exclusive or) gate
+![](assets/xor_gate.svg)
+
 Returns $1$ when exactly one of its input is $1$, and $0$ otherwise.
 
 Truth table:
+
 | a   | b   | Xor(a, b) |
 |:---:|:---:|:---------:|
 | 0   | 0   | 0         |
@@ -200,12 +230,29 @@ Truth table:
 | 1   | 1   | 0         |
 
 API:
+
 |           |                                          |
 |-----------|------------------------------------------|
 | Chip name | `Xor`                                    |
 | Input     | `a`, `b`                                 |
 | Output    | `out`                                    |
 | Function  | `if (a != b) then out = 1, else out = 0` |
+
+HDL:
+
+```hdl
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Not(in= a, out= nota);
+    Not(in= b, out= notb);
+    And(a= a, b= notb, out= aandnotb);
+    And(a= b, b= nota, out= bandnota);
+    Or(a= aandnotb, b= bandnota, out= out);
+}
+```
 
 #### Control flow gates
 These gates provide means for controlling flows of information.
@@ -216,6 +263,7 @@ A multiplexer is a three-input gate. Two input bits, named `a` and `b`, are inte
 Fig1.9
 
 Truth table:
+
 | a | b | sel | out |
 |---|---|-----|-----|
 | 0 | 0 |  0  |  0  |
@@ -228,12 +276,28 @@ Truth table:
 | 1 | 1 |  1  |  1  |
 
 API:
+
 |           |                                            |
 |-----------|--------------------------------------------|
 | Chip name | `Mux`                                      |
 | Input     | `a`, `b`, `sel`                            |
 | Output    | `out`                                      |
 | Function  | `if (sel == 0) then out = a, else out = b` |
+
+HDL:
+
+```hdl
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    Not(in= sel, out= notsel);
+    And(a= a, b= notsel, out= aandnotsel);
+    And(a= b, b= sel, out= bandsel);
+    Or(a= aandnotsel, b= bandsel, out= out);
+}
+```
 
 ##### Demultiplexer
 A demultiplexer performs the opposite function of a multiplexer: it takes a single input value and routes it to one of two possible outputs, according a selector bit that selects the destination output.
@@ -255,6 +319,20 @@ API:
 | Output    | `a`, `b`                                                     |
 | Function  | `if (sel == 0) then {a, b} = {in, 0}, else {a, b} = {0, in} ` |
 
+HDL:
+
+```hdl
+CHIP DMux {
+    IN in, sel;
+    OUT a, b;
+
+    PARTS:
+    Not(in= sel, out= notsel);
+    And(a= in, b= notsel, out= a);
+    And(a= in, b= sel, out= b);
+}
+```
+
 #### Multi-bit versions of basic gates
 This section describes several 16-bit logic gates that will be needed for constructing our target computer platform. HDL programs treat multi-bit values like single-bit values, except that the values can be indexed in order to access individual bits. For example, if `in` and `out` represent 16-bit values, then `out [3] = in[5]` sets the 3rd bit of `out` to the value of the 5th bit of in. The bits are indexed from right to left, the rightmost bit being the 0’th but and the leftmost bit being the 15’th bit (in a 16-bit setting).
 
@@ -262,6 +340,7 @@ This section describes several 16-bit logic gates that will be needed for constr
 Applies the Boolean operation `Not` to every one of the input bits.
 
 API:
+
 |           |                                     |
 |-----------|-------------------------------------|
 | Chip name | `Not16`                             |
@@ -269,10 +348,38 @@ API:
 | Output    | `out[16]`                           |
 | Function  | `for i = 0..15 out[i] = Not(in[i])` |
 
+HDL:
+
+```hdl
+CHIP Not16 {
+    IN in[16];
+    OUT out[16];
+
+    PARTS:
+    Not(in= in[0], out= out[0]);
+    Not(in= in[1], out= out[1]);
+    Not(in= in[2], out= out[2]);
+    Not(in= in[3], out= out[3]);
+    Not(in= in[4], out= out[4]);
+    Not(in= in[5], out= out[5]);
+    Not(in= in[6], out= out[6]);
+    Not(in= in[7], out= out[7]);
+    Not(in= in[8], out= out[8]);
+    Not(in= in[9], out= out[9]);
+    Not(in= in[10], out= out[10]);
+    Not(in= in[11], out= out[11]);
+    Not(in= in[12], out= out[12]);
+    Not(in= in[13], out= out[13]);
+    Not(in= in[14], out= out[14]);
+    Not(in= in[15], out= out[15]);
+}
+```
+
 ##### 16-bit And gate
 Applies the Boolean operation `And` to every one of the input bits.
 
 API:
+
 |           |                                          |
 |-----------|------------------------------------------|
 | Chip name | `And16`                                  |
@@ -280,10 +387,38 @@ API:
 | Output    | `out[16]`                                |
 | Function  | `for i = 0..15 out[i] = And(a[i], b[i])` |
 
+HDL:
+
+```hdl
+CHIP And16 {
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+    And(a= a[0], b= b[0], out= out[0]);
+	And(a= a[1], b= b[1], out= out[1]);
+	And(a= a[2], b= b[2], out= out[2]);
+	And(a= a[3], b= b[3], out= out[3]);
+	And(a= a[4], b= b[4], out= out[4]);
+	And(a= a[5], b= b[5], out= out[5]);
+	And(a= a[6], b= b[6], out= out[6]);
+	And(a= a[7], b= b[7], out= out[7]);
+	And(a= a[8], b= b[8], out= out[8]);
+	And(a= a[9], b= b[9], out= out[9]);
+	And(a= a[10], b= b[10], out= out[10]);
+	And(a= a[11], b= b[11], out= out[11]);
+	And(a= a[12], b= b[12], out= out[12]);
+	And(a= a[13], b= b[13], out= out[13]);
+	And(a= a[14], b= b[14], out= out[14]);
+	And(a= a[15], b= b[15], out= out[15]);
+}
+```
+
 ##### 16-bit Or gate
 Applies the Boolean operation `Or` to every one of the input bits.
 
 API:
+
 |           |                                         |
 |-----------|-----------------------------------------|
 | Chip name | `Or16`                                  |
@@ -291,16 +426,71 @@ API:
 | Output    | `out[16]`                               |
 | Function  | `for i = 0..15 out[i] = Or(a[i], b[i])` |
 
+HDL:
+
+```hdl
+CHIP Or16 {
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+    Or(a= a[0], b= b[0], out= out[0]);
+	Or(a= a[1], b= b[1], out= out[1]);
+	Or(a= a[2], b= b[2], out= out[2]);
+	Or(a= a[3], b= b[3], out= out[3]);
+	Or(a= a[4], b= b[4], out= out[4]);
+	Or(a= a[5], b= b[5], out= out[5]);
+	Or(a= a[6], b= b[6], out= out[6]);
+	Or(a= a[7], b= b[7], out= out[7]);
+	Or(a= a[8], b= b[8], out= out[8]);
+	Or(a= a[9], b= b[9], out= out[9]);
+	Or(a= a[10], b= b[10], out= out[10]);
+	Or(a= a[11], b= b[11], out= out[11]);
+	Or(a= a[12], b= b[12], out= out[12]);
+	Or(a= a[13], b= b[13], out= out[13]);
+	Or(a= a[14], b= b[14], out= out[14]);
+	Or(a= a[15], b= b[15], out= out[15]);
+}
+```
+
 ##### 16-bit Multiplexer gate
 Operates exactly as the basic multiplexer, except that its input and output are 16-bits wide.
 
 API:
+
 |           |                                                              |
 |-----------|--------------------------------------------------------------|
 | Chip name | `Mux16`                                                      |
 | Input     | `a[16]`, `b[16]`, `sel`                                      |
 | Output    | `out[16]`                                                    |
 | Function  | `if (sel == 0) then for i = 0..15 out[i] = a[i], else for i = 0..15 out[i] = b[i]` |
+
+HDL:
+
+```hdl
+CHIP Mux16 {
+    IN a[16], b[16], sel;
+    OUT out[16];
+
+    PARTS:
+    Mux(a= a[0], b= b[0], sel= sel, out= out[0]);
+	Mux(a= a[1], b= b[1], sel= sel, out= out[1]);
+	Mux(a= a[2], b= b[2], sel= sel, out= out[2]);
+	Mux(a= a[3], b= b[3], sel= sel, out= out[3]);
+	Mux(a= a[4], b= b[4], sel= sel, out= out[4]);
+	Mux(a= a[5], b= b[5], sel= sel, out= out[5]);
+	Mux(a= a[6], b= b[6], sel= sel, out= out[6]);
+	Mux(a= a[7], b= b[7], sel= sel, out= out[7]);
+	Mux(a= a[8], b= b[8], sel= sel, out= out[8]);
+	Mux(a= a[9], b= b[9], sel= sel, out= out[9]);
+	Mux(a= a[10], b= b[10], sel= sel, out= out[10]);
+	Mux(a= a[11], b= b[11], sel= sel, out= out[11]);
+	Mux(a= a[12], b= b[12], sel= sel, out= out[12]);
+	Mux(a= a[13], b= b[13], sel= sel, out= out[13]);
+	Mux(a= a[14], b= b[14], sel= sel, out= out[14]);
+	Mux(a= a[15], b= b[15], sel= sel, out= out[15]);
+}
+```
 
 #### Multi-way versions of basic gates
 Logic gates that operate on one or two inputs have natural generalization to multi-way variants that operate on more than two inputs.
@@ -318,9 +508,20 @@ API:
 | Output    | `a`, `b`, `c`, `d`                                           |
 | Function  | `if (sel == 00) then {a, b, c, d} = {1, 0, 0, 0},<br><br>else if (sel == 01) then {a, b, c, d} = {0, 1, 0, 0},<br><br>else if (sel == 01) then {a, b, c, d} = {0, 0, 1, 0},<br><br>else if (sel == 11) then {a, b, c, d} = {0, 0, 0, 1}<br>` |
 
+HDL:
+
+```hdl
+```
+
+
 |           |                                                              |
 |-----------|--------------------------------------------------------------|
 | Chip name | `DMux8Way`                                                   |
 | Input     | `in`, `sel[3]`                                               |
 | Output    | `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`                       |
 | Function  | `if (sel == 000) then {a, b, c, …, h} = {1, 0, 0, 0, 0, 0, 0, 0},<br><br>else if (sel == 001) then {a, b, c, …, h} = {0, 1, 0, 0, 0, 0, 0, 0},<br><br>if (sel == 010) then {a, b, c, …, h} = {0, 0, 1, 0, 0, 0, 0, 0},<br><br>…<br><br>if (sel == 111) then {a, b, c, …, h} = {0, 0, 0, 0, 0, 0, 0, 1}<br>` |
+
+HDL:
+
+```hdl
+```
