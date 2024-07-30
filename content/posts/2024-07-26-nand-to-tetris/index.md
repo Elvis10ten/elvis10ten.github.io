@@ -10,9 +10,9 @@ tags:
 
 ## Chapter 1: Boolean logic
 ### Binary variables
-A binary variable can represent two possible states: `0` and `1`; `off` and `on`; `false` and `true`; `no` and `yes`; etc.
+A binary variable can represent two possible states: `0` and `1`; `off` and `on`; `false` and `true`; `no` and `yes`; etc. **Boolean algebra** is used to manipulate binary values.
 
-$2^n$ states can be represented by $n$ binary variables.
+$n$ binary variables can be used to represent $2^n$ states. e.g.
 
 | $b_2$ | $b_1$ | $b_0$ |
 | ----- | ----- | ----- |
@@ -24,27 +24,20 @@ $2^n$ states can be represented by $n$ binary variables.
 | 1     | 0     | 1     |
 | 1     | 1     | 0     |
 | 1     | 1     | 1     |
-### Boolean functions
-A boolean function (aka boolean operator) is a function that operates on boolean variables and returns a boolean value.
 
-The total number of boolean functions for $n$ binary variables is $2^{2^n}$:
+### Boolean functions
+A boolean function (aka boolean operator) is a function that operates on binary inputs and returns binary outputs.
+
+The total number of boolean functions for $n$ binary variables is $2^{2^n}$. Explanation:
 * There are $2^n$ input combinations.
 * Each of these input combinations can be mapped to either `0` or `1`.
 * The total number of boolean functions is thus: $2^{2^n}$
 * e.g. There are `16` boolean distinct functions for `2` binary variables.
 
-# The elements of computing systems
-
-## Chapter 1: Boolean logic
-Every digital device is based on a set of chips designed to store and process binary information. These chips are all made of **elementary logic gates**. Elementary logic gates can be physically realized using many different hardware technologies, but their logical behavior, or abstraction, is consistent across implementations.
-
-### Boolean algebra
-**Boolean algebra** manipulates two-state binary values that are typically labeled true/false, 1/0, on/off, etc.
-
-A **boolean function** or **operator** is a function that operates on binary inputs and returns binary outputs.
-
 ### Logic gates
 A **gate** is a physical device that implements a simple Boolean function. Electricity is commonly used to realize gates and represent binary data. However, they can realized by other means: optically, biologically, etc.
+
+Every digital device is based on a set of chips designed to store and process binary information. These chips are all made of **elementary logic gates**. Elementary logic gates can be physically realized using many different hardware technologies, but their logical behavior, or abstraction, is consistent across implementations.
 
 Fig1.4
 
@@ -116,14 +109,16 @@ API:
 Returns $1$ when both its inputs are $1$, and $0$ otherwise.
 
 Truth table:
+
 | a   | b   | And(a, b) |
-|:---:|:---:|:---------:|
+|-----|-----|-----------|
 | 0   | 0   | 0         |
 | 0   | 1   | 0         |
 | 1   | 0   | 0         |
 | 1   | 1   | 1         |
 
 API:
+
 |           |                                                       |
 |-----------|-------------------------------------------------------|
 | Chip name | `And`                                                 |
