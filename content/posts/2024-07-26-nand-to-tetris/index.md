@@ -80,8 +80,6 @@ The specifications of the logic gates needed to build the chips of our computer 
 ##### Nand gate
 Shorthand for **Not-And** because its equivalent to `Not(And(a, b))`.
 
-Various subsets of logical operators can be used for expressing any Boolean function, and `{ And, Or, Not }` is one such subset. Nand is a primitive operator because it can be used to express any of those three basic operators.
-
 Truth table:
 
 | a   | b   | Nand(a, b) |
@@ -99,6 +97,12 @@ API:
 | Input     | `a`, `b`                                              |
 | Output    | `out`                                                 |
 | Function  | `if ((a == 1) and (b==1)) then out = 0, else out = 1` |
+
+The NAND gate is a primitive gate because it can be used to implement any boolean function. Proof:
+* Various subsets of logical operators can be used for expressing any boolean function, and `{ And, Or, Not }` is one such subset. NAND can be used to implement each member of the subset as demonstrated below.
+* `NOT(a) = NAND(a, a)`
+* `AND(a, b) = NOT(NAND(a, b))`
+* `OR(a, b) = NOT(NOT(a) AND NOT(b))` (De morgan law)
 
 #### Classical logical gates
 These gates implement classical logical operators.
@@ -120,6 +124,17 @@ API:
 | Output    | `out`                                     |
 | Function  | `if (in == 0) then out = 1, else out = 0` |
 
+HDL:
+```hdl
+CHIP Not {
+    IN in;
+    OUT out;
+
+    PARTS:
+    Nand(a= in, b= in, out= out);
+}
+```
+
 ##### And gate
 Returns $1$ when both its inputs are $1$, and $0$ otherwise.
 
@@ -140,6 +155,8 @@ API:
 | Input     | `a`, `b`                                              |
 | Output    | `out`                                                 |
 | Function  | `if ((a == 1) and (b==1)) then out = 1, else out = 0` |
+
+HDL:
 
 ```hdl
 CHIP And {
