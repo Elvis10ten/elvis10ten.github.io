@@ -9,10 +9,14 @@ tags:
 ---
 
 ## Chapter 1: Boolean logic
-### Binary variables
-A binary variable can represent two possible states: `0` and `1`; `off` and `on`; `false` and `true`; `no` and `yes`; etc. **Boolean algebra** is used to manipulate binary values.
 
-$n$ binary variables can be used to represent $2^n$ states. e.g.
+### Binary variables
+Modern computers store and process information stored as two-valued signals — called `bits` (i.e. binary digits). Two-value signals were chosen because they can readily be represented, stored, and transmitted. For example, as:
+* The presence or absence of a hole in a punched card
+* High or low voltage on a wire
+* A magnetic domain oriented clockwise or counterclockwise.
+
+A binary variable or a bit can represent two possible states: `0` and `1`; `off` and `on`; `false` and `true`; `no` and `yes`; etc. $n$ binary variables can be used to represent $2^n$ states. e.g.
 
 | $b_2$ | $b_1$ | $b_0$ |
 | ----- | ----- | ----- |
@@ -26,42 +30,51 @@ $n$ binary variables can be used to represent $2^n$ states. e.g.
 | 1     | 1     | 1     |
 
 ### Boolean functions
-A boolean function (aka boolean operator) is a function that operates on binary inputs and returns binary outputs.
+**Boolean algebra** is used to manipulate binary values. A boolean function (aka boolean operator) is a function that operates on binary inputs and returns binary outputs.
 
 The total number of boolean functions for $n$ binary variables is $2^{2^n}$. Explanation:
 * There are $2^n$ input combinations.
 * Each of these input combinations can be mapped to either `0` or `1`.
 * The total number of boolean functions is thus: $2^{2^n}$
-* e.g. There are `16` boolean distinct functions for `2` binary variables.
+* e.g. There are `16` distinct boolean functions for `2` binary variables.
+
+| Function | Expression                    | A=0, B=0 | A=0, B=1 | A=1, B=0 | A=1, B=1 |
+|----------|-------------------------------|----------|----------|----------|----------|
+| F0       | 0                             | 0        | 0        | 0        | 0        |
+| F1       | NOT A AND NOT B               | 1        | 0        | 0        | 0        |
+| F2       | NOT A AND B                   | 0        | 1        | 0        | 0        |
+| F3       | NOT A                         | 1        | 1        | 0        | 0        |
+| F4       | A AND NOT B                   | 0        | 0        | 1        | 0        |
+| F5       | NOT B                         | 1        | 0        | 1        | 0        |
+| F6       | XOR(A, B)                     | 0        | 1        | 1        | 0        |
+| F7       | NAND(A, B)                    | 1        | 1        | 1        | 0        |
+| F8       | A AND B                       | 0        | 0        | 0        | 1        |
+| F9       | XNOR(A, B)                    | 1        | 0        | 0        | 1        |
+| F10      | B                             | 0        | 1        | 0        | 1        |
+| F11      | NOT A OR B                    | 1        | 1        | 0        | 1        |
+| F12      | A                             | 0        | 0        | 1        | 1        |
+| F13      | A OR NOT B                    | 1        | 0        | 1        | 1        |
+| F14      | A OR B                        | 0        | 1        | 1        | 1        |
+| F15      | 1                             | 1        | 1        | 1        | 1        |
 
 ### Logic gates
-A **gate** is a physical device that implements a simple Boolean function. Electricity is commonly used to realize gates and represent binary data. However, they can realized by other means: optically, biologically, etc.
-
-Every digital device is based on a set of chips designed to store and process binary information. These chips are all made of **elementary logic gates**. Elementary logic gates can be physically realized using many different hardware technologies, but their logical behavior, or abstraction, is consistent across implementations.
-
-Fig1.4
-
-The book uses gates and chips interchangeably.
+A **gate** (also called **chip** in the book) is a physical device that implements a boolean function. Every digital device is based on a set of chips designed to store and process binary information. These chips are all made of **elementary logic gates**. Elementary logic gates can be physically realized using many different hardware technologies, but their logical behavior, or abstraction, is consistent across implementations.
 
 Since all logic gates have the same input and output data type (i.e. binary), they can be combined, creating composite gates of arbitrary complexity. e.g. `Xor = Or( And(a, Not(b)), And(Not(a), b) )`.
 
-Fig1.6
-
 Any given logic gate can be viewed from two perspective:
-1. **External**: Basically, the interface of the gate, outlining its input pins, output pins, and its behavior.
-2. **Internal**: Basically, the implementation of the gate. There can be multiple implementations of a gate’s interface. The goal is to find an implementation that is correct (functional requirement) and efficient (performance requirement).
-
-Fig1.5
+1. **External**: The interface of the gate, outlining its input pins, output pins, and its behavior.
+2. **Internal**: The implementation of the gate. There can be multiple implementations of a gate’s interface. The goal is to find an implementation that is correct (functional requirement) and efficient (performance requirement).
 
 ### Hardware description language (HDL)
 Hardware description language is a formalism used by hardware designers to design chip architecture.
 
->  The designer specifies the chip logic by writing an HDL program, which is then subjected to a rigorous battery of tests. The tests are carried out virtually, using computer simulation: A special software tool, called a **hardware simulator**, takes the HDL program as input and creates a software representation of the chip logic. Next, the designer can instruct the simulator to test the virtual chip on various sets of inputs. The simulator computes the chip outputs, which are then compared to the desired outputs.
+>  The designer specifies the chip logic by writing a HDL program, which is then subjected to a rigorous battery of tests. The tests are carried out virtually, using computer simulation: A special software tool, called a **hardware simulator**, takes the HDL program as input and creates a software representation of the chip logic. Next, the designer can instruct the simulator to test the virtual chip on various sets of inputs. The simulator computes the chip outputs, which are then compared to the desired outputs.
 
 The hardware simulator can also simulate and quantify the performance characteristics (energy consumption, computational speed, cost) of a chip.
 
 ### Gates specification
-The specifications of the logic gates needed to build the chips of our computer system is given below.
+The specifications of the logic gates needed to build the chips of our computer system are given below.
 
 #### Primitive gates
 ##### Nand gate
@@ -70,6 +83,7 @@ Shorthand for **Not-And** because its equivalent to `Not(And(a, b))`.
 Various subsets of logical operators can be used for expressing any Boolean function, and `{ And, Or, Not }` is one such subset. Nand is a primitive operator because it can be used to express any of those three basic operators.
 
 Truth table:
+
 | a   | b   | Nand(a, b) |
 |:---:|:---:|:----------:|
 | 0   | 0   | 1          |
@@ -78,6 +92,7 @@ Truth table:
 | 1   | 1   | 0          |
 
 API:
+
 |           |                                                       |
 |-----------|-------------------------------------------------------|
 | Chip name | `Nand`                                                |
@@ -125,6 +140,17 @@ API:
 | Input     | `a`, `b`                                              |
 | Output    | `out`                                                 |
 | Function  | `if ((a == 1) and (b==1)) then out = 1, else out = 0` |
+
+```hdl
+CHIP And {
+    IN a, b;
+    OUT out;
+    
+    PARTS:
+    Nand(a= a, b= b, out= nandout);
+    Not(in= nandout, out= out);
+}
+```
 
 ##### Or gate
 Returns $1$ when at least one of its inputs is $1$, and $0$ otherwise.
