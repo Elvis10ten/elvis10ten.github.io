@@ -1,12 +1,4 @@
----
-title: "[WIP] The Algorithm Design Manual - Notes"
-slug: "/2024-01-01-algorithm-design-manual"
-date: 2024-01-01
-canonicalUrl: "https://elvischidera.com/2024-01-01-algorithm-design-manual"
-banner: ./assets/banner.jpeg
-tags:
-  - notes
----
+# [WIP] The Algorithm Design Manual - Notes"
 
 > Pet Peeve: The author sometimes skips steps without an explaination (like the integer truncation in "stop and think: incremental correctness"). Some examples are hard to follow for an international student (like understanding the lottery system in "war story: pschic modeling").
 

@@ -1,12 +1,5 @@
----
-title: "[WIP] The Elements of Computing Systems: Building a Modern Computer from First Principles"
-slug: "/2024-07-26-nand-to-tetris"
-date: 2024-07-26
-canonicalUrl: "https://elvischidera.com/2024-07-26-nand-to-tetris"
-banner: ./assets/banner.jpg
-tags:
-  - notes
----
+#[WIP] The Elements of Computing Systems: Building a Modern Computer from First Principles
+
 
 ## Chapter 1: Boolean logic
 
